@@ -65,7 +65,7 @@ env_type          = "dev"
 
 In the command line, navigate to the `terraform` directory and run:
 
-```zsh
+```code
 terraform init
 ```
 
@@ -73,15 +73,17 @@ If the plan fails - check your `terraform.tfvars` values.
 
 If the plan succeeds:
 
-```hcl
+```code
 terraform apply --auto-approve
 ````
 
+Your new PingOne environment is called: `Ping OIDC SDK Example`
+
 ##### Deploy OIDC Sample Application
 
-**Start local HTTP server**
 In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
-```zsh
+
+```code
 npx http-server -S -C cert.pem
 ```
 
