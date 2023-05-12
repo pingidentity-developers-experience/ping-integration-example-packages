@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/fonts/gotham-book.woff2');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/fonts/gotham-book-bold.woff2');
+  font-weight: bold;
+}
+
+body {
+  margin: 2rem 3rem;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "kern" 0, "calt" 0, "liga" 0, "clig" 0, "dlig" 0, "hlig" 0;
+  font-family: unset;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricprecision;
+  white-space: normal;
+  font-synthesis: none;
+}
+
+body, div {
+  font-family: 'Gotham Book';
+}
+
+.header-text {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -2.5rem;
+}
+
+.title, .subtitle {
+  color: #505d68;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  margin-top: 2rem;
+}
+
+.title {
+  margin-left: 9rem;
+}
+
+.subtitle {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.content {
+  background-color: #e6e8ec;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  width: 350px;
+  text-align: center;
+  border-radius: 1.5rem;
+}
+
+.content h1 {
+  color: #505d68;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #505d68;
+  font-size: .8rem;
+}
