@@ -42,7 +42,7 @@
         </div>
       </div>
     </section>
-    <script type="module" src="https://unpkg.com/@ping-identity-developer-enablement/dev-enablement-oidc@0.1.0-beta/dist/index.js"></script>
+    <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk/lib/ping-oidc.js"></script>
     <script type="text/javascript">
      document.addEventListener('DOMContentLoaded', async () => {
         const dashboardUri = '/dashboard.html'; // Log in protected page
@@ -67,7 +67,7 @@
           }
         };
     
-        client = await pingDevLib.default.fromIssuer('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
+        client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
        
         // Don't allow an unauthenticated user access to dashboard
         setTimeout(async () => {
