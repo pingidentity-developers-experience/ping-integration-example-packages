@@ -12,9 +12,9 @@ variable "organization_id" {
   description = "Your P1 Organization ID"
 }
 
-variable "license_name" {
+variable "license_id" {
   type        = string
-  description = "Name of the P1 license you want to assign to the Environment"
+  description = "Id the P1 license you want to assign to the Environment"
 }
 
 variable "admin_env_id" {

@@ -26,7 +26,7 @@ module "environment" {
     var.admin_user_id
   ]
 
-  license_name    = var.license_name
+  license_id    = var.license_id
   organization_id = var.organization_id
 }
 
