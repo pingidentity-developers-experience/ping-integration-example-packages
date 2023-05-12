@@ -63,7 +63,7 @@
               // Populate the DOM with tokens and user info data
               document.getElementById('access-token').innerHTML = token.access_token;
               document.getElementById('id-token').innerHTML = token.id_token;    
-              document.getElementById('user-info').innerHTML = JSON.stringify(userInfo);              
+              document.getElementById('user-info').innerHTML = '<pre>'+JSON.stringify(userInfo, undefined, 2)+'</pre>';          
           }
         };
     
