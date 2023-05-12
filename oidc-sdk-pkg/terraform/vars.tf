@@ -14,7 +14,7 @@ variable "organization_id" {
 
 variable "license_id" {
   type        = string
-  description = "Id the P1 license you want to assign to the Environment"
+  description = "Id of the P1 license you want to assign to the Environment"
 }
 
 variable "admin_env_id" {
