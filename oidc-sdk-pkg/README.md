@@ -42,10 +42,10 @@ region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 organization_id = "{{orgId}}"
 admin_env_id    = "{{adminEnvId}}"
 admin_user_id   = "{{adminUserId}}"
-license_id    = "{{licenseId}}"
+license_id      = "{{licenseId}}"
 worker_id       = "{{workerId}}"
 worker_secret   = "{{workerSecret}}"
-env_type          = "dev"
+env_type        = "dev"
 ```
 
 | Variable | Description | 
