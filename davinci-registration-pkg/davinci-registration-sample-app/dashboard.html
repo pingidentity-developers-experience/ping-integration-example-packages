@@ -22,13 +22,17 @@
       <h1>Logged In!</h1>
       <p>Your email address:</p>
       <p id="email-address"></p>
+      <button id="logout" class="btn">Log Out</button>
     </div>
   </section>
   <script src="https://assets.pingone.com/davinci/latest/davinci.js"></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
-      // TODO - real email address from flow result/token
-      document.getElementById('email-address').innerText = 'ericanderson@pingidentity.com';
+      document.getElementById('email-address').innerText = sessionStorage.getItem('email');
+      document.getElementById('logout').addEventListener('click', () => {
+        sessionStorage.clear();
+        window.location.assign(window.location.origin + '/');
+      });
     });
   </script>
 </body>

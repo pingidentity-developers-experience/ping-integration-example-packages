@@ -6,9 +6,5 @@ terraform {
     davinci = {
       source = "pingidentity/davinci"
     }
-    http = {
-      source = "hashicorp/http"
-      version = "3.3.0"
-    }
   }
 }

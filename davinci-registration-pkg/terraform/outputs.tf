@@ -6,7 +6,3 @@
 output "pingone_envid" {
   value = module.environment.environment_id
 }
-
-output "oidc_app_client_id" {
-  value = pingone_application.oidc_sdk_sample_app.id
-}

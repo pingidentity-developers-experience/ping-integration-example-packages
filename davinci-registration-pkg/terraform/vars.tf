@@ -12,9 +12,9 @@ variable "organization_id" {
   description = "Your P1 Organization ID"
 }
 
-variable "license_name" {
+variable "license_id" {
   type        = string
-  description = "Name of the P1 license you want to assign to the Environment"
+  description = "Id of the P1 license you want to assign to the Environment"
 }
 
 variable "admin_env_id" {
@@ -42,12 +42,22 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "Ping DaVinci Registration Example"
+  default     = "DaVinci Registration Sample"
 }
 
 variable "env_type" {
   type        = string
   description = "Deployment Type (Dev | QA | Prod)"
+}
+
+variable "dv_admin_username" {
+  type        = string
+  description = "Username to use for the DaVinci provider"
+}
+
+variable "dv_admin_password" {
+  type        = string
+  description = "Password to use for the DaVinci provider"
 }
 
 locals {
@@ -60,7 +70,4 @@ locals {
   canada         = var.region == "Canada" ? "ca" : ""
   asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
   pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
-  # Worker app token variables
-  raw_data     = jsondecode(data.http.get_token.response_body)
-  access_token = local.raw_data.access_token
 }

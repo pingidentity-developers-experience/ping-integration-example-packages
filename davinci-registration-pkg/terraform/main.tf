@@ -17,7 +17,7 @@ module "environment" {
   version = "0.0.12"
 
   target_environment_name            = var.env_name
-  target_environment_description     = "OIDC SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
+  target_environment_description     = "DaVinci Registration Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
   target_environment_production_type = false // The default.
 
   admin_user_assign_environment_admin_role = false
@@ -25,8 +25,10 @@ module "environment" {
   admin_user_id_list = [
     var.admin_user_id
   ]
+  create_davinci = true
+  create_mfa = true
 
-  license_name    = var.license_name
+  license_id    = var.license_id
   organization_id = var.organization_id
 }
 
@@ -44,6 +46,9 @@ provider "pingone" {
   force_delete_production_type = false
 }
 
-provider "http" {
-  # Configuration options
+provider "davinci" {
+  username                     = var.dv_admin_username
+  password                     = var.dv_admin_password
+  region                       = var.region
+  environment_id               = var.admin_env_id
 }

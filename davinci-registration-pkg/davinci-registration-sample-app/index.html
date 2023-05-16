@@ -23,10 +23,65 @@
       <div id="widget-container"></div>
     </div>
   </section>
+  <script src="global.js"></script>
   <script src="https://assets.pingone.com/davinci/latest/davinci.js"></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
+      const companyId = window._env_.companyId;
+      const skApiKey = window._env_.apiKey; 
+      const policyId = window._env_.policyId;
 
+      //*** Build the get SK Token URL. ***/
+      const skGetTokenUrl =
+        'https://orchestrate-api.pingone.com/v1/company/' +
+        companyId + '/sdktoken';
+
+      //*** Add the API Key from your DaVinci application. ***/
+      var headers = new Headers();
+      headers.append('X-SK-API-KEY', skApiKey);
+
+      var requestOptions = {
+        method: 'GET',
+        headers: headers,
+        redirect: 'follow',
+      };
+
+      //*** Retrieve SK Token ***/
+      fetch(skGetTokenUrl, requestOptions)
+        .then((response) => response.json())
+        .then((responseData) => {
+          var props = {
+            config: {
+              method: 'runFlow',
+              apiRoot: 'https://auth.pingone.com/',
+              accessToken: responseData.access_token,
+              companyId: companyId,
+              policyId: policyId,
+            },
+            useModal: false,
+            successCallback,
+            errorCallback,
+          };
+          /*** Invoke the Widget ****/
+          davinci.skRenderScreen(
+            document.getElementById('widget-container'),
+            props
+          );
+        })
+        .catch((error) => console.log('error', error));
+
+      function successCallback(response) {
+        const email = response.additionalProperties?.loggedInUser;
+        if (email) {
+          // Set email in sessionStorage so it can be displayed on dashboard
+          sessionStorage.setItem('email', email);
+          window.location.assign(window.location.origin + '/dashboard.html');
+        }
+      }
+
+      function errorCallback(error) {
+        console.log(error);
+      }
     });
   </script>
 </body>
