@@ -1,40 +1,21 @@
 ##########################################################################
 # davinci.tf - Declarations to create DaVinci assets
-# @see https://registry.terraform.io/providers/pingidentity/davinci/latest
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest}
 ##########################################################################
 
 #########################################################################
 # PineOne DaVinci - Read all connections
 #########################################################################
-# @see https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
-# // Assign the "Identity Data Admin" role to the DV admin user
-# resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
-#   environment_id       = var.admin_env_id
-#   user_id              = data.pingone_user.dv_admin_user.id
-#   role_id              = data.pingone_role.identity_data_admin.id
-#   scope_environment_id = module.environment.environment_id
-# }
-
-# // Assign the "Environment Admin" role to the DV admin user
-# resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
-#   environment_id       = var.admin_env_id
-#   user_id              = data.pingone_user.dv_admin_user.id
-#   role_id              = data.pingone_role.environment_admin.id
-#   scope_environment_id = module.environment.environment_id
-# }
-
-// This simple read action is used to as a precursor to all other data/resources
-// Every other data/resource should have a `depends_on` pointing to this read action
 data "davinci_connections" "read_all" {
-  // NOTICE: This read action has a dependency on the role assignment, not environment.
-  // Assigning this correctly ensures the role is not destroyed before DaVinci resources during `terraform destroy`.
-  depends_on = [
-    # pingone_role_assignment_user.admin_sso_identity_admin,
-    # pingone_role_assignment_user.admin_sso_environment_admin
-  ]
   environment_id = module.environment.environment_id
 }
+
+#########################################################################
+# PineOne DaVinci - Create and deploy a flow
+#########################################################################
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
 resource "davinci_flow" "registration_flow" {
   depends_on = [ 
@@ -56,6 +37,11 @@ resource "davinci_flow" "registration_flow" {
     name = "PingOne"
   }
 }
+
+#########################################################################
+# PingOne DaVinci - Create an application and flow policy for the flow above
+#########################################################################
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/application}
 
 resource "davinci_application" "registration_flow_app" {
   name           = "DaVinci Registration Sample Application"

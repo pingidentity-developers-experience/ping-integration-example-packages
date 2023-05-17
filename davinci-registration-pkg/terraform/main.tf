@@ -35,9 +35,8 @@ module "environment" {
 ##############################################
 # PingOne Provider
 ##############################################
-
-# PingOne Provider
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
+
 provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
@@ -45,6 +44,11 @@ provider "pingone" {
   region                       = var.region
   force_delete_production_type = false
 }
+
+##############################################
+# PingOne DaVinci Provider
+##############################################
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
   username                     = var.dv_admin_username

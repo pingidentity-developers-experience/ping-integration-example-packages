@@ -16,15 +16,14 @@ data "pingone_role" "environment_admin" {
   name = "Environment Admin"
 }
 
+##############################################
+# DaVinci Data
+##############################################
 data "pingone_user" "dv_admin_user" {
   environment_id = var.admin_env_id
 
   username = var.dv_admin_username
 }
-
-##############################################
-# DaVinci Data
-##############################################
 
 data "davinci_connection" "ping_sso" {
   environment_id = module.environment.environment_id
