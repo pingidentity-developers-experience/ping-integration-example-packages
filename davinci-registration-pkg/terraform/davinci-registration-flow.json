@@ -1,0 +1,833 @@
+{
+  "companyId": "b6027f63-aaca-4b65-ac14-6ed7f0a04b10",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "httpConnector",
+    "pingOneSSOConnector"
+  ],
+  "createdDate": 1684265758250,
+  "currentVersion": 2,
+  "customerId": "0b70e08c92457a154f4e6ae605beed87",
+  "deployedDate": 1684265771669,
+  "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
+  "flowStatus": "enabled",
+  "name": "PingOne DaVinci Registration Example",
+  "publishedVersion": 2,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 2
+  },
+  "trigger": {},
+  "updatedDate": 1684265771669,
+  "flowId": "407774c0789cd5dabaada8655c5753be",
+  "versionId": 2,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "cfpq1xg2dc",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"<form id=\\\"emailForm\\\">\\n    <input type=\\\"text\\\" id=\\\"email\\\" name=\\\"email\\\" placeholder=\\\"Email Address\\\" />\\n    <div data-skcomponent=\\\"skerrormessage\\\" class=\\\"input-error-msg text-danger\\\" data-skerrorid=\\\"email\\\"></div>\\n    <button class=\\\"btn\\\" data-skcomponent=\\\"skbutton\\\" data-skbuttontype=\\\"form-submit\\\" data-skform=\\\"emailForm\\\" data-skbuttonvalue=\\\"submit\\\">Submit</button>\\n<form>\"\n      }\n    ]\n  }\n]"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "displayName": "Email",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "email",
+                    "value": ""
+                  },
+                  {
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue",
+                    "value": ""
+                  }
+                ]
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "email",
+                    "rules": [
+                      {
+                        "message": "Must be a valid email address",
+                        "ruleName": "email"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 277,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "m4sfmek769",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "userLookup",
+            "type": "action",
+            "properties": {
+              "matchAttributes": {
+                "value": [
+                  "email"
+                ]
+              },
+              "userIdentifierForFindUser": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"tooltip\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 547,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "fyg4fdn344",
+            "nodeType": "EVAL",
+            "properties": {}
+          },
+          "position": {
+            "x": 397,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "yqi3iaujxx",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {
+              "0di26c5iy7": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 667,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "eg2kadjdo1",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"<form id=\\\"loginForm\\\">\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"\\t<div data-skcomponent=\\\"skerror\\\" style=\\\"color: red; padding-bottom: 1rem; text-align: center;\\\" class=\\\"feedback feedback--error sk-alert sk-alert-danger has-text-danger has-background-danger-light text-danger text-center pb-3\\\" data-id=\\\"feedback\\\" data-skvisibility=\\\"\\\"></div>\\n    <input type=\\\"password\\\" id=\\\"password\\\" placeholder=\\\"password\\\" />\\n    <button class=\\\"btn\\\" data-skcomponent=\\\"skbutton\\\" data-skbuttontype=\\\"form-submit\\\" data-skform=\\\"loginForm\\\" data-skbuttonvalue=\\\"submit\\\">Login</button>\\n</form>\"\n      }\n    ]\n  }\n]"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "displayName": "Password",
+                    "hashedVisibility": true,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "password",
+                    "value": ""
+                  },
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Enter Password Form"
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "password",
+                    "rules": [
+                      {
+                        "message": "Must contain 8 or more characters that are of at least one number, and one uppercase, one lowercase letter, and one or more of the following special characters @$!.,%*?&.",
+                        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.,%*?&])[A-Za-z\\d@$!.,%*?&]{8,}$",
+                        "ruleName": "format"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 847,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "0di26c5iy7",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"<form id=\\\"registerForm\\\">\\n    <p>We did not locate that account. Sign up now!</p>\\n    <input type=\\\"text\\\" id=\\\"email\\\" placeholder=\\\"Email address\\\" />\\n    <input type=\\\"password\\\" id=\\\"password\\\" placeholder=\\\"password\\\" />\\n    <button class=\\\"btn\\\" data-skcomponent=\\\"skbutton\\\" data-skbuttontype=\\\"form-submit\\\" data-skform=\\\"registerForm\\\" data-skbuttonvalue=\\\"submit\\\">Register</button>\\n</form>\"\n      }\n    ]\n  }\n]"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "displayName": "Email",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "email",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"tooltip\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "displayName": "Password",
+                    "hashedVisibility": true,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "password",
+                    "value": ""
+                  },
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Register New Email Form"
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "email",
+                    "rules": [
+                      {
+                        "message": "Must be a valid email address",
+                        "ruleName": "email"
+                      }
+                    ]
+                  },
+                  {
+                    "propertyName": "password",
+                    "rules": [
+                      {
+                        "message": "Must contain 8 or more characters that are of at least one number, and one uppercase, one lowercase letter, and one or more of the following special characters @$!.,%*?&.",
+                        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.,%*?&])[A-Za-z\\d@$!.,%*?&]{8,}$",
+                        "ruleName": "format"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 847,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "auhsovpoa8",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {}
+          },
+          "position": {
+            "x": 967,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "6i7lwwrw94",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "createUser",
+            "type": "action",
+            "properties": {
+              "additionalUserProperties": {
+                "value": []
+              },
+              "email": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.0di26c5iy7.payload.output.email}}\",\n        \"tooltip\": \"{{local.0di26c5iy7.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "passwordForCreateUser": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.0di26c5iy7.payload.output.password}}\",\n        \"tooltip\": \"{{local.0di26c5iy7.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "population": {
+                "value": "useDefaultPopulation"
+              },
+              "username": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.0di26c5iy7.payload.output.email}}\",\n        \"tooltip\": \"{{local.0di26c5iy7.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1117,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "hcmfduc8d9",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {}
+          },
+          "position": {
+            "x": 1237,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "64the1zf75",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createSuccessResponse",
+            "type": "action",
+            "properties": {
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "key": 0.15658883947546076,
+                    "label": "loggedInUser (string - flowInstance)",
+                    "name": "loggedInUser",
+                    "nameDefault": "email",
+                    "type": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.email}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Successfully Completed Login"
+              }
+            }
+          },
+          "position": {
+            "x": 1417,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "tx0qrifdc8",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {}
+          },
+          "position": {
+            "x": 966.5,
+            "y": 236.75
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "p53gq7n410",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "checkPassword",
+            "type": "action",
+            "properties": {
+              "identifier": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"tooltip\": \"{{local.cfpq1xg2dc.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "matchAttribute": {
+                "value": "email"
+              },
+              "password": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.eg2kadjdo1.payload.output.password}}\",\n        \"tooltip\": \"{{local.eg2kadjdo1.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1117,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8uo3defwup",
+            "nodeType": "EVAL",
+            "properties": {}
+          },
+          "position": {
+            "x": 1237,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7imwg8c7j4",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "key": 0.4322985925683791,
+                    "label": "userRegistered (boolean - flowInstance)",
+                    "name": "userRegistered",
+                    "nameDefault": "email",
+                    "type": "boolean",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"true\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "customHTML": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"<h2>Thank you for registering!</h2>\\n<button class=\\\"btn\\\" id=\\\"login\\\">Login</button>\"\n      }\n    ]\n  }\n]"
+              },
+              "customScript": {
+                "value": "(() => {\n    document.getElementById('login').addEventListener('click', () => window.location.reload());\n})();"
+              },
+              "nodeTitle": {
+                "value": "Successfully Completed Registration"
+              }
+            }
+          },
+          "position": {
+            "x": 1417,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "l69t6tv4wc",
+            "source": "cfpq1xg2dc",
+            "target": "fyg4fdn344"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "dlgb6bc47d",
+            "source": "fyg4fdn344",
+            "target": "m4sfmek769"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "apual4vawu",
+            "source": "m4sfmek769",
+            "target": "yqi3iaujxx"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "a30k2zzp2s",
+            "source": "yqi3iaujxx",
+            "target": "eg2kadjdo1"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7xh26arsu2",
+            "source": "yqi3iaujxx",
+            "target": "0di26c5iy7"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "xj61qimmey",
+            "source": "0di26c5iy7",
+            "target": "auhsovpoa8"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "63jzayvdql",
+            "source": "auhsovpoa8",
+            "target": "6i7lwwrw94"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "73bgp80cye",
+            "source": "6i7lwwrw94",
+            "target": "hcmfduc8d9"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "p071062a0c",
+            "source": "8uo3defwup",
+            "target": "64the1zf75"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qsnral171j",
+            "source": "eg2kadjdo1",
+            "target": "tx0qrifdc8"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "56je658g3m",
+            "source": "tx0qrifdc8",
+            "target": "p53gq7n410"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8xta8bc53k",
+            "source": "p53gq7n410",
+            "target": "8uo3defwup"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "2jkvc6rbx3",
+            "source": "hcmfduc8d9",
+            "target": "7imwg8c7j4"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "flowColor": "#AFD5FF",
+  "savedDate": 1684265758118,
+  "variables": [],
+  "connections": []
+}
