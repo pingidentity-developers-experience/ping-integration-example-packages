@@ -35,7 +35,7 @@
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/oidc-sdk-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-registration-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -82,9 +82,9 @@ terraform apply --auto-approve
 
 Your new PingOne environment is called: `Ping DaVinci Registration Example`
 
-##### Deploy OIDC Sample Application
+##### Deploy DaVinci Registration Sample Application
 
-In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
+In the command line, navigate to the `davinci-registration-sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem
