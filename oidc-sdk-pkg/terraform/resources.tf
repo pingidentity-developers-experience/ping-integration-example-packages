@@ -32,7 +32,7 @@ resource "pingone_application" "oidc_sdk_sample_app" {
 
   oidc_options {
     type                        = "SINGLE_PAGE_APP"
-    grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT"]
+    grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT", "REFRESH_TOKEN"]
     response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
     pkce_enforcement            = "S256_REQUIRED"
     token_endpoint_authn_method = "NONE"

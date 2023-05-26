@@ -32,23 +32,22 @@
         const clientId = window._env_.clientId; // PingOne Application Client ID
 
         const clientOptions = {
-          clientId: clientId,
-          redirectUri: redirectUri,
-          scope: 'openid profile email revoke',
-          tokenAvailableCallback: async (token, state) => {
-            // User has an active access token. Redirect to log in protected page.
-            if (!window.location.pathname.includes(dashboardUri)) {
-              window.location.assign(redirectUri)
-            }
-          }
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          scope: 'openid profile email revoke' // revoke is a custom PingOne resource scope
         };
 
         // Create oidc client from authorization server's well-known endpoint
         const client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
 
+        // User has an access token. Redirect to log in protected page.
+        if (client.hasToken) {
+          window.location.assign(redirectUri)
+        }
+
         // Log in button event listener.
         document.getElementById('login')?.addEventListener('click', async () => {
-          await client?.authorize();
+          await client.authorize();
         });  
     
      });

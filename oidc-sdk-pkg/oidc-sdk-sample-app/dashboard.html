@@ -50,44 +50,57 @@
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
         const clientId = window._env_.clientId; // PingOne Application Client ID
 
-        let client;
-
         const clientOptions = {
-          clientId: clientId,
-          redirectUri: redirectUri,
-          scope: 'openid profile email revoke', // revoke scope is a custom PingOne resource
-          tokenAvailableCallback: async (token, state) => {
-              const userInfo = await client?.fetchUserInfo();
-              console.info('UserInfo', userInfo);
-            
-              // Populate the DOM with tokens and user info data
-              document.getElementById('access-token').innerHTML = token.access_token;
-              document.getElementById('id-token').innerHTML = token.id_token;    
-              document.getElementById('user-info').innerHTML = '<pre>'+JSON.stringify(userInfo, undefined, 2)+'</pre>';          
-          }
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          scope: 'openid profile email revoke' // revoke is a custom PingOne resource scope
         };
     
-        client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
-       
-        // Don't allow an unauthenticated user access to dashboard
-        setTimeout(async () => {
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
+
+        if (client.hasToken) {
+          // Get the token from storage
+          const token = await client.getToken();
           try {
-            const token = await client?.getToken();
+            // Used to get the user info from the userinfo endpoint on the auth server, must be used after user has gone through authorize flow and a token is available in storage.
+            const userInfo = await client.fetchUserInfo();
+            // Update UI with tokens and user info
+            updateUI(token,userInfo);
           } catch (error) {
-            window.location.assign('/');
+            console.error('An error occurred attempting to fetch user info token is likely expired', error);
+            // Refresh the access token and store the new token in storage
+            const refreshedToken = await client.refreshToken();
+            if (!refreshedToken) {
+              return; // Library will redirect to authorization url
+            } else {
+              // Used to get the user info from the userinfo endpoint on the auth server, must be used after user has gone through authorize flow and a token is available in storage.
+              const userInfo = await client.fetchUserInfo();
+              // Update UI with tokens and user info
+              updateUI(refreshedToken,userInfo);
+            }
           }
-        }, 1000);
-        
+        } else {
+          // Don't allow an unauthenticated user access to dashboard
+          window.location.assign('/');
+        }
+
         // Log out button event listener
         document.getElementById('logout')?.addEventListener('click', async () => {
           try {
-            await client?.revokeToken();
+            await client.revokeToken();
           } catch (error) {
             console.error(error)
           };
           window.location.assign('https://auth.pingone.com/'+pingOneEnvId+'/as/signoff?post_logout_redirect_uri='+window.location.origin);
         });
      });
+
+    // Update the DOM with tokens and user info data
+    function updateUI(token,userInfo){
+      document.getElementById('access-token').innerHTML = token.access_token;
+      document.getElementById('id-token').innerHTML = token.id_token;    
+      document.getElementById('user-info').innerHTML = '<pre>'+JSON.stringify(userInfo, undefined, 2)+'</pre>';
+    }
     </script>
     <!-- javascript to control tab user interface and behaviors -->
     <script src="js/tabs.js"></script>
