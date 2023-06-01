@@ -45,11 +45,6 @@ variable "env_name" {
   default     = "Ping OIDC SDK Example"
 }
 
-variable "env_type" {
-  type        = string
-  description = "Deployment Type (Dev | QA | Prod)"
-}
-
 locals {
   # The URL of the demo app
   app_url = "https://127.0.0.1:8080"

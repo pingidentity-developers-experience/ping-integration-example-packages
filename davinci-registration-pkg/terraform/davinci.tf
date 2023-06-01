@@ -49,7 +49,7 @@ resource "davinci_application" "registration_flow_app" {
   depends_on     = [ data.davinci_connections.read_all ]
   oauth {
     enabled = true
-        values {
+    values {
       allowed_grants                = ["authorizationCode"]
       allowed_scopes                = ["openid", "profile"]
       enabled                       = true
