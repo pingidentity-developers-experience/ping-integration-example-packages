@@ -33,6 +33,9 @@
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
 
+## Getting Started
+Install Terraform on your machine, following the instructions [here](https://developer.hashicorp.com/terraform/downloads).
+
 ## Cloning the Project
 ### Variables
 After cloning the project, navigate to `/oidc-sdk-pkg/terraform` and create a `terraform.tfvars` file with the following:
@@ -65,6 +68,7 @@ In the command line, navigate to the `terraform` directory and run:
 
 ```code
 terraform init
+terraform plan
 ```
 
 If the plan fails - check your `terraform.tfvars` values.
