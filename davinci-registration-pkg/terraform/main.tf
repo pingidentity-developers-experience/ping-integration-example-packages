@@ -21,7 +21,7 @@ module "environment" {
   target_environment_production_type = false // The default.
 
   admin_user_assign_environment_admin_role = false
-  admin_user_assign_identity_admin_role    = true
+  admin_user_assign_identity_admin_role    = false
   admin_user_id_list = [
     var.admin_user_id
   ]
@@ -51,8 +51,8 @@ provider "pingone" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
-  username                     = var.dv_admin_username
-  password                     = var.dv_admin_password
+  username                     = var.admin_username
+  password                     = var.admin_password
   region                       = var.region
   environment_id               = var.admin_env_id
 }
