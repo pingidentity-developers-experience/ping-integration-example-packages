@@ -45,11 +45,6 @@ variable "env_name" {
   default     = "DaVinci Registration Sample"
 }
 
-variable "env_type" {
-  type        = string
-  description = "Deployment Type (Dev | QA | Prod)"
-}
-
 variable "dv_admin_username" {
   type        = string
   description = "Username to use for the DaVinci provider"
