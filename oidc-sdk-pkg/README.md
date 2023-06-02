@@ -98,6 +98,25 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 | ---- | -------- |
 | demouser1 | 2FederateM0re! |
 
+##### Deploy Using an Existing PingOne Environment
+If you prefer not to use Terraform to create a PingOne environment for you, you can configure this package to use an existing PingOne environment by following the instructions below.
+
+Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample-app` directory, and update the following values with your PingOne values: 
+`pingOneEnvId` PingOne Environment Id
+`clientId` Application Client Id
+`redirectUri` Redirect URI, this will be https://127.0.0.1:8080/dashboard.html
+
+Note: The Administrators environment cannot be used for this.
+
+In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
+
+```code
+npx http-server -S -C certs/cert.pem -K certs/key.pem
+```
+
+Access the sample application at:
+https://127.0.0.1:8080
+
 
 # Disclaimer
 THIS DEMO AND SAMPLE CODE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PING IDENTITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS DEMO AND SAMPLE CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
