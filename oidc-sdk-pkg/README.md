@@ -103,6 +103,8 @@ If you prefer not to use Terraform to create a PingOne environment for you, you 
 
 Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample-app` directory, and update the following values with your PingOne values:
 
+| Variable | Description | 
+| -------- | ----------- |
 | pingOneEnvId | PingOne Environment Id | 
 | clientId | Application Client Id |
 | redirectUri | Redirect URI, this will be https://127.0.0.1:8080/dashboard.html |
