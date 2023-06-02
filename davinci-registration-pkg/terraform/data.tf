@@ -22,7 +22,7 @@ data "pingone_role" "environment_admin" {
 data "pingone_user" "dv_admin_user" {
   environment_id = var.admin_env_id
 
-  username = var.dv_admin_username
+  username = var.admin_username
 }
 
 data "davinci_connection" "ping_sso" {

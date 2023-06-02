@@ -4,6 +4,22 @@
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 ##########################################################################
 
+// Assign the "Identity Data Admin" role to the DV admin user
+resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
+  environment_id       = var.admin_env_id
+  user_id              = data.pingone_user.dv_admin_user.id
+  role_id              = data.pingone_role.identity_data_admin.id
+  scope_environment_id = module.environment.environment_id
+}
+
+// Assign the "Environment Admin" role to the DV admin user
+resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
+  environment_id       = var.admin_env_id
+  user_id              = data.pingone_user.dv_admin_user.id
+  role_id              = data.pingone_role.environment_admin.id
+  scope_environment_id = module.environment.environment_id
+}
+
 ##########################################################################
 # Output PingOne Environment variables to local global.js file
 ##########################################################################

@@ -45,12 +45,12 @@ variable "env_name" {
   default     = "DaVinci Registration Sample"
 }
 
-variable "dv_admin_username" {
+variable "admin_username" {
   type        = string
   description = "Username to use for the DaVinci provider"
 }
 
-variable "dv_admin_password" {
+variable "admin_password" {
   type        = string
   description = "Password to use for the DaVinci provider"
 }
