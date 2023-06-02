@@ -101,10 +101,11 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 ##### Deploy Using an Existing PingOne Environment
 If you prefer not to use Terraform to create a PingOne environment for you, you can configure this package to use an existing PingOne environment by following the instructions below.
 
-Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample-app` directory, and update the following values with your PingOne values: 
-`pingOneEnvId` PingOne Environment Id
-`clientId` Application Client Id
-`redirectUri` Redirect URI, this will be https://127.0.0.1:8080/dashboard.html
+Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample-app` directory, and update the following values with your PingOne values:
+
+| pingOneEnvId | PingOne Environment Id | 
+| clientId | Application Client Id |
+| redirectUri | Redirect URI, this will be https://127.0.0.1:8080/dashboard.html |
 
 Note: The Administrators environment cannot be used for this.
 
