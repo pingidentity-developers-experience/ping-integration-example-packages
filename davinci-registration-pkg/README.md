@@ -1,5 +1,11 @@
 # Terraform + PingOne DaVinci Widget + Sample App
 
+## Prerequisites
+- Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
+- License with PingOne DaVinci product enabled
+- Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
+- After you have created a DaVinci Adminstrator environment you will need create a Worker App in the environment (Connections > Applications)
+
 ## Source Code Folders
 
 ### /davinci-registration-pkg/davinci-registration-sample-app
@@ -45,21 +51,21 @@ admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
 worker_id         = "{{workerId}}"
 worker_secret     = "{{workerSecret}}"
-dv_admin_username = "{{adminUsername}}"
-dv_admin_password = "{{adminPassword}}"
+admin_username    = "{{adminUsername}}"
+admin_password    = "{{adminPassword}}"
 ```
 
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
 | organization_id | PingOne Organization Id - Located under Environment -> Properties | 
-| admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
-| admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
+| admin_env_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
+| admin_user_id | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_name | License name to be used for PingOne Environment |
-| worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
-| worker_secret | Client Secret for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
-| dv_admin_username | Username for DaVinci admin user |
-| dv_admin_password | Password for DaVinci admin user |
+| worker_id | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
+| worker_secret | Client Secret for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
+| admin_username | Username for DaVinci admin user (see prerequisites) |
+| admin_password | Password for DaVinci admin user (see prerequisites) |
 
 ### Deployment
 
