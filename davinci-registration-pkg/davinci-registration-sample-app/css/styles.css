@@ -40,6 +40,16 @@ body, div {
   font-family: 'Gotham Book';
 }
 
+.container {
+  background-image: url("../images/background.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  margin: 0px 100px;
+  padding-bottom: 50px;
+}
+
 img.background {
   position: absolute;
   width: 30%;

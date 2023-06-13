@@ -20,7 +20,7 @@
     </div>
     <div class="content">
       <h1>Welcome!</h1>
-      <div id="error"></div>
+      <div id="error-msg"></div>
       <br>
       <div id="container">
         <form id="registrationForm">
@@ -73,10 +73,11 @@
               .then((responseData) => {
                 console.log("res", responseData);
                 if (responseData.success) {
+                  // Set email in sessionStorage so it can be displayed on dashboard
                   sessionStorage.setItem('email', responseData.parameters.email);
                   window.location.assign(window.location.origin + '/dashboard.html');
                 } else {
-                  document.getElementById("error").innerHTML = responseData?.additionalProperties.message;
+                  document.getElementById("error-msg").innerHTML = responseData?.additionalProperties.message;
                 }
               })
               .catch(error => console.log(error));
