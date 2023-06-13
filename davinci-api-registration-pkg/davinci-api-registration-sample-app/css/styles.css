@@ -24,6 +24,7 @@
  }
 
 body {
+  position: relative;
   margin: 2rem 3rem;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -39,6 +40,15 @@ body, div, button {
   font-family: 'Gotham Book';
 }
 
+img.background {
+  position: absolute;
+  width: 30%;
+  min-width: 350px;
+}
+
+.container {
+  position: relative;
+}
 
 .header-text {
   display: flex;
