@@ -1,0 +1,135 @@
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/fonts/gotham-book.woff2');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/fonts/gotham-book-bold.woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/fonts/gotham-book-italic.woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+ }
+
+body {
+  position: relative;
+  margin: 2rem 3rem;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "kern" 0, "calt" 0, "liga" 0, "clig" 0, "dlig" 0, "hlig" 0;
+  font-family: unset;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricprecision;
+  white-space: normal;
+  font-synthesis: none;
+}
+
+body, div, button {
+  font-family: 'Gotham Book';
+}
+
+img.background {
+  position: absolute;
+  width: 30%;
+  min-width: 350px;
+}
+
+.container {
+  position: relative;
+}
+
+.header-text {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -2.5rem;
+}
+
+.title, .subtitle {
+  color: #505d68;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  margin-top: 2rem;
+}
+
+.title {
+  margin-left: 9rem;
+}
+
+.subtitle {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.content {
+  background-color: #e6e8ec;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  width: 375px;
+  text-align: center;
+  border-radius: 1.5rem;
+}
+
+.content h1 {
+  color: #505d68;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.content h2 {
+  color: #505d68;
+  font-size: 1.4rem;
+}
+
+.content p {
+  color: #505d68;
+  font-size: .8rem;
+}
+
+.content #error-msg {
+  color: #dc3545;
+  font-size: .75rem;
+  margin-top: -.75rem;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #545E67;
+  border: none;
+  border-radius: 3rem;
+  padding: .5rem 4rem;
+  margin-top: .75rem;
+}
+
+#container input {
+  border: none;
+  padding: .5rem 1rem;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#container input::placeholder {
+  font-style: italic;
+}
+
+
+#container p {
+  margin-bottom: .5rem;
+  font-style: italic;
+}
