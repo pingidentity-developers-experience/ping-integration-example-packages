@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci API + Sample App
+# Terraform + PingOne DaVinci API + PingOne Risk + Signals SDK Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
@@ -8,7 +8,7 @@
 
 ## Source Code Folders
 
-### /davinci-api-registration-pkg/davinci-api-registration-sample-app
+### /davinci-api-risk-pkg/davinci-api-risk-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -23,7 +23,7 @@
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-api-registration-pkg/terraform
+### /davinci-api-risk-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -41,7 +41,7 @@
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-api-registration-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-api-risk-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -86,11 +86,11 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `Ping DaVinci API Registration Example`
+Your new PingOne environment is called: `DaVinci API Risk Example`
 
-##### Deploy DaVinci API Registration Sample Application
+##### Deploy DaVinci API Risk Sample Application
 
-In the command line, navigate to the `davinci-api-registration-sample-app` directory and run:
+In the command line, navigate to the `davinci-api-risk-sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem
