@@ -77,7 +77,7 @@ img.background {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
-  width: 375px;
+  width: 385px;
   text-align: center;
   border-radius: 1.5rem;
 }
@@ -94,9 +94,14 @@ img.background {
   font-size: 1.4rem;
 }
 
-.content p, ul {
+.content p, ul, pre {
   color: #505d68;
   font-size: .8rem;
+}
+
+.content #raw-response {
+  text-align: left;
+  overflow: auto;
 }
 
 .content #error-msg {

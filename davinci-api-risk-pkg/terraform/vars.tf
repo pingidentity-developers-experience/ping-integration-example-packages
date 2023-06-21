@@ -42,7 +42,7 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "DaVinci API Registration Signals SDK Sample"
+  default     = "DaVinci API Risk Sample"
 }
 
 variable "admin_username" {

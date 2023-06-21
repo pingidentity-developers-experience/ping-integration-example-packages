@@ -36,3 +36,9 @@ data "davinci_connection" "pingone_risk" {
   name = "PingOne Risk"
   depends_on     = [data.davinci_connections.read_all]
 }
+
+data "davinci_connection" "variables" {
+  environment_id = module.environment.environment_id
+  name = "Variables"
+  depends_on     = [data.davinci_connections.read_all]
+}

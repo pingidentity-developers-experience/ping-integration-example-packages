@@ -17,7 +17,7 @@ module "environment" {
   version = "0.0.12"
 
   target_environment_name            = var.env_name
-  target_environment_description     = "DaVinci API Registration Signals SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
+  target_environment_description     = "DaVinci API Risk SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
   target_environment_production_type = false // The default.
 
   admin_user_assign_environment_admin_role = false

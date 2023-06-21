@@ -103,12 +103,11 @@
             fetch(dvStartUrl, requestOptions)
               .then(response => response.json())
               .then((responseData) => {
-                console.log("resNEW", JSON.stringify(responseData));
                 if (responseData.success) {
                   console.log("responseData", responseData);
-                  // Set email in sessionStorage so it can be displayed on dashboard
+                  // Set email and the risk response in sessionStorage so it can be displayed on dashboard
                   sessionStorage.setItem('email', responseData.parameters.email);
-                  sessionStorage.setItem('riskResponse', JSON.stringify(responseData));
+                  sessionStorage.setItem('riskResponse', JSON.stringify(responseData.additionalProperties));
                   window.location.assign(window.location.origin + '/dashboard.html');
                 } else {
                   document.getElementById("error-msg").innerHTML = responseData?.additionalProperties.message;

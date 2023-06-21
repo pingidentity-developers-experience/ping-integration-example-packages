@@ -22,7 +22,7 @@ resource "davinci_flow" "registration_flow" {
     data.davinci_connections.read_all
   ]
 
-  flow_json = file("davinci-api-registration-flow.json")
+  flow_json = file("davinci-api-risk-flow.json")
   deploy    = true
 
   environment_id = module.environment.environment_id
@@ -38,8 +38,13 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-  id   = data.davinci_connection.pingone_risk.id
-  name = "PingOne Risk"
+    id   = data.davinci_connection.pingone_risk.id
+    name = "PingOne Risk"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
   }
 }
 
@@ -49,7 +54,7 @@ resource "davinci_flow" "registration_flow" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/application}
 
 resource "davinci_application" "registration_flow_app" {
-  name           = "DaVinci API Registration Signals SDK Sample Application"
+  name           = "DaVinci API Risk Sample Application"
   environment_id = module.environment.environment_id
   depends_on     = [ data.davinci_connections.read_all ]
   oauth {
@@ -63,7 +68,7 @@ resource "davinci_application" "registration_flow_app" {
     }
   }
   policy {
-    name   = "DaVinci API Registration Signals SDK Sample Policy"
+    name   = "DaVinci API Risk Sample Policy"
     status = "enabled"
     policy_flow {
       flow_id    = davinci_flow.registration_flow.id

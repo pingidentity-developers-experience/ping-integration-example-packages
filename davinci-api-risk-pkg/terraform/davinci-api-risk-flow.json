@@ -4,12 +4,13 @@
   "connectorIds": [
     "pingOneSSOConnector",
     "httpConnector",
-    "pingOneRiskConnector"
+    "pingOneRiskConnector",
+    "variablesConnector"
   ],
-  "createdDate": 1687291428167,
-  "currentVersion": 13,
+  "createdDate": 1687365618931,
+  "currentVersion": 27,
   "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1687291431897,
+  "deployedDate": 1687365620144,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -48,8 +49,8 @@
   },
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
-  "name": "PingOne DaVinci API Registration Signals SDK Example",
-  "publishedVersion": 13,
+  "name": "PingOne DaVinci API Risk Example",
+  "publishedVersion": 27,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
@@ -57,9 +58,9 @@
     "logLevel": 3
   },
   "trigger": {},
-  "updatedDate": 1687291431897,
+  "updatedDate": 1687365620144,
   "flowId": "fa38d60729ddeb7e2822922d7a3137fd",
-  "versionId": 13,
+  "versionId": 27,
   "graphData": {
     "elements": {
       "nodes": [
@@ -86,8 +87,8 @@
             }
           },
           "position": {
-            "x": 277,
-            "y": 348
+            "x": 30,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -113,8 +114,8 @@
             }
           },
           "position": {
-            "x": 427,
-            "y": 348
+            "x": 180,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -155,32 +156,8 @@
             }
           },
           "position": {
-            "x": 667,
-            "y": 498
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "hcmfduc8d9",
-            "nodeType": "EVAL",
-            "label": "Evaluator",
-            "properties": {
-              "kc7wrmpc93": {
-                "value": "allTriggersFalse"
-              }
-            }
-          },
-          "position": {
-            "x": 787,
-            "y": 498
+            "x": 330,
+            "y": 570
           },
           "group": "nodes",
           "removed": false,
@@ -215,34 +192,8 @@
             }
           },
           "position": {
-            "x": 667,
-            "y": 348
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "8uo3defwup",
-            "nodeType": "EVAL",
-            "properties": {
-              "jpeg607lcn": {
-                "value": "allTriggersFalse"
-              },
-              "kc7wrmpc93": {
-                "value": "allTriggersTrue"
-              }
-            }
-          },
-          "position": {
-            "x": 787,
-            "y": 348
+            "x": 330,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -283,18 +234,21 @@
                   },
                   {
                     "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.5430462947447765,
                     "type": "string",
-                    "nameDefault": "recommendedAction"
+                    "nameDefault": "rawResponse"
                   }
                 ]
+              },
+              "returnRequestParameters": {
+                "value": true
               }
             }
           },
           "position": {
-            "x": 1410,
-            "y": 480
+            "x": 1320,
+            "y": 390
           },
           "group": "nodes",
           "removed": false,
@@ -334,101 +288,8 @@
             }
           },
           "position": {
-            "x": 1050,
-            "y": 622
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "k2eziu1puq",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createSuccessResponse",
-            "type": "action",
-            "properties": {
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.7708072563929735,
-                    "name": null,
-                    "nameDefault": "level",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"level\",\n        \"data\": \"{{local.0xcfsmaare.payload.output.rawResponse.result.level}}\",\n        \"tooltip\": \"{{local.0xcfsmaare.payload.output.rawResponse.result.level}}\",\n        \"children\": [\n          {\n            \"text\": \"level\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  },
-                  {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"score\",\n        \"data\": \"{{local.0xcfsmaare.payload.output.rawResponse.result.score}}\",\n        \"tooltip\": \"{{local.0xcfsmaare.payload.output.rawResponse.result.score}}\",\n        \"children\": [\n          {\n            \"text\": \"score\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "key": 0.39673875313434337,
-                    "type": "string",
-                    "nameDefault": "score"
-                  },
-                  {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "key": 0.41397870583317076,
-                    "type": "string",
-                    "nameDefault": "recommendedAction"
-                  }
-                ]
-              }
-            }
-          },
-          "position": {
-            "x": 1440,
-            "y": 210
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "jpeg607lcn",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createErrorResponse",
-            "type": "action",
-            "properties": {
-              "backgroundColor": {
-                "value": "#d0021bff"
-              },
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.5898678839936096,
-                    "name": null,
-                    "nameDefault": "message",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  }
-                ]
-              }
-            }
-          },
-          "position": {
-            "x": 1050,
-            "y": 382
+            "x": 630,
+            "y": 690
           },
           "group": "nodes",
           "removed": false,
@@ -464,13 +325,13 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{global.parameters.password}}\",\n        \"tooltip\": \"{{global.parameters.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "targetResourceName": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci API Registration Signals SDK Sample App\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci API Risk Sample App\"\n      }\n    ]\n  }\n]"
               },
               "userAgent": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userAgent\",\n        \"data\": \"{{global.userAgent}}\",\n        \"tooltip\": \"{{global.userAgent}}\",\n        \"children\": [\n          {\n            \"text\": \"userAgent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "userId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"userId\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"tooltip\": \"{{global.variables.userId}}\",\n        \"children\": [\n          {\n            \"text\": \"userId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "userName": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{global.parameters.email}}\",\n        \"tooltip\": \"{{global.parameters.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -484,8 +345,8 @@
             }
           },
           "position": {
-            "x": 1050,
-            "y": 506
+            "x": 990,
+            "y": 420
           },
           "group": "nodes",
           "removed": false,
@@ -507,8 +368,8 @@
             }
           },
           "position": {
-            "x": 1215,
-            "y": 506
+            "x": 1110,
+            "y": 420
           },
           "group": "nodes",
           "removed": false,
@@ -548,8 +409,8 @@
             }
           },
           "position": {
-            "x": 1410,
-            "y": 630
+            "x": 1320,
+            "y": 540
           },
           "group": "nodes",
           "removed": false,
@@ -562,45 +423,33 @@
         },
         {
           "data": {
-            "id": "0xcfsmaare",
+            "id": "0mqv2pv49t",
             "nodeType": "CONNECTION",
-            "connectionId": "4c653c375e07bdf8614406113f998666",
-            "connectorId": "pingOneRiskConnector",
-            "name": "PingOne Risk",
-            "label": "PingOne Risk",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
             "status": "configured",
-            "capabilityName": "createRiskEvaluation",
-            "type": "action",
+            "capabilityName": "saveValue",
+            "type": "trigger",
             "properties": {
-              "cookie": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"cookies\",\n        \"data\": \"{{global.cookies}}\",\n        \"tooltip\": \"{{global.cookies}}\",\n        \"children\": [\n          {\n            \"text\": \"cookies\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "ipAddress": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ip\",\n        \"data\": \"{{global.ip}}\",\n        \"tooltip\": \"{{global.ip}}\",\n        \"children\": [\n          {\n            \"text\": \"ip\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "password": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{global.parameters.password}}\",\n        \"tooltip\": \"{{global.parameters.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "skRiskFP": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskData\",\n        \"data\": \"{{global.parameters.riskData}}\",\n        \"tooltip\": \"{{global.parameters.riskData}}\",\n        \"children\": [\n          {\n            \"text\": \"riskData\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "userAgent": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userAgent\",\n        \"data\": \"{{global.userAgent}}\",\n        \"tooltip\": \"{{global.userAgent}}\",\n        \"children\": [\n          {\n            \"text\": \"userAgent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "userId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "userName": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{global.parameters.email}}\",\n        \"tooltip\": \"{{global.parameters.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "userType": {
-                "value": "PING_ONE"
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "userId",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.5428342378678097,
+                    "label": "userId (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "id"
+                  }
+                ]
               }
             }
           },
           "position": {
-            "x": 1050,
-            "y": 266
+            "x": 630,
+            "y": 570
           },
           "group": "nodes",
           "removed": false,
@@ -613,17 +462,17 @@
         },
         {
           "data": {
-            "id": "5xrf8tht39",
+            "id": "87jn430mui",
             "nodeType": "EVAL",
             "properties": {
-              "gpr0md80c6": {
+              "kc7wrmpc93": {
                 "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 1230,
-            "y": 266
+            "x": 480,
+            "y": 570
           },
           "group": "nodes",
           "removed": false,
@@ -636,7 +485,69 @@
         },
         {
           "data": {
-            "id": "gpr0md80c6",
+            "id": "1jf93tyrvi",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "saveValue",
+            "type": "trigger",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "userId",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.8779096515773732,
+                    "label": "userId (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "id"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 630,
+            "y": 330
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "75k6wc3j9i",
+            "nodeType": "EVAL",
+            "properties": {
+              "jr1f287nlq": {
+                "value": "allTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 450,
+            "y": 360
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "jr1f287nlq",
             "nodeType": "CONNECTION",
             "connectionId": "867ed4363b2bc21c860085ad2baa817d",
             "connectorId": "httpConnector",
@@ -653,8 +564,8 @@
                 "value": [
                   {
                     "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.0xcfsmaare.payload.error.message}}\",\n        \"tooltip\": \"{{local.0xcfsmaare.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "key": 0.09895157770263774,
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.617681003488906,
                     "type": "string",
                     "nameDefault": "message"
                   }
@@ -663,8 +574,44 @@
             }
           },
           "position": {
-            "x": 1440,
-            "y": 356
+            "x": 630,
+            "y": 480
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "rvgypb5svi",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 825,
+            "y": 375
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "a6rirjd0m2",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 825,
+            "y": 495
           },
           "group": "nodes",
           "removed": false,
@@ -677,6 +624,139 @@
         }
       ],
       "edges": [
+        {
+          "data": {
+            "id": "7dtps3jbg1",
+            "source": "09anefv002",
+            "target": "u6w4ob97dt"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "tr8r1rok8t",
+            "source": "6i7lwwrw94",
+            "target": "87jn430mui"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "07z104pd2b",
+            "source": "75k6wc3j9i",
+            "target": "1jf93tyrvi"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "jqobmjbxm9",
+            "source": "p53gq7n410",
+            "target": "75k6wc3j9i"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "r9bo0xctez",
+            "source": "09anefv002",
+            "target": "c9u3f1nyw7"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8cy8txv5dv",
+            "source": "l9q5mxjjtm",
+            "target": "09anefv002"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7mi39hz4x5",
+            "source": "87jn430mui",
+            "target": "kc7wrmpc93"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
         {
           "data": {
             "id": "apual4vawu",
@@ -698,28 +778,9 @@
         },
         {
           "data": {
-            "id": "73bgp80cye",
-            "source": "6i7lwwrw94",
-            "target": "hcmfduc8d9"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "8xta8bc53k",
-            "source": "p53gq7n410",
-            "target": "8uo3defwup"
+            "id": "vsise0s8iw",
+            "source": "87jn430mui",
+            "target": "0mqv2pv49t"
           },
           "position": {
             "x": 0,
@@ -774,9 +835,9 @@
         },
         {
           "data": {
-            "id": "wf1i9gpmx1",
-            "source": "hcmfduc8d9",
-            "target": "kc7wrmpc93"
+            "id": "jsl67wfxc3",
+            "source": "75k6wc3j9i",
+            "target": "jr1f287nlq"
           },
           "position": {
             "x": 0,
@@ -793,9 +854,9 @@
         },
         {
           "data": {
-            "id": "7dtps3jbg1",
-            "source": "09anefv002",
-            "target": "u6w4ob97dt"
+            "id": "6uwzgd9xgy",
+            "source": "1jf93tyrvi",
+            "target": "rvgypb5svi"
           },
           "position": {
             "x": 0,
@@ -812,27 +873,8 @@
         },
         {
           "data": {
-            "id": "z2bqgf35gv",
-            "source": "8uo3defwup",
-            "target": "jpeg607lcn"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "i691dj4eu3",
-            "source": "hcmfduc8d9",
+            "id": "jwovpclfvp",
+            "source": "rvgypb5svi",
             "target": "l9q5mxjjtm"
           },
           "position": {
@@ -850,9 +892,9 @@
         },
         {
           "data": {
-            "id": "8cy8txv5dv",
-            "source": "l9q5mxjjtm",
-            "target": "09anefv002"
+            "id": "06eo6sq6c8",
+            "source": "0mqv2pv49t",
+            "target": "a6rirjd0m2"
           },
           "position": {
             "x": 0,
@@ -869,85 +911,9 @@
         },
         {
           "data": {
-            "id": "r9bo0xctez",
-            "source": "09anefv002",
-            "target": "c9u3f1nyw7"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "jk5po38r2k",
-            "source": "8uo3defwup",
-            "target": "0xcfsmaare"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "m6l304ju7z",
-            "source": "0xcfsmaare",
-            "target": "5xrf8tht39"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "fxri8qdcn8",
-            "source": "5xrf8tht39",
-            "target": "k2eziu1puq"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "1n5fqeylzs",
-            "source": "5xrf8tht39",
-            "target": "gpr0md80c6"
+            "id": "6n86yrphlt",
+            "source": "a6rirjd0m2",
+            "target": "l9q5mxjjtm"
           },
           "position": {
             "x": 0,
@@ -1008,7 +974,24 @@
     }
   ],
   "flowColor": "#CACED3",
-  "savedDate": 1687291428056,
-  "variables": [],
+  "savedDate": 1687365618836,
+  "variables": [
+    {
+      "context": "flowInstance",
+      "createdDate": 1687365223452,
+      "customerId": "b04124bbd883a15b0337279dd6a1c49e",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "type": "property",
+      "visibility": "private",
+      "name": "userId##SK##flowInstance",
+      "companyId": "4e33d75f-4598-4720-8176-8ff54877ca98"
+    }
+  ],
   "connections": []
 }

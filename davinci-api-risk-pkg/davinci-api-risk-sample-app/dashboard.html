@@ -21,12 +21,15 @@
     </div>
     <div class="content">
       <h1>Logged In!</h1>
-      <p>Your email address:</p>
+      <p>Your Email Address:</p>
       <p id="email-address"></p>
-      <br/>
+      <br>
       <p>Your Risk Assessment:</p>
-      <ul id="level"></ul>
-      <ul id="score"></ul>
+      <p id="level"></p>
+      <p id="score"></p>
+      <br>
+      <p>Risk Response:</p>
+      <div id="raw-response"></div>
       <button id="logout" class="btn">Log Out</button>
     </div>
   </section>
@@ -35,8 +38,10 @@
     document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('email-address').innerText = sessionStorage.getItem('email');
       var riskData = JSON.parse(sessionStorage.getItem('riskResponse'));
+      var rawResponse = JSON.parse(riskData.rawResponse);
       document.getElementById('level').innerText = "Level: " + riskData.level;
       document.getElementById('score').innerText = "Score: " + riskData.score;
+      document.getElementById('raw-response').innerHTML = '<pre>'+JSON.stringify(rawResponse.details, undefined, 2)+'</pre>';
       document.getElementById('logout').addEventListener('click', () => {
         sessionStorage.clear();
         window.location.assign(window.location.origin + '/');
