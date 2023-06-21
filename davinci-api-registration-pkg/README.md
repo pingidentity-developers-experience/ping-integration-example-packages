@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci Widget + Sample App
+# Terraform + PingOne DaVinci API + Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
