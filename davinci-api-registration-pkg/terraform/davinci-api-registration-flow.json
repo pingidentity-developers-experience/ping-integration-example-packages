@@ -1,14 +1,14 @@
 {
-  "companyId": "b15b29b9-0dbc-4bec-995d-e55e09cccbca",
+  "companyId": "ce855fb9-a499-43db-9deb-aa02627a1b31",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
     "httpConnector"
   ],
-  "createdDate": 1686588935418,
-  "currentVersion": 17,
+  "createdDate": 1687818538469,
+  "currentVersion": 6,
   "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1686588937508,
+  "deployedDate": 1687818541854,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -40,7 +40,7 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci API Registration Example",
-  "publishedVersion": 17,
+  "publishedVersion": 6,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
@@ -48,9 +48,9 @@
     "logLevel": 3
   },
   "trigger": {},
-  "updatedDate": 1686588937508,
-  "flowId": "4b42e00b0f8c6b73db6312a5118ee549",
-  "versionId": 17,
+  "updatedDate": 1687818541854,
+  "flowId": "9050f8112106ae2cbc97fa6f14c1677e",
+  "versionId": 6,
   "graphData": {
     "elements": {
       "nodes": [
@@ -78,7 +78,7 @@
           },
           "position": {
             "x": 277,
-            "y": 236
+            "y": 322
           },
           "group": "nodes",
           "removed": false,
@@ -105,7 +105,7 @@
           },
           "position": {
             "x": 427,
-            "y": 236
+            "y": 322
           },
           "group": "nodes",
           "removed": false,
@@ -147,7 +147,7 @@
           },
           "position": {
             "x": 667,
-            "y": 386
+            "y": 472
           },
           "group": "nodes",
           "removed": false,
@@ -171,7 +171,7 @@
           },
           "position": {
             "x": 787,
-            "y": 386
+            "y": 472
           },
           "group": "nodes",
           "removed": false,
@@ -207,7 +207,7 @@
           },
           "position": {
             "x": 667,
-            "y": 236
+            "y": 322
           },
           "group": "nodes",
           "removed": false,
@@ -223,17 +223,17 @@
             "id": "8uo3defwup",
             "nodeType": "EVAL",
             "properties": {
-              "kc7wrmpc93": {
-                "value": "allTriggersTrue"
-              },
               "jpeg607lcn": {
                 "value": "allTriggersFalse"
+              },
+              "kc7wrmpc93": {
+                "value": "allTriggersTrue"
               }
             }
           },
           "position": {
             "x": 787,
-            "y": 236
+            "y": 322
           },
           "group": "nodes",
           "removed": false,
@@ -259,11 +259,18 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.3076393052734512,
+                    "name": null,
+                    "nameDefault": "success",
                     "type": "string",
-                    "nameDefault": "success"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": null,
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"createdAt\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.createdAt}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.createdAt}}\",\n        \"children\": [\n          {\n            \"text\": \"createdAt\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.08566196004820625,
+                    "type": "string",
+                    "nameDefault": "createdAt"
                   }
                 ]
               }
@@ -271,7 +278,7 @@
           },
           "position": {
             "x": 1050,
-            "y": 390
+            "y": 476
           },
           "group": "nodes",
           "removed": false,
@@ -300,11 +307,11 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.578323540163898,
+                    "name": null,
+                    "nameDefault": "message",
                     "type": "string",
-                    "nameDefault": "message"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
@@ -312,7 +319,7 @@
           },
           "position": {
             "x": 1050,
-            "y": 510
+            "y": 596
           },
           "group": "nodes",
           "removed": false,
@@ -338,11 +345,11 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.p53gq7n410.payload.success}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.7708072563929735,
+                    "name": null,
+                    "nameDefault": "success",
                     "type": "string",
-                    "nameDefault": "success"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.p53gq7n410.payload.success}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
@@ -350,7 +357,7 @@
           },
           "position": {
             "x": 1050,
-            "y": 150
+            "y": 236
           },
           "group": "nodes",
           "removed": false,
@@ -373,25 +380,25 @@
             "capabilityName": "createErrorResponse",
             "type": "action",
             "properties": {
+              "backgroundColor": {
+                "value": "#d0021bff"
+              },
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.5898678839936096,
+                    "name": null,
+                    "nameDefault": "message",
                     "type": "string",
-                    "nameDefault": "message"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
-              },
-              "backgroundColor": {
-                "value": "#d0021bff"
               }
             }
           },
           "position": {
             "x": 1050,
-            "y": 270
+            "y": 356
           },
           "group": "nodes",
           "removed": false,
@@ -613,7 +620,7 @@
     }
   ],
   "flowColor": "#CACED3",
-  "savedDate": 1686588935336,
+  "savedDate": 1687818538385,
   "variables": [],
   "connections": []
 }
