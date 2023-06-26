@@ -72,10 +72,11 @@
             fetch(dvStartUrl, requestOptions)
               .then(response => response.json())
               .then((responseData) => {
-                console.log("res", responseData);
                 if (responseData.success) {
                   // Set email in sessionStorage so it can be displayed on dashboard
                   sessionStorage.setItem('email', responseData.parameters.email);
+                  // Check if user went through registration or login flow
+                  sessionStorage.setItem('userCreated', responseData?.additionalProperties.createdAt ? true : false);
                   window.location.assign(window.location.origin + '/dashboard.html');
                 } else {
                   document.getElementById("error-msg").innerHTML = responseData?.additionalProperties.message;

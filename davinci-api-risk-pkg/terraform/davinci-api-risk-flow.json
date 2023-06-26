@@ -1,5 +1,5 @@
 {
-  "companyId": "4e33d75f-4598-4720-8176-8ff54877ca98",
+  "companyId": "e676de05-dad9-4f7a-a2f2-536991ebd839",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
@@ -7,10 +7,10 @@
     "pingOneRiskConnector",
     "variablesConnector"
   ],
-  "createdDate": 1687365618931,
-  "currentVersion": 27,
+  "createdDate": 1687817082093,
+  "currentVersion": 8,
   "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1687365620144,
+  "deployedDate": 1687817085372,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -50,17 +50,17 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci API Risk Example",
-  "publishedVersion": 27,
+  "publishedVersion": 8,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
     "intermediateLoadingScreenHTML": "",
-    "logLevel": 3
+    "logLevel": 2
   },
   "trigger": {},
-  "updatedDate": 1687365620144,
-  "flowId": "fa38d60729ddeb7e2822922d7a3137fd",
-  "versionId": 27,
+  "updatedDate": 1687817085372,
+  "flowId": "76e0ef67a7a7d32aeb06225cd8f9b666",
+  "versionId": 8,
   "graphData": {
     "elements": {
       "nodes": [
@@ -87,8 +87,8 @@
             }
           },
           "position": {
-            "x": 30,
-            "y": 360
+            "x": 277,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -114,8 +114,8 @@
             }
           },
           "position": {
-            "x": 180,
-            "y": 360
+            "x": 427,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -156,8 +156,8 @@
             }
           },
           "position": {
-            "x": 330,
-            "y": 570
+            "x": 577,
+            "y": 476
           },
           "group": "nodes",
           "removed": false,
@@ -192,8 +192,8 @@
             }
           },
           "position": {
-            "x": 330,
-            "y": 360
+            "x": 577,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -226,18 +226,26 @@
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"level\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.level}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.level}}\",\n        \"children\": [\n          {\n            \"text\": \"level\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"score\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.score}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.score}}\",\n        \"children\": [\n          {\n            \"text\": \"score\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.18337199639822654,
+                    "name": null,
+                    "nameDefault": "score",
                     "type": "string",
-                    "nameDefault": "score"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"score\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.score}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result.score}}\",\n        \"children\": [\n          {\n            \"text\": \"score\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "key": 0.5430462947447765,
+                    "name": null,
+                    "nameDefault": "rawResponse",
+                    "type": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
                     "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "key": 0.5430462947447765,
-                    "type": "string",
-                    "nameDefault": "rawResponse"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.10159057010255945,
+                    "type": null,
+                    "nameDefault": "success",
+                    "label": null
                   }
                 ]
               },
@@ -247,8 +255,8 @@
             }
           },
           "position": {
-            "x": 1320,
-            "y": 390
+            "x": 1560,
+            "y": 300
           },
           "group": "nodes",
           "removed": false,
@@ -288,8 +296,8 @@
             }
           },
           "position": {
-            "x": 630,
-            "y": 690
+            "x": 877,
+            "y": 596
           },
           "group": "nodes",
           "removed": false,
@@ -324,6 +332,9 @@
               "password": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{global.parameters.password}}\",\n        \"tooltip\": \"{{global.parameters.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
+              "skRiskFP": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskData\",\n        \"data\": \"{{global.parameters.riskData}}\",\n        \"tooltip\": \"{{global.parameters.riskData}}\",\n        \"children\": [\n          {\n            \"text\": \"riskData\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
               "targetResourceName": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci API Risk Sample App\"\n      }\n    ]\n  }\n]"
               },
@@ -338,15 +349,12 @@
               },
               "userType": {
                 "value": "PING_ONE"
-              },
-              "skRiskFP": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskData\",\n        \"data\": \"{{global.parameters.riskData}}\",\n        \"tooltip\": \"{{global.parameters.riskData}}\",\n        \"children\": [\n          {\n            \"text\": \"riskData\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
           "position": {
-            "x": 990,
-            "y": 420
+            "x": 1237,
+            "y": 326
           },
           "group": "nodes",
           "removed": false,
@@ -368,8 +376,8 @@
             }
           },
           "position": {
-            "x": 1110,
-            "y": 420
+            "x": 1357,
+            "y": 326
           },
           "group": "nodes",
           "removed": false,
@@ -398,19 +406,19 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.7318766750020025,
+                    "name": null,
+                    "nameDefault": "message",
                     "type": "string",
-                    "nameDefault": "message"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 1320,
-            "y": 540
+            "x": 1567,
+            "y": 446
           },
           "group": "nodes",
           "removed": false,
@@ -436,20 +444,20 @@
               "saveVariables": {
                 "value": [
                   {
-                    "name": "userId",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.5428342378678097,
                     "label": "userId (string - flowInstance)",
+                    "name": "userId",
+                    "nameDefault": "id",
                     "type": "string",
-                    "nameDefault": "id"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 630,
-            "y": 570
+            "x": 877,
+            "y": 476
           },
           "group": "nodes",
           "removed": false,
@@ -471,8 +479,8 @@
             }
           },
           "position": {
-            "x": 480,
-            "y": 570
+            "x": 727,
+            "y": 476
           },
           "group": "nodes",
           "removed": false,
@@ -498,20 +506,20 @@
               "saveVariables": {
                 "value": [
                   {
-                    "name": "userId",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.8779096515773732,
                     "label": "userId (string - flowInstance)",
+                    "name": "userId",
+                    "nameDefault": "id",
                     "type": "string",
-                    "nameDefault": "id"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 630,
-            "y": 330
+            "x": 877,
+            "y": 236
           },
           "group": "nodes",
           "removed": false,
@@ -533,8 +541,8 @@
             }
           },
           "position": {
-            "x": 450,
-            "y": 360
+            "x": 697,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -563,19 +571,19 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.617681003488906,
+                    "name": null,
+                    "nameDefault": "message",
                     "type": "string",
-                    "nameDefault": "message"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 630,
-            "y": 480
+            "x": 877,
+            "y": 386
           },
           "group": "nodes",
           "removed": false,
@@ -589,11 +597,12 @@
         {
           "data": {
             "id": "rvgypb5svi",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
-            "x": 825,
-            "y": 375
+            "x": 1072,
+            "y": 281
           },
           "group": "nodes",
           "removed": false,
@@ -607,11 +616,12 @@
         {
           "data": {
             "id": "a6rirjd0m2",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
-            "x": 825,
-            "y": 495
+            "x": 1072,
+            "y": 401
           },
           "group": "nodes",
           "removed": false,
@@ -974,24 +984,7 @@
     }
   ],
   "flowColor": "#CACED3",
-  "savedDate": 1687365618836,
-  "variables": [
-    {
-      "context": "flowInstance",
-      "createdDate": 1687365223452,
-      "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-      "fields": {
-        "type": "string",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "type": "property",
-      "visibility": "private",
-      "name": "userId##SK##flowInstance",
-      "companyId": "4e33d75f-4598-4720-8176-8ff54877ca98"
-    }
-  ],
+  "savedDate": 1687817081996,
+  "variables": [],
   "connections": []
 }
