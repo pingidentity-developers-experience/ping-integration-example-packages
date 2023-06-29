@@ -36,7 +36,7 @@ body {
   font-synthesis: none;
 }
 
-body, div {
+body, div, button {
   font-family: 'Gotham Book';
 }
 
@@ -77,7 +77,7 @@ img.background {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
-  width: 375px;
+  width: 385px;
   text-align: center;
   border-radius: 1.5rem;
 }
@@ -94,9 +94,20 @@ img.background {
   font-size: 1.4rem;
 }
 
-.content p {
+.content p, ul, pre {
   color: #505d68;
   font-size: .8rem;
+}
+
+.content #raw-response {
+  text-align: left;
+  overflow: auto;
+}
+
+.content #error-msg {
+  color: #dc3545;
+  font-size: .75rem;
+  margin-top: -.75rem;
 }
 
 .btn {
@@ -110,7 +121,7 @@ img.background {
   margin-top: .75rem;
 }
 
-#widget-container input {
+#container input {
   border: none;
   padding: .5rem 1rem;
   text-align: center;
@@ -118,17 +129,12 @@ img.background {
   margin-bottom: 1rem;
 }
 
-#widget-container input::placeholder {
+#container input::placeholder {
   font-style: italic;
 }
 
-#widget-container .input-error-msg {
-  color: #dc3545;
-  font-size: .75rem;
-  margin-top: -.75rem;
-}
 
-#widget-container p {
+#container p {
   margin-bottom: .5rem;
   font-style: italic;
 }

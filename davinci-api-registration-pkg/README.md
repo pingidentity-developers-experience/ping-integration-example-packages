@@ -1,14 +1,14 @@
-# Terraform + PingOne DaVinci Widget + Sample App
+# Terraform + PingOne DaVinci API + Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
 - Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
-- After you have created a DaVinci Adminstrator environment you will need create a Worker App in the environment (Connections > Applications)
+- After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Source Code Folders
 
-### /davinci-registration-pkg/davinci-registration-sample-app
+### /davinci-api-registration-pkg/davinci-api-registration-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -23,7 +23,7 @@
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-registration-pkg/terraform
+### /davinci-api-registration-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -41,7 +41,7 @@
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-registration-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-api-registration-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -75,6 +75,7 @@ In the command line, navigate to the `terraform` directory and run:
 
 ```code
 terraform init
+terraform plan
 ```
 
 If the plan fails - check your `terraform.tfvars` values.
@@ -85,11 +86,11 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `Ping DaVinci Registration Example`
+Your new PingOne environment is called: `Ping DaVinci API Registration Example`
 
-##### Deploy DaVinci Registration Sample Application
+##### Deploy DaVinci API Registration Sample Application
 
-In the command line, navigate to the `davinci-registration-sample-app` directory and run:
+In the command line, navigate to the `davinci-api-registration-sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

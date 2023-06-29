@@ -16,11 +16,11 @@
       <div class="logo"><img src="images/logo.png" width="300" alt="Ping Identity" /></div>
       <div class="header-text">
         <div class="title">Developer Experience</div>
-        <div class="subtitle">PingOne DaVinci Widget Sample App</div>
+        <div class="subtitle">PingOne DaVinci API Sample App</div>
       </div>
     </div>
     <div class="content">
-      <h1>Logged In!</h1>
+      <h1 id="dashboard-title"></h1>
       <p>Your email address:</p>
       <p id="email-address"></p>
       <button id="logout" class="btn">Log Out</button>
@@ -30,6 +30,7 @@
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('email-address').innerText = sessionStorage.getItem('email');
+      document.getElementById('dashboard-title').innerText = sessionStorage.getItem('userCreated') === "true" ? "User Created!" : "Logged In!";
       document.getElementById('logout').addEventListener('click', () => {
         sessionStorage.clear();
         window.location.assign(window.location.origin + '/');
