@@ -1,5 +1,5 @@
 {
-  "companyId": "e676de05-dad9-4f7a-a2f2-536991ebd839",
+  "companyId": "32ad1341-bfb9-41d0-b683-d8d96dec76fe",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
@@ -7,10 +7,10 @@
     "pingOneRiskConnector",
     "variablesConnector"
   ],
-  "createdDate": 1687817082093,
-  "currentVersion": 8,
+  "createdDate": 1688054779390,
+  "currentVersion": 13,
   "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1687817085372,
+  "deployedDate": 1688054781307,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -50,17 +50,17 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci API Risk Example",
-  "publishedVersion": 8,
+  "publishedVersion": 13,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
     "intermediateLoadingScreenHTML": "",
-    "logLevel": 2
+    "logLevel": 3
   },
   "trigger": {},
-  "updatedDate": 1687817085372,
-  "flowId": "76e0ef67a7a7d32aeb06225cd8f9b666",
-  "versionId": 8,
+  "updatedDate": 1688054781307,
+  "flowId": "4560300edb2addaca0e574bd366a70a8",
+  "versionId": 13,
   "graphData": {
     "elements": {
       "nodes": [
@@ -240,12 +240,12 @@
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"rawResponse\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse}}\",\n        \"children\": [\n          {\n            \"text\": \"rawResponse\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.10159057010255945,
-                    "type": null,
+                    "label": null,
+                    "name": null,
                     "nameDefault": "success",
-                    "label": null
+                    "type": null,
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"success\",\n        \"data\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.success}}\",\n        \"children\": [\n          {\n            \"text\": \"success\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               },
@@ -255,8 +255,8 @@
             }
           },
           "position": {
-            "x": 1560,
-            "y": 300
+            "x": 1860,
+            "y": 270
           },
           "group": "nodes",
           "removed": false,
@@ -372,6 +372,9 @@
             "properties": {
               "u6w4ob97dt": {
                 "value": "allTriggersFalse"
+              },
+              "7h8bs4vxuo": {
+                "value": "allTriggersFalse"
               }
             }
           },
@@ -417,8 +420,8 @@
             }
           },
           "position": {
-            "x": 1567,
-            "y": 446
+            "x": 1560,
+            "y": 420
           },
           "group": "nodes",
           "removed": false,
@@ -631,14 +634,149 @@
           "grabbable": true,
           "pannable": false,
           "classes": ""
+        },
+        {
+          "data": {
+            "id": "sxdpclcyko",
+            "nodeType": "CONNECTION",
+            "connectionId": "4c653c375e07bdf8614406113f998666",
+            "connectorId": "pingOneRiskConnector",
+            "name": "PingOne Risk",
+            "label": "PingOne Risk",
+            "status": "configured",
+            "capabilityName": "updateRiskEvaluation",
+            "type": "action",
+            "properties": {
+              "riskId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "completionStatus": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1560,
+            "y": 270
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n6js2rcdqf",
+            "nodeType": "EVAL",
+            "properties": {
+              "gznrygimzf": {
+                "value": "allTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1695,
+            "y": 270
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "gznrygimzf",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createErrorResponse",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#d0021bff"
+              },
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "name": null,
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"tooltip\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.8800805675019314,
+                    "type": "string",
+                    "nameDefault": "message"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 1860,
+            "y": 420
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
         }
       ],
       "edges": [
         {
           "data": {
-            "id": "7dtps3jbg1",
+            "id": "wv1og0m5r3",
+            "source": "sxdpclcyko",
+            "target": "n6js2rcdqf"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "05t56lofq2",
             "source": "09anefv002",
-            "target": "u6w4ob97dt"
+            "target": "sxdpclcyko"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "zwftxnuob4",
+            "source": "n6js2rcdqf",
+            "target": "c9u3f1nyw7"
           },
           "position": {
             "x": 0,
@@ -712,9 +850,9 @@
         },
         {
           "data": {
-            "id": "r9bo0xctez",
-            "source": "09anefv002",
-            "target": "c9u3f1nyw7"
+            "id": "6n86yrphlt",
+            "source": "a6rirjd0m2",
+            "target": "l9q5mxjjtm"
           },
           "position": {
             "x": 0,
@@ -921,9 +1059,28 @@
         },
         {
           "data": {
-            "id": "6n86yrphlt",
-            "source": "a6rirjd0m2",
-            "target": "l9q5mxjjtm"
+            "id": "gjatfkco0t",
+            "source": "09anefv002",
+            "target": "u6w4ob97dt"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "53h4nrs4u0",
+            "source": "n6js2rcdqf",
+            "target": "gznrygimzf"
           },
           "position": {
             "x": 0,
@@ -984,7 +1141,7 @@
     }
   ],
   "flowColor": "#CACED3",
-  "savedDate": 1687817081996,
+  "savedDate": 1688054779235,
   "variables": [],
   "connections": []
 }
