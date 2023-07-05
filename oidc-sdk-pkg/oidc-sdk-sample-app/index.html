@@ -23,7 +23,7 @@
         <button id="login" class="button-link">Click to Login</button>
       </div>
     </section>
-    <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk/lib/ping-oidc.js"></script>
+    <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk@^2/lib/ping-oidc.js"></script>
     <script type="text/javascript">
      document.addEventListener('DOMContentLoaded', async () => {
         const dashboardUri = '/dashboard.html'; // Log in protected page.
@@ -41,7 +41,7 @@
         const client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
 
         // User has an access token. Redirect to log in protected page.
-        if (client.hasToken) {
+        if (await client.hasToken()) {
           window.location.assign(redirectUri)
         }
 
