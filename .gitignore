@@ -31,3 +31,5 @@ pids
 # Mac desktop service store. (Finder metadata).
 .DS_Store
 global.js
+.env
+node_modules

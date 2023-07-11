@@ -38,7 +38,7 @@
         };
 
         // Create oidc client from authorization server's well-known endpoint
-        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig('https://auth.pingone.com/'+pingOneEnvId+'/as', clientOptions);
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.com/${pingOneEnvId}/as`, clientOptions);
 
         // User has an access token. Redirect to log in protected page.
         if (await client.hasToken()) {
