@@ -29,6 +29,13 @@ fastify.register(import('@fastify/static'), {
 });
 
 fastify.post('/getRiskDecision', async (req, res) => {
+  let username = req.body.username;
+
+  if (!username) {
+    res.code('400').send('username is required');
+    return;
+  }
+  
   let workerToken;
 
   try {

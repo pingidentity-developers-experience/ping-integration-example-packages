@@ -26,6 +26,24 @@
           <button type="submit" class="button-link" style="display: none;" id="getRiskDecision">Get Risk Decision</button>
         </form>
       </div>
+      <div id="results-tabs" style="display: none;" class="tab-container">
+        <!-- Tab links -->
+        <div class="tab">
+          <button class="tab-btn active" onclick="changeTabs(event, 'result-tab')">Result</button>
+          <button class="tab-btn" onclick="changeTabs(event, 'details-tab')">Details</button>
+          <button class="tab-btn" onclick="changeTabs(event, 'full-response-tab')">Full Risk Response</button>
+        </div>
+        <!-- Tab content -->
+        <div id="result-tab" class="tab-content active" style="display: block">
+          <p id="result"></p>
+        </div>
+        <div id="details-tab" class="tab-content">
+          <p id="details"></p>
+        </div>
+        <div id="full-response-tab" class="tab-content">
+          <p id="full-response"></p>
+        </div>
+      </div>
     </section>
     <script src="https://apps.pingone.com/signals/web-sdk/5.2.7/signals-sdk.js" defer></script>
     <script type="text/javascript">
@@ -43,7 +61,13 @@
           },
           method: 'post',
           body: JSON.stringify({ rawRiskData, ipAddress, username }),
-        })
+        });
+
+        const json = await result.json();
+        document.getElementById('results-tabs').style.display = null;
+        document.getElementById('result').innerHTML = `<pre>${JSON.stringify(json.result, null, 2)}</pre>`;
+        document.getElementById('details').innerHTML = `<pre>${JSON.stringify(json.details, null, 2)}</pre>`;
+        document.getElementById('full-response').innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
       });
 
       // Signals SDK
@@ -77,5 +101,6 @@
         });
       })
     </script>
+    <script src="js/tabs.js"></script>
   </body>
 </html>

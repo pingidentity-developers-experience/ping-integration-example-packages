@@ -32,6 +32,7 @@ body {
     text-rendering: geometricprecision;
     white-space: normal;
     font-synthesis: none;
+    overflow-x: hidden;
 }
 
 body, div {
@@ -87,15 +88,23 @@ h1 {
 }
 
 .content {
-    margin: 110px auto;
+    margin: 110px auto 0 auto;
     width: fit-content;
     text-align: center;
-    height: 100%;
 }
 
 label {
     text-align: left;
     font-size: 14px;
+}
+
+pre {
+    padding: 1rem;
+    background-color: #2a2a2b;
+    color: #fff;
+    width: 100%;
+    overflow-x: auto;
+    font-size: 13px;
 }
 
 /********* TAB STYLES **********/
@@ -104,7 +113,9 @@ label {
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
@@ -136,7 +147,8 @@ label {
 
 /* Create an active/current tablink class */
 .tab-btn.active {
-    background-color: #f7f8f8;
+    background-color: #2a2a2b;
+    color: #fff;
     border-top-left-radius: 50px 20px;
     border-top-right-radius: 50px 20px;
 }
@@ -150,5 +162,9 @@ label {
     word-wrap: break-word;
     font-size: 14px;
     text-align: left;
-    padding: 0px 20px;
+}
+
+.tab-content p,
+.tab-content pre {
+    margin: 0;
 }
