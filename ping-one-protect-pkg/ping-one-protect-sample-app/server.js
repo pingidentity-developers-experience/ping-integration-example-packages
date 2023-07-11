@@ -45,6 +45,14 @@ fastify.post('/getRiskDecision', async (req, res) => {
     return;
   }
 
+  // Search P1 for username and get User ID back in case users want to demo P1 and External users
+  const userId = await searchPingOneForUser(username, workerToken);
+  let userType = 'EXTERNAL';
+
+  if (userId) {
+    userType = 'PING_ONE';
+  }
+
   const riskResponse = await fetch(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations`, {
     method: 'POST',
     headers: {
@@ -68,9 +76,9 @@ fastify.post('/getRiskDecision', async (req, res) => {
             type: 'AUTHENTICATION' 
         },
         user: {
-          id: req.body.username, // if P1, send in the UserId and set `type` to PING_ONE
-          name: req.body.username, // This is displayed in Dashboard and Audit
-          type: 'EXTERNAL'
+          id: userId || username, // if P1, send in the UserId and set `type` to PING_ONE
+          name: username, // This is displayed in Dashboard and Audit
+          type: userType
         },
         sharingType: 'PRIVATE', 
         origin: 'P1_PROTECT_DEMO' 
@@ -81,6 +89,22 @@ fastify.post('/getRiskDecision', async (req, res) => {
   const riskJson = await riskResponse.json();
   res.code(200).send(riskJson);
 });
+
+async function searchPingOneForUser(username, token) {
+  if (!token) {
+    token = await getWorkerToken();
+  }
+
+  const response = await fetch(encodeURI(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/users?filter=username eq \"${username}\"`), {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    }
+  });
+
+  const json = await response.json();
+  return json._embedded?.users?.[0]?.id
+}
 
 async function getWorkerToken() {
   const basicAuth = btoa(`${process.env.P1_WORKER_CLIENT_ID}:${process.env.P1_WORKER_CLIENT_SECRET}`);
