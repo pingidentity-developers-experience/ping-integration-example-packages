@@ -42,7 +42,7 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "Protect API SDK Example"
+  default     = "Protect API Example"
 }
 
 locals {
