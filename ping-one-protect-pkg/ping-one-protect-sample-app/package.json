@@ -1,0 +1,16 @@
+{
+  "name": "ping-one-protect-sample-app",
+  "version": "1.0.0",
+  "description": "PingOne Protect sample app, including a server side API for getting risk evaluations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fastify/static": "^6.10.2",
+    "btoa": "^1.2.1",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.19.2"
+  }
+}

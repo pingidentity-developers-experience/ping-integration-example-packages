@@ -1,0 +1,170 @@
+@font-face {
+    font-family: 'Gotham Book';
+    src: url('/fonts/gotham-book.woff2');
+    font-weight: normal;
+}
+  
+@font-face {
+    font-family: 'Gotham Book';
+    src: url('/fonts/gotham-book-bold.woff2');
+    font-weight: bold;
+}
+  
+@font-face {
+    font-family: 'Gotham Book';
+    src: url('/fonts/gotham-book-italic.woff2');
+    font-weight: normal;
+    font-style: italic;
+}
+  
+body {
+    background-color: #ffffff;
+    height: 550px;
+    font-size: 20px;
+    color: rgb(80, 93, 104);
+    max-width:1400px;
+    margin: 0 auto;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    font-feature-settings: "kern" 0, "calt" 0, "liga" 0, "clig" 0, "dlig" 0, "hlig" 0;
+    font-family: unset;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricprecision;
+    white-space: normal;
+    font-synthesis: none;
+    overflow-x: hidden;
+}
+
+body, div {
+    font-family: 'Gotham Book';
+  }
+
+.container {
+    background-image: url("../images/background.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    margin: 0px 100px;
+    padding-bottom: 50px;
+}
+
+.logo {
+    padding: 40px 50px 0px 50px;
+}
+
+.header {
+    margin: 0 auto;
+    padding: 0px 206px;
+}
+
+.subtitle {
+    float: right;
+}
+
+.title {
+    white-space: nowrap;
+}
+
+h1 {
+    font-size: 44px;
+    padding: 0;
+    margin: 0;
+}
+
+.button-link {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: rgb(80, 93, 104);
+    margin-top: 1rem;
+}
+
+.button-link:hover {
+    text-decoration: underline;
+}
+
+.content {
+    margin: 110px auto 0 auto;
+    width: fit-content;
+    text-align: center;
+}
+
+label {
+    text-align: left;
+    font-size: 14px;
+}
+
+pre {
+    padding: 1rem;
+    background-color: #2a2a2b;
+    color: #fff;
+    width: 100%;
+    overflow-x: auto;
+    font-size: 13px;
+}
+
+/********* TAB STYLES **********/
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab {
+    display: flex;
+    border: none;
+}
+
+.tab-btn {
+    background-color: #ccc;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px;
+    transition: 0.3s;
+    border-top-left-radius: 50px 20px;
+    border-top-right-radius: 50px 20px;
+    flex: 1 1 0px;
+    margin: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+/* Change background color of buttons on hover */
+.tab-btn:hover {
+    background-color: #ddd;
+    border-top-left-radius: 50px 20px;
+    border-top-right-radius: 50px 20px;
+}
+
+/* Create an active/current tablink class */
+.tab-btn.active {
+    background-color: #2a2a2b;
+    color: #fff;
+    border-top-left-radius: 50px 20px;
+    border-top-right-radius: 50px 20px;
+}
+
+/* Style the tab content */
+.tab-content {
+    display: none;
+    border: 1px solid #f7f8f8;
+    border-top: none;
+    background-color: #f7f8f8;
+    word-wrap: break-word;
+    font-size: 14px;
+    text-align: left;
+}
+
+.tab-content p,
+.tab-content pre {
+    margin: 0;
+}
