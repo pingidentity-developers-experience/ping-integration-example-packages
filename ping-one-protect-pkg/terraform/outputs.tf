@@ -6,7 +6,3 @@
 output "pingone_envid" {
   value = module.environment.environment_id
 }
-
-output "pop_api_app_client_id" {
-  value = pingone_application.pop_api_sample_app.id
-}
