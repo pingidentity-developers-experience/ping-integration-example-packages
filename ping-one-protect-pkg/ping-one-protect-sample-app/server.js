@@ -87,7 +87,6 @@ fastify.post('/getRiskEvaluation', async (req, res) => {
   });
 
   if (riskResponse.status !== 201) {
-    console.log(riskResponse.statusText)
     res.code(500).send('Unexpected error occured while creating a risk evaluation');
     return;
   }
