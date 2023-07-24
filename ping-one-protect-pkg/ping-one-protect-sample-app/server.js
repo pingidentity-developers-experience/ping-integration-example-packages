@@ -28,11 +28,11 @@ fastify.register(import('@fastify/static'), {
   prefix: '/',
 });
 
-fastify.post('/getRiskDecision', async (req, res) => {
+fastify.post('/getRiskEvaluation', async (req, res) => {
   let username = req.body.username;
 
   if (!username) {
-    res.code('400').send('username is required');
+    res.code(400).send('username is required');
     return;
   }
   
@@ -86,7 +86,32 @@ fastify.post('/getRiskDecision', async (req, res) => {
     }),
   });
 
+  if (riskResponse.status !== 201) {
+    console.log(riskResponse.statusText)
+    res.code(500).send('Unexpected error occured while creating a risk evaluation');
+    return;
+  }
+
   const riskJson = await riskResponse.json();
+
+  // Note: Add any custom validation against the risk evaluation before you update it and mark it as a 'SUCCESS'
+
+  const updateResponse = await fetch(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations/${riskJson.id}/event`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${workerToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      completionStatus: 'SUCCESS'
+    })
+  });
+
+  if (updateResponse.status !== 200) {
+    res.code(500).send('Unexpected error occured while updating risk evaluation');
+    return;
+  }
+
   res.code(200).send(riskJson);
 });
 

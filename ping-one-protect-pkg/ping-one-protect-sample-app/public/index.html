@@ -23,8 +23,10 @@
           <label for="username">Username:</label>
           <input required type="text" id="username" />
           <br />
-          <button type="submit" class="button-link" style="display: none;" id="getRiskDecision">Get Risk Decision</button>
+          <button type="submit" class="button-link" style="display: none;" id="getRiskEvaluation">Get Risk Evaluation</button>
         </form>
+
+        <button id="newRiskEvaluation" class="button-link" style="display: none;" onclick="window.location.assign('/')">New Risk Evaluation</button>
       </div>
       <div id="results-tabs" style="display: none;" class="tab-container">
         <!-- Tab links -->
@@ -50,12 +52,13 @@
       document.getElementById('usernameForm').addEventListener('submit', async e => {
         e.preventDefault();
 
+        document.getElementById('getRiskEvaluation').disabled = true;
+
         const rawRiskData = await _pingOneSignals.getData();
         const ipAddress = sessionStorage.getItem('storedIpAddress');
         const username = document.getElementById('username').value
-        console.log(username);
 
-        const result = await fetch('/getRiskDecision', {
+        const result = await fetch('/getRiskEvaluation', {
           headers: {
             'content-type': 'application/json'
           },
@@ -68,6 +71,9 @@
         document.getElementById('result').innerHTML = `<pre>${JSON.stringify(json.result, null, 2)}</pre>`;
         document.getElementById('details').innerHTML = `<pre>${JSON.stringify(json.details, null, 2)}</pre>`;
         document.getElementById('full-response').innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
+
+        document.getElementById('newRiskEvaluation').style.display = 'inline';
+        document.getElementById('usernameForm').style.display = 'none';
       });
 
       // Signals SDK
@@ -85,7 +91,7 @@
           behavioralDataCollection: true
         })
         .then(async () => {
-          console.log('PingOne Signals initialized successfully');
+          console.info('PingOne Signals initialized successfully');
 
           // Fetch and store ip address upfront.
           const ipAddressResponse = await fetch('https://api.ipify.org?format=json');
@@ -95,7 +101,7 @@
 
           // Set username field to our default user's name for ease
           document.getElementById('username').value = 'demouser1';
-          document.getElementById('getRiskDecision').style.display = 'inline';
+          document.getElementById('getRiskEvaluation').style.display = 'inline';
         }).catch(e => {
           console.error('PingOne Signals SDK init failed', e);
         });
