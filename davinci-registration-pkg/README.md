@@ -87,6 +87,8 @@ terraform apply --auto-approve
 
 Your new PingOne environment is called: `Ping DaVinci Registration Example`
 
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
+
 ##### Deploy DaVinci Registration Sample Application
 
 In the command line, navigate to the `davinci-registration-sample-app` directory and run:
