@@ -88,6 +88,8 @@ terraform apply --auto-approve
 
 Your new PingOne environment is called: `DaVinci API Risk Example`
 
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
+
 ##### Deploy DaVinci API Risk Sample Application
 
 In the command line, navigate to the `davinci-api-risk-sample-app` directory and run:

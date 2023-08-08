@@ -81,6 +81,8 @@ terraform apply --auto-approve
 
 Your new PingOne environment is called: `Ping OIDC SDK Example`
 
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
+
 ##### Deploy OIDC Sample Application
 
 In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
