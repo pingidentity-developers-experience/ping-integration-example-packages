@@ -8,7 +8,7 @@
 
 ## Source Code Folders
 
-### /davinci-api-risk-pkg/davinci-api-risk-sample-app
+### /davinci-sso-protect-pkg/davinci-sso-protect-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -23,7 +23,7 @@
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-api-risk-pkg/terraform
+### /davinci-sso-protect-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -41,7 +41,7 @@
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-api-risk-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-sso-protect-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
