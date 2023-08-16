@@ -1,17 +1,18 @@
 {
-  "companyId": "0722bb14-a5f4-4f7f-ab47-7bc3211d9b92",
+  "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
-    "httpConnector",
     "pingOneRiskConnector",
     "variablesConnector",
-    "pingOneAuthenticationConnector"
+    "pingOneAuthenticationConnector",
+    "httpConnector",
+    "errorConnector"
   ],
-  "createdDate": 1692051462713,
-  "currentVersion": 37,
-  "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1692051465345,
+  "createdDate": 1692199680320,
+  "currentVersion": 77,
+  "customerId": "1b5e903b6142ecc42587cc151998d5e7",
+  "deployedDate": 1692199681583,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -51,27 +52,27 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci SSO Protect Example",
-  "publishedVersion": 37,
+  "publishedVersion": 77,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
     "intermediateLoadingScreenHTML": "",
-    "logLevel": 3,
-    "pingOneFlow": true,
-    "useCustomCSS": true,
     "css": ".companyLogo {\n    /* Ping Logo  */\n    content: url(\"https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png\");\n    height: 65px;\n    width: 65px;\n}",
     "cssLinks": [
       "https://assets.pingone.com/ux/end-user-nano/0.1.0-alpha.1/end-user-nano.css",
       "https://assets.pingone.com/ux/astro-nano/0.1.0-alpha.7/icons.css"
-    ]
+    ],
+    "logLevel": 3,
+    "pingOneFlow": true,
+    "useCustomCSS": true
   },
   "timeouts": "null",
   "trigger": {
     "type": "AUTHENTICATION"
   },
-  "updatedDate": 1692051465345,
-  "flowId": "9deaf601908cdb945cfe706b7fa5326f",
-  "versionId": 37,
+  "updatedDate": 1692199681584,
+  "flowId": "3dda24ad23dbb1bade1e5bcb6fadca25",
+  "versionId": 77,
   "graphData": {
     "elements": {
       "nodes": [
@@ -89,7 +90,7 @@
             "properties": {
               "matchAttributes": {
                 "value": [
-                  "email"
+                  "username"
                 ]
               },
               "userIdentifierForFindUser": {
@@ -98,8 +99,8 @@
             }
           },
           "position": {
-            "x": 584,
-            "y": 326
+            "x": 577,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -121,12 +122,15 @@
               },
               "6i7lwwrw94": {
                 "value": "allTriggersFalse"
+              },
+              "3a7vnut1c8": {
+                "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 711,
-            "y": 322
+            "x": 727,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -152,23 +156,29 @@
               "additionalUserProperties": {
                 "value": []
               },
-              "email": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingone-forms.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.6hl4iss10x.payload.output.formData.user.username}}\",\n        \"tooltip\": \"{{local.6hl4iss10x.payload.output.formData.user.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
               "passwordForCreateUser": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingone-forms.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.6hl4iss10x.payload.output.formData.user.password}}\",\n        \"tooltip\": \"{{local.6hl4iss10x.payload.output.formData.user.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "population": {
-                "value": "useDefaultPopulation"
+                "value": "04d47889-c711-4c10-92b8-f0b277d34fce"
               },
               "username": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingone-forms.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.6hl4iss10x.payload.output.formData.user.username}}\",\n        \"tooltip\": \"{{local.6hl4iss10x.payload.output.formData.user.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "given": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"fname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"children\": [\n          {\n            \"text\": \"fname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "family": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"lname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"children\": [\n          {\n            \"text\": \"lname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "email": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
           "position": {
-            "x": 861,
-            "y": 532
+            "x": 1147,
+            "y": 506
           },
           "group": "nodes",
           "removed": false,
@@ -195,57 +205,16 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "matchAttribute": {
-                "value": "email"
+                "value": "username"
               },
               "password": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.password}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.n9qaul10jk.payload.output.password}}\",\n        \"tooltip\": \"{{local.n9qaul10jk.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
           "position": {
-            "x": 861,
-            "y": 322
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "kc7wrmpc93",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createErrorResponse",
-            "type": "action",
-            "properties": {
-              "backgroundColor": {
-                "value": "#d0021bff"
-              },
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.578323540163898,
-                    "name": null,
-                    "nameDefault": "message",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  }
-                ]
-              }
-            }
-          },
-          "position": {
-            "x": 1161,
-            "y": 652
+            "x": 1147,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -281,7 +250,7 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.zgqu7wj7mb.payload.output.password}}\",\n        \"tooltip\": \"{{local.zgqu7wj7mb.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "skRiskFP": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{global.variables.riskSDKOutput}}\",\n        \"tooltip\": \"{{global.variables.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "targetResourceName": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci SSO Protect Sample App\"\n      }\n    ]\n  }\n]"
@@ -301,8 +270,8 @@
             }
           },
           "position": {
-            "x": 1777,
-            "y": 386
+            "x": 2017,
+            "y": 356
           },
           "group": "nodes",
           "removed": false,
@@ -323,53 +292,15 @@
               },
               "u6w4ob97dt": {
                 "value": "allTriggersFalse"
-              }
-            }
-          },
-          "position": {
-            "x": 1897,
-            "y": 386
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "u6w4ob97dt",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createErrorResponse",
-            "type": "action",
-            "properties": {
-              "backgroundColor": {
-                "value": "#d0021bff"
               },
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.7318766750020025,
-                    "name": null,
-                    "nameDefault": "message",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  }
-                ]
+              "ij45fm4h76": {
+                "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 2107,
-            "y": 476
+            "x": 2167,
+            "y": 356
           },
           "group": "nodes",
           "removed": false,
@@ -401,14 +332,22 @@
                     "nameDefault": "id",
                     "type": "string",
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "riskSDKOutput",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.03547881087858262,
+                    "type": "string",
+                    "label": "riskSDKOutput (string - flowInstance)",
+                    "nameDefault": "riskSDKOutput"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 1161,
-            "y": 532
+            "x": 1770,
+            "y": 510
           },
           "group": "nodes",
           "removed": false,
@@ -426,12 +365,15 @@
             "properties": {
               "kc7wrmpc93": {
                 "value": "allTriggersFalse"
+              },
+              "hhj5mpkk0u": {
+                "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 1011,
-            "y": 532
+            "x": 1297,
+            "y": 506
           },
           "group": "nodes",
           "removed": false,
@@ -463,14 +405,22 @@
                     "nameDefault": "id",
                     "type": "string",
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "riskSDKOutput",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.045596971849856116,
+                    "label": "riskSDKOutput (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "riskSDKOutput"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 1417,
-            "y": 296
+            "x": 1740,
+            "y": 270
           },
           "group": "nodes",
           "removed": false,
@@ -488,53 +438,15 @@
             "properties": {
               "jr1f287nlq": {
                 "value": "allTriggersFalse"
-              }
-            }
-          },
-          "position": {
-            "x": 981,
-            "y": 322
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "jr1f287nlq",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createErrorResponse",
-            "type": "action",
-            "properties": {
-              "backgroundColor": {
-                "value": "#d0021bff"
               },
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.617681003488906,
-                    "name": null,
-                    "nameDefault": "message",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"tooltip\": \"{{local.p53gq7n410.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  }
-                ]
+              "pausjqv615": {
+                "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 1417,
-            "y": 446
+            "x": 1267,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -552,8 +464,8 @@
             "properties": {}
           },
           "position": {
-            "x": 1627,
-            "y": 326
+            "x": 1867,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -571,8 +483,8 @@
             "properties": {}
           },
           "position": {
-            "x": 1627,
-            "y": 446
+            "x": 1867,
+            "y": 416
           },
           "group": "nodes",
           "removed": false,
@@ -599,13 +511,13 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
               },
               "riskId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
           "position": {
-            "x": 2107,
-            "y": 326
+            "x": 2377,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -623,53 +535,15 @@
             "properties": {
               "gznrygimzf": {
                 "value": "allTriggersFalse"
-              }
-            }
-          },
-          "position": {
-            "x": 2257,
-            "y": 326
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "gznrygimzf",
-            "nodeType": "CONNECTION",
-            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
-            "connectorId": "httpConnector",
-            "name": "Http",
-            "label": "Http",
-            "status": "configured",
-            "capabilityName": "createErrorResponse",
-            "type": "action",
-            "properties": {
-              "backgroundColor": {
-                "value": "#d0021bff"
               },
-              "claimsNameValuePairs": {
-                "value": [
-                  {
-                    "key": 0.8800805675019314,
-                    "name": null,
-                    "nameDefault": "message",
-                    "type": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"tooltip\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-                  }
-                ]
+              "z7jrglflfx": {
+                "value": "allTriggersFalse"
               }
             }
           },
           "position": {
-            "x": 2407,
-            "y": 416
+            "x": 2527,
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -688,7 +562,7 @@
           },
           "position": {
             "x": 427,
-            "y": 330
+            "y": 296
           },
           "group": "nodes",
           "removed": false,
@@ -703,7 +577,7 @@
           "data": {
             "id": "z4ov66krwa",
             "nodeType": "CONNECTION",
-            "connectionId": "c3e6a164bde107954e93f5c09f0c8bce",
+            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
             "connectorId": "pingOneAuthenticationConnector",
             "name": "PingOne Authentication",
             "label": "PingOne Authentication",
@@ -711,20 +585,20 @@
             "capabilityName": "setSession",
             "type": "action",
             "properties": {
+              "authenticationMethods": {
+                "value": "pwd"
+              },
               "idleTimeout": {
                 "value": 43200
               },
               "userId": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "authenticationMethods": {
-                "value": "pwd"
               }
             }
           },
           "position": {
-            "x": 1147,
-            "y": 296
+            "x": 1447,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -738,44 +612,12 @@
         {
           "data": {
             "id": "e12bdppu3g",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
-            "x": 1282,
-            "y": 281
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "k9mc5zoa8e",
-            "nodeType": "CONNECTION",
-            "connectionId": "c3e6a164bde107954e93f5c09f0c8bce",
-            "connectorId": "pingOneAuthenticationConnector",
-            "name": "PingOne Authentication",
-            "label": "PingOne Authentication",
-            "status": "configured",
-            "capabilityName": "returnSuccessResponseRedirect",
-            "type": "action",
-            "properties": {
-              "idleTimeout": {
-                "value": 43200
-              },
-              "userId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              }
-            }
-          },
-          "position": {
-            "x": 2407,
-            "y": 236
+            "x": 1567,
+            "y": 266
           },
           "group": "nodes",
           "removed": false,
@@ -798,23 +640,362 @@
             "capabilityName": "customHTMLTemplate",
             "type": "trigger",
             "properties": {
+              "backgroundColor": {
+                "value": "#afd5ffff"
+              },
+              "customCSS": {},
               "customHTML": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"skrisk\",\n        \"data\": \"[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\",\n        \"tooltip\": \"{{component.skrisk}}\",\n        \"children\": [\n          {\n            \"text\": \"skrisk\"\n          }\n        ],\n        \"component\": \"skrisk\",\n        \"options\": {\n          \"environmentId\": \"\",\n          \"collectBehavioralData\": \"true\",\n          \"propertyname\": \"riskfp\"\n        },\n        \"componentProps\": {\n          \"environmentId\": {\n            \"name\": \"environmentId\",\n            \"displayName\": \"Environment ID\"\n          },\n          \"collectBehavioralData\": {\n            \"name\": \"collectBehavioralData\",\n            \"displayName\": \"Collect behavioral data\",\n            \"type\": \"select\",\n            \"value\": \"true\",\n            \"info\": \"Behavioral data is used to detect Human/Non Human users. It is recommended to set the same value throughout the flow.\",\n            \"options\": [\n              {\n                \"name\": \"True\",\n                \"value\": \"true\"\n              },\n              {\n                \"name\": \"False\",\n                \"value\": \"false\"\n              }\n            ]\n          },\n          \"propertyname\": {\n            \"name\": \"propertyname\",\n            \"displayName\": \"Risk Property Name\",\n            \"value\": \"riskfp\",\n            \"info\": \"Name for referencing this risk component\"\n          }\n        }\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"<div\\n  class=\\\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\\\">\\n  <div style=\\\"max-width: 400px; min-width: 400px; width: 100%\\\">\\n    <div class=\\\"card shadow mb-5\\\">\\n      <div class=\\\"card-body p-5 d-flex flex-column\\\">\\n        <img class=\\\"companyLogo align-self-center mb-5\\\" alt=\\\"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"companyName\",\n        \"data\": \"{{global.variables.companyName}}\",\n        \"tooltip\": \"{{global.variables.companyName}}\",\n        \"children\": [\n          {\n            \"text\": \"{{global.variables.companyName}}\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\\\" />\\n        <h1 class=\\\"text-center mb-4\\\">Sign On</h1>\\n        <p class=\\\"text-muted text-center\\\">Welcome to Ping Identity</p>\\n        <p class=\\\"text-danger mdi mdi-alert-circle\\\" data-id=\\\"feedback\\\" data-skcomponent=\\\"skerror\\\"></p>\\n        <form id=\\\"usernamePasswordForm\\\" data-id=\\\"usernamePasswordForm\\\">\\n          <div class=\\\"mb-4 form-floating\\\">\\n            <input class=\\\"form-control\\\" type=\\\"text\\\" id=\\\"username\\\" name=\\\"username\\\" placeholder=\\\"username\\\"\\n              autocomplete=\\\"off\\\" value=\\\"\\\" data-id=\\\"username-input\\\" />\\n            <label class=\\\"form-label\\\" for=\\\"username\\\">Username</label>\\n          </div>\\n          <div id=\\\"passwordDiv\\\" class=\\\"mb-4 form-floating\\\">\\n            <input class=\\\"form-control\\\" type=\\\"password\\\" id=\\\"password\\\" name=\\\"password\\\" placeholder=\\\"Password\\\"\\n              autocomplete=\\\"off\\\" value=\\\"\\\" data-id=\\\"password-input\\\" />\\n            <label class=\\\"form-label\\\" for=\\\"password\\\">Password</label>\\n          </div>\\n          <div class=\\\"d-flex flex-column\\\">\\n            <button data-id=\\\"button\\\" type=\\\"submit\\\" class=\\\"btn btn-primary mb-3\\\" data-skcomponent=\\\"skbutton\\\"\\n              data-skbuttontype=\\\"form-submit\\\" data-skform=\\\"usernamePasswordForm\\\" id=\\\"btnSignIn\\\"\\n              data-skbuttonvalue=\\\"SIGNON\\\">\\n              Sign On\\n            </button>\"\n      },\n      {\n        \"text\": \"\\n          </div>\\n        </form>\\n      </div>\\n    </div>\\n  </div>\\n</div>\"\n      }\n    ]\n  }\n]"
+                "value": "[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\n<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Sign On</h1>\n        <p class=\"text-muted text-center\">Welcome to Ping Identity</p>\n        <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n        <form id=\"usernameForm\" data-id=\"usernameForm\">\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\"\n              autocomplete=\"off\" value=\"\" data-id=\"username-input\" />\n            <label class=\"form-label\" for=\"username\">Username</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"username\"></div>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n              data-skbuttontype=\"form-submit\" data-skform=\"usernameForm\" id=\"btnSignIn\"\n              data-skbuttonvalue=\"next\">\n              Next\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "customScript": {
+                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n \nfunction start() {\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
               },
               "formFieldsList": {
                 "value": [
                   {
+                    "displayName": "Username",
+                    "hashedVisibility": false,
                     "preferredControlType": "textField",
                     "preferredDataType": "string",
                     "propertyName": "username",
-                    "displayName": "Username",
-                    "hashedVisibility": false,
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
                     "preferredControlType": "textField",
                     "preferredDataType": "string",
                     "propertyName": "buttonValue"
+                  },
+                  {
+                    "displayName": "Password",
+                    "hashedVisibility": true,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "password",
+                    "value": ""
+                  },
+                  {
+                    "displayName": "Risk Output",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "riskSDKOutput",
+                    "value": ""
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Username Form"
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "username",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Username is required"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 277,
+            "y": 296
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "g6narytx9z",
+            "nodeType": "CONNECTION",
+            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
+            "connectorId": "pingOneAuthenticationConnector",
+            "name": "PingOne Authentication",
+            "label": "PingOne Authentication",
+            "status": "configured",
+            "capabilityName": "returnSuccessResponseRedirect",
+            "type": "action",
+            "properties": {
+              "idleTimeout": {
+                "value": 43200
+              },
+              "userId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"moustache\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"name\": \"userId\",\n        \"children\": [\n          {\n            \"text\": \"\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "idTokenClaims": {
+                "value": [
+                  {
+                    "name": "riskScore",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"result\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"children\": [\n          {\n            \"text\": \"result\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.9317182139746887,
+                    "label": "riskScore (object - flowInstance)",
+                    "type": "object",
+                    "nameDefault": "result"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 2767,
+            "y": 236
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "pausjqv615",
+            "nodeType": "CONNECTION",
+            "connectionId": "6d8f6f706c45fd459a86b3f092602544",
+            "connectorId": "errorConnector",
+            "name": "Error Customize",
+            "label": "Error Customize",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorMessage": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.m4sfmek769.payload.error.message}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1537,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "z7jrglflfx",
+            "nodeType": "CONNECTION",
+            "connectionId": "6d8f6f706c45fd459a86b3f092602544",
+            "connectorId": "errorConnector",
+            "name": "Error Customize",
+            "label": "Error Customize",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorMessage": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"tooltip\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 2767,
+            "y": 386
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ij45fm4h76",
+            "nodeType": "CONNECTION",
+            "connectionId": "6d8f6f706c45fd459a86b3f092602544",
+            "connectorId": "errorConnector",
+            "name": "Error Customize",
+            "label": "Error Customize",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorMessage": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 2377,
+            "y": 446
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "hhj5mpkk0u",
+            "nodeType": "CONNECTION",
+            "connectionId": "6d8f6f706c45fd459a86b3f092602544",
+            "connectorId": "errorConnector",
+            "name": "Error Customize",
+            "label": "Error Customize",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorMessage": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1477,
+            "y": 626
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n9qaul10jk",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\n<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Sign On</h1>\n        <p class=\"text-muted text-center\">Welcome to Ping Identity</p>\n        <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n        <form id=\"passwordForm\" data-id=\"passwordForm\">\n          <div id=\"passwordDiv\" class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" placeholder=\"Password\"\n              autocomplete=\"off\" value=\"\" data-id=\"password-input\" />\n            <label class=\"form-label\" for=\"password\">Password</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"password\"></div>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n              data-skbuttontype=\"form-submit\" data-skform=\"passwordForm\" id=\"btnSignIn\"\n              data-skbuttonvalue=\"SIGNON\">\n              Sign On\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  },
+                  {
+                    "propertyName": "riskSDKOutput",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "hashedVisibility": false,
+                    "displayName": "Risk Output"
+                  },
+                  {
+                    "propertyName": "password",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": true,
+                    "displayName": "Password"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Password Form"
+              },
+              "customScript": {
+                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "password",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Password is required"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 877,
+            "y": 266
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "3a7vnut1c8",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customScript": {
+                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
+              },
+              "nodeTitle": {
+                "value": "Registration Form"
+              },
+              "customHTML": {
+                "value": "[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\n<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Create Account</h1>\n        <p class=\"text-muted text-center\">Welcome to Ping Identity</p>\n        <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n        <form id=\"regForm\" data-id=\"regForm\">\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\"\n              autocomplete=\"off\" value={{local.d9583hqcp9.payload.output.username}} data-id=\"username-input\" disabled/>\n            <label class=\"form-label\" for=\"username\">Username</label>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"fname\" name=\"fname\" placeholder=\"fname\"\n              autocomplete=\"off\" value=\"\" data-id=\"fname-input\" />\n            <label class=\"form-label\" for=\"fname\">First Name</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"fname\"></div>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"lname\" name=\"lname\" placeholder=\"lname\"\n              autocomplete=\"off\" value=\"\" data-id=\"lname-input\" />\n            <label class=\"form-label\" for=\"lname\">Last Name</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"lname\"></div>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"email\" name=\"email\" placeholder=\"email\"\n              autocomplete=\"off\" value=\"\" data-id=\"email-input\" />\n            <label class=\"form-label\" for=\"email\">Email Address</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"email\"></div>\n          </div>\n          <div id=\"passwordDiv\" class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" placeholder=\"Password\"\n              autocomplete=\"off\" value=\"\" data-id=\"password-input\" />\n            <label class=\"form-label\" for=\"password\">Password</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"password\"></div>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n              data-skbuttontype=\"form-submit\" data-skform=\"regForm\" id=\"btnSignIn\"\n              data-skbuttonvalue=\"register\">\n              Register\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  },
+                  {
+                    "propertyName": "fname",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": false,
+                    "displayName": "First Name"
+                  },
+                  {
+                    "propertyName": "lname",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": false,
+                    "displayName": "Last Name"
                   },
                   {
                     "propertyName": "password",
@@ -831,27 +1012,149 @@
                     "value": "",
                     "hashedVisibility": false,
                     "displayName": "Risk Output"
+                  },
+                  {
+                    "propertyName": "email",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": false,
+                    "displayName": "Email Address"
                   }
                 ]
               },
-              "nodeTitle": {
-                "value": "Username/Password Form"
-              },
-              "customCSS": {},
               "validationRules": {
-                "value": []
-              },
-              "backgroundColor": {
-                "value": "#afd5ffff"
-              },
-              "customScript": {
-                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
+                "value": [
+                  {
+                    "propertyName": "fname",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "First name is required"
+                      }
+                    ]
+                  },
+                  {
+                    "propertyName": "lname",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Last name is required"
+                      }
+                    ]
+                  },
+                  {
+                    "propertyName": "password",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Password is required"
+                      }
+                    ]
+                  },
+                  {
+                    "propertyName": "email",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Email is required"
+                      }
+                    ]
+                  }
+                ]
               }
             }
           },
           "position": {
-            "x": 277,
-            "y": 330
+            "x": 877,
+            "y": 476
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "dwmluz6lew",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1012,
+            "y": 281
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qslvlfzdu8",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1012,
+            "y": 491
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8veuden5rr",
+            "nodeType": "CONNECTION",
+            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
+            "connectorId": "pingOneAuthenticationConnector",
+            "name": "PingOne Authentication",
+            "label": "PingOne Authentication",
+            "status": "configured",
+            "capabilityName": "setSession",
+            "type": "action",
+            "properties": {
+              "idleTimeout": {
+                "value": 43200
+              },
+              "userId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1500,
+            "y": 510
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "2dxnpvzh47",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1620,
+            "y": 510
           },
           "group": "nodes",
           "removed": false,
@@ -864,6 +1167,158 @@
         }
       ],
       "edges": [
+        {
+          "data": {
+            "id": "svn5c5hcf9",
+            "source": "dwmluz6lew",
+            "target": "p53gq7n410"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "87borumlys",
+            "source": "87jn430mui",
+            "target": "hhj5mpkk0u"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "6uwzgd9xgy",
+            "source": "1jf93tyrvi",
+            "target": "rvgypb5svi"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "jwovpclfvp",
+            "source": "rvgypb5svi",
+            "target": "l9q5mxjjtm"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "fje1gztatq",
+            "source": "n6js2rcdqf",
+            "target": "g6narytx9z"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "06eo6sq6c8",
+            "source": "0mqv2pv49t",
+            "target": "a6rirjd0m2"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "a9l6xkkwym",
+            "source": "n6js2rcdqf",
+            "target": "z7jrglflfx"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "0ik0wpytg2",
+            "source": "75k6wc3j9i",
+            "target": "pausjqv615"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
         {
           "data": {
             "id": "sl5km0w1by",
@@ -885,9 +1340,9 @@
         },
         {
           "data": {
-            "id": "3szd6gg2jk",
-            "source": "n6js2rcdqf",
-            "target": "k9mc5zoa8e"
+            "id": "qtgsr59csk",
+            "source": "d9583hqcp9",
+            "target": "hbs3eh5iqo"
           },
           "position": {
             "x": 0,
@@ -1075,9 +1530,9 @@
         },
         {
           "data": {
-            "id": "7mi39hz4x5",
-            "source": "87jn430mui",
-            "target": "kc7wrmpc93"
+            "id": "9g8fums6ac",
+            "source": "09anefv002",
+            "target": "ij45fm4h76"
           },
           "position": {
             "x": 0,
@@ -1113,27 +1568,8 @@
         },
         {
           "data": {
-            "id": "vsise0s8iw",
-            "source": "87jn430mui",
-            "target": "0mqv2pv49t"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "poco6s1p07",
-            "source": "yqi3iaujxx",
+            "id": "ayri6v2nw9",
+            "source": "qslvlfzdu8",
             "target": "6i7lwwrw94"
           },
           "position": {
@@ -1151,9 +1587,9 @@
         },
         {
           "data": {
-            "id": "cygeg7p11i",
+            "id": "13v2fa2yqm",
             "source": "yqi3iaujxx",
-            "target": "p53gq7n410"
+            "target": "n9qaul10jk"
           },
           "position": {
             "x": 0,
@@ -1170,9 +1606,9 @@
         },
         {
           "data": {
-            "id": "jsl67wfxc3",
-            "source": "75k6wc3j9i",
-            "target": "jr1f287nlq"
+            "id": "vkwfb1gipt",
+            "source": "n9qaul10jk",
+            "target": "dwmluz6lew"
           },
           "position": {
             "x": 0,
@@ -1189,9 +1625,9 @@
         },
         {
           "data": {
-            "id": "6uwzgd9xgy",
-            "source": "1jf93tyrvi",
-            "target": "rvgypb5svi"
+            "id": "6aerj84jbc",
+            "source": "yqi3iaujxx",
+            "target": "3a7vnut1c8"
           },
           "position": {
             "x": 0,
@@ -1208,9 +1644,9 @@
         },
         {
           "data": {
-            "id": "jwovpclfvp",
-            "source": "rvgypb5svi",
-            "target": "l9q5mxjjtm"
+            "id": "6v6muvdyg5",
+            "source": "3a7vnut1c8",
+            "target": "qslvlfzdu8"
           },
           "position": {
             "x": 0,
@@ -1227,9 +1663,9 @@
         },
         {
           "data": {
-            "id": "06eo6sq6c8",
-            "source": "0mqv2pv49t",
-            "target": "a6rirjd0m2"
+            "id": "b7i0r4q90j",
+            "source": "87jn430mui",
+            "target": "8veuden5rr"
           },
           "position": {
             "x": 0,
@@ -1246,9 +1682,9 @@
         },
         {
           "data": {
-            "id": "gjatfkco0t",
-            "source": "09anefv002",
-            "target": "u6w4ob97dt"
+            "id": "abnmmbl8ot",
+            "source": "8veuden5rr",
+            "target": "2dxnpvzh47"
           },
           "position": {
             "x": 0,
@@ -1265,28 +1701,9 @@
         },
         {
           "data": {
-            "id": "53h4nrs4u0",
-            "source": "n6js2rcdqf",
-            "target": "gznrygimzf"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "qtgsr59csk",
-            "source": "d9583hqcp9",
-            "target": "hbs3eh5iqo"
+            "id": "1v3ec8paw2",
+            "source": "2dxnpvzh47",
+            "target": "0mqv2pv49t"
           },
           "position": {
             "x": 0,
@@ -1347,7 +1764,24 @@
     }
   ],
   "flowColor": "#AFD5FF",
-  "savedDate": 1692051462577,
-  "variables": [],
+  "savedDate": 1692199680119,
+  "variables": [
+    {
+      "context": "flowInstance",
+      "createdDate": 1692123859625,
+      "customerId": "1b5e903b6142ecc42587cc151998d5e7",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "type": "property",
+      "visibility": "private",
+      "name": "riskSDKOutput##SK##flowInstance",
+      "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2"
+    }
+  ],
   "connections": []
 }

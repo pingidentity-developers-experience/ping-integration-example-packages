@@ -33,32 +33,6 @@
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
         const clientId = window._env_.clientId; // PingOne Application Client ID
 
-        function onPingOneSignalsReady(callback) {
-            if (window['_pingOneSignalsReady']) {
-                callback();
-            } else {
-                document.addEventListener('PingOneSignalsReadyEvent', callback);
-            }
-          }
-
-          onPingOneSignalsReady(function () {
-            _pingOneSignals.initSilent({
-                envId : pingOneEnvId
-            }).then(function () {
-                console.log("PingOne Signals initialized successfully");
-            }).catch(function (e) {
-                console.error("SDK Init failed", e);
-            });
-          });
-
-          const riskData = await _pingOneSignals.getData()
-          .then(function (result) {
-            console.log("get data completed: " + result)
-            return result;
-          }).catch(function (e) {
-              console.error('getData Error!', e);
-        });
-
         const clientOptions = {
           client_id: clientId,
           redirect_uri: redirectUri,

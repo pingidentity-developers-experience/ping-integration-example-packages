@@ -86,25 +86,6 @@ resource "pingone_application" "worker_app" {
   }
 }
 
-# resource "davinci_connection" "pingone_risk" {
-#   connector_id   = "pingOneRiskConnector"
-#   environment_id = module.environment.environment_id
-#   name           = "PingOne Risk"
-
-#   property {
-#     name = "envId"
-#     value = module.environment.environment_id
-#   }
-#   property {
-#     name  = "clientId"
-#     value = pingone_application.worker_app.id
-#   }
-#   property {
-#     name  = "clientSecret"
-#     value = pingone_application.worker_app.oidc_options[0].client_secret
-#   }
-# }
-
 ##############################################
 # PingOne Policies
 ##############################################
