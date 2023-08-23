@@ -1,10 +1,32 @@
-# Terraform + + PingOne SSO + PingOne DaVinci + PingOne Protect + Signals SDK Sample App
+# Terraform + PingOne SSO + PingOne DaVinci + PingOne Protect + Signals SDK Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
 - Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
+
+## Use Case
+This integration package combines Terraform, DaVinci, PingOne SSO, PingOne Protect, the Signals SDK, and the OIDC SDK to demonstrate user registration and authentication, as well as threat protection.
+
+Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
+
+During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne Protect services enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. In this flow, the Signals SDK is initiated in a custom HTML template, the response from the SDK is then sent in a call to the PingOne Protect API to create a risk evaluation. The sample application uses the OIDC SDK to initiate the authentication flow for the OIDC application in PingOne which uses a DaVinci policy created by Terraform. After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
+
+### Registration
+1. Start the sample app and navigate to the URL provided.
+2. Click on the link to Login and complete the username form. Click **Next**.
+3. If a user with this username does not already exist in PingOne Directory, a registration form will be presented.
+4. Fill out all fields of the registration form, click **Register**. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+5.. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+### Sign In as an Existing User
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration instructions above to create a new user, if you have not already done so. 
+3. Click on the link to Login and complete the username form with the user created in step 2. Click **Next**.
+3. Fill in the user's password. Click **Sign On**.
+4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
 

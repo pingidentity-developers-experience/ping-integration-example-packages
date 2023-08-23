@@ -6,6 +6,27 @@
 - Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
+## Use Case 
+This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
+
+Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
+
+During the deployment process, Terraform will create a new PingOne environment with the DaVinci service enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. The DaVinci flow gets launched from the sample application via API call when registration or authentication is initiated.
+
+### Registration
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration form with an email address and password. Click **Submit**.
+3. If a user with this password does not already exist in PingOne Directory, the user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page.
+4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+### Sign In as an Existing User
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration instructions above to create a new user, if you have not already done so. 
+3. Complete the form with the credentials for the user created in step 2. Click **Submit**.
+4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page.
+4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+
 ## Source Code Folders
 
 ### /davinci-api-registration-pkg/davinci-api-registration-sample-app
