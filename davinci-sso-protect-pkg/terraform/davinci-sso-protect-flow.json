@@ -5,14 +5,14 @@
     "pingOneSSOConnector",
     "pingOneRiskConnector",
     "variablesConnector",
-    "pingOneAuthenticationConnector",
     "httpConnector",
+    "pingOneAuthenticationConnector",
     "errorConnector"
   ],
-  "createdDate": 1692199680320,
-  "currentVersion": 77,
+  "createdDate": 1692815975509,
+  "currentVersion": 83,
   "customerId": "1b5e903b6142ecc42587cc151998d5e7",
-  "deployedDate": 1692199681583,
+  "deployedDate": 1692815976664,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -52,16 +52,16 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci SSO Protect Example",
-  "publishedVersion": 77,
+  "publishedVersion": 83,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
-    "intermediateLoadingScreenCSS": "",
-    "intermediateLoadingScreenHTML": "",
     "css": ".companyLogo {\n    /* Ping Logo  */\n    content: url(\"https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png\");\n    height: 65px;\n    width: 65px;\n}",
     "cssLinks": [
       "https://assets.pingone.com/ux/end-user-nano/0.1.0-alpha.1/end-user-nano.css",
       "https://assets.pingone.com/ux/astro-nano/0.1.0-alpha.7/icons.css"
     ],
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
     "logLevel": 3,
     "pingOneFlow": true,
     "useCustomCSS": true
@@ -70,9 +70,9 @@
   "trigger": {
     "type": "AUTHENTICATION"
   },
-  "updatedDate": 1692199681584,
+  "updatedDate": 1692815976664,
   "flowId": "3dda24ad23dbb1bade1e5bcb6fadca25",
-  "versionId": 77,
+  "versionId": 83,
   "graphData": {
     "elements": {
       "nodes": [
@@ -120,10 +120,10 @@
               "0di26c5iy7": {
                 "value": "anyTriggersFalse"
               },
-              "6i7lwwrw94": {
+              "3a7vnut1c8": {
                 "value": "allTriggersFalse"
               },
-              "3a7vnut1c8": {
+              "6i7lwwrw94": {
                 "value": "allTriggersFalse"
               }
             }
@@ -156,6 +156,15 @@
               "additionalUserProperties": {
                 "value": []
               },
+              "email": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "family": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"lname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"children\": [\n          {\n            \"text\": \"lname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "given": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"fname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"children\": [\n          {\n            \"text\": \"fname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
               "passwordForCreateUser": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
@@ -164,15 +173,6 @@
               },
               "username": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "given": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"fname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.fname}}\",\n        \"children\": [\n          {\n            \"text\": \"fname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "family": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"lname\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.lname}}\",\n        \"children\": [\n          {\n            \"text\": \"lname\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "email": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
@@ -270,8 +270,8 @@
             }
           },
           "position": {
-            "x": 2017,
-            "y": 356
+            "x": 2040,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -290,10 +290,10 @@
               "7h8bs4vxuo": {
                 "value": "allTriggersFalse"
               },
-              "u6w4ob97dt": {
+              "ij45fm4h76": {
                 "value": "allTriggersFalse"
               },
-              "ij45fm4h76": {
+              "u6w4ob97dt": {
                 "value": "allTriggersFalse"
               }
             }
@@ -334,19 +334,19 @@
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
-                    "name": "riskSDKOutput",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.03547881087858262,
-                    "type": "string",
                     "label": "riskSDKOutput (string - flowInstance)",
-                    "nameDefault": "riskSDKOutput"
+                    "name": "riskSDKOutput",
+                    "nameDefault": "riskSDKOutput",
+                    "type": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 1770,
+            "x": 1470,
             "y": 510
           },
           "group": "nodes",
@@ -363,10 +363,10 @@
             "id": "87jn430mui",
             "nodeType": "EVAL",
             "properties": {
-              "kc7wrmpc93": {
+              "hhj5mpkk0u": {
                 "value": "allTriggersFalse"
               },
-              "hhj5mpkk0u": {
+              "kc7wrmpc93": {
                 "value": "allTriggersFalse"
               }
             }
@@ -407,19 +407,19 @@
                     "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
-                    "name": "riskSDKOutput",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.045596971849856116,
                     "label": "riskSDKOutput (string - flowInstance)",
+                    "name": "riskSDKOutput",
+                    "nameDefault": "riskSDKOutput",
                     "type": "string",
-                    "nameDefault": "riskSDKOutput"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"riskSDKOutput\",\n        \"data\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"tooltip\": \"{{local.n9qaul10jk.payload.output.riskSDKOutput}}\",\n        \"children\": [\n          {\n            \"text\": \"riskSDKOutput\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
             }
           },
           "position": {
-            "x": 1740,
+            "x": 1470,
             "y": 270
           },
           "group": "nodes",
@@ -447,44 +447,6 @@
           "position": {
             "x": 1267,
             "y": 296
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "rvgypb5svi",
-            "nodeType": "EVAL",
-            "properties": {}
-          },
-          "position": {
-            "x": 1867,
-            "y": 296
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "a6rirjd0m2",
-            "nodeType": "EVAL",
-            "properties": {}
-          },
-          "position": {
-            "x": 1867,
-            "y": 416
           },
           "group": "nodes",
           "removed": false,
@@ -575,61 +537,6 @@
         },
         {
           "data": {
-            "id": "z4ov66krwa",
-            "nodeType": "CONNECTION",
-            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
-            "connectorId": "pingOneAuthenticationConnector",
-            "name": "PingOne Authentication",
-            "label": "PingOne Authentication",
-            "status": "configured",
-            "capabilityName": "setSession",
-            "type": "action",
-            "properties": {
-              "authenticationMethods": {
-                "value": "pwd"
-              },
-              "idleTimeout": {
-                "value": 43200
-              },
-              "userId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"tooltip\": \"{{local.m4sfmek769.payload.output.matchedUser.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              }
-            }
-          },
-          "position": {
-            "x": 1447,
-            "y": 266
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "e12bdppu3g",
-            "nodeType": "EVAL",
-            "properties": {}
-          },
-          "position": {
-            "x": 1567,
-            "y": 266
-          },
-          "group": "nodes",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": false,
-          "classes": ""
-        },
-        {
-          "data": {
             "id": "d9583hqcp9",
             "nodeType": "CONNECTION",
             "connectionId": "867ed4363b2bc21c860085ad2baa817d",
@@ -692,8 +599,8 @@
                     "propertyName": "username",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "Username is required"
+                        "message": "Username is required",
+                        "ruleName": "presence"
                       }
                     ]
                   }
@@ -726,23 +633,23 @@
             "capabilityName": "returnSuccessResponseRedirect",
             "type": "action",
             "properties": {
+              "idTokenClaims": {
+                "value": [
+                  {
+                    "key": 0.9317182139746887,
+                    "label": "riskScore (object - flowInstance)",
+                    "name": "riskScore",
+                    "nameDefault": "result",
+                    "type": "object",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"result\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"children\": [\n          {\n            \"text\": \"result\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
               "idleTimeout": {
                 "value": 43200
               },
               "userId": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"moustache\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"name\": \"userId\",\n        \"children\": [\n          {\n            \"text\": \"\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
-              "idTokenClaims": {
-                "value": [
-                  {
-                    "name": "riskScore",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"result\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.result}}\",\n        \"children\": [\n          {\n            \"text\": \"result\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "key": 0.9317182139746887,
-                    "label": "riskScore (object - flowInstance)",
-                    "type": "object",
-                    "nameDefault": "result"
-                  }
-                ]
               }
             }
           },
@@ -777,8 +684,8 @@
             }
           },
           "position": {
-            "x": 1537,
-            "y": 386
+            "x": 1470,
+            "y": 390
           },
           "group": "nodes",
           "removed": false,
@@ -894,6 +801,9 @@
               "customHTML": {
                 "value": "[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\n<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Sign On</h1>\n        <p class=\"text-muted text-center\">Welcome to Ping Identity</p>\n        <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n        <form id=\"passwordForm\" data-id=\"passwordForm\">\n          <div id=\"passwordDiv\" class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" placeholder=\"Password\"\n              autocomplete=\"off\" value=\"\" data-id=\"password-input\" />\n            <label class=\"form-label\" for=\"password\">Password</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"password\"></div>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n              data-skbuttontype=\"form-submit\" data-skform=\"passwordForm\" id=\"btnSignIn\"\n              data-skbuttonvalue=\"SIGNON\">\n              Sign On\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
               },
+              "customScript": {
+                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
+              },
               "formFieldsList": {
                 "value": [
                   {
@@ -902,28 +812,25 @@
                     "propertyName": "buttonValue"
                   },
                   {
-                    "propertyName": "riskSDKOutput",
+                    "displayName": "Risk Output",
+                    "hashedVisibility": false,
                     "preferredControlType": "textField",
                     "preferredDataType": "string",
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
-                    "hashedVisibility": false,
-                    "displayName": "Risk Output"
+                    "propertyName": "riskSDKOutput",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   },
                   {
-                    "propertyName": "password",
+                    "displayName": "Password",
+                    "hashedVisibility": true,
                     "preferredControlType": "textField",
                     "preferredDataType": "string",
-                    "value": "",
-                    "hashedVisibility": true,
-                    "displayName": "Password"
+                    "propertyName": "password",
+                    "value": ""
                   }
                 ]
               },
               "nodeTitle": {
                 "value": "Password Form"
-              },
-              "customScript": {
-                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
               },
               "validationRules": {
                 "value": [
@@ -931,8 +838,8 @@
                     "propertyName": "password",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "Password is required"
+                        "message": "Password is required",
+                        "ruleName": "presence"
                       }
                     ]
                   }
@@ -965,14 +872,11 @@
             "capabilityName": "customHTMLTemplate",
             "type": "trigger",
             "properties": {
-              "customScript": {
-                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
-              },
-              "nodeTitle": {
-                "value": "Registration Form"
-              },
               "customHTML": {
                 "value": "[[[skcomponent###c2tjb21wb25lbnQgInNrcmlzayIgIGVudmlyb25tZW50SWQ9IiIgY29sbGVjdEJlaGF2aW9yYWxEYXRhPSJ0cnVlIiBwcm9wZXJ0eW5hbWU9InJpc2tmcCI=###eyJuYW1lIjoic2tyaXNrIiwib3B0aW9ucyI6eyJlbnZpcm9ubWVudElkIjoiIiwiY29sbGVjdEJlaGF2aW9yYWxEYXRhIjoidHJ1ZSIsInByb3BlcnR5bmFtZSI6InJpc2tmcCJ9LCJjb21wb25lbnRQcm9wcyI6eyJlbnZpcm9ubWVudElkIjp7Im5hbWUiOiJlbnZpcm9ubWVudElkIiwiZGlzcGxheU5hbWUiOiJFbnZpcm9ubWVudCBJRCJ9LCJjb2xsZWN0QmVoYXZpb3JhbERhdGEiOnsibmFtZSI6ImNvbGxlY3RCZWhhdmlvcmFsRGF0YSIsImRpc3BsYXlOYW1lIjoiQ29sbGVjdCBiZWhhdmlvcmFsIGRhdGEiLCJ0eXBlIjoic2VsZWN0IiwidmFsdWUiOiJ0cnVlIiwiaW5mbyI6IkJlaGF2aW9yYWwgZGF0YSBpcyB1c2VkIHRvIGRldGVjdCBIdW1hbi9Ob24gSHVtYW4gdXNlcnMuIEl0IGlzIHJlY29tbWVuZGVkIHRvIHNldCB0aGUgc2FtZSB2YWx1ZSB0aHJvdWdob3V0IHRoZSBmbG93LiIsIm9wdGlvbnMiOlt7Im5hbWUiOiJUcnVlIiwidmFsdWUiOiJ0cnVlIn0seyJuYW1lIjoiRmFsc2UiLCJ2YWx1ZSI6ImZhbHNlIn1dfSwicHJvcGVydHluYW1lIjp7Im5hbWUiOiJwcm9wZXJ0eW5hbWUiLCJkaXNwbGF5TmFtZSI6IlJpc2sgUHJvcGVydHkgTmFtZSIsInZhbHVlIjoicmlza2ZwIiwiaW5mbyI6Ik5hbWUgZm9yIHJlZmVyZW5jaW5nIHRoaXMgcmlzayBjb21wb25lbnQifX19]]]\n<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Create Account</h1>\n        <p class=\"text-muted text-center\">Welcome to Ping Identity</p>\n        <p class=\"text-danger mdi mdi-alert-circle\" data-id=\"feedback\" data-skcomponent=\"skerror\"></p>\n        <form id=\"regForm\" data-id=\"regForm\">\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"username\" name=\"username\" placeholder=\"username\"\n              autocomplete=\"off\" value={{local.d9583hqcp9.payload.output.username}} data-id=\"username-input\" disabled/>\n            <label class=\"form-label\" for=\"username\">Username</label>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"fname\" name=\"fname\" placeholder=\"fname\"\n              autocomplete=\"off\" value=\"\" data-id=\"fname-input\" />\n            <label class=\"form-label\" for=\"fname\">First Name</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"fname\"></div>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"lname\" name=\"lname\" placeholder=\"lname\"\n              autocomplete=\"off\" value=\"\" data-id=\"lname-input\" />\n            <label class=\"form-label\" for=\"lname\">Last Name</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"lname\"></div>\n          </div>\n          <div class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"text\" id=\"email\" name=\"email\" placeholder=\"email\"\n              autocomplete=\"off\" value=\"\" data-id=\"email-input\" />\n            <label class=\"form-label\" for=\"email\">Email Address</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"email\"></div>\n          </div>\n          <div id=\"passwordDiv\" class=\"mb-4 form-floating\">\n            <input class=\"form-control\" type=\"password\" id=\"password\" name=\"password\" placeholder=\"Password\"\n              autocomplete=\"off\" value=\"\" data-id=\"password-input\" />\n            <label class=\"form-label\" for=\"password\">Password</label>\n            <div data-skcomponent=\"skerrormessage\" class=\"text-danger validation-message\" data-skerrorid=\"password\"></div>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button data-id=\"button\" type=\"submit\" class=\"btn btn-primary mb-3\" data-skcomponent=\"skbutton\"\n              data-skbuttontype=\"form-submit\" data-skform=\"regForm\" id=\"btnSignIn\"\n              data-skbuttonvalue=\"register\">\n              Register\n            </button>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "customScript": {
+                "value": "// Focus on the first input element on the page\nconst focusOnFirstInputElement = () => {\n    const element = document.querySelector(\"input\");\n\n    // Set focus on the first input element, if it exists\n    if (element) {\n        element.focus();\n    }\n};\n\nfunction makePasswordToggle(id) {\n    var container = document.getElementById(id);\n    var password = container.getElementsByTagName(\"input\")[0];\n    var toggler = document.createElement(\"button\");\n    toggler.setAttribute(\"tabindex\", \"-1\");\n    toggler.setAttribute(\"type\", \"button\");\n    toggler.setAttribute(\"aria-label\", \"Show/Hide Password\");\n    toggler.className = \"btn mdi mdi-eye-off-outline position-absolute end-0 top-50 translate-middle-y\";\n    container.appendChild(toggler);\n     \n    function showHidePassword() {\n        if (password.type == \"password\") {\n            password.setAttribute(\"type\", \"text\");\n            toggler.classList.add(\"mdi-eye-outline\");\n            toggler.classList.remove(\"mdi-eye-off-outline\");\n        } else {\n            toggler.classList.add(\"mdi-eye-off-outline\");\n            toggler.classList.remove(\"mdi-eye-outline\");\n            password.setAttribute(\"type\", \"password\");\n        }\n        password.focus();\n    };\n \n    toggler.addEventListener(\"click\", showHidePassword);\n}\n \nfunction start() {\n    makePasswordToggle(\"passwordDiv\");\n    focusOnFirstInputElement();\n}\n \nif (document.readyState === \"loading\") {\n    // Loading hasn't finished yet\n    document.addEventListener(\"DOMContentLoaded\", start);\n} else {\n    // `DOMContentLoaded` has already fired\n    start();\n}"
               },
               "formFieldsList": {
                 "value": [
@@ -982,46 +886,49 @@
                     "propertyName": "buttonValue"
                   },
                   {
+                    "displayName": "First Name",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
                     "propertyName": "fname",
-                    "preferredControlType": "textField",
-                    "preferredDataType": "string",
-                    "value": "",
-                    "hashedVisibility": false,
-                    "displayName": "First Name"
+                    "value": ""
                   },
                   {
+                    "displayName": "Last Name",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
                     "propertyName": "lname",
-                    "preferredControlType": "textField",
-                    "preferredDataType": "string",
-                    "value": "",
-                    "hashedVisibility": false,
-                    "displayName": "Last Name"
+                    "value": ""
                   },
                   {
-                    "propertyName": "password",
-                    "preferredControlType": "textField",
-                    "preferredDataType": "string",
-                    "value": "",
+                    "displayName": "Password",
                     "hashedVisibility": true,
-                    "displayName": "Password"
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "password",
+                    "value": ""
                   },
                   {
+                    "displayName": "Risk Output",
+                    "hashedVisibility": false,
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
                     "propertyName": "riskSDKOutput",
-                    "preferredControlType": "textField",
-                    "preferredDataType": "string",
-                    "value": "",
-                    "hashedVisibility": false,
-                    "displayName": "Risk Output"
+                    "value": ""
                   },
                   {
-                    "propertyName": "email",
+                    "displayName": "Email Address",
+                    "hashedVisibility": false,
                     "preferredControlType": "textField",
                     "preferredDataType": "string",
-                    "value": "",
-                    "hashedVisibility": false,
-                    "displayName": "Email Address"
+                    "propertyName": "email",
+                    "value": ""
                   }
                 ]
+              },
+              "nodeTitle": {
+                "value": "Registration Form"
               },
               "validationRules": {
                 "value": [
@@ -1029,8 +936,8 @@
                     "propertyName": "fname",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "First name is required"
+                        "message": "First name is required",
+                        "ruleName": "presence"
                       }
                     ]
                   },
@@ -1038,8 +945,8 @@
                     "propertyName": "lname",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "Last name is required"
+                        "message": "Last name is required",
+                        "ruleName": "presence"
                       }
                     ]
                   },
@@ -1047,8 +954,8 @@
                     "propertyName": "password",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "Password is required"
+                        "message": "Password is required",
+                        "ruleName": "presence"
                       }
                     ]
                   },
@@ -1056,8 +963,8 @@
                     "propertyName": "email",
                     "rules": [
                       {
-                        "ruleName": "presence",
-                        "message": "Email is required"
+                        "message": "Email is required",
+                        "ruleName": "presence"
                       }
                     ]
                   }
@@ -1081,7 +988,8 @@
         {
           "data": {
             "id": "dwmluz6lew",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
             "x": 1012,
@@ -1099,7 +1007,8 @@
         {
           "data": {
             "id": "qslvlfzdu8",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
             "x": 1012,
@@ -1116,7 +1025,7 @@
         },
         {
           "data": {
-            "id": "8veuden5rr",
+            "id": "5fy38889km",
             "nodeType": "CONNECTION",
             "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
             "connectorId": "pingOneAuthenticationConnector",
@@ -1130,13 +1039,13 @@
                 "value": 43200
               },
               "userId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"tooltip\": \"{{local.6i7lwwrw94.payload.output.user.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"userId\",\n        \"data\": \"{{global.variables.userId}}\",\n        \"tooltip\": \"{{global.variables.userId}}\",\n        \"children\": [\n          {\n            \"text\": \"userId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
           "position": {
-            "x": 1500,
-            "y": 510
+            "x": 1770,
+            "y": 360
           },
           "group": "nodes",
           "removed": false,
@@ -1149,12 +1058,48 @@
         },
         {
           "data": {
-            "id": "2dxnpvzh47",
+            "id": "3m229em5w4",
             "nodeType": "EVAL"
           },
           "position": {
             "x": 1620,
-            "y": 510
+            "y": 315
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "viu1zp2fns",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1620,
+            "y": 435
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "9g690zq061",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1893.5,
+            "y": 358
           },
           "group": "nodes",
           "removed": false,
@@ -1167,6 +1112,120 @@
         }
       ],
       "edges": [
+        {
+          "data": {
+            "id": "tr8r1rok8t",
+            "source": "6i7lwwrw94",
+            "target": "87jn430mui"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8cy8txv5dv",
+            "source": "l9q5mxjjtm",
+            "target": "09anefv002"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "6aerj84jbc",
+            "source": "yqi3iaujxx",
+            "target": "3a7vnut1c8"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ayri6v2nw9",
+            "source": "qslvlfzdu8",
+            "target": "6i7lwwrw94"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "vkwfb1gipt",
+            "source": "n9qaul10jk",
+            "target": "dwmluz6lew"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "9g8fums6ac",
+            "source": "09anefv002",
+            "target": "ij45fm4h76"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
         {
           "data": {
             "id": "svn5c5hcf9",
@@ -1207,9 +1266,9 @@
         },
         {
           "data": {
-            "id": "6uwzgd9xgy",
-            "source": "1jf93tyrvi",
-            "target": "rvgypb5svi"
+            "id": "jqobmjbxm9",
+            "source": "p53gq7n410",
+            "target": "75k6wc3j9i"
           },
           "position": {
             "x": 0,
@@ -1226,9 +1285,9 @@
         },
         {
           "data": {
-            "id": "jwovpclfvp",
-            "source": "rvgypb5svi",
-            "target": "l9q5mxjjtm"
+            "id": "1jrmekr9ps",
+            "source": "87jn430mui",
+            "target": "0mqv2pv49t"
           },
           "position": {
             "x": 0,
@@ -1264,9 +1323,9 @@
         },
         {
           "data": {
-            "id": "06eo6sq6c8",
-            "source": "0mqv2pv49t",
-            "target": "a6rirjd0m2"
+            "id": "6dn6y8sbmz",
+            "source": "75k6wc3j9i",
+            "target": "1jf93tyrvi"
           },
           "position": {
             "x": 0,
@@ -1359,9 +1418,9 @@
         },
         {
           "data": {
-            "id": "6hsh9f9aei",
-            "source": "75k6wc3j9i",
-            "target": "z4ov66krwa"
+            "id": "6v6muvdyg5",
+            "source": "3a7vnut1c8",
+            "target": "qslvlfzdu8"
           },
           "position": {
             "x": 0,
@@ -1378,9 +1437,9 @@
         },
         {
           "data": {
-            "id": "rpjnlrq0qj",
-            "source": "z4ov66krwa",
-            "target": "e12bdppu3g"
+            "id": "apual4vawu",
+            "source": "m4sfmek769",
+            "target": "yqi3iaujxx"
           },
           "position": {
             "x": 0,
@@ -1435,158 +1494,6 @@
         },
         {
           "data": {
-            "id": "56vh9ep326",
-            "source": "e12bdppu3g",
-            "target": "1jf93tyrvi"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "tr8r1rok8t",
-            "source": "6i7lwwrw94",
-            "target": "87jn430mui"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "jqobmjbxm9",
-            "source": "p53gq7n410",
-            "target": "75k6wc3j9i"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "6n86yrphlt",
-            "source": "a6rirjd0m2",
-            "target": "l9q5mxjjtm"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "8cy8txv5dv",
-            "source": "l9q5mxjjtm",
-            "target": "09anefv002"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "9g8fums6ac",
-            "source": "09anefv002",
-            "target": "ij45fm4h76"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "apual4vawu",
-            "source": "m4sfmek769",
-            "target": "yqi3iaujxx"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
-            "id": "ayri6v2nw9",
-            "source": "qslvlfzdu8",
-            "target": "6i7lwwrw94"
-          },
-          "position": {
-            "x": 0,
-            "y": 0
-          },
-          "group": "edges",
-          "removed": false,
-          "selected": false,
-          "selectable": true,
-          "locked": false,
-          "grabbable": true,
-          "pannable": true,
-          "classes": ""
-        },
-        {
-          "data": {
             "id": "13v2fa2yqm",
             "source": "yqi3iaujxx",
             "target": "n9qaul10jk"
@@ -1606,9 +1513,9 @@
         },
         {
           "data": {
-            "id": "vkwfb1gipt",
-            "source": "n9qaul10jk",
-            "target": "dwmluz6lew"
+            "id": "1rxfrliq41",
+            "source": "1jf93tyrvi",
+            "target": "3m229em5w4"
           },
           "position": {
             "x": 0,
@@ -1625,9 +1532,9 @@
         },
         {
           "data": {
-            "id": "6aerj84jbc",
-            "source": "yqi3iaujxx",
-            "target": "3a7vnut1c8"
+            "id": "bx3fvewvcx",
+            "source": "3m229em5w4",
+            "target": "5fy38889km"
           },
           "position": {
             "x": 0,
@@ -1644,9 +1551,9 @@
         },
         {
           "data": {
-            "id": "6v6muvdyg5",
-            "source": "3a7vnut1c8",
-            "target": "qslvlfzdu8"
+            "id": "p45lvaw565",
+            "source": "0mqv2pv49t",
+            "target": "viu1zp2fns"
           },
           "position": {
             "x": 0,
@@ -1663,9 +1570,9 @@
         },
         {
           "data": {
-            "id": "b7i0r4q90j",
-            "source": "87jn430mui",
-            "target": "8veuden5rr"
+            "id": "dltb7qbive",
+            "source": "viu1zp2fns",
+            "target": "5fy38889km"
           },
           "position": {
             "x": 0,
@@ -1682,9 +1589,9 @@
         },
         {
           "data": {
-            "id": "abnmmbl8ot",
-            "source": "8veuden5rr",
-            "target": "2dxnpvzh47"
+            "id": "u6djy95ol3",
+            "source": "5fy38889km",
+            "target": "9g690zq061"
           },
           "position": {
             "x": 0,
@@ -1701,9 +1608,9 @@
         },
         {
           "data": {
-            "id": "1v3ec8paw2",
-            "source": "2dxnpvzh47",
-            "target": "0mqv2pv49t"
+            "id": "iu9p9b3778",
+            "source": "9g690zq061",
+            "target": "l9q5mxjjtm"
           },
           "position": {
             "x": 0,
@@ -1764,7 +1671,7 @@
     }
   ],
   "flowColor": "#AFD5FF",
-  "savedDate": 1692199680119,
+  "savedDate": 1692815975314,
   "variables": [
     {
       "context": "flowInstance",
@@ -1780,6 +1687,22 @@
       "type": "property",
       "visibility": "private",
       "name": "riskSDKOutput##SK##flowInstance",
+      "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2"
+    },
+    {
+      "visibility": "private",
+      "type": "property",
+      "customerId": "1b5e903b6142ecc42587cc151998d5e7",
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "context": "flowInstance",
+      "createdDate": 1692815929402,
+      "name": "userId##SK##flowInstance",
       "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2"
     }
   ],
