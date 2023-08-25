@@ -1,5 +1,5 @@
 {
-  "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2",
+  "companyId": "5fa281de-44b6-47cf-b821-3d0fd49cd566",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
@@ -9,10 +9,10 @@
     "pingOneAuthenticationConnector",
     "errorConnector"
   ],
-  "createdDate": 1692815975509,
-  "currentVersion": 83,
+  "createdDate": 1692978635688,
+  "currentVersion": 2,
   "customerId": "1b5e903b6142ecc42587cc151998d5e7",
-  "deployedDate": 1692815976664,
+  "deployedDate": 1692978638336,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -52,7 +52,7 @@
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
   "name": "PingOne DaVinci SSO Protect Example",
-  "publishedVersion": 83,
+  "publishedVersion": 2,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "css": ".companyLogo {\n    /* Ping Logo  */\n    content: url(\"https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png\");\n    height: 65px;\n    width: 65px;\n}",
@@ -62,7 +62,7 @@
     ],
     "intermediateLoadingScreenCSS": "",
     "intermediateLoadingScreenHTML": "",
-    "logLevel": 3,
+    "logLevel": 2,
     "pingOneFlow": true,
     "useCustomCSS": true
   },
@@ -70,9 +70,9 @@
   "trigger": {
     "type": "AUTHENTICATION"
   },
-  "updatedDate": 1692815976664,
-  "flowId": "3dda24ad23dbb1bade1e5bcb6fadca25",
-  "versionId": 83,
+  "updatedDate": 1692978638337,
+  "flowId": "1edbc59eb9c27055e8dbfcb19395cf05",
+  "versionId": 2,
   "graphData": {
     "elements": {
       "nodes": [
@@ -169,7 +169,7 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"password\",\n        \"data\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"tooltip\": \"{{local.3a7vnut1c8.payload.output.password}}\",\n        \"children\": [\n          {\n            \"text\": \"password\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "population": {
-                "value": "04d47889-c711-4c10-92b8-f0b277d34fce"
+                "value": "useDefaultPopulation"
               },
               "username": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"username\",\n        \"data\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"tooltip\": \"{{local.d9583hqcp9.payload.output.username}}\",\n        \"children\": [\n          {\n            \"text\": \"username\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -625,7 +625,7 @@
           "data": {
             "id": "g6narytx9z",
             "nodeType": "CONNECTION",
-            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
+            "connectionId": "5c7a11709e9b74a3061e57420f377410",
             "connectorId": "pingOneAuthenticationConnector",
             "name": "PingOne Authentication",
             "label": "PingOne Authentication",
@@ -1027,7 +1027,7 @@
           "data": {
             "id": "5fy38889km",
             "nodeType": "CONNECTION",
-            "connectionId": "f9a72e2a51bf2ff82d9dcc70e9dd8523",
+            "connectionId": "5c7a11709e9b74a3061e57420f377410",
             "connectorId": "pingOneAuthenticationConnector",
             "name": "PingOne Authentication",
             "label": "PingOne Authentication",
@@ -1059,7 +1059,8 @@
         {
           "data": {
             "id": "3m229em5w4",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
             "x": 1620,
@@ -1077,7 +1078,8 @@
         {
           "data": {
             "id": "viu1zp2fns",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
             "x": 1620,
@@ -1095,7 +1097,8 @@
         {
           "data": {
             "id": "9g690zq061",
-            "nodeType": "EVAL"
+            "nodeType": "EVAL",
+            "properties": {}
           },
           "position": {
             "x": 1893.5,
@@ -1671,40 +1674,7 @@
     }
   ],
   "flowColor": "#AFD5FF",
-  "savedDate": 1692815975314,
-  "variables": [
-    {
-      "context": "flowInstance",
-      "createdDate": 1692123859625,
-      "customerId": "1b5e903b6142ecc42587cc151998d5e7",
-      "fields": {
-        "type": "string",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "type": "property",
-      "visibility": "private",
-      "name": "riskSDKOutput##SK##flowInstance",
-      "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2"
-    },
-    {
-      "visibility": "private",
-      "type": "property",
-      "customerId": "1b5e903b6142ecc42587cc151998d5e7",
-      "fields": {
-        "type": "string",
-        "displayName": "",
-        "mutable": true,
-        "min": 0,
-        "max": 2000
-      },
-      "context": "flowInstance",
-      "createdDate": 1692815929402,
-      "name": "userId##SK##flowInstance",
-      "companyId": "5ebfd588-ef97-4a69-aab8-9e6868a048a2"
-    }
-  ],
+  "savedDate": 1692978635489,
+  "variables": [],
   "connections": []
 }
