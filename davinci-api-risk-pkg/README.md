@@ -93,6 +93,7 @@ admin_password    = "{{adminPassword}}"
 In the command line, navigate to the `terraform` directory and run:
 
 ```code
+export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
 terraform init
 terraform plan
 ```
@@ -106,8 +107,6 @@ terraform apply --auto-approve
 ````
 
 Your new PingOne environment is called: `DaVinci API Risk Example`
-
-
 
 ##### Deploy DaVinci API Risk Sample Application
 
