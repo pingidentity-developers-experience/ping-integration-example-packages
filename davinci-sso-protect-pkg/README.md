@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci API + Sample App
+# Terraform + PingOne SSO + PingOne DaVinci + PingOne Protect + Signals SDK Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
@@ -6,30 +6,31 @@
 - Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
-## Use Case 
-This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
+## Use Case
+This integration package combines Terraform, DaVinci, PingOne SSO, PingOne Protect, the Signals SDK, and the OIDC SDK to demonstrate user registration and authentication, as well as threat protection.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
 
-During the deployment process, Terraform will create a new PingOne environment with the DaVinci service enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. The DaVinci flow gets launched from the sample application via API call when registration or authentication is initiated.
+During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne Protect services enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. In this flow, the Signals SDK is initiated in a custom HTML template, the response from the SDK is then sent in a call to the PingOne Protect API to create a risk evaluation. The sample application uses the OIDC SDK to initiate the authentication flow for the OIDC application in PingOne which uses a DaVinci policy created by Terraform. After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
 
 ### Registration
 1. Start the sample app and navigate to the URL provided.
-2. Complete the registration form with an email address and password. Click **Submit**.
-3. If a user with this password does not already exist in PingOne Directory, the user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page.
-4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+2. Click on the link to Login and complete the username form. Click **Next**.
+3. If a user with this username does not already exist in PingOne Directory, a registration form will be presented.
+4. Fill out all fields of the registration form, click **Register**. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+5.. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
-3. Complete the form with the credentials for the user created in step 2. Click **Submit**.
-4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page.
+3. Click on the link to Login and complete the username form with the user created in step 2. Click **Next**.
+3. Fill in the user's password. Click **Sign On**.
+4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
 4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
-
 
 ## Source Code Folders
 
-### /davinci-api-registration-pkg/davinci-api-registration-sample-app
+### /davinci-sso-protect-pkg/davinci-sso-protect-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -44,7 +45,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-api-registration-pkg/terraform
+### /davinci-sso-protect-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -62,7 +63,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-api-registration-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-sso-protect-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -108,13 +109,13 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `Ping DaVinci API Registration Example`
+Your new PingOne environment is called: `DaVinci SSO Protect Example`
 
 If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
-##### Deploy DaVinci API Registration Sample Application
+##### Deploy DaVinci SSO Protect Sample Application
 
-In the command line, navigate to the `davinci-api-registration-sample-app` directory and run:
+In the command line, navigate to the `davinci-sso-protect-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

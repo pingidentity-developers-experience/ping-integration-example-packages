@@ -4,7 +4,29 @@
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
 - Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
-- After you have created a DaVinci Adminstrator environment you will need create a Worker App in the environment (Connections > Applications)
+- After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
+
+## Use Case 
+This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication. 
+
+Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
+
+During the deployment process, Terraform will create a new PingOne environment with the DaVinci service enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. The DaVinci flow gets launched via a widget within the sample application's homepage on page load.
+
+### Registration
+1. Start the sample app and navigate to the URL provided.
+2. Complete the form with an email address. Click **Submit**.
+3. If a user with this email address does not already exist in PingOne Directory, you will be prompted to set a password to complete registration.
+4. Fill out the password form. Click **Register**.
+4. Click **Login** to sign in with your newly created user.
+
+### Sign In as an Existing User
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration instructions above to create a new user, if you have not already done so.
+3. Complete the form with the email address for the created in step 2. Click **Submit**.
+4. If the email address belongs to an existing user, you will be prompted to enter the user's password. Enter the password, click **Login**.
+4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page.
+4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
 
@@ -74,7 +96,9 @@ admin_password    = "{{adminPassword}}"
 In the command line, navigate to the `terraform` directory and run:
 
 ```code
+export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
 terraform init
+terraform plan
 ```
 
 If the plan fails - check your `terraform.tfvars` values.
@@ -86,6 +110,8 @@ terraform apply --auto-approve
 ````
 
 Your new PingOne environment is called: `Ping DaVinci Registration Example`
+
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
 ##### Deploy DaVinci Registration Sample Application
 
@@ -99,6 +125,22 @@ Access the sample application at:
 https://127.0.0.1:8080
 
 View [http-server](https://www.npmjs.com/package/http-server) documentation for additional server options.
+
+#### Deploy Using an Existing PingOne Environment
+
+If you'd like to skip the Terraform portion of this package and use an existing PingOne environment, ensure the environment has the DaVinci service enabled and follow the steps below:
+
+Create a `global.js` file in the `davinci-registration-sample-app` directory with the following:
+
+```
+window._env_ = {
+  companyId: "{{DaVinci Company Id}}",
+  apiKey: "{{DaVinci API Key}}",
+  policyId: "{{DaVinci Policy Id}}
+};
+```
+
+Important Note: Do not commit the `global.js` file to Github as it includes sensitive DaVinci values. 
 
 # Disclaimer
 THIS DEMO AND SAMPLE CODE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PING IDENTITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS DEMO AND SAMPLE CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
