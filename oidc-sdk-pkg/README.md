@@ -1,5 +1,27 @@
 # OIDC SDK + Terraform + PingOne Sample App Package
 
+## Use Case 
+This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
+
+Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
+
+During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
+
+### Registration
+1. Start the sample app and navigate to the URL provided.
+2. Click on the link to Login. Click **No account? Register Now!**
+3. Complete all fields of the registration form, click **Save**. 
+4. Enter the verification code sent to you via email, click **Verify**. The user will get created and will land on the /dashboard endpoint. The user's access token, id token, and user info will be displayed on the dashboard page.
+5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+### Sign In as an Existing User
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration instructions above to create a new user, if you have not already done so. 
+3. Click on the link to Login and fill in the credentials for the user created in step 2. Click **Sign On**. You will be signed in and landed on the /dashboard endpoint. The user's access token, id token, and user info will be displayed on the dashboard page.
+4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+
+
 ## Source Code Folders
 
 ### /oidc-sdk-pkg/oidc-sdk-sample-app
@@ -67,6 +89,7 @@ worker_secret   = "{{workerSecret}}"
 In the command line, navigate to the `terraform` directory and run:
 
 ```code
+export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
 terraform init
 terraform plan
 ```
@@ -80,6 +103,8 @@ terraform apply --auto-approve
 ````
 
 Your new PingOne environment is called: `Ping OIDC SDK Example`
+
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
 ##### Deploy OIDC Sample Application
 

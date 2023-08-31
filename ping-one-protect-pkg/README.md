@@ -1,5 +1,17 @@
 # PingOne Protect + Terraform + PingOne Sample App Package
 
+## Use Case 
+This integration package combines Terraform, PingOne Protect, and the Signals SDK to demonstrate threat detection capabilities.
+
+Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
+
+During the deployment process, Terraform will create a new PingOne environment with the PingOne Protect service enabled. Terraform also creates a demo user in PingOne to test with. When a risk evaluation is requested, the Signals SDK is initialized and an API call is made directly to the PingOne Protect APIs, the risk result is then displayed onscreen.
+
+### Get Risk Evaluation
+1. Start the sample app and navigate to the URL provided.
+2. Click **Get Risk Evaluation**. The details of the risk result will be displayed onscreen. The first attempt will likely come back as high risk due to the New Device risk predictor, subsequent attempts should score differently. Navigate to the **Details** tab to view more information on the risk score. 
+3. Click **New Risk Evaluation** to get your updated risk score.
+
 ## Source Code Folders
 
 ### /ping-one-protect-pkg/ping-one-protect-sample-app
@@ -67,6 +79,7 @@ worker_secret   = "{{workerSecret}}"
 In the command line, navigate to the `terraform` directory and run:
 
 ```code
+export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
 terraform init
 terraform plan
 ```
@@ -80,6 +93,8 @@ terraform apply --auto-approve
 ````
 
 Your new PingOne environment is called: `Protect API Example`
+
+If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
 ##### Deploy PingOne Protect Sample Application
 
