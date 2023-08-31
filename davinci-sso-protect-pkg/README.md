@@ -96,6 +96,7 @@ admin_password    = "{{adminPassword}}"
 In the command line, navigate to the `terraform` directory and run:
 
 ```code
+export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
 terraform init
 terraform plan
 ```
