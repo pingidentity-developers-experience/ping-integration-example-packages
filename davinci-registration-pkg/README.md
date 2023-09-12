@@ -7,6 +7,9 @@
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case 
+
+![Use Case Diagram](./diagram.png)
+
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication. 
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
