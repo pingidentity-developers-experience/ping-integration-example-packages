@@ -8,7 +8,7 @@
 
 ## Use Case 
 
-![Use Case Diagram](./diagram.png)
+![Use Case Diagram](./diagram.jpeg)
 
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication. 
 
