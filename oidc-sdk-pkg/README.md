@@ -1,6 +1,9 @@
 # OIDC SDK + Terraform + PingOne Sample App Package
 
-## Use Case 
+## Use Case
+
+![Use Case Diagram](./diagram.jpeg)
+
 This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
