@@ -1,6 +1,9 @@
 # PingOne Protect + Terraform + PingOne Sample App Package
 
-## Use Case 
+## Use Case
+
+![Use Case Diagram](./diagram.jpeg)
+
 This integration package combines Terraform, PingOne Protect, and the Signals SDK to demonstrate threat detection capabilities.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
