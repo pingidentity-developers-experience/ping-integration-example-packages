@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci API + PingOne Risk + Signals SDK Sample App
+# Terraform + PingOne DaVinci API + PingOne Protect + Signals SDK Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
