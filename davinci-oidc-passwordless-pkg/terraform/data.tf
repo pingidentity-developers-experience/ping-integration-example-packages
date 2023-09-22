@@ -81,11 +81,11 @@ data "davinci_connection" "annotation" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
-data "davinci_connection" "flow_conductor" {
-  environment_id = module.environment.environment_id
-  name = "Flow Conductor"
-  depends_on     = [data.davinci_connections.read_all]
-}
+# data "davinci_connection" "flow_conductor" {
+#   environment_id = module.environment.environment_id
+#   name = "Flow Conductor"
+#   depends_on     = [data.davinci_connections.read_all]
+# }
 
 data "davinci_connection" "teleport" {
   environment_id = module.environment.environment_id

@@ -203,10 +203,10 @@ resource "davinci_flow" "device_management_flow" {
     name = "Annotation"
   }
 
-  connection_link {
-    id   = data.davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
-  }
+  # connection_link {
+  #   id   = data.davinci_connection.flow_conductor.id
+  #   name = "Flow Conductor"
+  # }
 
   subflow_link {
     id   = davinci_flow.device_management_subflow.id
@@ -245,10 +245,16 @@ resource "davinci_flow" "password_reset_flow" {
     name = "Annotation"
   }
 
+  # connection_link {
+  #   id   = data.davinci_connection.flow_conductor.id
+  #   name = "Flow Conductor"
+  # }
+
   connection_link {
-    id   = data.davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
   }
+
 
     subflow_link {
     id   = davinci_flow.password_reset_subflow.id
