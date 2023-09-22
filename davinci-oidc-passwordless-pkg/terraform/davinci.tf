@@ -68,10 +68,10 @@ resource "davinci_flow" "registration_flow" {
     name = "PingOne"
   }
 
-  # connection_link {
-  #   id   = data.davinci_connection.pingone_authentication.id
-  #   name = "PingOne Authentication"
-  # }
+  connection_link {
+    id   = data.davinci_connection.pingone_authentication.id
+    name = "PingOne Authentication"
+  }
 
   connection_link {
     id   = data.davinci_connection.variables.id
@@ -83,10 +83,10 @@ resource "davinci_flow" "registration_flow" {
     name = "Annotation"
   }
 
-  # connection_link {
-  #   id   = data.davinci_connection.flow_conductor.id
-  #   name = "Flow Conductor"
-  # }
+  connection_link {
+    id   = data.davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
 
   connection_link {
     id   = data.davinci_connection.teleport.id
@@ -203,10 +203,10 @@ resource "davinci_flow" "device_management_flow" {
     name = "Annotation"
   }
 
-  # connection_link {
-  #   id   = data.davinci_connection.flow_conductor.id
-  #   name = "Flow Conductor"
-  # }
+  connection_link {
+    id   = data.davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
 
   subflow_link {
     id   = davinci_flow.device_management_subflow.id
@@ -245,10 +245,10 @@ resource "davinci_flow" "password_reset_flow" {
     name = "Annotation"
   }
 
-  # connection_link {
-  #   id   = data.davinci_connection.flow_conductor.id
-  #   name = "Flow Conductor"
-  # }
+  connection_link {
+    id   = data.davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
 
   connection_link {
     id   = data.davinci_connection.error_customize.id
@@ -285,6 +285,22 @@ resource "davinci_flow" "profile_management_flow" {
 
   environment_id = module.environment.environment_id
 
+}
+
+resource "davinci_connection" "pingone_authentication_connector" {
+  connector_id   = "pingOneAuthenticationConnector"
+  environment_id = module.environment.environment_id
+  name           = "PingOne Authenticator"
+
+  depends_on = [data.davinci_connections.read_all]
+}
+
+resource "davinci_connection" "flow_conductor_connector" {
+  connector_id   = "flowConnector"
+  environment_id = module.environment.environment_id
+  name           = "Flow Conductor"
+
+  depends_on = [data.davinci_connections.read_all]
 }
 
 #########################################################################
