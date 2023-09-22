@@ -178,69 +178,83 @@ resource "local_file" "env_config" {
   filename = "../davinci-oidc-passwordless-sample-app/global.js"
 }
 
-# data "pingone_language" "en" {
-#   environment_id = module.environment.environment_id
+data "pingone_language" "en" {
+  environment_id = module.environment.environment_id
 
-#   locale = "en"
-# }
+  locale = "en"
+}
 
-# resource "pingone_language_update" "en" {
-#   environment_id = module.environment.environment_id
+resource "pingone_agreement" "agreement" {
+  environment_id = module.environment.environment_id
 
-#   language_id = data.pingone_language.en.id
-#   default     = true
-#   enabled     = true
-# }
+  name        = "Terms of Service"
+  description = "Terms of Service Agreement"
+}
 
-# resource "pingone_agreement" "agreement" {
-#   environment_id = module.environment.environment_id
+resource "pingone_agreement_localization" "agreement_en" {
+  environment_id = module.environment.environment_id
+  agreement_id   = pingone_agreement.agreement.id
+  language_id    = data.pingone_language.en.id
 
-#   name        = "Terms of Service"
-#   description = "Terms of Service Agreement"
-# }
+  display_name = "Terms and Conditions - English Locale"
+}
 
-# resource "pingone_agreement_localization" "agreement_en" {
-#   environment_id = module.environment.environment_id
-#   agreement_id   = pingone_agreement.agreement.id
-#   language_id    = pingone_language_update.en.id
+resource "pingone_agreement_localization_revision" "agreement_en_now" {
+  environment_id            = module.environment.environment_id
+  agreement_id              = pingone_agreement.agreement.id
+  agreement_localization_id = pingone_agreement_localization.agreement_en.id
 
-#   display_name = "Terms and Conditions - English Locale"
-# }
+  content_type      = "text/html"
+  require_reconsent = true
+  text              = <<EOT
+<h1>Testing</h1>
+EOT
+}
 
-# resource "time_static" "now" {}
+resource "pingone_agreement_localization_enable" "agreement_en_enable" {
+  environment_id            = module.environment.environment_id
+  agreement_id              = pingone_agreement.agreement.id
+  agreement_localization_id = pingone_agreement_localization.agreement_en.id
 
-# resource "pingone_agreement_localization_revision" "agreement_en_now" {
-#   environment_id            = module.environment.environment_id
-#   agreement_id              = pingone_agreement.agreement.id
-#   agreement_localization_id = pingone_agreement_localization.agreement_en.id
+  enabled = true
 
-#   content_type      = "text/html"
-#   effective_at      = time_static.now.id
-#   require_reconsent = true
-#   text              = <<EOT
-# <h1>Testing</h1>
-# EOT
-# }
+  depends_on = [
+    pingone_agreement_localization_revision.agreement_en_now
+  ]
+}
 
-# resource "pingone_agreement_localization_enable" "agreement_en_enable" {
-#   environment_id            = module.environment.environment_id
-#   agreement_id              = pingone_agreement.agreement.id
-#   agreement_localization_id = pingone_agreement_localization.agreement_en.id
+resource "pingone_agreement_enable" "agreement_enable" {
+  environment_id = module.environment.environment_id
+  agreement_id   = pingone_agreement.agreement.id
 
-#   enabled = true
+  enabled = true
 
-#   depends_on = [
-#     pingone_agreement_localization_revision.agreement_en_now
-#   ]
-# }
+    depends_on = [
+    pingone_agreement_localization_enable.agreement_en_enable
+  ]
+}
 
-# resource "pingone_agreement_enable" "agreement_enable" {
-#   environment_id = module.environment.environment_id
-#   agreement_id   = pingone_agreement.agreement.id
+resource "pingone_notification_template_content" "email" {
+  environment_id = module.environment.environment_id
+  template_name  = "general"
+  locale         = "en"
 
-#   enabled = true
+  email {
+    body    = <<EOT
+<div style="display: block; text-align: center; font-family: sans-serif; border: 1px solid #c5c5c5; width: 400px; padding: 50px 30px;">
+<img class="align-self-center mb-5" src="$/{logoUrl}" alt="$/{companyName}" style="$/{logoStyle}"/>
+     <h1>Success</h1>
+     <div style="margin-top: 20px; margin-bottom:25px">
+     <p> Please click the link below to confirm your email for Authentication. </p>
+     <a href="$/{magicLink}" style="font-size: 14pt">Confirmation Link</a>
+     </div>
+</div>
+EOT
+    subject = "Magic Link Authentication"
 
-#     depends_on = [
-#     pingone_agreement_localization_enable.agreement_en_enable
-#   ]
-# }
+    from {
+      name    = "PingOne"
+      address = "noreply@pingidentity.com"
+    }
+  }
+}

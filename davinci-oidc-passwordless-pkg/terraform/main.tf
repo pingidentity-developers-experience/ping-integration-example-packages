@@ -27,7 +27,6 @@ module "environment" {
   ]
   create_davinci = true
   create_mfa = true
-  create_risk = true
 
   license_id    = var.license_id
   organization_id = var.organization_id

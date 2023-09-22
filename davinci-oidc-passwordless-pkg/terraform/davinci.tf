@@ -68,10 +68,10 @@ resource "davinci_flow" "registration_flow" {
     name = "PingOne"
   }
 
-  connection_link {
-    id   = data.davinci_connection.pingone_authentication.id
-    name = "PingOne Authentication"
-  }
+  # connection_link {
+  #   id   = data.davinci_connection.pingone_authentication.id
+  #   name = "PingOne Authentication"
+  # }
 
   connection_link {
     id   = data.davinci_connection.variables.id
@@ -83,10 +83,10 @@ resource "davinci_flow" "registration_flow" {
     name = "Annotation"
   }
 
-  connection_link {
-    id   = data.davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
-  }
+  # connection_link {
+  #   id   = data.davinci_connection.flow_conductor.id
+  #   name = "Flow Conductor"
+  # }
 
   connection_link {
     id   = data.davinci_connection.teleport.id
@@ -173,6 +173,114 @@ resource "davinci_flow" "verify_email_subflow" {
   deploy         = true
 }
 
+resource "davinci_flow" "device_management_flow" {
+  depends_on = [ 
+    data.davinci_connections.read_all
+  ]
+
+  flow_json = file("davinci-flows/device-management-flow/device-management-mainflow.json")
+
+  deploy    = true
+
+  environment_id = module.environment.environment_id
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+    connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
+
+  subflow_link {
+    id   = davinci_flow.device_management_subflow.id
+    name = davinci_flow.device_management_subflow.name
+  }
+
+}
+
+resource "davinci_flow" "password_reset_flow" {
+  depends_on = [ 
+    data.davinci_connections.read_all
+  ]
+
+  flow_json = file("davinci-flows/password-reset-flow/password-reset-mainflow.json")
+
+  deploy    = true
+
+  environment_id = module.environment.environment_id
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
+
+    subflow_link {
+    id   = davinci_flow.password_reset_subflow.id
+    name = davinci_flow.password_reset_subflow.name
+  }
+
+}
+
+resource "davinci_flow" "device_management_subflow" {
+  environment_id = module.environment.environment_id
+  flow_json      = file("davinci-flows/device-management-flow/device-management-subflow.json")
+  deploy         = true
+}
+
+resource "davinci_flow" "password_reset_subflow" {
+  environment_id = module.environment.environment_id
+  flow_json      = file("davinci-flows/password-reset-flow/password-reset-subflow.json")
+  deploy         = true
+}
+resource "davinci_flow" "profile_management_flow" {
+  depends_on = [ 
+    data.davinci_connections.read_all
+  ]
+
+  flow_json = file("davinci-flows/profile-management-flow.json")
+
+  deploy    = true
+
+  environment_id = module.environment.environment_id
+
+}
+
 #########################################################################
 # PingOne DaVinci - Create an application and flow policy for the flow above
 #########################################################################
@@ -233,7 +341,7 @@ resource "davinci_variable" "ciam_agreementEnabled" {
     name           = "ciam_agreementEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "false"
+    value          = "true"
     type           = "boolean"
 }
 
@@ -281,7 +389,7 @@ resource "davinci_variable" "ciam_accountRecoveryEnabled" {
     name           = "ciam_accountRecoveryEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "false"
+    value          = "true"
     type           = "boolean"
 }
 
@@ -305,7 +413,7 @@ resource "davinci_variable" "ciam_magicLinkEnabled" {
     name           = "ciam_magicLinkEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "false"
+    value          = "true"
     type           = "boolean"
 }
 
@@ -377,4 +485,12 @@ resource "davinci_variable" "ciam_recoveryValidationAttempts" {
     environment_id = module.environment.environment_id
     context        = "flowInstance"
     type           = "number"
+}
+
+resource "davinci_variable" "agreementId" {
+    name           = "agreementId"
+    environment_id  = module.environment.environment_id
+    context        = "flowInstance"
+    type           = "string"
+    value          = pingone_agreement.agreement.id
 }
