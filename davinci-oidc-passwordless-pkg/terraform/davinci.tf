@@ -69,7 +69,7 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_authentication.id
+    id   = davinci_connection.pingone_authentication.id
     name = "PingOne Authentication"
   }
 
@@ -84,7 +84,7 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.flow_conductor.id
+    id   = davinci_connection.flow_conductor.id
     name = "Flow Conductor"
   }
 
@@ -204,7 +204,7 @@ resource "davinci_flow" "device_management_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.flow_conductor.id
+    id   = davinci_connection.flow_conductor.id
     name = "Flow Conductor"
   }
 
@@ -246,7 +246,7 @@ resource "davinci_flow" "password_reset_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.flow_conductor.id
+    id   = davinci_connection.flow_conductor.id
     name = "Flow Conductor"
   }
 
@@ -287,15 +287,15 @@ resource "davinci_flow" "profile_management_flow" {
 
 }
 
-resource "davinci_connection" "pingone_authentication_connector" {
+resource "davinci_connection" "pingone_authentication" {
   connector_id   = "pingOneAuthenticationConnector"
   environment_id = module.environment.environment_id
-  name           = "PingOne Authenticator"
+  name           = "PingOne Authentication"
 
   depends_on = [data.davinci_connections.read_all]
 }
 
-resource "davinci_connection" "flow_conductor_connector" {
+resource "davinci_connection" "flow_conductor" {
   connector_id   = "flowConnector"
   environment_id = module.environment.environment_id
   name           = "Flow Conductor"
@@ -363,7 +363,7 @@ resource "davinci_variable" "ciam_agreementEnabled" {
     name           = "ciam_agreementEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "true"
+    value          = "false"
     type           = "boolean"
 }
 
@@ -411,7 +411,7 @@ resource "davinci_variable" "ciam_accountRecoveryEnabled" {
     name           = "ciam_accountRecoveryEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "true"
+    value          = "false"
     type           = "boolean"
 }
 
@@ -435,7 +435,7 @@ resource "davinci_variable" "ciam_magicLinkEnabled" {
     name           = "ciam_magicLinkEnabled"
     environment_id = module.environment.environment_id
     context        = "company"
-    value          = "true"
+    value          = "false"
     type           = "boolean"
 }
 

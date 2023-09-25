@@ -178,6 +178,13 @@ resource "local_file" "env_config" {
   filename = "../davinci-oidc-passwordless-sample-app/global.js"
 }
 
+##############################################
+# PingOne Agreements
+##############################################
+
+# PingOne Agreement
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/agreement}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_agreements}
 data "pingone_language" "en" {
   environment_id = module.environment.environment_id
 
@@ -196,7 +203,7 @@ resource "pingone_agreement_localization" "agreement_en" {
   agreement_id   = pingone_agreement.agreement.id
   language_id    = data.pingone_language.en.id
 
-  display_name = "Terms and Conditions - English Locale"
+  display_name = "Terms and Conditions"
 }
 
 resource "pingone_agreement_localization_revision" "agreement_en_now" {
@@ -207,7 +214,7 @@ resource "pingone_agreement_localization_revision" "agreement_en_now" {
   content_type      = "text/html"
   require_reconsent = true
   text              = <<EOT
-<h1>Testing</h1>
+<p>Terms of Service Agreement</p>
 EOT
 }
 
@@ -233,6 +240,14 @@ resource "pingone_agreement_enable" "agreement_enable" {
     pingone_agreement_localization_enable.agreement_en_enable
   ]
 }
+
+##############################################
+# PingOne Notifications
+##############################################
+
+# PingOne Notifications
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/notification_template_content}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_customizing_notifications}
 
 resource "pingone_notification_template_content" "email" {
   environment_id = module.environment.environment_id

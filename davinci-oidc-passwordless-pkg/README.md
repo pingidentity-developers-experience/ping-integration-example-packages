@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci + OIDC SDK 
+# Terraform + PingOne DaVinci + PingOne SSO + PingOne MFA + OIDC SDK + CIAM Passwordless Flow Pack 
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
@@ -8,32 +8,45 @@
 
 ## Use Case
 
-![Use Case Diagram](./diagram.jpeg)
+For diagrams and detailed flow information, see [Flow Reference](https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_flow_reference_docs)
 
-This integration package combines Terraform, DaVinci, PingOne SSO, PingOne Protect, the Signals SDK, and the OIDC SDK to demonstrate user registration and authentication, as well as threat protection.
+Use the variables in DaVinci to enable/disable certain features. See this [Getting Started] (https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_configuring_pingone) document to ensure you have set up PingOne correctly after the Terraform deployment.
+
+This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the [CIAM Passwordless Flow Pack](https://support.pingidentity.com/s/marketplace-integration/a7iDo0000010xwlIAA/ciam-passwordless-flow-pack) to demonstrate passwordless registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
 
-During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne Protect services enabled. The DaVinci environment gets created with a flow that demonstrates a registration and password authentication use case. In this flow, the Signals SDK is initiated in a custom HTML template, the response from the SDK is then sent in a call to the PingOne Protect API to create a risk evaluation. The sample application uses the OIDC SDK to initiate the authentication flow for the OIDC application in PingOne which uses a DaVinci policy created by Terraform. After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
+During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne MFA services enabled. The DaVinci environment will deploy all the flows from the CIAM Passwordless Flow Pack. The sample application uses the OIDC SDK to initiate the authentication flow for the application in PingOne which uses a DaVinci policy created by Terraform. This DaVinci policy is wired to the main registration and authentication flow (OOTB - Passwordless - Registration, Authentication, & Account Recovery - Main Flow). After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
 
 ### Registration
 1. Start the sample app and navigate to the URL provided.
-2. Click on the link to Login and complete the username form. Click **Next**.
-3. If a user with this username does not already exist in PingOne Directory, a registration form will be presented.
-4. Fill out all fields of the registration form, click **Register**. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
-5.. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+2. Click on the link to Login, then click **No account? Register now!**.
+3. Enter an email address, click **Create Account**. Enter first and last name, click **Create Account**.
+4. To register as a password user, enter a password and password confirmation and click **Create Account**.
+5. To register as a passwordless user, click **Sign up without a password**. 
+6. Enter the verification code you received via email, and click **Verify**. 
+7. Complete steps to pair an email device for this user, click **Finish**.
+8. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+9. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
-### Sign In as an Existing User
+### Sign In as an Existing User - Passwordless
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
-3. Click on the link to Login and complete the username form with the user created in step 2. Click **Next**.
-3. Fill in the user's password. Click **Sign On**.
-4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
-4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+3. Click on the link to Login, click **Skip Password** to sign on with a passwordless user.
+4. Enter the OTP received via email (or other MFA device if configured), click **Finish**.
+5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+
+### Sign In as an Existing User - Passsword
+1. Start the sample app and navigate to the URL provided.
+2. Complete the registration instructions above to create a new user, if you have not already done so. 
+3. Click on the link to Login, enter a valid email address and password and click **Sign On**
+4. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
 
-### /davinci-sso-protect-pkg/davinci-sso-protect-sample-app
+### /davinci-oidc-passwordless-pkg/davinci-oidc-passwordless-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -48,7 +61,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-sso-protect-pkg/terraform
+### /davinci-oidc-passwordless-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -63,10 +76,14 @@ During the deployment process, Terraform will create a new PingOne environment w
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
+| Folder | Contents |
+| ------ | -------- |
+| /davinci-flows | CIAM Passwordless main flows and subflows |
+
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-sso-protect-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-oidc-password-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"

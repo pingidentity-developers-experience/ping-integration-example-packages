@@ -63,12 +63,6 @@ data "davinci_connection" "ping_sso" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
-data "davinci_connection" "pingone_authentication" {
-  environment_id = module.environment.environment_id
-  name = "PingOne Authentication"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
 data "davinci_connection" "variables" {
   environment_id = module.environment.environment_id
   name = "Variables"
@@ -78,12 +72,6 @@ data "davinci_connection" "variables" {
 data "davinci_connection" "annotation" {
   environment_id = module.environment.environment_id
   name = "Annotation"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "flow_conductor" {
-  environment_id = module.environment.environment_id
-  name = "Flow Conductor"
   depends_on     = [data.davinci_connections.read_all]
 }
 
