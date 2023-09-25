@@ -114,12 +114,82 @@ resource "davinci_flow" "device_authn_subflow" {
     id   = davinci_flow.magiclink_authn_subflow.id
     name = davinci_flow.magiclink_authn_subflow.name
   }
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+  connection_link {
+    id   = data.davinci_connection.pingone_mfa.id
+    name = "PingOne MFA"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
+
+  connection_link {
+    id   = davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
+
 }
 
 resource "davinci_flow" "account_recovery_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/account-recovery-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
 }
 
 resource "davinci_flow" "account_reg_subflow" {
@@ -141,36 +211,252 @@ resource "davinci_flow" "account_reg_subflow" {
     id   = davinci_flow.agreement_subflow.id
     name = davinci_flow.agreement_subflow.name
   }
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
+
+    connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
 }
 
 resource "davinci_flow" "agreement_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/agreement-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
 }
 
 resource "davinci_flow" "change_password_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/change-password-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+    connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
 }
 
 resource "davinci_flow" "device_registration_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/device-registration-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_mfa.id
+    name = "PingOne MFA"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
+
+    connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.strings.id
+    name = "String Manipulation"
+  }
+
 }
 
 resource "davinci_flow" "magiclink_authn_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/magiclink-authn-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = davinci_connection.flow_conductor.id
+    name = "Flow Conductor"
+  }
+
+    connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_notifications.id
+    name = "PingOne Notifications"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.challenge.id
+    name = "Challenge"
+  }
 }
 
 resource "davinci_flow" "verify_email_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/verify-email-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
 }
 
 resource "davinci_flow" "device_management_flow" {
@@ -208,6 +494,15 @@ resource "davinci_flow" "device_management_flow" {
     name = "Flow Conductor"
   }
 
+  connection_link {
+    id   = data.davinci_connection.pingone_mfa.id
+    name = "PingOne MFA"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
   subflow_link {
     id   = davinci_flow.device_management_subflow.id
     name = davinci_flow.device_management_subflow.name
@@ -251,29 +546,97 @@ resource "davinci_flow" "password_reset_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
   }
-
-
-    subflow_link {
+  subflow_link {
     id   = davinci_flow.password_reset_subflow.id
     name = davinci_flow.password_reset_subflow.name
   }
-
 }
 
 resource "davinci_flow" "device_management_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/device-management-flow/device-management-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_mfa.id
+    name = "PingOne MFA"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.strings.id
+    name = "String Manipulation"
+  }
 }
 
 resource "davinci_flow" "password_reset_subflow" {
   environment_id = module.environment.environment_id
   flow_json      = file("davinci-flows/password-reset-flow/password-reset-subflow.json")
   deploy         = true
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.teleport.id
+    name = "Teleport"
+  }
 }
+
 resource "davinci_flow" "profile_management_flow" {
   depends_on = [ 
     data.davinci_connections.read_all
@@ -284,6 +647,36 @@ resource "davinci_flow" "profile_management_flow" {
   deploy    = true
 
   environment_id = module.environment.environment_id
+
+  connection_link {
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    name = "Http"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = "PingOne"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = "Variables"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = "Annotation"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_customize.id
+    name = "Error Customize"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = "Functions"
+  }
 
 }
 

@@ -93,6 +93,30 @@ data "davinci_connection" "functions" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
+data "davinci_connection" "challenge" {
+  environment_id = module.environment.environment_id
+  name = "Challenge"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
+data "davinci_connection" "pingone_notifications" {
+  environment_id = module.environment.environment_id
+  name = "PingOne Notifications"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
+data "davinci_connection" "pingone_mfa" {
+  environment_id = module.environment.environment_id
+  name = "PingOne MFA"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
+data "davinci_connection" "strings" {
+  environment_id = module.environment.environment_id
+  name = "String Manipulation"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
 # Terraform HTTP provider
 # {@link https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http}
 
