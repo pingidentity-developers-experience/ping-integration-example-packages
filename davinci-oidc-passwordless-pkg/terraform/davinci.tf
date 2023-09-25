@@ -89,7 +89,7 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -140,7 +140,7 @@ resource "davinci_flow" "device_authn_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -187,7 +187,7 @@ resource "davinci_flow" "account_recovery_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 }
@@ -223,7 +223,7 @@ resource "davinci_flow" "account_reg_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -284,7 +284,7 @@ resource "davinci_flow" "agreement_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 }
@@ -320,7 +320,7 @@ resource "davinci_flow" "change_password_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 }
@@ -346,7 +346,7 @@ resource "davinci_flow" "device_registration_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -366,7 +366,7 @@ resource "davinci_flow" "device_registration_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.strings.id
+    id   = davinci_connection.strings.id
     name = "String Manipulation"
   }
 
@@ -403,7 +403,7 @@ resource "davinci_flow" "magiclink_authn_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -413,7 +413,7 @@ resource "davinci_flow" "magiclink_authn_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.challenge.id
+    id   = davinci_connection.challenge.id
     name = "Challenge"
   }
 }
@@ -454,7 +454,7 @@ resource "davinci_flow" "verify_email_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 }
@@ -500,7 +500,7 @@ resource "davinci_flow" "device_management_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
   subflow_link {
@@ -546,7 +546,7 @@ resource "davinci_flow" "password_reset_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
   subflow_link {
@@ -576,7 +576,7 @@ resource "davinci_flow" "device_management_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 
@@ -596,7 +596,7 @@ resource "davinci_flow" "device_management_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.strings.id
+    id   = davinci_connection.strings.id
     name = "String Manipulation"
   }
 }
@@ -632,7 +632,7 @@ resource "davinci_flow" "password_reset_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.teleport.id
+    id   = davinci_connection.teleport.id
     name = "Teleport"
   }
 }
@@ -688,6 +688,14 @@ resource "davinci_connection" "pingone_authentication" {
   depends_on = [data.davinci_connections.read_all]
 }
 
+resource "davinci_connection" "challenge" {
+  connector_id   = "challengeConnector"
+  environment_id = module.environment.environment_id
+  name           = "Challenge"
+
+  depends_on = [data.davinci_connections.read_all]
+}
+
 resource "davinci_connection" "flow_conductor" {
   connector_id   = "flowConnector"
   environment_id = module.environment.environment_id
@@ -695,6 +703,23 @@ resource "davinci_connection" "flow_conductor" {
 
   depends_on = [data.davinci_connections.read_all]
 }
+
+resource "davinci_connection" "strings" {
+  connector_id   = "stringsConnector"
+  environment_id = module.environment.environment_id
+  name           = "String Manipulation"
+
+  depends_on = [data.davinci_connections.read_all]
+}
+
+resource "davinci_connection" "teleport" {
+  connector_id   = "nodeConnector"
+  environment_id = module.environment.environment_id
+  name           = "Teleport"
+
+  depends_on = [data.davinci_connections.read_all]
+}
+
 
 #########################################################################
 # PingOne DaVinci - Create an application and flow policy for the flow above

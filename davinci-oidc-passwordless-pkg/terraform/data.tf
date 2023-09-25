@@ -63,6 +63,12 @@ data "davinci_connection" "ping_sso" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
+data "davinci_connection" "pingone_mfa" {
+  environment_id = module.environment.environment_id
+  name = "PingOne MFA"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
 data "davinci_connection" "variables" {
   environment_id = module.environment.environment_id
   name = "Variables"
@@ -72,12 +78,6 @@ data "davinci_connection" "variables" {
 data "davinci_connection" "annotation" {
   environment_id = module.environment.environment_id
   name = "Annotation"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "teleport" {
-  environment_id = module.environment.environment_id
-  name = "Teleport"
   depends_on     = [data.davinci_connections.read_all]
 }
 
@@ -93,27 +93,9 @@ data "davinci_connection" "functions" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
-data "davinci_connection" "challenge" {
-  environment_id = module.environment.environment_id
-  name = "Challenge"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
 data "davinci_connection" "pingone_notifications" {
   environment_id = module.environment.environment_id
   name = "PingOne Notifications"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "pingone_mfa" {
-  environment_id = module.environment.environment_id
-  name = "PingOne MFA"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "strings" {
-  environment_id = module.environment.environment_id
-  name = "String Manipulation"
   depends_on     = [data.davinci_connections.read_all]
 }
 
