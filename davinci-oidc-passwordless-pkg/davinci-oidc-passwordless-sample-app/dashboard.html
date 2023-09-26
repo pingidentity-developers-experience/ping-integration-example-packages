@@ -50,6 +50,7 @@
         const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
         const clientId = window._env_.clientId; // PingOne Application Client ID
+        const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
         const clientOptions = {
           client_id: clientId,
@@ -57,7 +58,7 @@
           scope: 'openid profile email revoke' // revoke is a custom PingOne resource scope
         };
     
-        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.com/${pingOneEnvId}/as`, clientOptions);
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.${pingOneDomain}/${pingOneEnvId}/as`, clientOptions);
 
         if (await client.hasToken()) {
           // Get the token from storage

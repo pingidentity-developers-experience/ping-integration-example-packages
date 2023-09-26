@@ -30,6 +30,7 @@
         const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
         const clientId = window._env_.clientId; // PingOne Application Client ID
+        const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
         const clientOptions = {
           client_id: clientId,
@@ -38,7 +39,7 @@
         };
 
         // Create oidc client from authorization server's well-known endpoint
-        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.com/${pingOneEnvId}/as`, clientOptions);
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.${pingOneDomain}/${pingOneEnvId}/as`, clientOptions);
 
         // User has an access token. Redirect to log in protected page.
         if (await client.hasToken()) {

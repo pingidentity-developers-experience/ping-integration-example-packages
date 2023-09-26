@@ -31,10 +31,11 @@
       const companyId = window._env_.companyId;
       const skApiKey = window._env_.apiKey; 
       const policyId = window._env_.policyId;
+      const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
       //*** Build the get SK Token URL. ***/
       const skGetTokenUrl =
-        'https://orchestrate-api.pingone.com/v1/company/' +
+        'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
         companyId + '/sdktoken';
 
       //*** Add the API Key from your DaVinci application. ***/
@@ -54,7 +55,7 @@
           var props = {
             config: {
               method: 'runFlow',
-              apiRoot: 'https://auth.pingone.com/',
+              apiRoot: 'https://auth.pingone.' + pingOneDomain + '/',
               accessToken: responseData.access_token,
               companyId: companyId,
               policyId: policyId,
