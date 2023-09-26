@@ -42,6 +42,7 @@
       const dvApiKey = window._env_.apiKey; 
       const policyId = window._env_.policyId;
       const pingOneEnvId = window._env_.pingOneEnvId;
+      const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
       function onPingOneSignalsReady(callback) {
           if (window['_pingOneSignalsReady']) {
@@ -73,7 +74,7 @@
 
       function startDVFlow(){
         const dvStartUrl =
-            'https://orchestrate-api.pingone.com/v1/company/' +
+            'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
             companyId + '/policy/' + policyId + '/start';
 
             console.log("url", dvStartUrl);

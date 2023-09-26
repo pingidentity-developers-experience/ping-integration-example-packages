@@ -4,7 +4,7 @@
 ##########################################################################
 
 #########################################################################
-# PineOne DaVinci - Read all connections
+# PingOne DaVinci - Read all connections
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
@@ -13,7 +13,7 @@ data "davinci_connections" "read_all" {
 }
 
 #########################################################################
-# PineOne DaVinci - Create and deploy a flow
+# PingOne DaVinci - Create and deploy a flow
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
@@ -64,7 +64,7 @@ resource "davinci_application" "registration_flow_app" {
       allowed_scopes                = ["openid", "profile"]
       enabled                       = true
       enforce_signed_request_openid = false
-      redirect_uris                 = ["https://auth.pingone.com/${module.environment.environment_id}/rp/callback/openid_connect"]
+      redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${module.environment.environment_id}/rp/callback/openid_connect"]
     }
   }
   policy {
