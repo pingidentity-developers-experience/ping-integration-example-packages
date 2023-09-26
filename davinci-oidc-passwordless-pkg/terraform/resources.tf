@@ -122,7 +122,7 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope"
   environment_id = module.environment.environment_id
   application_id = pingone_application.oidc_sdk_sample_app.id
   resource_id    = pingone_resource.oidc_sdk.id
-  
+
   scopes = [
     pingone_resource_scope.revoke.id
   ]
@@ -152,10 +152,10 @@ resource "pingone_resource_scope_openid" "email_scope" {
 ##############################################
 
 resource "pingone_resource" "oidc_sdk" {
-  environment_id = module.environment.environment_id
-  name           = "OIDC SDK"
-  description    = "Custom resources for the OIDC SDK sample app"
-  audience       = "oidc-sdk"
+  environment_id                = module.environment.environment_id
+  name                          = "OIDC SDK"
+  description                   = "Custom resources for the OIDC SDK sample app"
+  audience                      = "oidc-sdk"
   access_token_validity_seconds = 3600
 }
 
@@ -174,7 +174,7 @@ resource "pingone_resource_scope" "revoke" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneEnvId: \"${module.environment.environment_id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy: s.policy_id if s.status == "enabled"],0)}\"\n};"
+  content  = "window._env_ = {\n  pingOneEnvId: \"${module.environment.environment_id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
   filename = "../davinci-oidc-passwordless-sample-app/global.js"
 }
 
@@ -236,7 +236,7 @@ resource "pingone_agreement_enable" "agreement_enable" {
 
   enabled = true
 
-    depends_on = [
+  depends_on = [
     pingone_agreement_localization_enable.agreement_en_enable
   ]
 }
