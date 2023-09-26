@@ -4,7 +4,7 @@
 ##########################################################################
 
 #########################################################################
-# PineOne DaVinci - Read all connections
+# PingOne DaVinci - Read all connections
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
@@ -13,7 +13,7 @@ data "davinci_connections" "read_all" {
 }
 
 #########################################################################
-# PineOne DaVinci - Create and deploy a flow
+# PingOne DaVinci - Create and deploy a flow
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
@@ -691,7 +691,7 @@ resource "davinci_flow" "profile_management_flow" {
 }
 
 #########################################################################
-# PineOne DaVinci - Create connection
+# PingOne DaVinci - Create connection
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/0.1.9/docs/resources/connection}
 
