@@ -11,7 +11,7 @@
 
 For flow specific diagrams and additional flow information, see [Flow Reference](https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_flow_reference_docs)
 
-Use the variables in DaVinci to enable/disable certain features. See this [Getting Started] (https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_configuring_pingone) document to ensure you have set up PingOne correctly after the Terraform deployment.
+Use the variables in DaVinci to enable/disable certain features. See this [Getting Started](https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_configuring_pingone) document to ensure you have set up PingOne correctly after the Terraform deployment.
 
 This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the [CIAM Passwordless Solution](https://support.pingidentity.com/s/marketplace-integration/a7iDo0000010xwlIAA/ciam-passwordless-flow-pack) to demonstrate passwordless registration and authentication.
 
