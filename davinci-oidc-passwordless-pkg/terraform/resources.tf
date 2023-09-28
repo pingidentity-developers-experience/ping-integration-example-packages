@@ -257,11 +257,11 @@ resource "pingone_notification_template_content" "email" {
   email {
     body    = <<EOT
 <div style="display: block; text-align: center; font-family: sans-serif; border: 1px solid #c5c5c5; width: 400px; padding: 50px 30px;">
-<img class="align-self-center mb-5" src="$/{logoUrl}" alt="$/{companyName}" style="$/{logoStyle}"/>
+<img class="align-self-center mb-5" src="$${logoUrl}" alt="$${companyName}" style="$${logoStyle}"/>
      <h1>Success</h1>
      <div style="margin-top: 20px; margin-bottom:25px">
      <p> Please click the link below to confirm your email for Authentication. </p>
-     <a href="$/{magicLink}" style="font-size: 14pt">Confirmation Link</a>
+     <a href="$${magicLink}" style="font-size: 14pt">Confirmation Link</a>
      </div>
 </div>
 EOT

@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci + PingOne SSO + PingOne MFA + OIDC SDK + CIAM Passwordless Flow Pack 
+# Terraform + PingOne DaVinci + PingOne SSO + PingOne MFA + OIDC SDK + CIAM Passwordless Solution
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
@@ -7,16 +7,17 @@
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case
+![Use Case Diagram](./diagram.png)
 
-For diagrams and detailed flow information, see [Flow Reference](https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_flow_reference_docs)
+For flow specific diagrams and additional flow information, see [Flow Reference](https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_flow_reference_docs)
 
 Use the variables in DaVinci to enable/disable certain features. See this [Getting Started] (https://docs.pingidentity.com/r/en-us/pingone_for_customers_passwordless/ciam_passwordless_configuring_pingone) document to ensure you have set up PingOne correctly after the Terraform deployment.
 
-This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the [CIAM Passwordless Flow Pack](https://support.pingidentity.com/s/marketplace-integration/a7iDo0000010xwlIAA/ciam-passwordless-flow-pack) to demonstrate passwordless registration and authentication.
+This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the [CIAM Passwordless Solution](https://support.pingidentity.com/s/marketplace-integration/a7iDo0000010xwlIAA/ciam-passwordless-flow-pack) to demonstrate passwordless registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
 
-During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne MFA services enabled. The DaVinci environment will deploy all the flows from the CIAM Passwordless Flow Pack. The sample application uses the OIDC SDK to initiate the authentication flow for the application in PingOne which uses a DaVinci policy created by Terraform. This DaVinci policy is wired to the main registration and authentication flow (OOTB - Passwordless - Registration, Authentication, & Account Recovery - Main Flow). After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
+During the deployment process, Terraform will create a new PingOne environment with DaVinci, PingOne SSO, and PingOne MFA services enabled. The DaVinci environment will deploy all the flows from the CIAM Passwordless Solution. The sample application uses the OIDC SDK to initiate the authentication flow for the application in PingOne which uses a DaVinci policy created by Terraform. This DaVinci policy is wired to the main registration and authentication flow (OOTB - Passwordless - Registration, Authentication, & Account Recovery - Main Flow). After the DaVinci flow is successfully completed, the user is redirected back to the sample app.
 
 ### Registration
 1. Start the sample app and navigate to the URL provided.
