@@ -83,7 +83,7 @@ data "davinci_connection" "variables" {
 ##############################################
 
 data "http" "get_token" {
-  url    = "https://auth.pingone.com/${module.environment.environment_id}/as/token"
+  url    = "https://auth.pingone.${local.pingone_domain}/${module.environment.environment_id}/as/token"
   method = "POST"
   depends_on = [
     pingone_application_role_assignment.population_identity_data_admin_to_application
@@ -103,7 +103,7 @@ data "http" "get_token" {
 # {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-create-user-import}
 
 data "http" "create_demo_user" {
-  url    = "https://api.pingone.com/v1/environments/${module.environment.environment_id}/users"
+  url    = "https://api.pingone.${local.pingone_domain}/v1/environments/${module.environment.environment_id}/users"
   method = "POST"
 
   # Optional request headers

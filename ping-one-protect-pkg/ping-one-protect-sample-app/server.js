@@ -53,7 +53,7 @@ fastify.post('/getRiskEvaluation', async (req, res) => {
     userType = 'PING_ONE';
   }
 
-  const riskResponse = await fetch(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations`, {
+  const riskResponse = await fetch(`https://api.pingone.${process.env.P1_DOMAIN}/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${workerToken}`,
@@ -95,7 +95,7 @@ fastify.post('/getRiskEvaluation', async (req, res) => {
 
   // Note: Add any custom validation against the risk evaluation before you update it and mark it as a 'SUCCESS'
 
-  const updateResponse = await fetch(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations/${riskJson.id}/event`, {
+  const updateResponse = await fetch(`https://api.pingone.${process.env.P1_DOMAIN}/v1/environments/${process.env.P1_ENV_ID}/riskEvaluations/${riskJson.id}/event`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${workerToken}`,
@@ -119,7 +119,7 @@ async function searchPingOneForUser(username, token) {
     token = await getWorkerToken();
   }
 
-  const response = await fetch(encodeURI(`https://api.pingone.com/v1/environments/${process.env.P1_ENV_ID}/users?filter=username eq \"${username}\"`), {
+  const response = await fetch(encodeURI(`https://api.pingone.${process.env.P1_DOMAIN}/v1/environments/${process.env.P1_ENV_ID}/users?filter=username eq \"${username}\"`), {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ async function getWorkerToken() {
   const encodedBody = new URLSearchParams();
   encodedBody.append('grant_type', 'client_credentials');
 
-  const tokenResponse = await fetch(`https://auth.pingone.com/${process.env.P1_ENV_ID}/as/token`, {
+  const tokenResponse = await fetch(`https://auth.pingone.${process.env.P1_DOMAIN}/${process.env.P1_ENV_ID}/as/token`, {
     headers: {
       Authorization: `Basic ${basicAuth}`,
       'Content-Type': 'application/x-www-form-urlencoded',

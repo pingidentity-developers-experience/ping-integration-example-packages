@@ -39,12 +39,13 @@
       const companyId = window._env_.companyId;
       const dvApiKey = window._env_.apiKey; 
       const policyId = window._env_.policyId;
+      const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
       document.getElementById('registrationForm').addEventListener('submit', function (event) { event.preventDefault(); startDVFlow();});
 
       function startDVFlow(){
         const dvStartUrl =
-            'https://orchestrate-api.pingone.com/v1/company/' +
+            'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
             companyId + '/policy/' + policyId + '/start';
 
             //*** Add the API Key from your DaVinci application. ***/
