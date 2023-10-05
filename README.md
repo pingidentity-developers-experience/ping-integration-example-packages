@@ -15,7 +15,7 @@ The example application source code is the most basic HTML and Javascript implem
 1. [Davinci-widget-registration-pkg](#item-four)
 1. [Davinci-oidc-sdk-sso-protect-pkg](#item-five)
 1. [oidc-sdk-registration-pkg](#item-six)
-1. [Ping-one-protect-pkg](#item-seven)
+1. [Pingone-protect-pkg](#item-seven)
 
 <!-- TOC headings -->
 <a id="item-one"></a>
