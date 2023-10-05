@@ -9,41 +9,41 @@ The example application source code is the most basic HTML and Javascript implem
 ## What's Inside
 
 **Table of content:**
-- [davinci-api-registration](#item-one)
-- [Davinci-api-protect-registration-pkg](#item-two)
-- [Davinci-oidc-sdk-ciam-passwordless-solution-pkg](#item-three)
-- [Davinci-widget-registration-pkg](#item-four)
-- [Davinci-oidc-sdk-sso-protect-pkg](#item-five)
-- [oidc-sdk-registration-pkg](#item-six)
-- [Ping-one-protect-pkg](#item-seven)
+1. [davinci-api-registration](#item-one)
+1. [Davinci-api-protect-registration-pkg](#item-two)
+1. [Davinci-oidc-sdk-ciam-passwordless-solution-pkg](#item-three)
+1. [Davinci-widget-registration-pkg](#item-four)
+1. [Davinci-oidc-sdk-sso-protect-pkg](#item-five)
+1. [oidc-sdk-registration-pkg](#item-six)
+1. [Ping-one-protect-pkg](#item-seven)
 
 <!-- TOC headings -->
 <a id="item-one"></a>
-#### davinci-api-registration
+#### davinci-api-registration (1)
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
 
 <a id="item-two"></a>
-#### Davinci-api-risk-pkg
+#### Davinci-api-risk-pkg (2)
 This integration package combines Terraform, DaVinci, PingOne Protect, and the Signals SDK to demonstrate user registration and authentication, as well as threat protection.
 
 <a id="item-three"></a>
-#### Davinci-oidc-passwordless-pkg
+#### Davinci-oidc-passwordless-pkg (3)
 This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the CIAM Passwordless Solution to demonstrate passwordless registration and authentication.
 
 <a id="item-four"></a>
-#### Davinci-registration-pkg
+#### Davinci-registration-pkg (4)
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
 
 <a id="item-five"></a>
-#### Davinci-sso-protect-pkg
+#### Davinci-sso-protect-pkg (5)
 This integration package combines Terraform, DaVinci, PingOne SSO, PingOne Protect, the Signals SDK, and the OIDC SDK to demonstrate user registration and authentication, as well as threat protection.
 
 <a id="item-six"></a>
-#### oidc-sdk-pkg
+#### oidc-sdk-pkg (6)
 This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
 
 <a id="item-seven"></a>
-#### Ping-one-protect-pkg
+#### Ping-one-protect-pkg (7)
 This integration package combines Terraform, PingOne Protect, and the Signals SDK to demonstrate threat detection capabilities.
 
 
