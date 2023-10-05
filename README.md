@@ -11,7 +11,7 @@ The example application source code is the most basic HTML and Javascript implem
 **Table of content:**
 - [davinci-api-registration](#item-one)
 - [Davinci-api-protect-registration-pkg](#item-two)
-- [Davinci-oidc-sdk-passwordless-solution-pkg](#item-three)
+- [Davinci-oidc-sdk-ciam-passwordless-solution-pkg](#item-three)
 - [Davinci-widget-registration-pkg](#item-four)
 - [Davinci-oidc-sdk-sso-protect-pkg](#item-five)
 - [oidc-sdk-registration-pkg](#item-six)
