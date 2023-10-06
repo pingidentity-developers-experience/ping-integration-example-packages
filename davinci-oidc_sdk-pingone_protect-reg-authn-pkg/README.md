@@ -33,7 +33,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /davinci_api-oidc_sdk-pingone_protect-reg-authn-pkg/sample-app
+### /davinci-oidc_sdk-pingone_protect-reg-authn-pkg/sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -48,7 +48,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci_api-oidc_sdk-pingone_protect-reg-authn-pkg/terraform
+### /davinci-oidc_sdk-pingone_protect-reg-authn-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -66,7 +66,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci_api-oidc_sdk-pingone_protect-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci-oidc_sdk-pingone_protect-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
