@@ -27,7 +27,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /oidc-sdk-pkg/oidc-sdk-sample-app
+### /oidc_sdk-reg-authn-pkg/sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -42,7 +42,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /images | UI assets |
 | /js | JavaScript files needed to support tabs user interface |
 
-### /oidc-sdk-pkg/terraform
+### /oidc_sdk-reg-authn-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -63,7 +63,7 @@ Install Terraform on your machine, following the instructions [here](https://dev
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/oidc-sdk-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/oidc_sdk-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"

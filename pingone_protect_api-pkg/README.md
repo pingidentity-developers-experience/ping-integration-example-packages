@@ -17,7 +17,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /ping-one-protect-pkg/ping-one-protect-sample-app
+### /pingone_protect_api-pkg/ping-one-protect-sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -32,7 +32,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /public/images | UI assets |
 | /public/js | JavaScript files needed to support tabs user interface |
 
-### /ping-one-protect-pkg/terraform
+### /pingone_protect_api-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -53,7 +53,7 @@ Install Terraform on your machine, following the instructions [here](https://dev
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/ping-one-protect-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/pingone_protect_api-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"

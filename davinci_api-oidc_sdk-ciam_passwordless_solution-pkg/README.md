@@ -47,7 +47,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /davinci-oidc-passwordless-pkg/davinci-oidc-passwordless-sample-app
+### /davinci_api-oidc_sdk-ciam_passwordless_solution-pkg/sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -62,7 +62,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-oidc-passwordless-pkg/terraform
+### /davinci_api-oidc_sdk-ciam_passwordless_solution-pkg/terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -84,7 +84,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-oidc-password-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/davinci_api-oidc_sdk-ciam_passwordless_solution-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
