@@ -59,10 +59,10 @@ resource "pingone_application" "worker_app" {
 resource "davinci_connection" "pingone_risk" {
   connector_id   = "pingOneRiskConnector"
   environment_id = module.environment.environment_id
-  name           = "PingOne Risk"
+  name           = "PingOne Protect"
 
   property {
-    name = "envId"
+    name  = "envId"
     value = module.environment.environment_id
   }
   property {
@@ -80,6 +80,6 @@ resource "davinci_connection" "pingone_risk" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${module.environment.environment_id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy: s.policy_id if s.status == "enabled"],0)}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${module.environment.environment_id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
   filename = "../davinci-api-risk-sample-app/global.js"
 }

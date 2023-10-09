@@ -27,6 +27,6 @@ data "pingone_user" "dv_admin_user" {
 
 data "davinci_connection" "ping_sso" {
   environment_id = module.environment.environment_id
-  name = "PingOne"
+  name           = "PingOne"
   depends_on     = [data.davinci_connections.read_all]
 }

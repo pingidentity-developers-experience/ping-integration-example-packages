@@ -128,7 +128,7 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope"
   environment_id = module.environment.environment_id
   application_id = pingone_application.oidc_sdk_sample_app.id
   resource_id    = pingone_resource.oidc_sdk.id
-  
+
   scopes = [
     pingone_resource_scope.revoke.id
   ]
@@ -158,10 +158,10 @@ resource "pingone_resource_scope_openid" "email_scope" {
 ##############################################
 
 resource "pingone_resource" "oidc_sdk" {
-  environment_id = module.environment.environment_id
-  name           = "OIDC SDK"
-  description    = "Custom resources for the OIDC SDK sample app"
-  audience       = "oidc-sdk"
+  environment_id                = module.environment.environment_id
+  name                          = "OIDC SDK"
+  description                   = "Custom resources for the OIDC SDK sample app"
+  audience                      = "oidc-sdk"
   access_token_validity_seconds = 3600
 }
 

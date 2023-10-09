@@ -57,7 +57,7 @@ variable "admin_password" {
 
 locals {
   # The URL of the demo app
-  app_url = "https://127.0.0.1:8080"
+  app_url       = "https://127.0.0.1:8080"
   redirect_uris = ["${local.app_url}/dashboard.html"]
   # Translate the Region to a Domain suffix
   north_america  = var.region == "NorthAmerica" ? "com" : ""

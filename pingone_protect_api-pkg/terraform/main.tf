@@ -28,7 +28,7 @@ module "environment" {
 
   create_risk = true
 
-  license_id    = var.license_id
+  license_id      = var.license_id
   organization_id = var.organization_id
 }
 

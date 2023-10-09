@@ -17,7 +17,7 @@ module "environment" {
   version = "0.0.12"
 
   target_environment_name            = var.env_name
-  target_environment_description     = "DaVinci API Risk SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
+  target_environment_description     = "DaVinci API Protect SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
   target_environment_production_type = false // The default.
 
   admin_user_assign_environment_admin_role = false
@@ -26,10 +26,10 @@ module "environment" {
     var.admin_user_id
   ]
   create_davinci = true
-  create_mfa = true
-  create_risk = true
+  create_mfa     = true
+  create_risk    = true
 
-  license_id    = var.license_id
+  license_id      = var.license_id
   organization_id = var.organization_id
 }
 
@@ -52,8 +52,8 @@ provider "pingone" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
-  username                     = var.admin_username
-  password                     = var.admin_password
-  region                       = var.region
-  environment_id               = var.admin_env_id
+  username       = var.admin_username
+  password       = var.admin_password
+  region         = var.region
+  environment_id = var.admin_env_id
 }

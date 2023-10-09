@@ -46,10 +46,10 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
 ##############################################
 
 resource "pingone_resource" "protect_api" {
-  environment_id = module.environment.environment_id
-  name           = "Protect API"
-  description    = "Custom resources for the Protect API sample app"
-  audience       = "protect-api"
+  environment_id                = module.environment.environment_id
+  name                          = "Protect API"
+  description                   = "Custom resources for the Protect API sample app"
+  audience                      = "protect-api"
   access_token_validity_seconds = 3600
 }
 

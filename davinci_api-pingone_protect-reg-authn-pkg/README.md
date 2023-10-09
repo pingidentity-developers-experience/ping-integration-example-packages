@@ -1,4 +1,4 @@
-# Terraform + PingOne DaVinci API + PingOne Risk + Signals SDK Sample App
+# Terraform + PingOne DaVinci API + PingOne Protect + Signals SDK Sample App
 
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
@@ -109,7 +109,7 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `DaVinci API Risk Example`
+Your new PingOne environment is called: `DaVinci API Protect Example`
 
 ##### Deploy the Sample Application
 

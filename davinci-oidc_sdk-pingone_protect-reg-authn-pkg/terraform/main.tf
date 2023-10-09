@@ -26,10 +26,10 @@ module "environment" {
     var.admin_user_id
   ]
   create_davinci = true
-  create_mfa = true
-  create_risk = true
+  create_mfa     = true
+  create_risk    = true
 
-  license_id    = var.license_id
+  license_id      = var.license_id
   organization_id = var.organization_id
 }
 
@@ -52,8 +52,8 @@ provider "pingone" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
-  username                     = var.admin_username
-  password                     = var.admin_password
-  region                       = var.region
-  environment_id               = var.admin_env_id
+  username       = var.admin_username
+  password       = var.admin_password
+  region         = var.region
+  environment_id = var.admin_env_id
 }

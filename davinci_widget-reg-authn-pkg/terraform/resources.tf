@@ -25,6 +25,6 @@ resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy: s.policy_id if s.status == "enabled"],0)}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
   filename = "../davinci-registration-sample-app/global.js"
 }

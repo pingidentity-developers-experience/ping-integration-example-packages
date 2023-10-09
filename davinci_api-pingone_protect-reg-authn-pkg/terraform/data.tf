@@ -27,18 +27,18 @@ data "pingone_user" "dv_admin_user" {
 
 data "davinci_connection" "ping_sso" {
   environment_id = module.environment.environment_id
-  name = "PingOne"
+  name           = "PingOne"
   depends_on     = [data.davinci_connections.read_all]
 }
 
 data "davinci_connection" "pingone_risk" {
   environment_id = module.environment.environment_id
-  name = "PingOne Risk"
+  name           = "PingOne Protect"
   depends_on     = [data.davinci_connections.read_all]
 }
 
 data "davinci_connection" "variables" {
   environment_id = module.environment.environment_id
-  name = "Variables"
+  name           = "Variables"
   depends_on     = [data.davinci_connections.read_all]
 }

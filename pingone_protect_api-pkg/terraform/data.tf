@@ -60,7 +60,7 @@ data "http" "get_token" {
 
   # Optional request headers
   request_headers = {
-    Content-Type = "application/x-www-form-urlencoded",
+    Content-Type  = "application/x-www-form-urlencoded",
     Authorization = "Basic ${base64encode("${pingone_application.worker_app.oidc_options[0].client_id}:${pingone_application.worker_app.oidc_options[0].client_secret}")}"
   }
 
@@ -77,8 +77,8 @@ data "http" "create_demo_user" {
 
   # Optional request headers
   request_headers = {
-    Accept = "application/json",
-    Content-Type = "application/vnd.pingidentity.user.import+json",
+    Accept        = "application/json",
+    Content-Type  = "application/vnd.pingidentity.user.import+json",
     Authorization = "Bearer ${local.access_token}",
   }
 

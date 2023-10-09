@@ -4,7 +4,7 @@ terraform {
       source = "pingidentity/pingone"
     }
     http = {
-      source = "hashicorp/http"
+      source  = "hashicorp/http"
       version = "3.3.0"
     }
   }

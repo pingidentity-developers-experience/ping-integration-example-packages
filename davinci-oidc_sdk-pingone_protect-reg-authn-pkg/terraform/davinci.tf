@@ -18,17 +18,17 @@ data "davinci_connections" "read_all" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
 resource "davinci_flow" "registration_flow" {
-  depends_on = [ 
+  depends_on = [
     data.davinci_connections.read_all
   ]
 
-  flow_json = file("davinci-sso-protect-flow.json")
+  flow_json = file("davinci-oidc-protect-reg-authn-flow.json")
   deploy    = true
 
   environment_id = module.environment.environment_id
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"],0)
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
     name = "Http"
   }
 
@@ -39,7 +39,7 @@ resource "davinci_flow" "registration_flow" {
 
   connection_link {
     id   = data.davinci_connection.pingone_risk.id
-    name = "PingOne Risk"
+    name = "PingOne Protect"
   }
 
   connection_link {
@@ -56,7 +56,7 @@ resource "davinci_flow" "registration_flow" {
 resource "davinci_application" "registration_flow_app" {
   name           = "DaVinci SSO Protect Sample Application"
   environment_id = module.environment.environment_id
-  depends_on     = [ data.davinci_connections.read_all ]
+  depends_on     = [data.davinci_connections.read_all]
   oauth {
     enabled = true
     values {
