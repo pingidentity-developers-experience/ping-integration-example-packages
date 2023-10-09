@@ -27,7 +27,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /oidc_sdk-reg-authn-pkg/sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -42,7 +42,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /images | UI assets |
 | /js | JavaScript files needed to support tabs user interface |
 
-### /oidc_sdk-reg-authn-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -63,7 +63,7 @@ Install Terraform on your machine, following the instructions [here](https://dev
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/oidc_sdk-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -89,7 +89,7 @@ worker_secret   = "{{workerSecret}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` directory and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -111,7 +111,7 @@ If any errors are encountered, please ensure you are using the latest version of
 
 ##### Deploy OIDC Sample Application
 
-In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem
@@ -129,7 +129,7 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 ##### Deploy Using an Existing PingOne Environment
 If you prefer not to use Terraform to create a PingOne environment for you, you can configure this package to use an existing PingOne environment by following the instructions below.
 
-Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample-app` directory, and update the following values with your PingOne values:
+Navigate to the `index.html` and `dashboard.html` files in the `/sample-app` directory, and update the following values with your PingOne values:
 
 | Variable | Description | 
 | -------- | ----------- |
@@ -139,7 +139,7 @@ Navigate to the `index.html` and `dashboard.html` files in the `/oidc-sdk-sample
 
 Note: The Administrators environment cannot be used for this.
 
-In the command line, navigate to the `oidc-sdk-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

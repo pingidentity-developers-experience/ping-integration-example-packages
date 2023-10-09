@@ -33,7 +33,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /davinci-oidc_sdk-pingone_protect-reg-authn-pkg/sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -48,7 +48,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-oidc_sdk-pingone_protect-reg-authn-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -96,7 +96,7 @@ admin_password    = "{{adminPassword}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` directory and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -118,7 +118,7 @@ If any errors are encountered, please ensure you are using the latest version of
 
 ##### Deploy DaVinci SSO Protect Sample Application
 
-In the command line, navigate to the `davinci-sso-protect-app` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

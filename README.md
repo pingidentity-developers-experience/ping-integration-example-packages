@@ -14,7 +14,7 @@ The example application source code is the most basic HTML and Javascript implem
 `product_[service_]implementation-useCase-pkg`
 *Each group can have multiple items.*
 `product_[service_]implementation-product_[service_]implementation-useCase-[useCase-]pkg`
-*Implementation type refers to API vs. other.*
+*Implementation type refers to API vs. widget vs. other.*
 *Use cases may be abbreviated:*
 > registration --> reg
 > authentication --> authn

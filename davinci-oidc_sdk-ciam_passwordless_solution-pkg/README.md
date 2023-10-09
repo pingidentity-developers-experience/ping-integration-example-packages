@@ -47,7 +47,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /davinci-oidc_sdk-ciam_passwordless_solution-pkg/sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -62,7 +62,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci-oidc_sdk-ciam_passwordless_solution-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -84,7 +84,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci-oidc_sdk-ciam_passwordless_solution-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to the `/terraform` folder and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -114,7 +114,7 @@ admin_password    = "{{adminPassword}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` folder and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -136,7 +136,7 @@ If any errors are encountered, please ensure you are using the latest version of
 
 ##### Deploy DaVinci OIDC Passwordless Sample Application
 
-In the command line, navigate to the `davinci-oidc-passwordless-app` directory and run:
+In the command line, navigate to the `/sample-app` folder and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

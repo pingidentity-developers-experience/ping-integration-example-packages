@@ -30,7 +30,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 ## Source Code Folders
 
-### /davinci_api-pingone_protect-reg-authn-pkg/sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -45,7 +45,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci_api-pingone_protect-reg-authn-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -63,7 +63,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci_api-pingone_protect-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to the `/terraform` folder and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -93,7 +93,7 @@ admin_password    = "{{adminPassword}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` folder and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -111,9 +111,9 @@ terraform apply --auto-approve
 
 Your new PingOne environment is called: `DaVinci API Risk Example`
 
-##### Deploy DaVinci API Risk Sample Application
+##### Deploy the Sample Application
 
-In the command line, navigate to the `davinci-api-risk-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` folder and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem

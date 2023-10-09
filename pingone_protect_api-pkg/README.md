@@ -17,7 +17,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /pingone_protect_api-pkg/ping-one-protect-sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -32,7 +32,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /public/images | UI assets |
 | /public/js | JavaScript files needed to support tabs user interface |
 
-### /pingone_protect_api-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -53,7 +53,7 @@ Install Terraform on your machine, following the instructions [here](https://dev
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/pingone_protect_api-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -79,7 +79,7 @@ worker_secret   = "{{workerSecret}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` directory and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -101,7 +101,7 @@ If any errors are encountered, please ensure you are using the latest version of
 
 ##### Deploy PingOne Protect Sample Application
 
-In the command line, navigate to the `ping-one-protect-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npm install
@@ -129,7 +129,7 @@ Navigate to the `/ping-one-protect-sample-app` directory and add a .env file wit
 
 Note: The Administrators environment cannot be used for this.
 
-In the command line, navigate to the `ping-one-protect-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npm install

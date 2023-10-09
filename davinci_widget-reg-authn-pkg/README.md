@@ -33,7 +33,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Source Code Folders
 
-### /davinci_widget-reg-authn-pkg/sample-app
+### /sample-app
 
 | File | Contents |
 | ------ | -------- |
@@ -48,7 +48,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | /fonts | Font files |
 | /images | UI assets |
 
-### /davinci_widget-reg-authn-pkg/terraform
+### /terraform
 
 | File | Contents |
 | ---- | -------- |
@@ -66,7 +66,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/davinci_widget-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, navigate to the `/terraform` folder and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -96,7 +96,7 @@ admin_password    = "{{adminPassword}}"
 
 ##### Deploy PingOne Environment
 
-In the command line, navigate to the `terraform` directory and run:
+In the command line, navigate to the `/terraform` folder and run:
 
 ```code
 export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -118,7 +118,7 @@ If any errors are encountered, please ensure you are using the latest version of
 
 ##### Deploy DaVinci Registration Sample Application
 
-In the command line, navigate to the `davinci-registration-sample-app` directory and run:
+In the command line, navigate to the `/sample-app` folder and run:
 
 ```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem
@@ -133,7 +133,7 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 
 If you'd like to skip the Terraform portion of this package and use an existing PingOne environment, ensure the environment has the DaVinci service enabled and follow the steps below:
 
-Create a `global.js` file in the `davinci-registration-sample-app` directory with the following:
+Create a `global.js` file in the `sample-app` directory with the following:
 
 ```
 window._env_ = {
