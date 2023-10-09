@@ -56,7 +56,7 @@ resource "pingone_application" "worker_app" {
   }
 }
 
-resource "davinci_connection" "pingone_risk" {
+resource "davinci_connection" "pingone_protect" {
   connector_id   = "pingOneRiskConnector"
   environment_id = module.environment.environment_id
   name           = "PingOne Protect"

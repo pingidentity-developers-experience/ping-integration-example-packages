@@ -38,7 +38,7 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_risk.id
+    id   = data.davinci_connection.pingone_protect.id
     name = "PingOne Protect"
   }
 

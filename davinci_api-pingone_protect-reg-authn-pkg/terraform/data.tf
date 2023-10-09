@@ -31,7 +31,7 @@ data "davinci_connection" "ping_sso" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
-data "davinci_connection" "pingone_risk" {
+data "davinci_connection" "pingone_protect" {
   environment_id = module.environment.environment_id
   name           = "PingOne Protect"
   depends_on     = [data.davinci_connections.read_all]
