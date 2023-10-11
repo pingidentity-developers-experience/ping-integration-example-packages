@@ -81,9 +81,9 @@ data "davinci_connection" "annotation" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
-data "davinci_connection" "error_customize" {
+data "davinci_connection" "error_message" {
   environment_id = module.environment.environment_id
-  name           = "Error Customize"
+  name           = "Error Message"
   depends_on     = [data.davinci_connections.read_all]
 }
 

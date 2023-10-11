@@ -1,5 +1,5 @@
 {
-  "companyId": "32ad1341-bfb9-41d0-b683-d8d96dec76fe",
+  "companyId": "9fd27015-cbf7-4209-90b3-02f969e988aa",
   "authTokenExpireIds": [],
   "connectorIds": [
     "pingOneSSOConnector",
@@ -7,10 +7,10 @@
     "pingOneRiskConnector",
     "variablesConnector"
   ],
-  "createdDate": 1688054779390,
-  "currentVersion": 13,
-  "customerId": "b04124bbd883a15b0337279dd6a1c49e",
-  "deployedDate": 1688054781307,
+  "createdDate": 1697048573036,
+  "currentVersion": 6,
+  "customerId": "86273f636e3ee1e29527f3c7f12342c1",
+  "deployedDate": 1697048574709,
   "description": "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)",
   "flowStatus": "enabled",
   "inputSchemaCompiled": {
@@ -49,18 +49,19 @@
   },
   "isInputSchemaSaved": true,
   "isOutputSchemaSaved": false,
-  "name": "PingOne DaVinci API Risk Example",
-  "publishedVersion": 13,
+  "name": "PingOne DaVinci API Protect Example",
+  "publishedVersion": 6,
   "settings": {
     "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
     "intermediateLoadingScreenCSS": "",
     "intermediateLoadingScreenHTML": "",
-    "logLevel": 3
+    "logLevel": 2
   },
+  "timeouts": "null",
   "trigger": {},
-  "updatedDate": 1688054781307,
-  "flowId": "4560300edb2addaca0e574bd366a70a8",
-  "versionId": 13,
+  "updatedDate": 1697048574710,
+  "flowId": "f75ae65f68410ea97ce97037d1b288c6",
+  "versionId": 6,
   "graphData": {
     "elements": {
       "nodes": [
@@ -312,10 +313,10 @@
           "data": {
             "id": "l9q5mxjjtm",
             "nodeType": "CONNECTION",
-            "connectionId": "4c653c375e07bdf8614406113f998666",
+            "connectionId": "292873d5ceea806d81373ed0341b5c88",
             "connectorId": "pingOneRiskConnector",
-            "name": "PingOne Risk",
-            "label": "PingOne Risk",
+            "name": "PingOne Protect",
+            "label": "PingOne Protect",
             "status": "configured",
             "capabilityName": "createRiskEvaluation",
             "type": "action",
@@ -336,7 +337,7 @@
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskData\",\n        \"data\": \"{{global.parameters.riskData}}\",\n        \"tooltip\": \"{{global.parameters.riskData}}\",\n        \"children\": [\n          {\n            \"text\": \"riskData\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
               "targetResourceName": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci API Risk Sample App\"\n      }\n    ]\n  }\n]"
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"DaVinci API Protect Sample App\"\n      }\n    ]\n  }\n]"
               },
               "userAgent": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userAgent\",\n        \"data\": \"{{global.userAgent}}\",\n        \"tooltip\": \"{{global.userAgent}}\",\n        \"children\": [\n          {\n            \"text\": \"userAgent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -370,10 +371,10 @@
             "id": "09anefv002",
             "nodeType": "EVAL",
             "properties": {
-              "u6w4ob97dt": {
+              "7h8bs4vxuo": {
                 "value": "allTriggersFalse"
               },
-              "7h8bs4vxuo": {
+              "u6w4ob97dt": {
                 "value": "allTriggersFalse"
               }
             }
@@ -639,19 +640,19 @@
           "data": {
             "id": "sxdpclcyko",
             "nodeType": "CONNECTION",
-            "connectionId": "4c653c375e07bdf8614406113f998666",
+            "connectionId": "292873d5ceea806d81373ed0341b5c88",
             "connectorId": "pingOneRiskConnector",
-            "name": "PingOne Risk",
-            "label": "PingOne Risk",
+            "name": "PingOne Protect",
+            "label": "PingOne Protect",
             "status": "configured",
             "capabilityName": "updateRiskEvaluation",
             "type": "action",
             "properties": {
-              "riskId": {
-                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
-              },
               "completionStatus": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
+              },
+              "riskId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.l9q5mxjjtm.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               }
             }
           },
@@ -709,11 +710,11 @@
               "claimsNameValuePairs": {
                 "value": [
                   {
-                    "name": null,
-                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"tooltip\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
                     "key": 0.8800805675019314,
+                    "name": null,
+                    "nameDefault": "message",
                     "type": "string",
-                    "nameDefault": "message"
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"tooltip\": \"{{local.sxdpclcyko.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
                   }
                 ]
               }
@@ -1141,7 +1142,7 @@
     }
   ],
   "flowColor": "#CACED3",
-  "savedDate": 1688054779235,
+  "savedDate": 1697048572915,
   "variables": [],
   "connections": []
 }

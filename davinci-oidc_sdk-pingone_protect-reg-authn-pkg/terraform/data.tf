@@ -75,6 +75,13 @@ data "davinci_connection" "variables" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
+data "davinci_connection" "error_message" {
+  environment_id = module.environment.environment_id
+  name           = "Error Message"
+  depends_on     = [data.davinci_connections.read_all]
+}
+
+
 # Terraform HTTP provider
 # {@link https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http}
 

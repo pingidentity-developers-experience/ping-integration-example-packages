@@ -427,7 +427,7 @@
               "nodeType": "CONNECTION",
               "connectionId": "6d8f6f706c45fd459a86b3f092602544",
               "connectorId": "errorConnector",
-              "name": "Error Customize",
+              "name": "Error Message",
               "label": "errorConnector",
               "status": "configured",
               "capabilityName": "customErrorMessage",
