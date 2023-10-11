@@ -543,7 +543,7 @@
               "connectionId": "de650ca45593b82c49064ead10b9fe17",
               "connectorId": "functionsConnector",
               "name": "Functions",
-              "label": "Functionss",
+              "label": "Functions",
               "status": "configured",
               "capabilityName": "AEqualsB",
               "type": "trigger",
