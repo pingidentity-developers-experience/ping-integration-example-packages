@@ -181,5 +181,5 @@ resource "pingone_resource_scope" "revoke" {
 
 resource "local_file" "env_config" {
   content  = "window._env_ = { pingOneDomain: \"${local.pingone_domain}\", pingOneEnvId: \"${module.environment.environment_id}\", clientId: \"${pingone_application.oidc_sdk_sample_app.id}\"}"
-  filename = "../oidc-sdk-sample-app/global.js"
+  filename = "../sample-app/global.js"
 }

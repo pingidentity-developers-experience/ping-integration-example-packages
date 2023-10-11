@@ -94,8 +94,8 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -131,8 +131,8 @@ resource "davinci_flow" "device_authn_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -179,8 +179,8 @@ resource "davinci_flow" "account_recovery_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -246,8 +246,8 @@ resource "davinci_flow" "account_reg_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -278,8 +278,8 @@ resource "davinci_flow" "agreement_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -315,8 +315,8 @@ resource "davinci_flow" "change_password_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -367,8 +367,8 @@ resource "davinci_flow" "device_registration_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -452,8 +452,8 @@ resource "davinci_flow" "verify_email_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -590,8 +590,8 @@ resource "davinci_flow" "device_management_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -632,8 +632,8 @@ resource "davinci_flow" "password_reset_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {
@@ -679,8 +679,8 @@ resource "davinci_flow" "profile_management_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.error_customize.id
-    name = "Error Customize"
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
   }
 
   connection_link {

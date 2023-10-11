@@ -175,6 +175,6 @@ resource "pingone_resource_scope" "revoke" {
 
 resource "local_file" "env_config" {
   content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${module.environment.environment_id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
-  filename = "../davinci-sso-protect-sample-app/global.js"
+  filename = "../sample-app/global.js"
 }
 

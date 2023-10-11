@@ -59,5 +59,5 @@ resource "pingone_resource" "protect_api" {
 
 resource "local_file" "env" {
   content  = "P1_DOMAIN=\"${local.pingone_domain}\"\nP1_ENV_ID=\"${module.environment.environment_id}\"\nP1_WORKER_CLIENT_ID=\"${pingone_application.worker_app.oidc_options[0].client_id}\"\nP1_WORKER_CLIENT_SECRET=\"${pingone_application.worker_app.oidc_options[0].client_secret}\""
-  filename = "../ping-one-protect-sample-app/.env"
+  filename = "../sample-app/.env"
 }

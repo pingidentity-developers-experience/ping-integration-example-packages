@@ -46,6 +46,12 @@ resource "davinci_flow" "registration_flow" {
     id   = data.davinci_connection.variables.id
     name = "Variables"
   }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = "Error Message"
+  }
+
 }
 
 #########################################################################
