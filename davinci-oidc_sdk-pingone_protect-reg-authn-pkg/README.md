@@ -3,7 +3,7 @@
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
-- Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
+- Configure a DaVinci Administrator environment in PingOne, see [Getting Started - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case
@@ -21,15 +21,15 @@ During the deployment process, Terraform will create a new PingOne environment w
 2. Click on the link to Login and complete the username form. Click **Next**.
 3. If a user with this username does not already exist in PingOne Directory, a registration form will be presented.
 4. Fill out all fields of the registration form, click **Register**. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
-5.. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Click on the link to Login and complete the username form with the user created in step 2. Click **Next**.
-3. Fill in the user's password. Click **Sign On**.
-4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
-4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+4. Fill in the user's password. Click **Sign On**.
+5. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
 

@@ -3,7 +3,7 @@
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
-- Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
+- Configure a DaVinci Administrator environment in PingOne, see [Getting Started - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case
@@ -26,8 +26,8 @@ During the deployment process, Terraform will create a new PingOne environment w
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Complete the form with the credentials for the user created in step 2. Click **Submit**.
-4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the risk score and response received from the PingOne Protect API for this transaction..
-4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the risk score and response received from the PingOne Protect API for this transaction.
+5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 ## Source Code Folders
 
 ### /sample-app
