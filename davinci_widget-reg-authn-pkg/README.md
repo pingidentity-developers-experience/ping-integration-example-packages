@@ -3,7 +3,7 @@
 ## Prerequisites
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
-- Configure a DaVinci Administrator environment in PingOne, see [Getting Stated - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
+- Configure a DaVinci Administrator environment in PingOne, see [Getting Started - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
 - After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case 
@@ -21,15 +21,15 @@ During the deployment process, Terraform will create a new PingOne environment w
 2. Complete the form with an email address. Click **Submit**.
 3. If a user with this email address does not already exist in PingOne Directory, you will be prompted to set a password to complete registration.
 4. Fill out the password form. Click **Register**.
-4. Click **Login** to sign in with your newly created user.
+5. Click **Login** to sign in with your newly created user.
 
 ### Sign In as an Existing User
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so.
 3. Complete the form with the email address for the created in step 2. Click **Submit**.
 4. If the email address belongs to an existing user, you will be prompted to enter the user's password. Enter the password, click **Login**.
-4. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page.
-4. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
+5. You will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page.
+6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
 
