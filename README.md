@@ -20,40 +20,25 @@ The example application source code is the most basic HTML and Javascript implem
 > authentication --> authn
 > authorization --> authz
 
-1. [davinci-oidc_sdk-ciam_passwordless_solution-pkg](#item-three)
-1. [davinci-oidc_sdk-pingone_protect-reg-authn-pkg](#item-five)
-1. [davinci_api-pingone_protect-reg-authn-pkg](#item-two)
-1. [davinci_api-reg-authn-pkg](#item-one)
-1. [davinci_widget-reg-authn-pkg](#item-four)
-1. [oidc_sdk-reg-authn-pkg](#item-six)
-1. [pingone_protect_api-pkg](#item-seven)
-
 <!-- TOC headings -->
-<a id="item-three"></a>
 #### davinci-oidc_sdk-ciam_passwordless_solution-pkg
 This integration package combines Terraform, DaVinci, PingOne SSO, PingOne MFA, the OIDC SDK, and the CIAM Passwordless Solution to demonstrate passwordless registration and authentication.
 
-<a id="item-five"></a>
 #### davinci-oidc_sdk-pingone_protect-reg-authn-pkg
 This integration package combines Terraform, DaVinci, PingOne SSO, PingOne Protect, the Signals SDK, and the OIDC SDK to demonstrate user registration and authentication, as well as threat protection.
 
-<a id="item-two"></a>
 #### davinci_api-pingone_protect-reg-authn-pkg
 This integration package combines Terraform, DaVinci, PingOne Protect, and the Signals SDK to demonstrate user registration and authentication, as well as threat protection.
 
-<a id="item-one"></a>
 #### davinci_api-reg-authn-pkg
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
 
-<a id="item-four"></a>
 #### davinci_widget-reg-authn-pkg
 This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.
 
-<a id="item-six"></a>
 #### oidc_sdk-reg-authn-pkg
 This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
 
-<a id="item-seven"></a>
 #### pingone_protect_api-pkg
 This integration package combines Terraform, PingOne Protect, and the Signals SDK to demonstrate threat detection capabilities.
 
