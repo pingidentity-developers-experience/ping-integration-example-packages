@@ -46,10 +46,6 @@
     <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk@^2/lib/ping-oidc.js"></script>
     <script type="text/javascript">
      document.addEventListener('DOMContentLoaded', async () => {
-        const queryParams = new URLSearchParams(window.location.search);
-        if (queryParams.get("error")) {
-          window.location.assign('/');
-        }
         const dashboardUri = '/dashboard.html'; // Log in protected page
         const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
