@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An example integration between Ping Identity services and a custom app, including Terraform HCL to auto-provision and configure a sample PingOne environment.">
+  <title>Ping Identity Integration Example Application</title>
+  <link rel="shortcut icon" type="/image/x-icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <img class="background" src="/images/background.png" alt="Background" />
+  <section class="container">
+    <div class="header">
+      <div class="logo"><img src="images/logo.png" width="300" alt="Ping Identity" /></div>
+      <div class="header-text">
+        <div class="title">Developer Experience</div>
+        <div class="subtitle">PingOne DaVinci API Sample App</div>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Welcome!</h1>
+      <div id="error-msg"></div>
+      <br>
+      <div id="container">
+        <form id="registrationForm">
+          <input type="email" required id="email" name="email" placeholder="Email Address" />
+          <input type="password" required id="password" name="password" placeholder="Password" />
+          <button type="submit" id="registration" class="btn">Submit</button>
+        </form>
+    </div>
+    </div>
+  </section>
+  <script src="global.js"></script>
+  <script src="https://assets.pingone.com/davinci/latest/davinci.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', async () => {
+      const companyId = window._env_.companyId;
+      const dvApiKey = window._env_.apiKey; 
+      const policyId = window._env_.policyId;
+      const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
+
+      document.getElementById('registrationForm').addEventListener('submit', function (event) { event.preventDefault(); startDVFlow();});
+
+      function startDVFlow(){
+        const dvStartUrl =
+            'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
+            companyId + '/policy/' + policyId + '/start';
+
+            //*** Add the API Key from your DaVinci application. ***/
+            var headers = new Headers();
+            headers.append('X-SK-API-KEY', dvApiKey);
+            headers.append('Content-Type', 'application/json');
+
+            //*** Add parameters required in Davinci flow input schema. ***/
+            var body = {
+              email: document.getElementById('email').value,
+              password: document.getElementById('password').value
+            }
+
+            var payload = JSON.stringify(body);
+            
+            var requestOptions = {
+              method: 'POST',
+              headers: headers,
+              redirect: 'manual',
+              body: payload
+            };
+
+            fetch(dvStartUrl, requestOptions)
+              .then(response => response.json())
+              .then((responseData) => {
+                if (responseData.success) {
+                  // Set email in sessionStorage so it can be displayed on dashboard
+                  sessionStorage.setItem('email', responseData.parameters.email);
+                  // Check if user went through registration or login flow
+                  sessionStorage.setItem('userCreated', responseData?.additionalProperties.createdAt ? true : false);
+                  window.location.assign(window.location.origin + '/dashboard.html');
+                } else {
+                  document.getElementById("error-msg").innerHTML = responseData?.additionalProperties.message;
+                }
+              })
+              .catch(error => console.log(error));
+      }      
+    })
+  </script>
+</body>
+</html>

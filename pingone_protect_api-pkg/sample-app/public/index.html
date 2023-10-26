@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link id="favicon" rel="icon" href="images/favicon.ico" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="An example integration between Ping Identity services and a custom app, including Terraform HCL to auto-provision and configure a sample PingOne environment.">
+      <title>Ping Identity Integration Example Application</title>
+      <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div class="logo"><img src="images/logo.png" width="325" alt="Ping Identity" /></div>
+      <div class="header">
+        <div class="subtitle">Protect API Sample App</div>
+        <div class="title">Developer Experience</div>
+      </div>
+      <div class="content">
+        <form id="usernameForm">
+          <h1>Welcome!</h1>
+          <br/>
+          <label for="username">Username:</label>
+          <input required type="text" id="username" />
+          <br />
+          <button type="submit" class="button-link" style="display: none;" id="getRiskEvaluation">Get Risk Evaluation</button>
+        </form>
+
+        <button id="newRiskEvaluation" class="button-link" style="display: none;" onclick="window.location.assign('/')">New Risk Evaluation</button>
+      </div>
+      <div id="results-tabs" style="display: none;" class="tab-container">
+        <!-- Tab links -->
+        <div class="tab">
+          <button class="tab-btn active" onclick="changeTabs(event, 'result-tab')">Result</button>
+          <button class="tab-btn" onclick="changeTabs(event, 'details-tab')">Details</button>
+          <button class="tab-btn" onclick="changeTabs(event, 'full-response-tab')">Full Risk Response</button>
+        </div>
+        <!-- Tab content -->
+        <div id="result-tab" class="tab-content active" style="display: block">
+          <p id="result"></p>
+        </div>
+        <div id="details-tab" class="tab-content">
+          <p id="details"></p>
+        </div>
+        <div id="full-response-tab" class="tab-content">
+          <p id="full-response"></p>
+        </div>
+      </div>
+    </section>
+    <script src="https://apps.pingone.com/signals/web-sdk/5.2.7/signals-sdk.js" defer></script>
+    <script type="text/javascript">
+      document.getElementById('usernameForm').addEventListener('submit', async e => {
+        e.preventDefault();
+
+        document.getElementById('getRiskEvaluation').disabled = true;
+
+        const rawRiskData = await _pingOneSignals.getData();
+        const ipAddress = sessionStorage.getItem('storedIpAddress');
+        const username = document.getElementById('username').value
+
+        const result = await fetch('/getRiskEvaluation', {
+          headers: {
+            'content-type': 'application/json'
+          },
+          method: 'post',
+          body: JSON.stringify({ rawRiskData, ipAddress, username }),
+        });
+
+        const json = await result.json();
+        document.getElementById('results-tabs').style.display = null;
+        document.getElementById('result').innerHTML = `<pre>${JSON.stringify(json.result, null, 2)}</pre>`;
+        document.getElementById('details').innerHTML = `<pre>${JSON.stringify(json.details, null, 2)}</pre>`;
+        document.getElementById('full-response').innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
+
+        document.getElementById('newRiskEvaluation').style.display = 'inline';
+        document.getElementById('usernameForm').style.display = 'none';
+      });
+
+      // Signals SDK
+      function onPingOneSignalsReady(callback) {
+        if (window['_pingOneSignalsReady']) {
+          callback();
+        } else {
+          document.addEventListener('PingOneSignalsReadyEvent', callback);
+        }
+      }
+
+      onPingOneSignalsReady(() => {
+        _pingOneSignals.init({
+          // Set to `true` if using the Behavior Predictors (Bot Detect)
+          behavioralDataCollection: true
+        })
+        .then(async () => {
+          console.info('PingOne Signals initialized successfully');
+
+          // Fetch and store ip address upfront.
+          const ipAddressResponse = await fetch('https://api.ipify.org?format=json');
+          const ipAddress = await ipAddressResponse.json();
+
+          sessionStorage.setItem('storedIpAddress', ipAddress.ip);
+
+          // Set username field to our default user's name for ease
+          document.getElementById('username').value = 'demouser1';
+          document.getElementById('getRiskEvaluation').style.display = 'inline';
+        }).catch(e => {
+          console.error('PingOne Signals SDK init failed', e);
+        });
+      })
+    </script>
+    <script src="js/tabs.js"></script>
+  </body>
+</html>

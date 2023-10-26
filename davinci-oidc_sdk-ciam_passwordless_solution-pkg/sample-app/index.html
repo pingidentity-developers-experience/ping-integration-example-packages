@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link id="favicon" rel="icon" href="images/favicon.ico" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="An example integration between Ping Identity services and a custom app, including Terraform HCL to auto-provision and configure a sample PingOne environment.">
+      <title>Ping Identity Integration Example Application</title>
+      <link rel="stylesheet" href="css/styles.css" />
+      <script src="global.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <div class="logo"><img src="images/logo.png" width="325" alt="Ping Identity" /></div>
+      <div class="header">
+        <div class="subtitle">PingOne DaVinci OIDC Passwordless Sample App</div>
+        <div class="title">Developer Experience</div>
+      </div>
+      <div class="content">
+        <h1>Welcome!</h1>
+        <br/>
+        <button id="login" class="button-link">Click to Login</button>
+      </div>
+    </section>
+    <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk@^2/lib/ping-oidc.js"></script>
+    <!-- PingOne Protect Signals SDK -->
+    <script type="text/javascript" src="https://assets.pingone.com/signals/web-sdk/5.0.1/signals-sdk.js" defer></script>
+    <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', async () => {
+        const dashboardUri = '/dashboard.html'; // Log in protected page.
+        const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
+        const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
+        const clientId = window._env_.clientId; // PingOne Application Client ID
+        const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
+
+        const clientOptions = {
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          scope: 'openid profile email revoke' // revoke is a custom PingOne resource scope
+        };
+
+        // Create oidc client from authorization server's well-known endpoint
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.${pingOneDomain}/${pingOneEnvId}/as`, clientOptions);
+
+        // User has an access token. Redirect to log in protected page.
+        if (await client.hasToken()) {
+          window.location.assign(redirectUri)
+        }
+
+        // Log in button event listener.
+        document.getElementById('login')?.addEventListener('click', async () => {
+          await client.authorize();
+        });  
+    
+     });
+    </script>
+  </body>
+</html>
