@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link id="favicon" rel="icon" href="images/favicon.ico" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="An example integration between Ping Identity services and a custom app, including Terraform HCL to auto-provision and configure a sample PingOne environment.">
+      <title>Ping Identity Integration Example Application</title>
+      <link rel="stylesheet" href="css/styles.css" />
+      <script src="global.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <div class="logo"><img src="images/logo.png" width="325" alt="Ping Identity" /></div>
+      <div class="header">
+        <div class="subtitle">PingOne DaVinci OIDC Passwordless Sample App</div>
+        <div class="title">Developer Experience</div>
+      </div>
+      <div class="content">
+        <h1>Logged In!</h1>
+        <p id="username"></p>
+        <div class="tab-container">
+          <!-- Tab links -->
+          <div class="tab">
+            <button class="tab-btn active" onclick="changeTabs(event, 'access-token-tab')">Access Token</button>
+            <button class="tab-btn" onclick="changeTabs(event, 'id-token-tab')">ID Token</button>
+            <button class="tab-btn" onclick="changeTabs(event, 'user-info-tab')">User Info</button>
+          </div>
+          <!-- Tab content -->
+          <div id="access-token-tab" class="tab-content active" style="display: block">
+            <p id="access-token"></p>
+          </div>
+          <div id="id-token-tab" class="tab-content">
+            <p id="id-token"></p>
+          </div>
+          <div id="user-info-tab" class="tab-content">
+            <p id="user-info"></p>
+          </div>
+        </div>
+        <div style="padding-top: 30px;padding-bottom: 70px">
+          <button id="logout" class="button-link">Logout</button>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk@^2/lib/ping-oidc.js"></script>
+    <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', async () => {
+        const dashboardUri = '/dashboard.html'; // Log in protected page
+        const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
+        const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
+        const clientId = window._env_.clientId; // PingOne Application Client ID
+        const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
+
+        const clientOptions = {
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          scope: 'openid profile email revoke' // revoke is a custom PingOne resource scope
+        };
+    
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.${pingOneDomain}/${pingOneEnvId}/as`, clientOptions);
+
+        if (await client.hasToken()) {
+          // Get the token from storage
+          const token = await client.getToken();
+          try {
+            // Used to get the user info from the userinfo endpoint on the auth server, must be used after user has gone through authorize flow and a token is available in storage.
+            const userInfo = await client.fetchUserInfo();
+            // Update UI with tokens and user info
+            updateUI(token,userInfo);
+          } catch (error) {
+            console.error('An error occurred attempting to fetch user info token is likely expired', error);
+            // Refresh the access token and store the new token in storage
+            const refreshedToken = await client.refreshToken();
+            if (!refreshedToken) {
+              return; // Library will redirect to authorization url
+            } else {
+              // Used to get the user info from the userinfo endpoint on the auth server, must be used after user has gone through authorize flow and a token is available in storage.
+              const userInfo = await client.fetchUserInfo();
+              // Update UI with tokens and user info
+              updateUI(refreshedToken,userInfo);
+            }
+          }
+        } else {
+          // Don't allow an unauthenticated user access to dashboard
+          window.location.assign('/');
+        }
+
+        // Log out button event listener
+        document.getElementById('logout')?.addEventListener('click', async () => {
+          try {
+            await client.revokeToken();
+          } catch (error) {
+            console.error(error)
+          };
+
+          await client.endSession(window.location.origin);
+        });
+     });
+
+    // Update the DOM with tokens and user info data
+    function updateUI(token,userInfo){
+      const base64Fragment = token.id_token.split('.')[1];
+      const decodedFragment = JSON.parse(atob(base64Fragment));
+
+      document.getElementById('username').innerHTML = userInfo.preferred_username;
+      document.getElementById('access-token').innerHTML = token.access_token;
+      document.getElementById('id-token').innerHTML = token.id_token;    
+      document.getElementById('user-info').innerHTML = '<pre>'+JSON.stringify(userInfo, undefined, 2)+'</pre>';
+    }
+    </script>
+    <!-- javascript to control tab user interface and behaviors -->
+    <script src="js/tabs.js"></script>
+  </body>
+</html>
