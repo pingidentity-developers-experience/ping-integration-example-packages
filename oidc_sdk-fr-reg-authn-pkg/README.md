@@ -8,6 +8,40 @@ This integration package combines Identity Cloud and the OIDC SDK to demonstrate
 
 When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint in your Identity Cloud tenant. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
 
+### Prerequisites
+
+##### Identity Cloud Tenant
+You must have an Identity Cloud tenant. If you do not have access to an Identity Cloud tenant and would like more information about ForgeRock Identity Solutions fill out our [Contact Us](https://www.forgerock.com/contact-us-2) form to get started.
+
+##### OAuth2 Client
+Add a custom application to your Identity Cloud tenant. See [Register a custom application](https://backstage.forgerock.com/docs/idcloud/latest/app-management/register-a-custom-application.html) for more information.
+1. Sign-in Method: OIDC - OpenID Connect
+2. Application Type: Native SPA
+
+Update your application with the following configuration settings:
+
+| Config Setting | Value |
+| -------------- | ----- |
+| Sign-in URLs | https://localhost:8080/dashboard.html |
+| Sign-out URLs | https://localhost:8080/index.html |
+| Scopes | openid email profile |
+| Token Endpoint Authentication Method | none |
+| Client Type | Public |
+| Implied Consent | checked |
+
+##### Configure CORS
+You must add a CORS configuration and add the `authorization` header. Refer to the [latest CORS documentation](https://backstage.forgerock.com/docs/idcloud/latest/tenants/configure-cors.html).
+
+### Deploy OIDC Sample Application
+
+#### global.js
+Update the global.js file in the sample-app folder with your Identity Cloud tenant specific values.
+
+| Key      | Value |
+| -------- | ----- |
+| clientId | Your OAuth2 Client ID|
+| wellKnownUrl | Your authorization server's well-known endpoint |
+
 ### Registration
 1. Start the sample app and navigate to the URL provided.
 2. Click on the link to Login. Click **Create an account**
@@ -37,40 +71,6 @@ When authentication is initiated from the sample app, the OIDC SDK is used to re
 | /css | CSS files |
 | /images | UI assets |
 | /js | JavaScript files needed to support tabs user interface |
-
-### Prerequisites
-
-##### Identity Cloud Tenant
-You must have an Identity Cloud tenant. If you do not have access to an Identity Cloud tenant and would like more information about ForgeRock Identity Solutions fill out our [Contact Us](https://www.forgerock.com/contact-us-2) form to get started.
-
-##### OAuth2 Client
-Add a custom application to your Identity Cloud tenant. See [Register a custom application](https://backstage.forgerock.com/docs/idcloud/latest/app-management/register-a-custom-application.html) for more information.
-1. Sign-in Method: OIDC - OpenID Connect
-2. Application Type: Native SPA
-
-Update your application with the following configuration settings:
-
-| Config Setting | Value |
-| -------------- | ----- |
-| Sign-in URLs | https://localhost:8080/dashboard.html |
-| Sign-out URLs | https://localhost:8080/index.html |
-| Scopes | openid email profile |
-| Token Endpoint Authentication Method | none |
-| Client Type | Public |
-| Implied Consent | checked |
-
-##### Configure CORS
-If you encounter any CORs errors or warnings refer to the [latest documentation](https://backstage.forgerock.com/docs/idcloud/latest/tenants/configure-cors.html).
-
-### Deploy OIDC Sample Application
-
-#### global.js
-Update the global.js file in the sample-app folder with your Identity Cloud tenant specific values.
-
-| Key      | Value |
-| -------- | ----- |
-| clientId | Your OAuth2 Client ID|
-| wellKnownUrl | Your authorization server's well-known endpoint |
 
 In the command line, navigate to the `/sample-app` directory and run:
 
