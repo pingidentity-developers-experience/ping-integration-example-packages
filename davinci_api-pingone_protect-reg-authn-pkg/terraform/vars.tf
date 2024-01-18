@@ -22,6 +22,11 @@ variable "admin_env_id" {
   description = "P1 Environment containing the Worker App"
 }
 
+variable "PINGONE_ENVIRONMENT_ID" {
+  type        = string
+  description = "P1 Administrator to assign Roles to"
+}
+
 variable "admin_user_id" {
   type        = string
   description = "PingOne userID to grant identity admin role for new environment"
