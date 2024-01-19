@@ -34,34 +34,6 @@ data "pingone_environment" "administrators" {
   name = "Administrators"
 }
 
-##############################################
-# PingOne Module
-##############################################
-
-# PingOne Environment Module
-# {@link https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs}
-
-# module "environment" {
-#   source  = "terraform-pingidentity-modules/environment/pingone"
-#   version = "0.0.12"
-
-#   target_environment_name            = var.env_name
-#   target_environment_description     = "DaVinci API Protect SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
-#   target_environment_production_type = false // The default.
-
-#   admin_user_assign_environment_admin_role = false
-#   admin_user_assign_identity_admin_role    = false
-#   admin_user_id_list = [
-#     var.admin_user_id
-#   ]
-#   create_davinci = true
-#   create_mfa     = true
-#   create_risk    = true
-
-#   license_id      = var.license_id
-#   organization_id = var.organization_id
-# }
-
 # PingOne Utilities Module
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
