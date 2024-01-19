@@ -20,7 +20,7 @@ data "pingone_role" "environment_admin" {
 # DaVinci Data
 ##############################################
 data "pingone_user" "dv_admin_user" {
-  environment_id = var.admin_env_id
+  environment_id = var.pingone_environment_id
 
   username = var.admin_username
 }

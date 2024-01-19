@@ -20,13 +20,13 @@ data "pingone_role" "environment_admin" {
 # DaVinci Data
 ##############################################
 data "pingone_user" "dv_admin_user" {
-  environment_id = var.admin_env_id
+  environment_id = var.pingone_environment_id
 
   username = var.admin_username
 }
 
 data "davinci_connection" "ping_sso" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "PingOne"
   depends_on     = [data.davinci_connections.read_all]
 }

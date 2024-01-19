@@ -17,11 +17,6 @@ variable "license_id" {
   description = "Id of the P1 license you want to assign to the Environment"
 }
 
-variable "admin_env_id" {
-  type        = string
-  description = "P1 Environment containing the Worker App"
-}
-
 variable "pingone_environment_id" {
   type        = string
   description = "ID of the P1 admin environment"

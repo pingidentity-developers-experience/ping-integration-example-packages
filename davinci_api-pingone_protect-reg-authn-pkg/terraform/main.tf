@@ -52,7 +52,7 @@ module "pingone_utils" {
 provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
-  environment_id               = var.admin_env_id
+  environment_id               = var.pingone_environment_id
   region                       = var.region
   force_delete_production_type = false
 }
@@ -66,5 +66,5 @@ provider "davinci" {
   username       = var.admin_username
   password       = var.admin_password
   region         = var.region
-  environment_id = var.admin_env_id
+  environment_id = var.pingone_environment_id
 }
