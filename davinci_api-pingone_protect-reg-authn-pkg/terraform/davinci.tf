@@ -64,7 +64,7 @@ resource "davinci_application" "registration_flow_app" {
       allowed_scopes                = ["openid", "profile"]
       enabled                       = true
       enforce_signed_request_openid = false
-      redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${pingone_environment.my_environment.id}/rp/callback/openid_connect"]
+      redirect_uris                 = ["${module.pingone_utils.pingone_url_auth_path_full}/rp/callback/openid_connect"]
     }
   }
   saml {

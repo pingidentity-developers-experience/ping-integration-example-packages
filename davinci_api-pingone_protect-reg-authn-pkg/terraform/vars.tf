@@ -22,9 +22,9 @@ variable "admin_env_id" {
   description = "P1 Environment containing the Worker App"
 }
 
-variable "PINGONE_ENVIRONMENT_ID" {
+variable "pingone_environment_id" {
   type        = string
-  description = "P1 Administrator to assign Roles to"
+  description = "ID of the P1 admin environment"
 }
 
 variable "admin_user_id" {
@@ -58,16 +58,4 @@ variable "admin_username" {
 variable "admin_password" {
   type        = string
   description = "Password to use for the DaVinci provider"
-}
-
-locals {
-  # The URL of the demo app
-  app_url       = "https://127.0.0.1:8080"
-  redirect_uris = ["${local.app_url}/dashboard.html"]
-  # Translate the Region to a Domain suffix
-  north_america  = var.region == "NorthAmerica" ? "com" : ""
-  europe         = var.region == "Europe" ? "eu" : ""
-  canada         = var.region == "Canada" ? "ca" : ""
-  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
-  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
 }
