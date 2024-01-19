@@ -53,3 +53,4 @@ pids
 .DS_Store
 .env
 node_modules
+global.js
