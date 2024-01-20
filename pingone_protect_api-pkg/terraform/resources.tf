@@ -12,13 +12,13 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
 resource "pingone_population" "pop_api" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "Protect API Sample Users"
   description    = "Protect SDK Sample Population"
 }
 
 resource "pingone_application" "worker_app" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "DemoWorkerApp"
   enabled        = true
 
@@ -34,7 +34,7 @@ resource "pingone_application" "worker_app" {
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_configurerolesforworkerapplication}
 
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
   role_id        = data.pingone_role.identity_data_admin.id
 
@@ -46,7 +46,7 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
 ##############################################
 
 resource "pingone_resource" "protect_api" {
-  environment_id                = module.environment.environment_id
+  environment_id                = pingone_environment.my_environment.id
   name                          = "Protect API"
   description                   = "Custom resources for the Protect API sample app"
   audience                      = "protect-api"
@@ -58,6 +58,6 @@ resource "pingone_resource" "protect_api" {
 ###############################################################
 
 resource "local_file" "env" {
-  content  = "P1_DOMAIN=\"${local.pingone_domain}\"\nP1_ENV_ID=\"${module.environment.environment_id}\"\nP1_WORKER_CLIENT_ID=\"${pingone_application.worker_app.oidc_options[0].client_id}\"\nP1_WORKER_CLIENT_SECRET=\"${pingone_application.worker_app.oidc_options[0].client_secret}\""
+  content  = "P1_DOMAIN=\"${module.pingone_utils.pingone_domain_suffix}\"\nP1_ENV_ID=\"${pingone_environment.my_environment.id}\"\nP1_WORKER_CLIENT_ID=\"${pingone_application.worker_app.oidc_options[0].client_id}\"\nP1_WORKER_CLIENT_SECRET=\"${pingone_application.worker_app.oidc_options[0].client_secret}\""
   filename = "../sample-app/.env"
 }
