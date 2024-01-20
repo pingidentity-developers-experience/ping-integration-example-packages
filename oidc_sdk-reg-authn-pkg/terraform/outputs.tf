@@ -4,7 +4,7 @@
 ##########################################################################
 
 output "pingone_envid" {
-  value = module.environment.environment_id
+  value = pingone_environment.my_environment.id
 }
 
 output "oidc_app_client_id" {
