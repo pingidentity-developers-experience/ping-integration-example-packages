@@ -8,7 +8,7 @@
 ##############################################
 
 data "pingone_resource" "openid" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "openid"
 }
 
@@ -18,19 +18,19 @@ data "pingone_resource" "openid" {
 # OAuth Scopes
 
 data "pingone_resource_scope" "openid_profile" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   resource_id    = data.pingone_resource.openid.id
   name           = "profile"
 }
 
 data "pingone_resource_scope" "openid_phone" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   resource_id    = data.pingone_resource.openid.id
   name           = "phone"
 }
 
 data "pingone_resource_scope" "openid_email" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   resource_id    = data.pingone_resource.openid.id
   name           = "email"
 }
@@ -52,7 +52,7 @@ data "pingone_role" "identity_data_admin" {
 ##############################################
 
 data "http" "get_token" {
-  url    = "https://auth.pingone.${local.pingone_domain}/${module.environment.environment_id}/as/token"
+  url    = module.pingone_utils.pingone_environment_token_endpoint
   method = "POST"
   depends_on = [
     pingone_application_role_assignment.population_identity_data_admin_to_application
@@ -72,7 +72,7 @@ data "http" "get_token" {
 # {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-create-user-import}
 
 data "http" "create_demo_user" {
-  url    = "https://api.pingone.${local.pingone_domain}/v1/environments/${module.environment.environment_id}/users"
+  url    = "${module.pingone_utils.pingone_url_api_path_v1}/environments/${pingone_environment.my_environment.id}/users"
   method = "POST"
 
   # Optional request headers

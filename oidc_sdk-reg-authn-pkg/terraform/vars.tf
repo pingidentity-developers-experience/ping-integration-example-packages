@@ -17,9 +17,9 @@ variable "license_id" {
   description = "Id of the P1 license you want to assign to the Environment"
 }
 
-variable "admin_env_id" {
+variable "pingone_environment_id" {
   type        = string
-  description = "P1 Environment containing the Worker App"
+  description = "ID of the P1 admin environment"
 }
 
 variable "admin_user_id" {
@@ -49,12 +49,6 @@ locals {
   # The URL of the demo app
   app_url       = "https://127.0.0.1:8080"
   redirect_uris = ["${local.app_url}/dashboard.html"]
-  # Translate the Region to a Domain suffix
-  north_america  = var.region == "NorthAmerica" ? "com" : ""
-  europe         = var.region == "Europe" ? "eu" : ""
-  canada         = var.region == "Canada" ? "ca" : ""
-  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
-  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token

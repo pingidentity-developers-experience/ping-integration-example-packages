@@ -12,22 +12,27 @@
 # PingOne Environment Module
 # {@link https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs}
 
-module "environment" {
-  source  = "terraform-pingidentity-modules/environment/pingone"
-  version = "0.0.12"
+resource "pingone_environment" "my_environment" {
+  name        = var.env_name
+  description = "OIDC SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
+  type        = "SANDBOX"
+  license_id  = var.license_id
+}
 
-  target_environment_name            = var.env_name
-  target_environment_description     = "OIDC SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
-  target_environment_production_type = false // The default.
+# PingOne Environment (Data Source)
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/environment}
+data "pingone_environment" "administrators" {
+  name = "Administrators"
+}
 
-  admin_user_assign_environment_admin_role = false
-  admin_user_assign_identity_admin_role    = true
-  admin_user_id_list = [
-    var.admin_user_id
-  ]
+# PingOne Utilities Module
+# {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
+module "pingone_utils" {
+  source  = "pingidentity/utils/pingone"
+  version = "0.0.8"
 
-  license_id      = var.license_id
-  organization_id = var.organization_id
+  environment_id = pingone_environment.my_environment.id
+  region         = var.region
 }
 
 ##############################################
@@ -39,7 +44,7 @@ module "environment" {
 provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
-  environment_id               = var.admin_env_id
+  environment_id               = var.pingone_environment_id
   region                       = var.region
   force_delete_production_type = false
 }

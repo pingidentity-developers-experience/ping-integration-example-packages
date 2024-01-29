@@ -9,7 +9,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
 data "davinci_connections" "read_all" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 }
 
 #########################################################################
@@ -25,7 +25,7 @@ resource "davinci_flow" "registration_flow" {
   flow_json = file("davinci-oidc-protect-reg-authn-flow.json")
   deploy    = true
 
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
     id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
@@ -61,7 +61,7 @@ resource "davinci_flow" "registration_flow" {
 
 resource "davinci_application" "registration_flow_app" {
   name           = "DaVinci SSO Protect Sample Application"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   depends_on     = [data.davinci_connections.read_all]
   oauth {
     enabled = true
@@ -70,22 +70,26 @@ resource "davinci_application" "registration_flow_app" {
       allowed_scopes                = ["openid", "profile"]
       enabled                       = true
       enforce_signed_request_openid = false
-      redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${module.environment.environment_id}/rp/callback/openid_connect"]
+      redirect_uris                 = ["${module.pingone_utils.pingone_url_auth_path_full}/rp/callback/openid_connect"]
     }
   }
-  policy {
-    name   = "DaVinci SSO Protect Sample Policy"
-    status = "enabled"
-    policy_flow {
-      flow_id    = davinci_flow.registration_flow.id
-      version_id = -1
-      weight     = 100
-    }
-  }
+
   saml {
     values {
       enabled                = false
       enforce_signed_request = false
     }
+  }
+}
+
+resource "davinci_application_flow_policy" "registration_flow_app_policy" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = davinci_application.registration_flow_app.id
+  name           = "DaVinci SSO Protect Sample Policy"
+  status         = "enabled"
+  policy_flow {
+    flow_id    = davinci_flow.registration_flow.id
+    version_id = -1
+    weight     = 100
   }
 }
