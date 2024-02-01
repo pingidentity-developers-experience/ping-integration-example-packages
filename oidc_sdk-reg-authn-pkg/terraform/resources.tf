@@ -12,7 +12,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
 resource "pingone_population" "oidc_sdk_pop" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "OIDC SDK Sample Users"
   description    = "OIDC SDK Sample Population"
 }
@@ -25,7 +25,7 @@ resource "pingone_population" "oidc_sdk_pop" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker}
 resource "pingone_application" "oidc_sdk_sample_app" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   enabled        = true
   name           = "OIDC SDK Sample App"
   description    = "A custom sample OIDC application to demonstrate PingOne integration."
@@ -42,7 +42,7 @@ resource "pingone_application" "oidc_sdk_sample_app" {
 }
 
 resource "pingone_application" "worker_app" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "DemoWorkerApp"
   enabled        = true
 
@@ -58,7 +58,7 @@ resource "pingone_application" "worker_app" {
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_configurerolesforworkerapplication}
 
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
   role_id        = data.pingone_role.identity_data_admin.id
 
@@ -73,7 +73,7 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_an_auth_policy}
 resource "pingone_sign_on_policy" "default_authN_policy" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "OIDC_SDK_Sample_Policy"
   description    = "Simple Login"
 }
@@ -82,7 +82,7 @@ resource "pingone_sign_on_policy" "default_authN_policy" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy_action}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_login_auth_step}
 resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
-  environment_id    = module.environment.environment_id
+  environment_id    = pingone_environment.my_environment.id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
 
   registration_local_population_id = pingone_population.oidc_sdk_pop.id
@@ -102,7 +102,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_sign_on_policy_assignment}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_associating_sign_on_policy_with_web_app?section=rxy1666194779493}
 resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" {
-  environment_id    = module.environment.environment_id
+  environment_id    = pingone_environment.my_environment.id
   application_id    = pingone_application.oidc_sdk_sample_app.id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
   priority          = 1
@@ -113,19 +113,19 @@ resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" 
 ##############################################
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
   resource_id    = data.pingone_resource.openid.id
 
-  scopes = [
-    data.pingone_resource_scope.openid_profile.id,
-    data.pingone_resource_scope.openid_phone.id,
-    data.pingone_resource_scope.openid_email.id
+  scope_names = [
+    "profile",
+    "phone",
+    "email"
   ]
 }
 
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
   resource_id    = pingone_resource.oidc_sdk.id
 
@@ -139,17 +139,17 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope"
 ##############################################
 
 resource "pingone_resource_scope_openid" "profile_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "profile"
 }
 
 resource "pingone_resource_scope_openid" "phone_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "phone"
 }
 
 resource "pingone_resource_scope_openid" "email_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "email"
 }
 
@@ -158,7 +158,7 @@ resource "pingone_resource_scope_openid" "email_scope" {
 ##############################################
 
 resource "pingone_resource" "oidc_sdk" {
-  environment_id                = module.environment.environment_id
+  environment_id                = pingone_environment.my_environment.id
   name                          = "OIDC SDK"
   description                   = "Custom resources for the OIDC SDK sample app"
   audience                      = "oidc-sdk"
@@ -170,7 +170,7 @@ resource "pingone_resource" "oidc_sdk" {
 ##############################################
 
 resource "pingone_resource_scope" "revoke" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   resource_id    = pingone_resource.oidc_sdk.id
   name           = "revoke"
 }
@@ -180,6 +180,6 @@ resource "pingone_resource_scope" "revoke" {
 ###############################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = { pingOneDomain: \"${local.pingone_domain}\", pingOneEnvId: \"${module.environment.environment_id}\", clientId: \"${pingone_application.oidc_sdk_sample_app.id}\"}"
+  content  = "window._env_ = { pingOneDomain: \"${module.pingone_utils.pingone_domain_suffix}\", pingOneEnvId: \"${pingone_environment.my_environment.id}\", clientId: \"${pingone_application.oidc_sdk_sample_app.id}\"}"
   filename = "../sample-app/global.js"
 }
