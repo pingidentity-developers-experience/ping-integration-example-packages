@@ -1,14 +1,14 @@
-# OIDC SDK + Terraform + PingOne Sample App Package
+# ForgeRock SDK + Terraform + PingOne Sample App Package
 
 ## Use Case
 
 ![Use Case Diagram](./diagram.jpeg)
 
-This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
+This integration package combines Terraform, PingOne, and the ForgeRock SDK to demonstrate user registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
 
-During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
+During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the ForgeRock SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
 
 ### Registration
 1. Start the sample app and navigate to the URL provided.
@@ -105,7 +105,7 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `Ping OIDC SDK Example`
+Your new PingOne environment is called: `Ping ForgeRock SDK Example`
 
 If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
@@ -113,12 +113,12 @@ If any errors are encountered, please ensure you are using the latest version of
 
 In the command line, navigate to the `/sample-app` directory and run:
 
-```code
+````code
 npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
-```
+````
 
 Access the sample application at:
-https:/localhost:8080
+https://localhost:8080
 
 View [http-server](https://www.npmjs.com/package/http-server) documentation for additional server options.
 
@@ -129,24 +129,24 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 ##### Deploy Using an Existing PingOne Environment
 If you prefer not to use Terraform to create a PingOne environment for you, you can configure this package to use an existing PingOne environment by following the instructions below.
 
-Navigate to the `index.html` and `dashboard.html` files in the `/sample-app` directory, and update the following values with your PingOne values:
+Navigate to the ````index.html```` and ````dashboard.html```` files in the `/sample-app` directory, and update the following values with your PingOne values:
 
 | Variable | Description | 
 | -------- | ----------- |
 | pingOneEnvId | PingOne Environment Id | 
 | clientId | Application Client Id |
-| redirectUri | Redirect URI, this will be https://127.0.0.1:8080/dashboard.html |
+| redirectUri | Redirect URI, this will be https://localhost:8080/dashboard.html |
 
 Note: The Administrators environment cannot be used for this.
 
-In the command line, navigate to the `/sample-app` directory and run:
+In the command line, navigate to the ````/sample-app```` directory and run:
 
-```code
-npx http-server -S -C certs/cert.pem -K certs/key.pem
-```
+````code
+npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
+````
 
 Access the sample application at:
-https://127.0.0.1:8080
+https://localhost:8080
 
 
 # Disclaimer
