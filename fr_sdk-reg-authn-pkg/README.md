@@ -4,11 +4,11 @@
 
 ![Use Case Diagram](./diagram.jpeg)
 
-This integration package combines Terraform, PingOne, and the ForgeRock SDK to demonstrate user registration and authentication.
+This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application. 
 
-During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the ForgeRock SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
+During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
 
 ### Registration
 1. Start the sample app and navigate to the URL provided.
@@ -68,7 +68,7 @@ After cloning the project, navigate to `/terraform` and create a `terraform.tfva
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 organization_id = "{{orgId}}"
-admin_env_id    = "{{adminEnvId}}"
+pingone_environment_id    = "{{adminEnvId}}"
 admin_user_id   = "{{adminUserId}}"
 license_id      = "{{licenseId}}"
 worker_id       = "{{workerId}}"
@@ -79,7 +79,7 @@ worker_secret   = "{{workerSecret}}"
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
 | organization_id | PingOne Organization Id - Located under Environment -> Properties | 
-| admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
+| pingone_environment_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
 | worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
@@ -105,7 +105,7 @@ If the plan succeeds:
 terraform apply --auto-approve
 ````
 
-Your new PingOne environment is called: `Ping ForgeRock SDK Example`
+Your new PingOne environment is called: `Ping OIDC SDK Example`
 
 If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
@@ -114,11 +114,11 @@ If any errors are encountered, please ensure you are using the latest version of
 In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
-npx http-server -S -C certs/cert.pem -K certs/key.pem
+npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
 ```
 
 Access the sample application at:
-https://127.0.0.1:8080
+https:/localhost:8080
 
 View [http-server](https://www.npmjs.com/package/http-server) documentation for additional server options.
 
