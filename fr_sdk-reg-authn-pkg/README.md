@@ -103,7 +103,7 @@ If the plan succeeds:
 
 ```code
 terraform apply --auto-approve
-````
+```
 
 Your new PingOne environment is called: `Ping ForgeRock SDK Example`
 
@@ -113,9 +113,9 @@ If any errors are encountered, please ensure you are using the latest version of
 
 In the command line, navigate to the `/sample-app` directory and run:
 
-````code
+```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
-````
+```
 
 Access the sample application at:
 https://localhost:8080
@@ -129,7 +129,7 @@ View [http-server](https://www.npmjs.com/package/http-server) documentation for 
 ##### Deploy Using an Existing PingOne Environment
 If you prefer not to use Terraform to create a PingOne environment for you, you can configure this package to use an existing PingOne environment by following the instructions below.
 
-Navigate to the ````index.html```` and ````dashboard.html```` files in the `/sample-app` directory, and update the following values with your PingOne values:
+Navigate to the `index.html` and `dashboard.html` files in the `/sample-app` directory, and update the following values with your PingOne values:
 
 | Variable | Description | 
 | -------- | ----------- |
@@ -139,11 +139,11 @@ Navigate to the ````index.html```` and ````dashboard.html```` files in the `/sam
 
 Note: The Administrators environment cannot be used for this.
 
-In the command line, navigate to the ````/sample-app```` directory and run:
+In the command line, navigate to the `/sample-app` directory and run:
 
-````code
+```code
 npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
-````
+```
 
 Access the sample application at:
 https://localhost:8080
