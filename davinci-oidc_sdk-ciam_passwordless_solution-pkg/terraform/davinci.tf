@@ -69,37 +69,37 @@ resource "davinci_flow" "registration_flow" {
   }
 
   connection_link {
-    id   = davinci_connection.pingone_authentication.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne Authentication"], 0)
     name = "PingOne Authentication"
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
@@ -121,33 +121,33 @@ resource "davinci_flow" "device_authn_subflow" {
     name = "Http"
   }
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
     name = "PingOne MFA"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 
 }
@@ -169,28 +169,28 @@ resource "davinci_flow" "account_recovery_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 }
 
@@ -221,13 +221,13 @@ resource "davinci_flow" "account_reg_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
@@ -236,23 +236,23 @@ resource "davinci_flow" "account_reg_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 }
 
@@ -273,23 +273,23 @@ resource "davinci_flow" "agreement_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 }
 
@@ -310,23 +310,23 @@ resource "davinci_flow" "change_password_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 }
 
@@ -342,32 +342,32 @@ resource "davinci_flow" "device_registration_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
     name = "PingOne MFA"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
@@ -395,27 +395,27 @@ resource "davinci_flow" "magiclink_authn_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_notifications.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne Notifications"], 0)
     name = "PingOne Notifications"
   }
 
@@ -442,28 +442,28 @@ resource "davinci_flow" "verify_email_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 }
 
@@ -483,7 +483,7 @@ resource "davinci_flow" "device_management_flow" {
     name = "Http"
   }
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
@@ -493,23 +493,23 @@ resource "davinci_flow" "device_management_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
     name = "PingOne MFA"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
   subflow_link {
     id   = davinci_flow.device_management_subflow.id
@@ -534,7 +534,7 @@ resource "davinci_flow" "password_reset_flow" {
     name = "Http"
   }
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
@@ -544,18 +544,18 @@ resource "davinci_flow" "password_reset_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = davinci_connection.flow_conductor.id
-    name = "Flow Conductor"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
+    name = "Flow Connector"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
   subflow_link {
     id   = davinci_flow.password_reset_subflow.id
@@ -575,32 +575,32 @@ resource "davinci_flow" "device_management_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
     name = "PingOne MFA"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
@@ -627,23 +627,23 @@ resource "davinci_flow" "password_reset_subflow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
   connection_link {
-    id   = davinci_connection.teleport.id
-    name = "Teleport"
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
+    name = "Node"
   }
 }
 
@@ -669,22 +669,22 @@ resource "davinci_flow" "profile_management_flow" {
   }
 
   connection_link {
-    id   = data.davinci_connection.variables.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
     name = "Variables"
   }
 
   connection_link {
-    id   = data.davinci_connection.annotation.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
     name = "Annotation"
   }
 
   connection_link {
-    id   = data.davinci_connection.error_message.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
     name = "Error Message"
   }
 
   connection_link {
-    id   = data.davinci_connection.functions.id
+    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
     name = "Functions"
   }
 
@@ -695,26 +695,10 @@ resource "davinci_flow" "profile_management_flow" {
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/0.1.9/docs/resources/connection}
 
-resource "davinci_connection" "pingone_authentication" {
-  connector_id   = "pingOneAuthenticationConnector"
-  environment_id = module.environment.environment_id
-  name           = "PingOne Authentication"
-
-  depends_on = [data.davinci_connections.read_all]
-}
-
 resource "davinci_connection" "challenge" {
   connector_id   = "challengeConnector"
   environment_id = module.environment.environment_id
   name           = "Challenge"
-
-  depends_on = [data.davinci_connections.read_all]
-}
-
-resource "davinci_connection" "flow_conductor" {
-  connector_id   = "flowConnector"
-  environment_id = module.environment.environment_id
-  name           = "Flow Conductor"
 
   depends_on = [data.davinci_connections.read_all]
 }
@@ -726,15 +710,6 @@ resource "davinci_connection" "strings" {
 
   depends_on = [data.davinci_connections.read_all]
 }
-
-resource "davinci_connection" "teleport" {
-  connector_id   = "nodeConnector"
-  environment_id = module.environment.environment_id
-  name           = "Teleport"
-
-  depends_on = [data.davinci_connections.read_all]
-}
-
 
 #########################################################################
 # PingOne DaVinci - Create an application and flow policy for the flow above
