@@ -59,7 +59,7 @@
             accessToken: `/${window._env_.pingOneEnvId}/as/token`,
             revoke: `/${window._env_.pingOneEnvId}/as/revoke`,
             userInfo: `/${window._env_.pingOneEnvId}/as/userinfo`,
-            endSession: `/${window._env_.pingOneEnvId}/as/signoff`, // Managing session varies across products which may result in JavaScript errors during log out.    
+            endSession: `/${window._env_.pingOneEnvId}/as/signoff`, // The endpoints for managing sessions vary across products, and may result in seeing JavaScript errors in the developer console during the logout process.
           },
           timeout: 2000
         },
