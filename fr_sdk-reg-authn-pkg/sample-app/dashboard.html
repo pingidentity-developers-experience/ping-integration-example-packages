@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link id="favicon" rel="icon" href="images/favicon.ico" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="An example integration between PingOne and a custom app using the ForgeRock JavaScript SDK.">
+      <title>Ping Identity Integration Example Application</title>
+      <link rel="stylesheet" href="css/styles.css" />
+      <script src="global.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <div class="logo"><img src="images/logo.png" width="325" alt="Ping Identity" /></div>
+      <div class="header">
+        <div class="subtitle">ForgeRock SDK Sample App</div>
+        <div class="title">Developer Experience</div>
+      </div>
+      <div class="content">
+        <h1>Hello World!</h1>
+        <div class="tab-container">
+          <!-- Tab links -->
+          <div class="tab">
+            <button class="tab-btn active" onclick="changeTabs(event, 'access-token-tab')">Access Token</button>
+            <button class="tab-btn" onclick="changeTabs(event, 'id-token-tab')">ID Token</button>
+            <button class="tab-btn" onclick="changeTabs(event, 'user-info-tab')">User Info</button>
+          </div>
+          <!-- Tab content -->
+          <div id="access-token-tab" class="tab-content active" style="display: block">
+            <p id="access-token"></p>
+          </div>
+          <div id="id-token-tab" class="tab-content">
+            <p id="id-token"></p>
+          </div>
+          <div id="user-info-tab" class="tab-content">
+            <p id="user-info"></p>
+          </div>
+        </div>
+        <div style="padding-top: 30px;padding-bottom: 70px">
+          <button id="logout" class="button-link">Logout</button>
+        </div>
+      </div>
+    </section>
+
+    <script type="module">
+      // When first learning the SDK or prototyping your app, you can choose to leverage a CDN like unpkg, or Skypack to add the SDK to your projects.
+      // This is not recommended for production apps as it could potentially introduce an attack vector for supply-chain attacks
+      import * as forgerock from 'https://cdn.skypack.dev/@forgerock/javascript-sdk';
+
+      forgerock.Config.set({
+        clientId: window._env_.clientId, 
+        redirectUri: `https://localhost:8080/dashboard.html`, 
+        scope: 'openid profile email revoke', 
+        serverConfig: {
+          baseUrl: `https://auth.pingone.${window._env_.pingOneDomain}`,
+          paths: {
+            authorize: `/${window._env_.pingOneEnvId}/as/authorize`,
+            accessToken: `/${window._env_.pingOneEnvId}/as/token`,
+            revoke: `/${window._env_.pingOneEnvId}/as/revoke`,
+            userInfo: `/${window._env_.pingOneEnvId}/as/userinfo`,
+            endSession: `/${window._env_.pingOneEnvId}/as/signoff`, // The endpoints for managing sessions vary across products, and may result in seeing JavaScript errors in the developer console during the logout process. This has no impact on application behavior.
+          },
+          timeout: 2000
+        },
+        prompt: 'login'
+      });
+
+      const logout = async () => {
+        try {
+          await forgerock.FRUser.logout();
+          location.assign(`${document.location.origin}/`);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const authorize = async (code, state) => {
+        /**
+         *  When the user return to this app after successfully logging in,
+         * the URL will include code and state query parameters that need to
+         * be passed in to complete the OAuth flow giving the user access
+         */
+        const tokens = await forgerock.TokenManager.getTokens({ query: { code, state } });
+        const user = await forgerock.UserManager.getCurrentUser();
+        updateUI(tokens,user);
+      };
+
+      /**
+       * Check URL for query parameters
+       */
+      const url = new URL(document.location);
+      const params = url.searchParams;
+      const authCode = params.get('code');
+      const state = params.get('state');
+
+      /**
+       * If the URL has state and authCode as query parameters, then the user
+       * returned back here after successfully logging, so call authorize with
+       * the values
+       */
+      if (state && authCode) {
+        authorize(authCode, state);
+      } else {
+        window.location.assign('/index.html');
+      }
+
+      // Log out button event listener
+      document.getElementById('logout')?.addEventListener('click', async () => {
+        await logout();
+      });
+
+      // Update the DOM with tokens and user info data
+      function updateUI(tokens,userInfo){
+        document.getElementById('access-token').innerHTML = tokens.accessToken;
+        document.getElementById('id-token').innerHTML = tokens.idToken;    
+        document.getElementById('user-info').innerHTML = '<pre>'+JSON.stringify(userInfo, undefined, 2)+'</pre>';
+      }
+    </script>
+    <!-- javascript to control tab user interface and behaviors -->
+    <script src="js/tabs.js"></script>
+  </body>
+</html>
