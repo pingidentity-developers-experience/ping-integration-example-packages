@@ -70,7 +70,7 @@ After cloning the project, navigate to `/davinci-oidc_sdk-pingone_protect-reg-au
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
-organization_id   = "{{orgId}}"
+
 pingone_environment_id      = "{{adminEnvId}}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
@@ -83,7 +83,7 @@ admin_password    = "{{adminPassword}}"
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
-| organization_id | PingOne Organization Id - Located under Environment -> Properties | 
+ 
 | pingone_environment_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
