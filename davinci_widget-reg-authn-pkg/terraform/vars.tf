@@ -7,8 +7,6 @@ variable "region" {
   description = "Region your P1 Org is in"
 }
 
-
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
