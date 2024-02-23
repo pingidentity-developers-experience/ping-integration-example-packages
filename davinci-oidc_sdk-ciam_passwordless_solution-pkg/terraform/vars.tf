@@ -7,19 +7,14 @@ variable "region" {
   description = "Region your P1 Org is in"
 }
 
-variable "organization_id" {
-  type        = string
-  description = "Your P1 Organization ID"
-}
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
 }
 
-variable "admin_env_id" {
+variable "pingone_environment_id" {
   type        = string
-  description = "P1 Environment containing the Worker App"
+  description = "ID of the P1 admin environment"
 }
 
 variable "admin_user_id" {
