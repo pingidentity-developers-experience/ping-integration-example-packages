@@ -10,6 +10,7 @@
 
 data "davinci_connections" "read_all" {
   environment_id = pingone_environment.my_environment.id
+  depends_on     = [pingone_role_assignment_user.admin_sso_davinci_admin]
 }
 
 #########################################################################
@@ -730,15 +731,6 @@ resource "davinci_application" "registration_flow_app" {
       redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${pingone_environment.my_environment.id}/rp/callback/openid_connect"]
     }
   }
-  policy {
-    name   = "DaVinci OIDC Passwordless Sample Policy"
-    status = "enabled"
-    policy_flow {
-      flow_id    = davinci_flow.registration_flow.id
-      version_id = -1
-      weight     = 100
-    }
-  }
   saml {
     values {
       enabled                = false
@@ -747,6 +739,17 @@ resource "davinci_application" "registration_flow_app" {
   }
 }
 
+resource "davinci_application_flow_policy" "registration_flow_app_policy" {
+    name   = "DaVinci OIDC Passwordless Sample Policy"
+    environment_id = pingone_environment.my_environment.id
+    application_id = davinci_application.registration_flow_app.id
+    status = "enabled"
+    policy_flow {
+      flow_id    = davinci_flow.registration_flow.id
+      version_id = -1
+      weight     = 100
+    }
+}
 #########################################################################
 # PingOne DaVinci - Create global company variables
 #########################################################################

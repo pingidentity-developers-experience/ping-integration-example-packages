@@ -6,7 +6,7 @@
 
 // Assign the "Identity Data Admin" role to the DV admin user
 resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
-  environment_id       = pingone_environment.my_environment.id
+  environment_id       = var.pingone_environment_id
   user_id              = data.pingone_user.dv_admin_user.id
   role_id              = data.pingone_role.identity_data_admin.id
   scope_environment_id = pingone_environment.my_environment.id
@@ -14,13 +14,21 @@ resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
 
 // Assign the "Environment Admin" role to the DV admin user
 resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
-  environment_id       = pingone_environment.my_environment.id
+  environment_id       = var.pingone_environment_id
   user_id              = data.pingone_user.dv_admin_user.id
   role_id              = data.pingone_role.environment_admin.id
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Identity Data Admin" role to the DV admin user
+// Assign the "DaVinci Admin" role to the DV admin user
+resource "pingone_role_assignment_user" "admin_sso_davinci_admin" {
+  environment_id       = var.pingone_environment_id
+  user_id              = data.pingone_user.dv_admin_user.id
+  role_id              = data.pingone_role.davinci_admin.id
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
+// Assign the "Identity Data Admin" role to the PingOne Worker App
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -29,11 +37,20 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Environment Admin" role to the DV admin user
+// Assign the "Environment Admin" role to the PingOne Worker App
 resource "pingone_application_role_assignment" "population_environment_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
   role_id        = data.pingone_role.environment_admin.id
+
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
+// Assign the "DaVinci Admin" role to the PingOne Worker App
+resource "pingone_application_role_assignment" "population_davinci_admin_to_application" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
+  role_id        = data.pingone_role.davinci_admin.id
 
   scope_environment_id = pingone_environment.my_environment.id
 }
@@ -49,6 +66,10 @@ resource "pingone_population" "oidc_sdk_pop" {
   environment_id = pingone_environment.my_environment.id
   name           = "Sample Users"
   description    = "Sample Population"
+  lifecycle {
+    # change the `prevent_destroy` parameter value to `true` to prevent this data carrying resource from being destroyed
+    prevent_destroy = false
+  }
 }
 
 ##########################################################################
@@ -97,7 +118,7 @@ resource "pingone_application" "worker_app" {
 resource "pingone_application_flow_policy_assignment" "login_flow" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  flow_policy_id = davinci_application.registration_flow_app.policy.* [index(davinci_application.registration_flow_app.policy[*].name, "DaVinci OIDC Passwordless Sample Policy")].policy_id
+  flow_policy_id = davinci_application_flow_policy.registration_flow_app_policy.id
 
   priority = 1
 }
@@ -173,7 +194,7 @@ resource "pingone_resource_scope" "revoke" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${davinci_application_flow_policy.registration_flow_app_policy.id}\"\n};"
   filename = "../sample-app/global.js"
 }
 

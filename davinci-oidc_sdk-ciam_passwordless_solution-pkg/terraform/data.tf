@@ -48,6 +48,10 @@ data "pingone_role" "environment_admin" {
   name = "Environment Admin"
 }
 
+data "pingone_role" "davinci_admin" {
+  name = "DaVinci Admin"
+}
+
 ##############################################
 # DaVinci Data
 ##############################################
