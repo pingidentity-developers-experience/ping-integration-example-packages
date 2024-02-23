@@ -124,7 +124,7 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope"
   application_id = pingone_application.oidc_sdk_sample_app.id
   resource_id    = pingone_resource.oidc_sdk.id
 
-  scope_names = [ "revoke" ]
+  scope_names = ["revoke"]
 }
 
 ##############################################
