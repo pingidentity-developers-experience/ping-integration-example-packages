@@ -132,9 +132,9 @@ Navigate to the `index.html` and `dashboard.html` files in the `/sample-app` dir
 
 | Variable | Description | 
 | -------- | ----------- |
-| pingOneEnvId | PingOne Environment Id | 
-| clientId | Application Client Id |
-| redirectUri | Redirect URI, this will be https://localhost:8080/dashboard.html |
+| window._env_.pingOneDomain | PingOne top level domain, i.e. "com" | 
+| window._env_.clientId | Application Client Id |
+| window._env_.pingOneEnvId | PingOne Environment Id |
 
 Note: The Administrators environment cannot be used for this.
 
