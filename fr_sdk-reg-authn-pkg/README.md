@@ -78,7 +78,6 @@ worker_secret   = "{{workerSecret}}"
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
- 
 | pingone_environment_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
