@@ -38,6 +38,11 @@ resource "pingone_application" "oidc_sdk_sample_app" {
     token_endpoint_authn_method = "NONE"
     redirect_uris               = local.redirect_uris
     post_logout_redirect_uris   = ["${local.app_url}"]
+    
+    cors_settings {
+      behavior = "ALLOW_SPECIFIC_ORIGINS"
+      origins  = ["${local.app_url}"]
+    }
   }
 }
 

@@ -78,7 +78,6 @@ worker_secret   = "{{workerSecret}}"
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
- 
 | pingone_environment_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
@@ -133,9 +132,9 @@ Navigate to the `index.html` and `dashboard.html` files in the `/sample-app` dir
 
 | Variable | Description | 
 | -------- | ----------- |
-| pingOneEnvId | PingOne Environment Id | 
-| clientId | Application Client Id |
-| redirectUri | Redirect URI, this will be https://localhost:8080/dashboard.html |
+| window._env_.pingOneDomain | PingOne top level domain, i.e. "com" | 
+| window._env_.clientId | Application Client Id |
+| window._env_.pingOneEnvId | PingOne Environment Id |
 
 Note: The Administrators environment cannot be used for this.
 
