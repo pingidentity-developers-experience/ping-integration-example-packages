@@ -9,7 +9,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
 data "davinci_connections" "read_all" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 }
 
 #########################################################################
@@ -26,7 +26,7 @@ resource "davinci_flow" "registration_flow" {
 
   deploy = true
 
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   subflow_link {
     id   = davinci_flow.device_authn_subflow.id
@@ -107,7 +107,7 @@ resource "davinci_flow" "registration_flow" {
 
 resource "davinci_flow" "device_authn_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/device-authn-subflow.json")
   deploy         = true
 
@@ -154,7 +154,7 @@ resource "davinci_flow" "device_authn_subflow" {
 
 resource "davinci_flow" "account_recovery_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/account-recovery-subflow.json")
   deploy         = true
 
@@ -196,7 +196,7 @@ resource "davinci_flow" "account_recovery_subflow" {
 
 resource "davinci_flow" "account_reg_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/account-reg-subflow.json")
   deploy         = true
 
@@ -258,7 +258,7 @@ resource "davinci_flow" "account_reg_subflow" {
 
 resource "davinci_flow" "agreement_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/agreement-subflow.json")
   deploy         = true
 
@@ -295,7 +295,7 @@ resource "davinci_flow" "agreement_subflow" {
 
 resource "davinci_flow" "change_password_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/change-password-subflow.json")
   deploy         = true
 
@@ -332,7 +332,7 @@ resource "davinci_flow" "change_password_subflow" {
 
 resource "davinci_flow" "device_registration_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/device-registration-subflow.json")
   deploy         = true
 
@@ -380,7 +380,7 @@ resource "davinci_flow" "device_registration_subflow" {
 
 resource "davinci_flow" "magiclink_authn_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/magiclink-authn-subflow.json")
   deploy         = true
 
@@ -427,7 +427,7 @@ resource "davinci_flow" "magiclink_authn_subflow" {
 
 resource "davinci_flow" "verify_email_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/verify-email-subflow.json")
   deploy         = true
 
@@ -476,7 +476,7 @@ resource "davinci_flow" "device_management_flow" {
 
   deploy = true
 
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
     id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
@@ -527,7 +527,7 @@ resource "davinci_flow" "password_reset_flow" {
 
   deploy = true
 
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
     id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
@@ -565,7 +565,7 @@ resource "davinci_flow" "password_reset_flow" {
 
 resource "davinci_flow" "device_management_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/device-management-flow/device-management-subflow.json")
   deploy         = true
 
@@ -612,7 +612,7 @@ resource "davinci_flow" "device_management_subflow" {
 
 resource "davinci_flow" "password_reset_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/password-reset-flow/password-reset-subflow.json")
   deploy         = true
 
@@ -656,7 +656,7 @@ resource "davinci_flow" "profile_management_flow" {
 
   deploy = true
 
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
     id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
@@ -697,7 +697,7 @@ resource "davinci_flow" "profile_management_flow" {
 
 resource "davinci_connection" "challenge" {
   connector_id   = "challengeConnector"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "Challenge"
 
   depends_on = [data.davinci_connections.read_all]
@@ -705,7 +705,7 @@ resource "davinci_connection" "challenge" {
 
 resource "davinci_connection" "strings" {
   connector_id   = "stringsConnector"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "String Manipulation"
 
   depends_on = [data.davinci_connections.read_all]
@@ -718,7 +718,7 @@ resource "davinci_connection" "strings" {
 
 resource "davinci_application" "registration_flow_app" {
   name           = "DaVinci OIDC Passwordless Sample Application"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   depends_on     = [data.davinci_connections.read_all]
   oauth {
     enabled = true
@@ -727,7 +727,7 @@ resource "davinci_application" "registration_flow_app" {
       allowed_scopes                = ["openid", "profile"]
       enabled                       = true
       enforce_signed_request_openid = false
-      redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${module.environment.environment_id}/rp/callback/openid_connect"]
+      redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${pingone_environment.my_environment.id}/rp/callback/openid_connect"]
     }
   }
   policy {
@@ -755,7 +755,7 @@ resource "davinci_application" "registration_flow_app" {
 resource "davinci_variable" "ciam_passwordlessRequired" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_passwordlessRequired"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Passwordless required"
   context        = "company"
   value          = "false"
@@ -765,7 +765,7 @@ resource "davinci_variable" "ciam_passwordlessRequired" {
 resource "davinci_variable" "ciam_authMethod" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_authMethod"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Authentication method"
   context        = "flowInstance"
   type           = "string"
@@ -774,7 +774,7 @@ resource "davinci_variable" "ciam_authMethod" {
 resource "davinci_variable" "ciam_agreementEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_agreementEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Agreement enabled"
   context        = "company"
   value          = "false"
@@ -784,7 +784,7 @@ resource "davinci_variable" "ciam_agreementEnabled" {
 resource "davinci_variable" "ciam_appleEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_appleEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Apple enabled"
   context        = "company"
   value          = "false"
@@ -794,7 +794,7 @@ resource "davinci_variable" "ciam_appleEnabled" {
 resource "davinci_variable" "ciam_emailOtpEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_emailOtpEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Email OTP enabled"
   context        = "company"
   value          = "true"
@@ -804,7 +804,7 @@ resource "davinci_variable" "ciam_emailOtpEnabled" {
 resource "davinci_variable" "ciam_fidoPasskeyEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_fidoPasskeyEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "FIDO passkey enabled"
   context        = "company"
   value          = "false"
@@ -814,7 +814,7 @@ resource "davinci_variable" "ciam_fidoPasskeyEnabled" {
 resource "davinci_variable" "ciam_googleEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_googleEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Google enabled"
   context        = "company"
   value          = "false"
@@ -824,7 +824,7 @@ resource "davinci_variable" "ciam_googleEnabled" {
 resource "davinci_variable" "ciam_sessionLengthInMinute" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_sessionLengthInMinute"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Session length in minutes"
   context        = "company"
   value          = "5"
@@ -834,7 +834,7 @@ resource "davinci_variable" "ciam_sessionLengthInMinute" {
 resource "davinci_variable" "ciam_accountRecoveryEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_accountRecoveryEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Account recovery enabled"
   context        = "company"
   value          = "false"
@@ -844,7 +844,7 @@ resource "davinci_variable" "ciam_accountRecoveryEnabled" {
 resource "davinci_variable" "ciam_facebookEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_facebookEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Facebook enabled"
   context        = "company"
   value          = "false"
@@ -854,7 +854,7 @@ resource "davinci_variable" "ciam_facebookEnabled" {
 resource "davinci_variable" "ciam_smsOtpEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_smsOtpEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "SMS OTP enabled"
   context        = "company"
   value          = "true"
@@ -864,7 +864,7 @@ resource "davinci_variable" "ciam_smsOtpEnabled" {
 resource "davinci_variable" "ciam_magicLinkEnabled" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_magicLinkEnabled"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Magic link enabled"
   context        = "company"
   value          = "false"
@@ -874,7 +874,7 @@ resource "davinci_variable" "ciam_magicLinkEnabled" {
 resource "davinci_variable" "ciam_verificationLimit" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_verificationLimit"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Verification limit"
   context        = "company"
   value          = "5"
@@ -884,7 +884,7 @@ resource "davinci_variable" "ciam_verificationLimit" {
 resource "davinci_variable" "ciam_logoStyle" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_logoStyle"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "CSS Style for company logo"
   context        = "company"
   value          = "width: 65px; height: 65px;"
@@ -894,7 +894,7 @@ resource "davinci_variable" "ciam_logoStyle" {
 resource "davinci_variable" "ciam_logoUrl" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_logoUrl"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "URL of company logo"
   context        = "company"
   value          = "https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png"
@@ -904,7 +904,7 @@ resource "davinci_variable" "ciam_logoUrl" {
 resource "davinci_variable" "ciam_companyName" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_companyName"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Company name"
   context        = "company"
   value          = "Ping Identity"
@@ -914,7 +914,7 @@ resource "davinci_variable" "ciam_companyName" {
 resource "davinci_variable" "ciam_recoveryLimit" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_recoveryLimit"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Recovery limit"
   context        = "company"
   value          = "5"
@@ -924,7 +924,7 @@ resource "davinci_variable" "ciam_recoveryLimit" {
 resource "davinci_variable" "ciam_errorMessage" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_errorMessage"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Error message"
   context        = "flowInstance"
   type           = "string"
@@ -933,7 +933,7 @@ resource "davinci_variable" "ciam_errorMessage" {
 resource "davinci_variable" "ciam_verificationValidationAttempts" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_verificationValidationAttempts"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Verification validation attempts"
   context        = "flowInstance"
   type           = "number"
@@ -942,7 +942,7 @@ resource "davinci_variable" "ciam_verificationValidationAttempts" {
 resource "davinci_variable" "ciam_deviceId" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_deviceId"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Device id"
   context        = "flowInstance"
   type           = "string"
@@ -951,7 +951,7 @@ resource "davinci_variable" "ciam_deviceId" {
 resource "davinci_variable" "ciam_recoveryValidationAttempts" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "ciam_recoveryValidationAttempts"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Recovery validation attempts"
   context        = "flowInstance"
   type           = "number"
@@ -960,7 +960,7 @@ resource "davinci_variable" "ciam_recoveryValidationAttempts" {
 resource "davinci_variable" "agreementId" {
   depends_on     = [data.davinci_connections.read_all]
   name           = "agreementId"
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   description    = "Agreement id"
   context        = "flowInstance"
   type           = "string"

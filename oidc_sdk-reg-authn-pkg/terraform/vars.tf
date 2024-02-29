@@ -7,10 +7,7 @@ variable "region" {
   description = "Region your P1 Org is in"
 }
 
-variable "organization_id" {
-  type        = string
-  description = "Your P1 Organization ID"
-}
+
 
 variable "license_id" {
   type        = string
