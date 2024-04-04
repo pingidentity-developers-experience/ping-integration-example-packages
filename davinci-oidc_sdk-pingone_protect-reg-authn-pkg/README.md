@@ -82,8 +82,8 @@ admin_password    = "{{adminPassword}}"
 
 | Variable | Description | 
 | -------- | ----------- |
-| region | Region for PingOne Environment | 
 | pingone_environment_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
+| region | Region for PingOne Environment | 
 | admin_user_id | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
 | worker_id | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
