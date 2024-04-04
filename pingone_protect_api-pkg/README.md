@@ -56,9 +56,9 @@ Install Terraform on your machine, following the instructions [here](https://dev
 After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
-
 pingone_environment_id    = "{{adminEnvId}}"
+
+region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 admin_user_id   = "{{adminUserId}}"
 license_id      = "{{licenseId}}"
 worker_id       = "{{workerId}}"
@@ -68,7 +68,6 @@ worker_secret   = "{{workerSecret}}"
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
- 
 | pingone_environment_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
@@ -124,8 +123,10 @@ Navigate to the `/ping-one-protect-sample-app` directory and add a .env file wit
 | Variable | Description | 
 | -------- | ----------- |
 | P1_ENV_ID | PingOne Environment Id |
+| P1_DOMAIN | PingOne Top-Level Domain (com, eu, ca, asia)  |
 | P1_WORKER_CLIENT_ID | Worker app client Id |
 | P1_WORKER_CLIENT_SECRET | Worker app client secret |
+
 
 Note: The Administrators environment cannot be used for this.
 
