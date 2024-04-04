@@ -127,7 +127,6 @@ Navigate to the `/ping-one-protect-sample-app` directory and add a .env file wit
 | P1_WORKER_CLIENT_ID | Worker app client Id |
 | P1_WORKER_CLIENT_SECRET | Worker app client secret |
 
-
 Note: The Administrators environment cannot be used for this.
 
 In the command line, navigate to the `/sample-app` directory and run:
