@@ -69,9 +69,9 @@ During the deployment process, Terraform will create a new PingOne environment w
 After cloning the project, navigate to `/davinci-oidc_sdk-pingone_protect-reg-authn-pkg/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
-
 pingone_environment_id      = "{{adminEnvId}}"
+
+region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
 worker_id         = "{{workerId}}"
@@ -83,7 +83,6 @@ admin_password    = "{{adminPassword}}"
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
- 
 | pingone_environment_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
