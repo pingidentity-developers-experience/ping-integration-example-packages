@@ -44,8 +44,14 @@ variable "env_name" {
 
 locals {
   # The URL of the demo app
-  app_url       = "https://127.0.0.1:8080"
+  app_url       = "https://localhost:4001"
   redirect_uris = ["${local.app_url}/dashboard.html"]
+  # Translate the Region to a Domain suffix
+  north_america  = var.region == "NorthAmerica" ? "com" : ""
+  europe         = var.region == "Europe" ? "eu" : ""
+  canada         = var.region == "Canada" ? "ca" : ""
+  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
+  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token

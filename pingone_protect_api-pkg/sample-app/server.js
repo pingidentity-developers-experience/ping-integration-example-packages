@@ -17,8 +17,9 @@ const fastify = Fastify({
   trustProxy: true,
   http2: true,
   https: {
-    key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
+   allowHTTP1: true,
+   key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
+   cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
   }
 });
 
@@ -149,7 +150,7 @@ async function getWorkerToken() {
   return tokenJson.access_token;
 }
 
-fastify.listen({port: 8080, host: '0.0.0.0'},
+fastify.listen({port: 4001, host: 'localhost'},
   (err, address) => {
     if (err) {
       console.error(err);
