@@ -150,7 +150,7 @@ async function getWorkerToken() {
   return tokenJson.access_token;
 }
 
-fastify.listen({port: 4001, host: 'localhost'},
+fastify.listen({port: 4001, host: '0.0.0.0'},
   (err, address) => {
     if (err) {
       console.error(err);
