@@ -109,7 +109,7 @@ npm start
 ```
 
 Access the sample application at:
-https://localhost:4001
+https://127.0.0.1:8080
 
 Note: Terraform will add a user to PingOne with a username of demouser1, you can use this to get a risk assessment for a PingOne user, any other username will generate a risk assessment for an `EXTERNAL` user.
 
@@ -136,7 +136,7 @@ npm start
 ```
 
 Access the sample application at:
-https://localhost:4001
+https://0.0.0.0:8080 or https://127.0.0.1:8080
 
 
 # Disclaimer

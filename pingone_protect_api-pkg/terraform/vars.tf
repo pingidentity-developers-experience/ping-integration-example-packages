@@ -7,8 +7,6 @@ variable "region" {
   description = "Region your P1 Org is in"
 }
 
-
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
@@ -43,9 +41,6 @@ variable "env_name" {
 }
 
 locals {
-  # The URL of the demo app
-  app_url       = "https://localhost:4001"
-  redirect_uris = ["${local.app_url}/dashboard.html"]
   # Translate the Region to a Domain suffix
   north_america  = var.region == "NorthAmerica" ? "com" : ""
   europe         = var.region == "Europe" ? "eu" : ""
