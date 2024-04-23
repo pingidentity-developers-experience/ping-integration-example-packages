@@ -18,6 +18,29 @@ data "davinci_connections" "read_all" {
   depends_on     = [ time_sleep.davinci ]
 }
 
+resource "davinci_connection" "pingone_protect" {
+  connector_id   = "pingOneRiskConnector"
+  environment_id = pingone_environment.my_environment.id
+  name           = "PingOne Protect"
+
+  property {
+    name  = "envId"
+    value = pingone_environment.my_environment.id
+  }
+  property {
+    name  = "clientId"
+    value = pingone_application.worker_app.id
+  }
+  property {
+    name  = "clientSecret"
+    value = pingone_application.worker_app.oidc_options[0].client_secret
+  }
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
 #########################################################################
 # PingOne DaVinci - Create and deploy a flow
 #########################################################################

@@ -56,25 +56,6 @@ resource "pingone_application" "worker_app" {
   }
 }
 
-resource "davinci_connection" "pingone_protect" {
-  connector_id   = "pingOneRiskConnector"
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne Protect Test"
-
-  property {
-    name  = "envId"
-    value = pingone_environment.my_environment.id
-  }
-  property {
-    name  = "clientId"
-    value = pingone_application.worker_app.id
-  }
-  property {
-    name  = "clientSecret"
-    value = pingone_application.worker_app.oidc_options[0].client_secret
-  }
-}
-
 ##########################################################################
 # Output PingOne Environment variables to local global.js file
 ##########################################################################
