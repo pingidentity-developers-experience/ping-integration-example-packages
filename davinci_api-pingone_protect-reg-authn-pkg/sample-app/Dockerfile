@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 
 LABEL version="0.0.1"
-LABEL description="Pingone Protect Integration Package Example App"
+LABEL description="Pingone Protect DaVinci Integration Package"
 LABEL maintainer="Ping Identity Technical Enablement"
 
 # update packages, to reduce risk of vulnerabilities
@@ -43,4 +43,4 @@ EXPOSE 8080
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 # Start the container
-CMD ["/bin/bash", "-c", "/home/node/app/env.sh .env.template && node server.js"]
+CMD ["/bin/bash", "-c", "/home/node/app/env.sh && node server.js"]

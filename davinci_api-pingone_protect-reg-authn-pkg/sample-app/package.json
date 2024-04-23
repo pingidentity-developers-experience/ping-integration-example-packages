@@ -1,0 +1,14 @@
+{
+  "name": "ping-one-davinci-protect-sample-app",
+  "version": "1.0.0",
+  "description": "This integration package combines Terraform, DaVinci, PingOne Protect, and the Signals SDK to demonstrate user registration and authentication, as well as threat protection.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fastify/static": "^6.10.2",
+    "fastify": "^4.19.2"
+  }
+}
