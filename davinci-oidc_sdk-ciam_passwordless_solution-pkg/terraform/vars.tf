@@ -55,6 +55,7 @@ variable "app_url" {
   description = "Application URL"
   default     = "https://127.0.0.1:8080"
 }
+
 locals {
   # The URL of the demo app
   redirect_uris = ["${var.app_url}/dashboard.html"]
