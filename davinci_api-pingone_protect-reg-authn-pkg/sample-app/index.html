@@ -38,6 +38,7 @@
   <script type="text/javascript" src="https://assets.pingone.com/signals/web-sdk/5.0.1/signals-sdk.js" defer></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
+      const companyId = window._env_.companyId;
       const dvApiKey = window._env_.apiKey; 
       const policyId = window._env_.policyId;
       const pingOneEnvId = window._env_.pingOneEnvId;
@@ -74,7 +75,7 @@
       function startDVFlow(){
         const dvStartUrl =
             'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
-            pingOneEnvId + '/policy/' + policyId + '/start';
+            companyId + '/policy/' + policyId + '/start';
 
             console.log("url", dvStartUrl);
 
