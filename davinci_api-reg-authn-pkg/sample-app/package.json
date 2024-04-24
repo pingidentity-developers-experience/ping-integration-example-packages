@@ -1,0 +1,14 @@
+{
+  "name": "ping-one-davinci-api-sample-app",
+  "version": "1.0.0",
+  "description": "This integration package combines Terraform, DaVinci, and PingOne Directory to demonstrate user registration and authentication.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fastify/static": "^6.10.2",
+    "fastify": "^4.19.2"
+  }
+}
