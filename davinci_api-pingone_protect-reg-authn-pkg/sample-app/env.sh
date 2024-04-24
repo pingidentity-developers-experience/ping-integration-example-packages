@@ -4,14 +4,14 @@
 # are set to the global window object.
 
 # Recreate global.js file
-rm -rf ./global.js
+rm -rf ./public/global.js
 
 # creat global.js file from env vars
-cat <<EOT >> global.js
+cat <<EOT >> ./public/global.js
 window._env_ = {
   pingOneEnvId: '${P1_ENV_ID}',
   pingOneDomain: '${P1_DOMAIN}',
-  dvApiKey: '${DV_API_KEY}',
+  apiKey: '${DV_API_KEY}',
   policyId: '${DV_POLICY_ID}'
 };
 EOT

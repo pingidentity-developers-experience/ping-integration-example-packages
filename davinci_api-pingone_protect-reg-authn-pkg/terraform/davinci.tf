@@ -9,7 +9,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
 resource "time_sleep" "davinci" {
-  create_duration = "240s"
+  create_duration = "150s"
   depends_on      = [pingone_environment.my_environment]
 }
 
