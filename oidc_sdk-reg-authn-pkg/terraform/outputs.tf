@@ -7,7 +7,7 @@ output "pingone_envid" {
   value = pingone_environment.my_environment.id
 }
 
-put "pingone_domain" {
+output "pingone_domain" {
   value = module.pingone_utils.pingone_domain_suffix
 }
 
