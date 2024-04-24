@@ -51,7 +51,6 @@ variable "app_url" {
 locals {
   # The URL of the demo app
   redirect_uris = ["${var.app_url}/dashboard.html"]
-  redirect_uris = ["${local.app_url}/dashboard.html"]
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token
