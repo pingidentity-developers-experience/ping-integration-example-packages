@@ -37,7 +37,7 @@ resource "pingone_application" "oidc_sdk_sample_app" {
     pkce_enforcement            = "S256_REQUIRED"
     token_endpoint_authn_method = "NONE"
     redirect_uris               = local.redirect_uris
-    post_logout_redirect_uris   = ["${local.app_url}"]
+    post_logout_redirect_uris   = ["${var.app_url}"]
   }
 }
 
