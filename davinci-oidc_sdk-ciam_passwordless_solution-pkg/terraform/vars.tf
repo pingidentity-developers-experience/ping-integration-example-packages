@@ -52,7 +52,7 @@ variable "admin_password" {
 
 variable "app_url" {
   type        = string
-  description = "Password to use for the DaVinci provider"
+  description = "Application URL"
   default     = "https://127.0.0.1:8080"
 }
 locals {
