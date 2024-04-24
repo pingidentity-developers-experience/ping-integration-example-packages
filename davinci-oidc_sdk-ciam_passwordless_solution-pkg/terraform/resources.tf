@@ -20,7 +20,7 @@ resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Identity Data Admin" role to the DV admin user
+// Assign the "Identity Data Admin" role to the worker app
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -29,7 +29,7 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Environment Admin" role to the DV admin user
+// Assign the "Environment Admin" role to the worker app
 resource "pingone_application_role_assignment" "population_environment_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
