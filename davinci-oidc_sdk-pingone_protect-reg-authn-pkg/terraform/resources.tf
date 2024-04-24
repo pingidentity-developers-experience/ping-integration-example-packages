@@ -97,8 +97,8 @@ resource "pingone_application" "worker_app" {
 resource "pingone_application_flow_policy_assignment" "login_flow" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  flow_policy_id = davinci_application.registration_flow_app.policy.* [index(davinci_application.registration_flow_app.policy[*].name, "DaVinci SSO Protect Sample Policy")].policy_id
-
+  #flow_policy_id = davinci_application.registration_flow_app.policy.* [index(davinci_application.registration_flow_app.policy[*].name, "DaVinci SSO Protect Sample Policy")].policy_id
+  flow_policy_id = element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.name == "DaVinci SSO Protect Sample Policy"], 0)
   priority = 1
 }
 

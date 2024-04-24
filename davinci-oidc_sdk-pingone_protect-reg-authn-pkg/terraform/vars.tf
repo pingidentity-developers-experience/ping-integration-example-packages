@@ -37,7 +37,7 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "DaVinci SSO Protect Sample"
+  default     = "DaVinci SSO Protect Sample - Test 1"
 }
 
 variable "admin_username" {
