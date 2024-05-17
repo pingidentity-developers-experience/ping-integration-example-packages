@@ -19,11 +19,21 @@ resource "pingone_environment" "my_environment" {
   license_id  = var.license_id
 
   service {
+    type = "SSO"
+  }
+
+  service {
     type = "MFA"
   }
+
   service {
     type = "DaVinci"
   }
+
+  service {
+    type = "Risk"
+  }
+
 }
 
 # PingOne Environment (Data Source)
@@ -52,7 +62,6 @@ provider "pingone" {
   client_secret                = var.worker_secret
   environment_id               = var.pingone_environment_id
   region                       = var.region
-  force_delete_production_type = false
 }
 
 ##############################################

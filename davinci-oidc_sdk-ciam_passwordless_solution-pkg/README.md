@@ -27,7 +27,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 5. To register as a passwordless user, click **Sign up without a password**. 
 6. Enter the verification code you received via email, and click **Verify**. 
 7. Complete steps to pair an email device for this user, click **Finish**.
-8. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+8. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, and user info.
 9. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User - Passwordless
@@ -35,14 +35,14 @@ During the deployment process, Terraform will create a new PingOne environment w
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Click on the link to Login, click **Skip Password** to sign on with a passwordless user.
 4. Enter the OTP received via email (or other MFA device if configured), click **Finish**.
-5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, and user info.
 6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User - Passsword
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Click on the link to Login, enter a valid email address and password and click **Sign On**
-4. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+4. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, and user info.
 5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
