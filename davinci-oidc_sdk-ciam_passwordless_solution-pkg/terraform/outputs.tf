@@ -6,3 +6,7 @@
 output "pingone_envid" {
   value = pingone_environment.my_environment.id
 }
+
+output "risk_policy_id" {
+  value = local.policy_id
+}

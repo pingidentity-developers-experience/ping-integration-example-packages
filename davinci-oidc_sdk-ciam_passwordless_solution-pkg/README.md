@@ -27,7 +27,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 5. To register as a passwordless user, click **Sign up without a password**. 
 6. Enter the verification code you received via email, and click **Verify**. 
 7. Complete steps to pair an email device for this user, click **Finish**.
-8. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+8. The user will get created and will land on the /dashboard endpoint. The email used to register will be displayed on the dashboard page, as well as the user's tokens, and user info.
 9. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User - Passwordless
@@ -35,14 +35,14 @@ During the deployment process, Terraform will create a new PingOne environment w
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Click on the link to Login, click **Skip Password** to sign on with a passwordless user.
 4. Enter the OTP received via email (or other MFA device if configured), click **Finish**.
-5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, and user info.
 6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ### Sign In as an Existing User - Passsword
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so. 
 3. Click on the link to Login, enter a valid email address and password and click **Sign On**
-4. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, user info, and risk score.
+4. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, and user info.
 5. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in. 
 
 ## Source Code Folders
@@ -87,9 +87,10 @@ During the deployment process, Terraform will create a new PingOne environment w
 After cloning the project, navigate to the `/terraform` folder and create a `terraform.tfvars` file with the following:
 
 ```hcl
+pingone_environment_id = "{{adminEnvId}}"
+
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
 organization_id   = "{{orgId}}"
-admin_env_id      = "{{adminEnvId}}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
 worker_id         = "{{workerId}}"
@@ -102,7 +103,7 @@ admin_password    = "{{adminPassword}}"
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
 | organization_id | PingOne Organization Id - Located under Environment -> Properties | 
-| admin_env_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
+| pingone_environment_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment |
 | worker_id | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
