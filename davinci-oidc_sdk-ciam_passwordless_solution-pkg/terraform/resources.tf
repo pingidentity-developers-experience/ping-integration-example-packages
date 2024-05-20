@@ -4,23 +4,7 @@
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 ##########################################################################
 
-// Assign the "Identity Data Admin" role to the DV admin user
-resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
-  environment_id       = var.pingone_environment_id
-  user_id              = data.pingone_user.dv_admin_user.id
-  role_id              = data.pingone_role.identity_data_admin.id
-  scope_environment_id = pingone_environment.my_environment.id
-}
-
-// Assign the "Environment Admin" role to the DV admin user
-resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
-  environment_id       = var.pingone_environment_id
-  user_id              = data.pingone_user.dv_admin_user.id
-  role_id              = data.pingone_role.environment_admin.id
-  scope_environment_id = pingone_environment.my_environment.id
-}
-
-// Assign the "Identity Data Admin" role to the worker app
+// Assign the "Identity Data Admin" role to the worker application
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -29,7 +13,7 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Environment Admin" role to the worker app
+// Assign the "Environment Admin" role to the worker application
 resource "pingone_application_role_assignment" "population_environment_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -97,9 +81,10 @@ resource "pingone_application" "worker_app" {
 resource "pingone_application_flow_policy_assignment" "login_flow" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  flow_policy_id = davinci_application.registration_flow_app.policy.* [index(davinci_application.registration_flow_app.policy[*].name, "DaVinci OIDC Passwordless Sample Policy")].policy_id
+  flow_policy_id = davinci_application_flow_policy.registration_flow_policy.id
 
   priority = 1
+  depends_on = [data.davinci_connections.read_all, davinci_application_flow_policy.registration_flow_policy]
 }
 
 ##############################################
@@ -109,8 +94,7 @@ resource "pingone_application_flow_policy_assignment" "login_flow" {
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_id    = data.pingone_resource.openid.id
-
+  resource_name  = "openid"
 
   scope_names = [
     "profile",
@@ -122,9 +106,10 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_id    = pingone_resource.oidc_sdk.id
+  resource_name  = "OIDC SDK"
 
   scope_names = ["revoke"]
+  depends_on  = [ pingone_resource_scope.revoke ]
 }
 
 ##############################################
@@ -173,7 +158,7 @@ resource "pingone_resource_scope" "revoke" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${element([for s in davinci_application.registration_flow_app.policy : s.policy_id if s.status == "enabled"], 0)}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.passwordless_main_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.passwordless_main_flow_app.api_keys.prod}\",\n  policyId: \"${davinci_application_flow_policy.registration_flow_policy.id}\"\n};"
   filename = "../sample-app/global.js"
 }
 
@@ -186,8 +171,7 @@ resource "local_file" "env_config" {
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_agreements}
 data "pingone_language" "en" {
   environment_id = pingone_environment.my_environment.id
-
-  locale = "en"
+  locale         = "en"
 }
 
 resource "pingone_agreement" "agreement" {
@@ -252,6 +236,7 @@ resource "pingone_notification_template_content" "email" {
   environment_id = pingone_environment.my_environment.id
   template_name  = "general"
   locale         = "en"
+  variant        = "Magic Link"
 
   email {
     body    = <<EOT
@@ -265,6 +250,31 @@ resource "pingone_notification_template_content" "email" {
 </div>
 EOT
     subject = "Magic Link Authentication"
+
+    from {
+      name    = "PingOne"
+      address = "noreply@pingidentity.com"
+    }
+  }
+}
+
+resource "pingone_notification_template_content" "unknown_device" {
+  environment_id = pingone_environment.my_environment.id
+  template_name  = "general"
+  locale         = "en"
+  variant        = "Unknown Device"
+
+  email {
+    body    = <<EOT
+    <div style="display: block; text-align: center; font-family: sans-serif; border: 1px solid #c5c5c5; width: 400px; padding: 50px 30px;">
+      <img class="align-self-center mb-5" src="$${logoUrl}" alt="$${companyName}" style="$${logoStyle}"/>
+     <h1>Unknown Device</h1>
+     <div style="margin-top: 20px; margin-bottom:25px">
+     <p>A new device logged into your account.</p>
+     </div>
+</div>
+EOT
+    subject = "CIAM Passwordless - Unknown Device"
 
     from {
       name    = "PingOne"

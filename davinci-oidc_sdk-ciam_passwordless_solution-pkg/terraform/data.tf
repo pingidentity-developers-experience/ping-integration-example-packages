@@ -57,6 +57,10 @@ data "pingone_user" "dv_admin_user" {
   username = var.admin_username
 }
 
+##############################################
+# DaVinci Connectors
+##############################################
+
 data "davinci_connection" "ping_sso" {
   environment_id = pingone_environment.my_environment.id
   name           = "PingOne"
@@ -99,6 +103,36 @@ data "davinci_connection" "pingone_notifications" {
   depends_on     = [data.davinci_connections.read_all]
 }
 
+data "davinci_connection" "http_connector" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  name           = "Http"
+}
+
+data "davinci_connection" "flow_connector" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  name           = "Flow Connector"
+}
+
+data "davinci_connection" "authentication_connector" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  name           = "PingOne Authentication"
+}
+
+data "davinci_connection" "protect_connector" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  name           = "PingOne Protect"
+}
+
+data "davinci_connection" "node_connector" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  name           = "Node"
+}
+
 # Terraform HTTP provider
 # {@link https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http}
 
@@ -139,4 +173,14 @@ data "http" "create_demo_user" {
 
   # Optional request body"
   request_body = "{\"email\":\"demouser1@mailinator.com\",\"name\":{\"given\": \"Demo\",\"family\":\"User\"},\"username\":\"demouser1\",\"population\":{\"id\":\"${pingone_population.oidc_sdk_pop.id}\"},\"lifecycle\":{\"status\":\"ACCOUNT_OK\"},\"password\":{\"value\":\"2FederateM0re!\",\"forceChange\": false}}"
+}
+
+data "http" "get_risk_policy_id" {
+  url    = "https://api.pingone.${local.pingone_domain}/v1/environments/${pingone_environment.my_environment.id}/riskPolicySets"
+  method = "GET"
+
+  request_headers = {
+    Accept        = "application/json",
+    Authorization = "Bearer ${local.access_token}",
+  }
 }

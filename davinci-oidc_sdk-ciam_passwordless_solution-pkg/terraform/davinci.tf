@@ -9,7 +9,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
 resource "time_sleep" "davinci" {
-  create_duration = "120s"
+  create_duration = "90s"
   depends_on      = [pingone_environment.my_environment]
 }
 
@@ -23,279 +23,301 @@ data "davinci_connections" "read_all" {
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
-resource "davinci_flow" "registration_flow" {
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-
-  flow_json = file("davinci-flows/davinci-oidc-passwordless-flow.json")
-
-  deploy = true
-
+resource "davinci_flow" "passwordless_main_flow" {
+  depends_on     = [data.davinci_connections.read_all]
+  flow_json      = file("davinci-flows/davinci-oidc-passwordless-flow.json")
   environment_id = pingone_environment.my_environment.id
 
-  subflow_link {
-    id   = davinci_flow.device_authn_subflow.id
-    name = davinci_flow.device_authn_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.account_recovery_subflow.id
-    name = davinci_flow.account_recovery_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.account_reg_subflow.id
-    name = davinci_flow.account_reg_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.change_password_subflow.id
-    name = davinci_flow.change_password_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.agreement_subflow.id
-    name = davinci_flow.agreement_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.verify_email_subflow.id
-    name = davinci_flow.verify_email_subflow.name
+  connection_link {
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne Authentication"], 0)
-    name = "PingOne Authentication"
+    id   = data.davinci_connection.authentication_connector.id
+    name = data.davinci_connection.authentication_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
+    id   = data.davinci_connection.pingone_mfa.id
+    name = data.davinci_connection.pingone_mfa.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.pingone_notifications.id
+    name = data.davinci_connection.pingone_notifications.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
+    id   = data.davinci_connection.protect_connector.id
+    name = data.davinci_connection.protect_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
-  }
-
-}
-
-resource "davinci_flow" "device_authn_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/device-authn-subflow.json")
-  deploy         = true
 
   subflow_link {
-    id   = davinci_flow.magiclink_authn_subflow.id
-    name = davinci_flow.magiclink_authn_subflow.name
+    id   = resource.davinci_flow.device_authentication_subflow.id
+    name = resource.davinci_flow.device_authentication_subflow.name
+
+    replace_import_subflow_id       = "6fc11379c939d1f89efb42105dcd4295"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
-  }
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
-    name = "PingOne MFA"
+  subflow_link {
+    id   = resource.davinci_flow.account_recovery_subflow.id
+    name = resource.davinci_flow.account_recovery_subflow.name
+
+    replace_import_subflow_id       = "364df5f173b46e296fdd0a128de61ee8"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+  subflow_link {
+    id   = resource.davinci_flow.agreement_subflow.id
+    name = resource.davinci_flow.agreement_subflow.name
+
+    replace_import_subflow_id       = "02ef9161e97275f09faf2925b4173d77"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+  subflow_link {
+    id   = resource.davinci_flow.account_registration_subflow.id
+    name = resource.davinci_flow.account_registration_subflow.name
+
+    replace_import_subflow_id       = "ed7202d8251c0980d41119b324980c91"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+  subflow_link {
+    id   = resource.davinci_flow.verify_email_subflow.id
+    name = resource.davinci_flow.verify_email_subflow.name
+
+    replace_import_subflow_id       = "0ca2d9bf2d20379a006aff1ef4f17e0f"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+  subflow_link {
+    id   = resource.davinci_flow.change_password_subflow.id
+    name = resource.davinci_flow.change_password_subflow.name
+
+    replace_import_subflow_id       = "f33a958f628aa8368027ca75240103c6"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
-  }
+  subflow_link {
+    id   = resource.davinci_flow.threat_detection_subflow.id
+    name = resource.davinci_flow.threat_detection_subflow.name
 
+    replace_import_subflow_id       = "d76548b32520975dfb808ab5a2bf4d25"
+  }
+  
 }
 
 resource "davinci_flow" "account_recovery_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/account-recovery-subflow.json")
-  deploy         = true
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
+    id   = data.davinci_connection.pingone_notifications.id
+    name = data.davinci_connection.pingone_notifications.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.protect_connector.id
+    name = data.davinci_connection.protect_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+  subflow_link {
+    id   = resource.davinci_flow.threat_detection_subflow.id
+    name = resource.davinci_flow.threat_detection_subflow.name
+
+    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
-  }
 }
 
-resource "davinci_flow" "account_reg_subflow" {
+resource "davinci_flow" "account_registration_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/account-reg-subflow.json")
-  deploy         = true
 
-  subflow_link {
-    id   = davinci_flow.device_registration_subflow.id
-    name = davinci_flow.device_registration_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.verify_email_subflow.id
-    name = davinci_flow.verify_email_subflow.name
-  }
-
-  subflow_link {
-    id   = davinci_flow.agreement_subflow.id
-    name = davinci_flow.agreement_subflow.name
+  connection_link {
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+
+    replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
+    id   = data.davinci_connection.protect_connector.id
+    name = data.davinci_connection.protect_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+  subflow_link {
+    id   = resource.davinci_flow.device_registration_subflow.id
+    name = resource.davinci_flow.device_registration_subflow.name
+
+    replace_import_subflow_id       = "647c3646a11f5fbba68d405eecf52a65"
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
+  subflow_link {
+    id   = resource.davinci_flow.agreement_subflow.id
+    name = resource.davinci_flow.agreement_subflow.name
+
+    replace_import_subflow_id       = "4c2ca3a441a1d24d84e75a6e35470b87"
   }
+
+  subflow_link {
+    id   = resource.davinci_flow.verify_email_subflow.id
+    name = resource.davinci_flow.verify_email_subflow.name
+
+    replace_import_subflow_id       = "475be3d3d0ed42ace01503e8e95d6e8f"
+  }
+
+  subflow_link {
+    id   = resource.davinci_flow.threat_detection_subflow.id
+    name = resource.davinci_flow.threat_detection_subflow.name
+
+    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
+  }
+
 }
 
 resource "davinci_flow" "agreement_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/agreement-subflow.json")
-  deploy         = true
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 }
 
@@ -303,395 +325,505 @@ resource "davinci_flow" "change_password_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/change-password-subflow.json")
-  deploy         = true
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
+  }
+}
+
+resource "davinci_flow" "device_authentication_subflow" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  flow_json      = file("davinci-flows/device-authn-subflow.json")
+
+  connection_link {
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
   }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = data.davinci_connection.ping_sso.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_mfa.id
+    name = data.davinci_connection.pingone_mfa.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_notifications.id
+    name = data.davinci_connection.pingone_notifications.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.protect_connector.id
+    name = data.davinci_connection.protect_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
+  }
+
+  subflow_link {
+    id   = resource.davinci_flow.magic_link_subflow.id
+    name = resource.davinci_flow.magic_link_subflow.name
+
+    replace_import_subflow_id       = "c990174d6bb04ddf2f712b74eb80fb8b"
+  }
+
+  subflow_link {
+    id   = resource.davinci_flow.threat_detection_subflow.id
+    name = resource.davinci_flow.threat_detection_subflow.name
+
+    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
+  }
+}
+
+resource "davinci_flow" "magic_link_subflow" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  flow_json      = file("davinci-flows/magiclink-authn-subflow.json")
+
+  connection_link {
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+
+    replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = data.davinci_connection.ping_sso.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.authentication_connector.id
+    name = data.davinci_connection.authentication_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.pingone_notifications.id
+    name = data.davinci_connection.pingone_notifications.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
+  }
+
+  connection_link {
+    id   = davinci_connection.challenge.id
+    name = davinci_connection.challenge.name
+  }
+
 }
 
 resource "davinci_flow" "device_registration_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/device-registration-subflow.json")
-  deploy         = true
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
-    name = "PingOne MFA"
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.pingone_mfa.id
+    name = data.davinci_connection.pingone_mfa.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
   connection_link {
     id   = davinci_connection.strings.id
-    name = "String Manipulation"
+    name = davinci_connection.strings.name
   }
-
 }
 
-resource "davinci_flow" "magiclink_authn_subflow" {
+resource "davinci_flow" "threat_detection_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/magiclink-authn-subflow.json")
-  deploy         = true
+  flow_json      = file("davinci-flows/threat-detection-subflow.json")
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.protect_connector.id
+    name = data.davinci_connection.protect_connector.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne Notifications"], 0)
-    name = "PingOne Notifications"
-  }
-
-  connection_link {
-    id   = davinci_connection.challenge.id
-    name = "Challenge"
-  }
 }
 
 resource "davinci_flow" "verify_email_subflow" {
   depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/verify-email-subflow.json")
-  deploy         = true
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 }
 
 resource "davinci_flow" "device_management_flow" {
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-
-  flow_json = file("davinci-flows/device-management-flow/device-management-mainflow.json")
-
-  deploy = true
-
+  depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
+  flow_json      = file("davinci-flows/device-management-flow/device-management-mainflow.json")
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
+
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+
+    replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.pingone_mfa.id
+    name = data.davinci_connection.pingone_mfa.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
-    name = "PingOne MFA"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
-  }
   subflow_link {
-    id   = davinci_flow.device_management_subflow.id
-    name = davinci_flow.device_management_subflow.name
+    id   = resource.davinci_flow.device_management_subflow.id
+    name = resource.davinci_flow.device_management_subflow.name
+
+    replace_import_subflow_id       = "67222b80a2c0c6fb387f7b66c35c3dd9"
   }
 
-}
-
-resource "davinci_flow" "password_reset_flow" {
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-
-  flow_json = file("davinci-flows/password-reset-flow/password-reset-mainflow.json")
-
-  deploy = true
-
-  environment_id = pingone_environment.my_environment.id
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
-  }
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Flow Connector"], 0)
-    name = "Flow Connector"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
-  }
-  subflow_link {
-    id   = davinci_flow.password_reset_subflow.id
-    name = davinci_flow.password_reset_subflow.name
-  }
 }
 
 resource "davinci_flow" "device_management_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/device-management-flow/device-management-subflow.json")
-  deploy         = true
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "PingOne MFA"], 0)
-    name = "PingOne MFA"
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
+    id   = data.davinci_connection.pingone_mfa.id
+    name = data.davinci_connection.pingone_mfa.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+   connection_link {
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
   }
 
   connection_link {
     id   = davinci_connection.strings.id
-    name = "String Manipulation"
+    name = davinci_connection.strings.name
+  } 
+
+}
+
+resource "davinci_flow" "password_reset_flow" {
+  depends_on     = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  flow_json      = file("davinci-flows/password-reset-flow/password-reset-mainflow.json")
+
+  connection_link {
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
   }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.flow_connector.id
+    name = data.davinci_connection.flow_connector.name
+
+    replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.ping_sso.id
+    name = data.davinci_connection.ping_sso.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
+  }
+
+  subflow_link {
+    id   = resource.davinci_flow.password_reset_subflow.id
+    name = resource.davinci_flow.password_reset_subflow.name
+
+    replace_import_subflow_id       = "d3a8aa9c2469529fc3c7d0a4e9916ed8"
+  }
+
 }
 
 resource "davinci_flow" "password_reset_subflow" {
   depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
   flow_json      = file("davinci-flows/password-reset-flow/password-reset-subflow.json")
-  deploy         = true
+  environment_id = pingone_environment.my_environment.id
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    name = data.davinci_connection.ping_sso.name
   }
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
+    id   = data.davinci_connection.node_connector.id
+    name = data.davinci_connection.node_connector.name
   }
 
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Node"], 0)
-    name = "Node"
-  }
 }
 
 resource "davinci_flow" "profile_management_flow" {
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-
-  flow_json = file("davinci-flows/profile-management-flow.json")
-
-  deploy = true
-
+  depends_on     = [data.davinci_connections.read_all]
   environment_id = pingone_environment.my_environment.id
+  flow_json      = file("davinci-flows/profile-management-flow.json")
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
-    name = "Http"
+    id   = data.davinci_connection.http_connector.id
+    name = data.davinci_connection.http_connector.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.variables.id
+    name = data.davinci_connection.variables.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.annotation.id
+    name = data.davinci_connection.annotation.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.error_message.id
+    name = data.davinci_connection.error_message.name
+  }
+
+  connection_link {
+    id   = data.davinci_connection.functions.id
+    name = data.davinci_connection.functions.name
   }
 
   connection_link {
     id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Variables"], 0)
-    name = "Variables"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Annotation"], 0)
-    name = "Annotation"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Error Message"], 0)
-    name = "Error Message"
-  }
-
-  connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Functions"], 0)
-    name = "Functions"
+    name = data.davinci_connection.ping_sso.name
   }
 
 }
@@ -722,7 +854,7 @@ resource "davinci_connection" "strings" {
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/application}
 
-resource "davinci_application" "registration_flow_app" {
+resource "davinci_application" "passwordless_main_flow_app" {
   name           = "DaVinci OIDC Passwordless Sample Application"
   environment_id = pingone_environment.my_environment.id
   depends_on     = [data.davinci_connections.read_all]
@@ -736,20 +868,18 @@ resource "davinci_application" "registration_flow_app" {
       redirect_uris                 = ["https://auth.pingone.${local.pingone_domain}/${pingone_environment.my_environment.id}/rp/callback/openid_connect"]
     }
   }
-  policy {
-    name   = "DaVinci OIDC Passwordless Sample Policy"
-    status = "enabled"
-    policy_flow {
-      flow_id    = davinci_flow.registration_flow.id
-      version_id = -1
-      weight     = 100
-    }
-  }
-  saml {
-    values {
-      enabled                = false
-      enforce_signed_request = false
-    }
+}
+
+resource "davinci_application_flow_policy" "registration_flow_policy"  {
+  depends_on = [data.davinci_connections.read_all]
+  environment_id = pingone_environment.my_environment.id
+  application_id = davinci_application.passwordless_main_flow_app.id
+  name   = "DaVinci OIDC Passwordless Sample Policy"
+  status = "enabled"
+  policy_flow {
+    flow_id    = resource.davinci_flow.passwordless_main_flow.id
+    version_id = -1
+    weight     = 100
   }
 }
 
@@ -926,6 +1056,27 @@ resource "davinci_variable" "ciam_recoveryLimit" {
   value          = "5"
   type           = "number"
 }
+
+resource "davinci_variable" "ciam_protectriskPolicyId" {
+  depends_on     = [data.http.get_risk_policy_id,data.davinci_connections.read_all]
+  name           = "ciam_protectriskPolicyId"
+  environment_id = pingone_environment.my_environment.id
+  description    = "Default Risk Policy ID"
+  context        = "company"
+  value          = "${local.policy_id}"
+  type           = "string"
+}
+
+resource "davinci_variable" "ciam_protectriskPolicyId_flow" {
+  depends_on     = [data.http.get_risk_policy_id,data.davinci_connections.read_all]
+  name           = "ciam_protectriskPolicyId"
+  environment_id = pingone_environment.my_environment.id
+  description    = "Default Risk Policy ID"
+  context        = "flowInstance"
+  value          = "${local.policy_id}"
+  type           = "string"
+}
+
 
 resource "davinci_variable" "ciam_errorMessage" {
   depends_on     = [data.davinci_connections.read_all]

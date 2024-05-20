@@ -68,4 +68,6 @@ locals {
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token
+  policy_data =  jsondecode(data.http.get_risk_policy_id.response_body)
+  policy_id   =  local.policy_data._embedded.riskPolicySets[0].id
 }

@@ -14,3 +14,7 @@ output "pingone_domain" {
 output "oauth_client_id" {
   value = pingone_application.oidc_sdk_sample_app.id
 }
+
+output "risk_policy_id" {
+  value = local.policy_id
+}
