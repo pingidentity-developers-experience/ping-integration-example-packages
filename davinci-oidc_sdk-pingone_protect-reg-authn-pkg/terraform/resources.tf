@@ -70,7 +70,7 @@ resource "pingone_application" "oidc_sdk_sample_app" {
     pkce_enforcement            = "S256_REQUIRED"
     token_endpoint_authn_method = "NONE"
     redirect_uris               = local.redirect_uris
-    post_logout_redirect_uris   = ["${local.app_url}"]
+    post_logout_redirect_uris   = ["${var.app_url}"]
   }
 }
 
@@ -97,8 +97,7 @@ resource "pingone_application" "worker_app" {
 resource "pingone_application_flow_policy_assignment" "login_flow" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  flow_policy_id = davinci_application.registration_flow_app.policy.* [index(davinci_application.registration_flow_app.policy[*].name, "DaVinci SSO Protect Sample Policy")].policy_id
-
+  flow_policy_id = davinci_application_flow_policy.registration_flow_app_policy.id
   priority = 1
 }
 

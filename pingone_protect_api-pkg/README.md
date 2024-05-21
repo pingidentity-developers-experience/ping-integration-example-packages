@@ -111,8 +111,6 @@ npm start
 Access the sample application at:
 https://127.0.0.1:8080
 
-View [http-server](https://www.npmjs.com/package/http-server) documentation for additional server options.
-
 Note: Terraform will add a user to PingOne with a username of demouser1, you can use this to get a risk assessment for a PingOne user, any other username will generate a risk assessment for an `EXTERNAL` user.
 
 ##### Deploy Using an Existing PingOne Environment

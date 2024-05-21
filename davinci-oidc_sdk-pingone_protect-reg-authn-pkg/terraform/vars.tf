@@ -50,10 +50,15 @@ variable "admin_password" {
   description = "Password to use for the DaVinci provider"
 }
 
+variable "app_url" {
+  type        = string
+  description = "Application URL"
+  default     = "https://127.0.0.1:8080"
+}
+
 locals {
   # The URL of the demo app
-  app_url       = "https://127.0.0.1:8080"
-  redirect_uris = ["${local.app_url}/dashboard.html"]
+  redirect_uris = ["${var.app_url}/dashboard.html"]
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token

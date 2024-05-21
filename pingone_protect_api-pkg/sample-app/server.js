@@ -17,8 +17,9 @@ const fastify = Fastify({
   trustProxy: true,
   http2: true,
   https: {
-    key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
+   allowHTTP1: true,
+   key: fs.readFileSync(path.join(__dirname, 'certs', 'key.pem')),
+   cert: fs.readFileSync(path.join(__dirname, 'certs', 'cert.pem')),
   }
 });
 
