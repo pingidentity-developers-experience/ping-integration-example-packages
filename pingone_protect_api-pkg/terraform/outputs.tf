@@ -6,3 +6,16 @@
 output "pingone_envid" {
   value = pingone_environment.my_environment.id
 }
+
+output "worker_app_client_id" {
+  value = pingone_application.worker_app.oidc_options[0].client_id
+}
+
+output "worker_app_client_secret" {
+  value     = pingone_application.worker_app.oidc_options[0].client_secret
+  sensitive = true
+}
+
+output "pingone_domain" {
+  value = local.pingone_domain
+}

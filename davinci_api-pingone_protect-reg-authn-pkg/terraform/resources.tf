@@ -56,30 +56,11 @@ resource "pingone_application" "worker_app" {
   }
 }
 
-resource "davinci_connection" "pingone_protect" {
-  connector_id   = "pingOneRiskConnector"
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne Protect Test"
-
-  property {
-    name  = "envId"
-    value = pingone_environment.my_environment.id
-  }
-  property {
-    name  = "clientId"
-    value = pingone_application.worker_app.id
-  }
-  property {
-    name  = "clientSecret"
-    value = pingone_application.worker_app.oidc_options[0].client_secret
-  }
-}
-
 ##########################################################################
 # Output PingOne Environment variables to local global.js file
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${module.pingone_utils.pingone_domain_suffix}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\", \n  companyId: \"${davinci_application.registration_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${davinci_application_flow_policy.registration_flow_app_policy.id}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${module.pingone_utils.pingone_domain_suffix}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\", \n companyId: \"${davinci_application.registration_flow_app.environment_id}\", \n apiKey: \"${davinci_application.registration_flow_app.api_keys.prod}\",\n  policyId: \"${davinci_application_flow_policy.registration_flow_app_policy.id}\"\n};"
   filename = "../sample-app/global.js"
 }

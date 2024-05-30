@@ -8,8 +8,14 @@
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
+resource "time_sleep" "davinci" {
+  create_duration = "120s"
+  depends_on      = [pingone_environment.my_environment]
+}
+
 data "davinci_connections" "read_all" {
   environment_id = pingone_environment.my_environment.id
+  depends_on     = [ time_sleep.davinci ]
 }
 
 #########################################################################
