@@ -7,8 +7,6 @@ variable "region" {
   description = "Region your P1 Org is in"
 }
 
-
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
@@ -42,10 +40,15 @@ variable "env_name" {
   default     = "Ping ForgeRock SDK Example"
 }
 
+variable "app_url" {
+  type        = string
+  description = "Application URL"
+  default     = "https://localhost:8080"
+}
+
 locals {
   # The URL of the demo app
-  app_url       = "https://localhost:8080"
-  redirect_uris = ["${local.app_url}/dashboard.html"]
+  redirect_uris = ["${var.app_url}/dashboard.html"]
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token
