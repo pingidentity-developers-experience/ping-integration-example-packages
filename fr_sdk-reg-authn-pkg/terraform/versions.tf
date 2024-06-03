@@ -5,9 +5,5 @@ terraform {
       source  = "pingidentity/pingone"
       version = ">= 0.21.0, < 1.0.0"
     }
-    davinci = {
-      source  = "pingidentity/davinci"
-      version = ">= 0.1.5, < 1.0.0"
-    }
   }
 }

@@ -66,9 +66,9 @@ Install Terraform on your machine, following the instructions [here](https://dev
 After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
-
 pingone_environment_id    = "{{adminEnvId}}"
+
+region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 admin_user_id   = "{{adminUserId}}"
 license_id      = "{{licenseId}}"
 worker_id       = "{{workerId}}"
