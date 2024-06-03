@@ -68,7 +68,7 @@ After cloning the project, navigate to `/terraform` and create a `terraform.tfva
 ```hcl
 pingone_environment_id    = "{{adminEnvId}}"
 
-region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
+region          = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 admin_user_id   = "{{adminUserId}}"
 license_id      = "{{licenseId}}"
 worker_id       = "{{workerId}}"
@@ -91,7 +91,7 @@ worker_secret   = "{{workerSecret}}"
 In the command line, navigate to the `/terraform` directory and run:
 
 ```code
-export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
+export PINGONE_REGION="{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 terraform init
 terraform plan
 ```

@@ -68,7 +68,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 After cloning the project, navigate to the `/terraform` folder and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
+region            = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 pingone_environment_id      = "{{adminEnvId}}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
@@ -96,7 +96,7 @@ admin_password    = "{{adminPassword}}"
 In the command line, navigate to the `/terraform` folder and run:
 
 ```code
-export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
+export PINGONE_REGION="{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 terraform init
 terraform plan
 ```
