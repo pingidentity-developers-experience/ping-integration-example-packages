@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <link id="favicon" rel="icon" href="images/favicon.ico" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="An example integration between PingOne and a custom app using the ForgeRock JavaScript SDK.">
+      <title>Ping Identity Integration Example Application</title>
+      <link rel="stylesheet" href="css/styles.css" />
+      <script src="global.js"></script>
+  </head>
+  <body>
+    <section class="container">
+      <div class="logo"><img src="images/logo.png" width="325" alt="Ping Identity" /></div>
+      <div class="header">
+        <div class="subtitle">ForgeRock SDK Sample App</div>
+        <div class="title">Developer Experience</div>
+      </div>
+      <div class="content">
+        <h1>Welcome!</h1>
+        <br/>
+        <button id="loginBtn" class="button-link">Click to Login</button>
+      </div>
+    </section>
+    
+    <script type="module">
+      // When first learning the SDK or prototyping your app, you can choose to leverage a CDN like unpkg, or Skypack to add the SDK to your projects.
+      // This is not recommended for production apps as it could potentially introduce an attack vector for supply-chain attacks
+      import * as forgerock from 'https://cdn.skypack.dev/@forgerock/javascript-sdk';
+
+      await forgerock.Config.setAsync({
+        clientId: window._env_.clientId, 
+        redirectUri: 'https://localhost:8080/dashboard.html',
+        scope: "openid profile email revoke",
+        serverConfig: {
+          wellknown: `https://auth.pingone.${window._env_.pingOneDomain}/${window._env_.pingOneEnvId}/as/.well-known/openid-configuration`,
+        },
+      });
+
+      document.querySelector('#loginBtn').addEventListener('click', async () => {
+        /**
+         * The key-value of `login: redirect` is what allows central-login.
+         * Passing no arguments or a key-value of `login: 'embedded'` means
+         * the app handles authentication locally.
+         */
+        await forgerock.TokenManager.getTokens({ forceRenew: false, login: 'redirect' });
+      });
+    </script>
+  </body>
+</html>

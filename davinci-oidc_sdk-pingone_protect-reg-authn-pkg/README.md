@@ -71,7 +71,7 @@ After cloning the project, navigate to `/davinci-oidc_sdk-pingone_protect-reg-au
 ```hcl
 pingone_environment_id      = "{{adminEnvId}}"
 
-region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
+region            = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
 worker_id         = "{{workerId}}"
@@ -98,7 +98,7 @@ admin_password    = "{{adminPassword}}"
 In the command line, navigate to the `/terraform` directory and run:
 
 ```code
-export PINGONE_REGION="{{ NorthAmerica | Canada | Asia | Europe }}"
+export PINGONE_REGION="{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 terraform init
 terraform plan
 ```
