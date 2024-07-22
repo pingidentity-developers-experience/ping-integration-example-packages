@@ -40,12 +40,24 @@ variable "env_name" {
   default     = "DaVinci API Protect Sample"
 }
 
-variable "admin_username" {
+variable "dv_admin_username" {
   type        = string
   description = "Username to use for the DaVinci provider"
 }
 
-variable "admin_password" {
+variable "dv_admin_password" {
   type        = string
   description = "Password to use for the DaVinci provider"
+}
+
+variable "davinci_admin_group" {
+  type        = string
+  description = "Name of the group that has DaVincvi Admin rights"
+  default     = "DaVinci Terraform Administrators"
+}
+
+variable "assign_dv_admin_role" {
+  type        = bool
+  description = "Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false."
+  default     = true
 }

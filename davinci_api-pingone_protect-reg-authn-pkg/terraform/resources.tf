@@ -4,23 +4,7 @@
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 ##########################################################################
 
-// Assign the "Identity Data Admin" role to the DV admin user
-resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
-  environment_id       = var.pingone_environment_id
-  user_id              = data.pingone_user.dv_admin_user.id
-  role_id              = data.pingone_role.identity_data_admin.id
-  scope_environment_id = pingone_environment.my_environment.id
-}
-
-// Assign the "Environment Admin" role to the DV admin user
-resource "pingone_role_assignment_user" "admin_sso_environment_admin" {
-  environment_id       = var.pingone_environment_id
-  user_id              = data.pingone_user.dv_admin_user.id
-  role_id              = data.pingone_role.environment_admin.id
-  scope_environment_id = pingone_environment.my_environment.id
-}
-
-// Assign the "Identity Data Admin" role to the DV admin user
+// Assign the "Identity Data Admin" role to the worker application
 resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -29,7 +13,7 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Assign the "Environment Admin" role to the DV admin user
+// Assign the "Environment Admin" role to the worker application
 resource "pingone_application_role_assignment" "population_environment_admin_to_application" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.worker_app.id
@@ -37,6 +21,17 @@ resource "pingone_application_role_assignment" "population_environment_admin_to_
 
   scope_environment_id = pingone_environment.my_environment.id
 }
+
+// Add new environment to DaVinci Admin group
+resource "pingone_group_role_assignment" "single_environment_admin_to_group" {
+  count          = var.assign_dv_admin_role ? 1 : 0
+  environment_id = var.pingone_environment_id
+  group_id       = data.pingone_group.davinci_admin.id
+  role_id        = data.pingone_role.davinci_admin.id
+
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
 
 ##########################################################################
 # PingOne Connection (application)

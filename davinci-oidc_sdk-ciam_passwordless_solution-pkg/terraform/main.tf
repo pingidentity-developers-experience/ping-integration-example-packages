@@ -70,8 +70,8 @@ provider "pingone" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
-  username       = var.admin_username
-  password       = var.admin_password
+  username       = var.dv_admin_username
+  password       = var.dv_admin_password
   region         = var.region
   environment_id = var.pingone_environment_id
 }

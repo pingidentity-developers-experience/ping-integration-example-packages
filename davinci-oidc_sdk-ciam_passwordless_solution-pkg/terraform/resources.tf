@@ -22,6 +22,16 @@ resource "pingone_application_role_assignment" "population_environment_admin_to_
   scope_environment_id = pingone_environment.my_environment.id
 }
 
+// Add new environment to DaVinci Admin group
+resource "pingone_group_role_assignment" "single_environment_admin_to_group" {
+  count          = var.assign_dv_admin_role ? 1 : 0
+  environment_id = var.pingone_environment_id
+  group_id       = data.pingone_group.davinci_admin.id
+  role_id        = data.pingone_role.davinci_admin.id
+
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
 ##############################################
 # PingOne Populations
 ##############################################
