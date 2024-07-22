@@ -10,8 +10,8 @@
 
 
 resource "time_sleep" "davinci" {
-  create_duration = "120s"
-  depends_on      = [pingone_environment.my_environment]
+  create_duration = "90s"
+  depends_on      = [ pingone_environment.my_environment ]
 }
 
 data "davinci_connections" "read_all" {
@@ -30,12 +30,11 @@ resource "davinci_flow" "registration_flow" {
   ]
 
   flow_json = file("davinci-api-reg-authn-flow.json")
-  deploy    = true
 
   environment_id = pingone_environment.my_environment.id
 
   connection_link {
-    id   = element([for s in data.davinci_connections.read_all.connections : s.id if s.name == "Http"], 0)
+    id   = data.davinci_connection.http_connector.id
     name = "Http"
   }
 
@@ -62,13 +61,6 @@ resource "davinci_application" "registration_flow_app" {
       enabled                       = true
       enforce_signed_request_openid = false
       redirect_uris                 = ["${module.pingone_utils.pingone_url_auth_path_full}/rp/callback/openid_connect"]
-    }
-  }
-
-  saml {
-    values {
-      enabled                = false
-      enforce_signed_request = false
     }
   }
 }

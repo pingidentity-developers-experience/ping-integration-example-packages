@@ -46,7 +46,6 @@ provider "pingone" {
   client_secret                = var.worker_secret
   environment_id               = var.pingone_environment_id
   region                       = var.region
-  force_delete_production_type = false
 }
 
 provider "http" {
