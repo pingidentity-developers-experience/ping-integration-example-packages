@@ -33,15 +33,18 @@
             >
               Access Token
             </button>
-            <button class="tab-btn" onclick="changeTabs(event, 'id-token-tab')">
-              ID Token
-            </button>
             <button
+              class="tab-btn"
+              onclick="changeTabs(event, 'formatted-res-tab')"
+            >
+              Formatted Response
+            </button>
+            <!-- <button
               class="tab-btn"
               onclick="changeTabs(event, 'user-info-tab')"
             >
               User Info
-            </button>
+            </button> -->
           </div>
           <!-- Tab content -->
           <div
@@ -51,12 +54,12 @@
           >
             <p id="access-token"></p>
           </div>
-          <div id="id-token-tab" class="tab-content">
-            <p id="id-token"></p>
+          <div id="formatted-res-tab" class="tab-content">
+            <p id="formatted-res"></p>
           </div>
-          <div id="user-info-tab" class="tab-content">
+          <!-- <div id="user-info-tab" class="tab-content">
             <p id="user-info"></p>
-          </div>
+          </div> -->
         </div>
         <div style="padding-top: 30px; padding-bottom: 70px">
           <button id="logout" class="button-link">Logout</button>
@@ -74,11 +77,14 @@
         const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
         const clientId = window._env_.clientId; // PingOne Application Client ID
         const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
+        const companyId = window._env_.companyId; // DaVinci Company ID
+        const dvApiKey = window._env_.apiKey; // DaVinci API Key
+        const policyId = window._env_.policyId; // DaVinci
 
         const clientOptions = {
           client_id: clientId,
           redirect_uri: redirectUri,
-          scope: "big conf/R sens/GDIS", // revoke is a custom PingOne resource scope
+          scope: "btg conf/R sens/GDIS", // revoke is a custom PingOne resource scope
         };
 
         const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(
@@ -86,10 +92,53 @@
           clientOptions
         );
 
+        function startDVFlow(token) {
+          const dvStartUrl = `https://orchestrate-api.pingone.${pingOneDomain}/v1/company/${companyId}/policy/${policyId}/start`;
+
+          //*** Add the API Key from your DaVinci application. ***/
+          var headers = new Headers();
+          headers.append("X-SK-API-KEY", dvApiKey);
+          headers.append("Content-Type", "application/json");
+
+          const AT = token.access_token;
+          const decodedToken = JSON.parse(window.atob(AT.split(".")[1]));
+          //*** Add parameters required in Davinci flow input schema. ***/
+          var body = {
+            token_response: token,
+            access_token: decodedToken,
+          };
+
+          var payload = JSON.stringify(body);
+
+          var requestOptions = {
+            method: "POST",
+            headers: headers,
+            redirect: "manual",
+            body: payload,
+          };
+
+          fetch(dvStartUrl, requestOptions)
+            .then((response) => response.json())
+            .then((responseData) => {
+              console.log(responseData);
+              if (responseData.additionalProperties.formatted_res) {
+                const data = JSON.parse(
+                  responseData.additionalProperties.formatted_res
+                );
+                document.getElementById("formatted-res").innerHTML =
+                  "<pre style='overflow-x: auto'>" +
+                  JSON.stringify(data, undefined, 1) +
+                  "</pre>";
+              }
+            })
+            .catch((error) => console.log(error));
+        }
+
         if (await client.hasToken()) {
           // Get the token from storage
           const token = await client.getToken();
           updateUI(token);
+          startDVFlow(token);
           // try {
           //   // Used to get the user info from the userinfo endpoint on the auth server, must be used after user has gone through authorize flow and a token is available in storage.
           //   const userInfo = await client.fetchUserInfo();
@@ -134,7 +183,6 @@
       function updateUI(token) {
         const AT = token.access_token;
         const decodedToken = JSON.parse(window.atob(AT.split(".")[1]));
-        console.log("decodedToken", decodedToken);
         document.getElementById("access-token").innerHTML =
           "<pre style='overflow-x: auto'>" +
           JSON.stringify(decodedToken, undefined, 1) +
