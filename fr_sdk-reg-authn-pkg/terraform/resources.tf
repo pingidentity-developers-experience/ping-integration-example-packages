@@ -120,7 +120,7 @@ resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" 
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_name  = "openid"
 
   scope_names = [
     "profile",
@@ -132,11 +132,9 @@ resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_id    = pingone_resource.oidc_sdk.id
+  resource_name  = "OIDC SDK"
 
-  scopes = [
-    pingone_resource_scope.revoke.id
-  ]
+  scope_names = [ "revoke" ]
 }
 
 ##############################################
