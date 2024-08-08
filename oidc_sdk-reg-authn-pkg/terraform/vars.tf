@@ -2,9 +2,9 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
 }
 
 

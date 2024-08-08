@@ -22,11 +22,16 @@ resource "pingone_application" "worker_app" {
   name           = "DemoWorkerApp"
   enabled        = true
 
-  oidc_options {
+  oidc_options = {
     type                        = "WORKER"
     grant_types                 = ["CLIENT_CREDENTIALS"]
-    token_endpoint_authn_method = "CLIENT_SECRET_BASIC"
+    token_endpoint_auth_method = "CLIENT_SECRET_BASIC"
   }
+}
+
+resource "pingone_application_secret" "worker_app" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
 }
 
 # PingOne Role Assignment
@@ -58,6 +63,6 @@ resource "pingone_resource" "protect_api" {
 ###############################################################
 
 resource "local_file" "env" {
-  content  = "P1_DOMAIN=\"${module.pingone_utils.pingone_domain_suffix}\"\nP1_ENV_ID=\"${pingone_environment.my_environment.id}\"\nP1_WORKER_CLIENT_ID=\"${pingone_application.worker_app.oidc_options[0].client_id}\"\nP1_WORKER_CLIENT_SECRET=\"${pingone_application.worker_app.oidc_options[0].client_secret}\""
+  content  = "P1_DOMAIN=\"${module.pingone_utils.pingone_domain_suffix}\"\nP1_ENV_ID=\"${pingone_environment.my_environment.id}\"\nP1_WORKER_CLIENT_ID=\"${pingone_application.worker_app.oidc_options.client_id}\"\nP1_WORKER_CLIENT_SECRET=\"${pingone_application_secret.worker_app.secret}\""
   filename = "../sample-app/.env"
 }

@@ -2,9 +2,9 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
 }
 
 variable "license_id" {
@@ -42,11 +42,12 @@ variable "env_name" {
 
 locals {
   # Translate the Region to a Domain suffix
-  north_america  = var.region == "NorthAmerica" ? "com" : ""
-  europe         = var.region == "Europe" ? "eu" : ""
-  canada         = var.region == "Canada" ? "ca" : ""
-  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
-  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
+  north_america   = var.region_code == "NA" ? "com" : ""
+  europe          = var.region_code == "EU" ? "eu" : ""
+  canada          = var.region_code == "CA" ? "ca" : ""
+  asia_pacific_ap = var.region_code == "AP" ? "asia" : ""
+  asia_pacific_au = var.region_code == "AU" ? "com.au" : ""
+  pingone_domain  = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific_ap, local.asia_pacific_au)
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token
