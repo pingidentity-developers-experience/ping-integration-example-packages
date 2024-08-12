@@ -39,7 +39,7 @@ resource "pingone_group_role_assignment" "single_environment_admin_to_group" {
 # PingOne Population
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
-resource "pingone_population" "oidc_sdk_pop" {
+resource "pingone_population_default" "oidc_sdk_pop" {
   environment_id = pingone_environment.my_environment.id
   name           = "Sample Users"
   description    = "Sample Population"
@@ -57,12 +57,12 @@ resource "pingone_application" "oidc_sdk_sample_app" {
   name           = "Sample App"
   description    = "A custom sample OIDC application to demonstrate PingOne integration."
 
-  oidc_options {
+  oidc_options = {
     type                        = "SINGLE_PAGE_APP"
     grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT", "REFRESH_TOKEN"]
     response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
     pkce_enforcement            = "S256_REQUIRED"
-    token_endpoint_authn_method = "NONE"
+    token_endpoint_auth_method  = "NONE"
     redirect_uris               = local.redirect_uris
     post_logout_redirect_uris   = ["${var.app_url}"]
   }
@@ -73,11 +73,16 @@ resource "pingone_application" "worker_app" {
   name           = "Worker App"
   enabled        = true
 
-  oidc_options {
+  oidc_options = {
     type                        = "WORKER"
     grant_types                 = ["CLIENT_CREDENTIALS"]
-    token_endpoint_authn_method = "CLIENT_SECRET_BASIC"
+    token_endpoint_auth_method  = "CLIENT_SECRET_BASIC"
   }
+}
+
+resource "pingone_application_secret" "worker_app" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
 }
 
 ##############################################
@@ -104,22 +109,25 @@ resource "pingone_application_flow_policy_assignment" "login_flow" {
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_name  = "openid"
-
-  scope_names = [
-    "profile",
-    "phone",
-    "email"
+  resource_type = "OPENID_CONNECT"
+  
+  scopes = [
+    pingone_resource_scope_openid.profile_scope.id,
+    pingone_resource_scope_openid.phone_scope.id,
+    pingone_resource_scope_openid.email_scope.id
   ]
 }
 
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_revoke_scope" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  resource_name  = "OIDC SDK"
+  resource_type = "CUSTOM"
+  custom_resource_id = pingone_resource.oidc_sdk.id
 
-  scope_names = ["revoke"]
-  depends_on  = [ pingone_resource_scope.revoke ]
+  scopes = [
+    pingone_resource_scope.revoke.id
+  ]
+  # REMOVE depends_on  = [ pingone_resource_scope.revoke ]
 }
 
 ##############################################
@@ -248,7 +256,7 @@ resource "pingone_notification_template_content" "email" {
   locale         = "en"
   variant        = "Magic Link"
 
-  email {
+  email = {
     body    = <<EOT
 <div style="display: block; text-align: center; font-family: sans-serif; border: 1px solid #c5c5c5; width: 400px; padding: 50px 30px;">
 <img class="align-self-center mb-5" src="$${logoUrl}" alt="$${companyName}" style="$${logoStyle}"/>
@@ -261,7 +269,7 @@ resource "pingone_notification_template_content" "email" {
 EOT
     subject = "Magic Link Authentication"
 
-    from {
+    from = {
       name    = "PingOne"
       address = "noreply@pingidentity.com"
     }
@@ -274,7 +282,7 @@ resource "pingone_notification_template_content" "unknown_device" {
   locale         = "en"
   variant        = "Unknown Device"
 
-  email {
+  email = {
     body    = <<EOT
     <div style="display: block; text-align: center; font-family: sans-serif; border: 1px solid #c5c5c5; width: 400px; padding: 50px 30px;">
       <img class="align-self-center mb-5" src="$${logoUrl}" alt="$${companyName}" style="$${logoStyle}"/>
@@ -286,7 +294,7 @@ resource "pingone_notification_template_content" "unknown_device" {
 EOT
     subject = "CIAM Passwordless - Unknown Device"
 
-    from {
+    from = {
       name    = "PingOne"
       address = "noreply@pingidentity.com"
     }

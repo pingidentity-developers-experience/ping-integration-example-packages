@@ -8,11 +8,11 @@ output "pingone_envid" {
 }
 
 output "worker_app_client_id" {
-  value = pingone_application.worker_app.oidc_options[0].client_id
+  value = pingone_application.worker_app.oidc_options.client_id
 }
 
 output "worker_app_client_secret" {
-  value     = pingone_application.worker_app.oidc_options[0].client_secret
+  value     = pingone_application_secret.worker_app.secret
   sensitive = true
 }
 
