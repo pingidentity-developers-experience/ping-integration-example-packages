@@ -12,11 +12,6 @@ variable "region_code" {
   }
 }
 
-variable "region" {
-  type        = string
-  description = "Region your P1 Org is in"
-}
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
@@ -48,6 +43,11 @@ variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
   default     = "DaVinci OIDC Passwordless Sample"
+}
+
+variable "dv_admin_region" {
+  type        = string
+  description = "Region your P1 Org is in"
 }
 
 variable "dv_admin_username" {
@@ -82,10 +82,10 @@ locals {
   # The URL of the demo app
   redirect_uris = ["${var.app_url}/dashboard.html"]
   # Translate the Region to a Domain suffix
-  north_america  = var.region == "NorthAmerica" ? "com" : ""
-  europe         = var.region == "Europe" ? "eu" : ""
-  canada         = var.region == "Canada" ? "ca" : ""
-  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
+  north_america  = var.dv_admin_region == "NorthAmerica" ? "com" : ""
+  europe         = var.dv_admin_region == "Europe" ? "eu" : ""
+  canada         = var.dv_admin_region == "Canada" ? "ca" : ""
+  asia_pacific   = var.dv_admin_region == "AsiaPacific" ? "asia" : ""
   pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)

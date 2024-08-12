@@ -65,6 +65,6 @@ provider "pingone" {
 provider "davinci" {
   username       = var.dv_admin_username
   password       = var.dv_admin_password
-  region         = var.region
+  region         = var.dv_admin_region
   environment_id = var.pingone_environment_id
 }
