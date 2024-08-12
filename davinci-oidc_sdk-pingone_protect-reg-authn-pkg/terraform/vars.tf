@@ -2,19 +2,14 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
 
   validation {
     condition     = contains(["EU", "NA", "CA", "AP", "AU"], var.region_code)
     error_message = "Allowed values for region_code are \"EU\", \"NA\", \"CA\", \"AP\", \"AU\"."
   }
-}
-
-variable "region_code" {
-  type        = string
-  description = "Region code that your P1 Org is in"
 }
 
 variable "license_id" {
@@ -48,6 +43,11 @@ variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
   default     = "DaVinci SSO Protect Sample"
+}
+
+variable "dv_admin_region" {
+  type        = string
+  description = "Region your P1 Org is in"
 }
 
 variable "dv_admin_username" {

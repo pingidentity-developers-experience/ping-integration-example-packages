@@ -12,11 +12,6 @@ variable "region_code" {
   }
 }
 
-variable "region" {
-  type        = string
-  description = "Region your P1 Org is in"
-}
-
 variable "license_id" {
   type        = string
   description = "Id of the P1 license you want to assign to the Environment"
@@ -48,6 +43,11 @@ variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
   default     = "DaVinci Registration Sample"
+}
+
+variable "dv_admin_region" {
+  type        = string
+  description = "Region your P1 Org is in"
 }
 
 variable "dv_admin_username" {

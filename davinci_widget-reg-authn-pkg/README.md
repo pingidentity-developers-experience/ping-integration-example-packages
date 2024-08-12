@@ -76,12 +76,12 @@ After cloning the project, navigate to the `/terraform` folder and create a `ter
 pingone_environment_id = "{{adminEnvId}}"
 
 region_code   = "{{ NA | CA | AP | AU | EU }}"
-region        = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 admin_user_id = "{{adminUserId}}"
 license_id    = "{{licenseId}}"
 worker_id     = "{{workerId}}"
 worker_secret = "{{workerSecret}}"
 
+dv_admin_region      = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
 dv_admin_username    = "{{adminUsername}}"
 dv_admin_password    = "{{adminPassword}}"
 davinci_admin_group  = "{{dvAdminGroup}}"
@@ -91,12 +91,12 @@ assign_dv_admin_role = true | false
 | Variable               | Description                                                                                                                                                                                                                    |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | region_code            | Region code for PingOne Environment                                                                                                                                                                                            |
-| region                 | Region for PingOne Environment                                                                                                                                                                                                 |
 | pingone_environment_id | PingOne Environment Id for DaVinci Administrators Environment (see prerequisites) - Located under Environment -> Properties                                                                                                    |
 | admin_user_id          | User Id for a user in the DaVinci Administrators Environment (see prerequisites) - Located under Identities -> Users -> Select user -> Click API tab -> ID                                                                     |
 | license_id             | License Id to be used for PingOne Environment                                                                                                                                                                                  |
 | worker_id              | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret          | Client Secret for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret                |
+| dv_admin_region        | Region for PingOne DaVinci Environment                                                                                                                                                                                         |
 | dv_admin_username      | Username for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
 | dv_admin_password      | Password for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
 | davinci_admin_group    | Name of the group that has DaVincvi Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                        |
