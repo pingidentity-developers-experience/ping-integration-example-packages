@@ -19,19 +19,19 @@ data "pingone_resource" "openid" {
 
 data "pingone_resource_scope" "openid_profile" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type = "OPENID_CONNECT"
   name           = "profile"
 }
 
 data "pingone_resource_scope" "openid_phone" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type = "OPENID_CONNECT"
   name           = "phone"
 }
 
 data "pingone_resource_scope" "openid_email" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type = "OPENID_CONNECT"
   name           = "email"
 }
 
@@ -163,7 +163,7 @@ data "http" "get_token" {
   # Optional request headers
   request_headers = {
     Content-Type  = "application/x-www-form-urlencoded",
-    Authorization = "Basic ${base64encode("${pingone_application.worker_app.oidc_options[0].client_id}:${pingone_application.worker_app.oidc_options[0].client_secret}")}"
+    Authorization = "Basic ${base64encode("${pingone_application.worker_app.oidc_options.client_id}:${pingone_application_secret.worker_app.secret}")}"
   }
 
   # Optional request body
@@ -185,7 +185,7 @@ data "http" "create_demo_user" {
   }
 
   # Optional request body"
-  request_body = "{\"email\":\"demouser1@mailinator.com\",\"name\":{\"given\": \"Demo\",\"family\":\"User\"},\"username\":\"demouser1\",\"population\":{\"id\":\"${pingone_population.oidc_sdk_pop.id}\"},\"lifecycle\":{\"status\":\"ACCOUNT_OK\"},\"password\":{\"value\":\"2FederateM0re!\",\"forceChange\": false}}"
+  request_body = "{\"email\":\"demouser1@mailinator.com\",\"name\":{\"given\": \"Demo\",\"family\":\"User\"},\"username\":\"demouser1\",\"population\":{\"id\":\"${pingone_population_default.oidc_sdk_pop.id}\"},\"lifecycle\":{\"status\":\"ACCOUNT_OK\"},\"password\":{\"value\":\"2FederateM0re!\",\"forceChange\": false}}"
 }
 
 data "http" "get_risk_policy_id" {

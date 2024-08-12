@@ -5,6 +5,16 @@
 variable "region" {
   type        = string
   description = "Region your P1 Org is in"
+
+  validation {
+    condition     = contains(["EU", "NA", "CA", "AP", "AU"], var.region_code)
+    error_message = "Allowed values for region_code are \"EU\", \"NA\", \"CA\", \"AP\", \"AU\"."
+  }
+}
+
+variable "region_code" {
+  type        = string
+  description = "Region code that your P1 Org is in"
 }
 
 variable "license_id" {

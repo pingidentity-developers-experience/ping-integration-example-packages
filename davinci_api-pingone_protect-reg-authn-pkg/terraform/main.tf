@@ -13,19 +13,20 @@ resource "pingone_environment" "my_environment" {
   type        = "SANDBOX"
   license_id  = var.license_id
 
-  service {
-    type = "SSO"
-  }
-
-  service {
-    type = "MFA"
-  }
-  service {
-    type = "DaVinci"
-  }
-  service {
-    type = "Risk"
-  }
+  services = [
+    {
+      type = "SSO"
+    },
+    {
+      type = "MFA"
+    },
+    {
+      type = "DaVinci"
+    },
+    {
+      type = "Risk"
+    }
+  ]
 }
 
 # PingOne Environment (Data Source)
@@ -38,10 +39,10 @@ data "pingone_environment" "administrators" {
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
   source  = "pingidentity/utils/pingone"
-  version = "0.0.8"
+  version = "0.1.0"
 
   environment_id = pingone_environment.my_environment.id
-  region         = var.region
+  region_code    = var.region_code
 }
 
 ##############################################
@@ -53,7 +54,7 @@ provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
   environment_id               = var.pingone_environment_id
-  region                       = var.region
+  region_code                  = var.region_code
 }
 
 ##############################################

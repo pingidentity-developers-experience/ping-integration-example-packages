@@ -11,7 +11,7 @@
 # PingOne Population
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
-resource "pingone_population" "oidc_sdk_pop" {
+resource "pingone_population_default" "oidc_sdk_pop" {
   environment_id = pingone_environment.my_environment.id
   name           = "OIDC SDK Sample Users"
   description    = "OIDC SDK Sample Population"
@@ -120,7 +120,7 @@ resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" 
 resource "pingone_application_resource_grant" "oidc_sdk_sample_app_openid" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  # REMOVE resource_name  = "openid"
+  
   resource_type = "OPENID_CONNECT"
   scopes = [
     pingone_resource_scope_openid.profile_scope.id,
