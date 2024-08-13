@@ -62,7 +62,7 @@ variable "dv_admin_password" {
 
 variable "davinci_admin_group" {
   type        = string
-  description = "Name of the group that has DaVincvi Admin rights"
+  description = "Name of the group that has DaVinci Admin rights"
   default     = "DaVinci Terraform Administrators"
 }
 

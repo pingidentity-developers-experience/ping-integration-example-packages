@@ -42,7 +42,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 5. The user will be signed in and landed on the /dashboard endpoint. The email used to login will be displayed on the dashboard page, as well as the user's tokens, and user info.
 6. Click **Logout** to return to the homepage and register a new user, or to demonstrate sign in.
 
-### Sign In as an Existing User - Passsword
+### Sign In as an Existing User - Password
 
 1. Start the sample app and navigate to the URL provided.
 2. Complete the registration instructions above to create a new user, if you have not already done so.
@@ -119,7 +119,7 @@ assign_dv_admin_role = true | false
 | dv_admin_region        | Region for PingOne DaVinci Environment                                                                                                                                                                                         |
 | dv_admin_username      | Username for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
 | dv_admin_password      | Password for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| davinci_admin_group    | Name of the group that has DaVincvi Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                        |
+| davinci_admin_group    | Name of the group that has DaVinci Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                         |
 | assign_dv_admin_role   | Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false. The default is true                                                                                     |
 
 ### Deployment

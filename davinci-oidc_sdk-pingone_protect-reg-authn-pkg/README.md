@@ -99,7 +99,7 @@ assign_dv_admin_role = true | false
 | dv_admin_region        | Region for PingOne DaVinci Environment                                                                                                                                                                                         |
 | dv_admin_username      | Username for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
 | dv_admin_password      | Password for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| davinci_admin_group    | Name of the group that has DaVincvi Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                        |
+| davinci_admin_group    | Name of the group that has DaVinci Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                         |
 | assign_dv_admin_role   | Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false. The default is true                                                                                     |
 
 ### Deployment
