@@ -1,10 +1,12 @@
-# OIDC SDK + Terraform + PingOne Sample App Package
+# BXCompany Branding + OIDC SDK + Terraform + PingOne Sample App Package
 
 ## Use Case
 
 ![Use Case Diagram](./diagram.jpeg)
 
 This integration package combines Terraform, PingOne, and the OIDC SDK to demonstrate user registration and authentication.
+
+The sample app in this package contains BXCompany branded home and dashboard pages.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application.
 
