@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      :root {
+        /* Global Variables - used in common styles */
+        --bxi-primary-font: "Montserrat", sans-serif;
+        --bxi-secondary-font: "Poppins", serif;
+        --bxi-primary-color: #002aec;
+        --bxi-secondary-color: #070001;
+        --bxi-button-color: #ffffff;
+        --bxi-button-bg-color: var(--bxi-primary-color);
+        --bxi-button-bg-hover-color: #0228d5;
+        --bxi-link-button-color: var(--bxi-primary-color);
+        --bxi-link-button-hover-color: var(--bxi-secondary-color);
+        --bxi-footer-color: #ffffff;
+        --bxi-footer-bg-color: #0a0001;
+        --bxi-copyright-color: #817d73;
+
+        /* Vertical Specific Variables - used in <vertical>/customizations.scss */
+        --bxi-company-banner-color: #ffffff;
+        --bxi-dashboard-bg-color: #ffffff;
+        --bxi-company-main-font-color: #253746;
+        --bxi-company-nav-divider-color: #68747f;
+        --bxi-company-nav-border-color: #caced3;
+        --bxi-company-first-icon-gradient: #4462ed;
+        --bxi-company-second-icon-gradient: #d033ff;
+        --bxi-company-video-overlay-bg: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)
+        );
+        --bxi-company-vertical-first-color: var(--bxi-primary-color);
+        --bxi-company-vertical-second-color: #dfc6ff;
+        --bxi-company-pie-first-color: var(--bxi-primary-color);
+        --bxi-company-pie-second-color: #5d00d6;
+        --bxi-company-horizontal-first-color: var(--bxi-primary-color);
+        --bxi-company-horizontal-second-color: #dfc6ff;
+        --bxi-company-horizontal-third-color: #758acd;
+        --bxi-company-components-border: 1px solid #e6e7e9;
+        --bxi-company-components-icon-color: var(--bxi-primary-color);
+        --bxi-company-components-icon-bg: rgba(0, 42, 236, 0.1);
+      }
+    </style>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="global.js"></script>
+  </head>
+  <body>
+    <div class="bxi company home">
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-light py-3">
+          <div class="container">
+            <div class="bxi-nav">
+              <a class="bxi-nav-toggle" role="button">
+                <svg
+                  class="fill-target"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 30 30"
+                  width="30px"
+                  height="30px"
+                >
+                  <path
+                    d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"
+                  />
+                </svg>
+              </a>
+              <ul class="bxi-nav-links bxi-bg-secondary">
+                <li>
+                  <a class="bxi-link bxi-link-light--primary">About</a>
+                </li>
+                <li>
+                  <a class="bxi-link bxi-link-light--primary">Investor</a>
+                </li>
+                <li>
+                  <a class="bxi-link bxi-link-light--primary">Personal</a>
+                </li>
+                <li>
+                  <a class="bxi-link bxi-link-light--primary">FAQs</a>
+                </li>
+                <li>
+                  <a class="bxi-link bxi-link-light--primary">Contact</a>
+                </li>
+              </ul>
+              <a id="bxi-logo" class="navbar-brand py-0 ms-3">
+                <img src="./images/logo.svg" alt="Logo" />
+              </a>
+            </div>
+            <div class="d-flex flex-row position-relative">
+              <svg
+                class="me-3 d-lg-block d-none bxi-icon-color-primary"
+                width="18"
+                height="18"
+                view-box="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="fill-target"
+                  d="M7.53333 0.199951C3.49193 0.199951 0.199997 3.49188 0.199997 7.53328C0.199997 11.5747 3.49193 14.8666 7.53333 14.8666C9.29077 14.8666 10.9047 14.2425 12.1697 13.2066L16.5482 17.5851C16.6157 17.6555 16.6967 17.7117 16.7862 17.7504C16.8758 17.7891 16.9722 17.8095 17.0698 17.8105C17.1673 17.8115 17.2641 17.793 17.3544 17.7562C17.4448 17.7193 17.5268 17.6648 17.5958 17.5958C17.6648 17.5268 17.7193 17.4447 17.7562 17.3544C17.7931 17.2641 17.8116 17.1673 17.8106 17.0697C17.8096 16.9721 17.7891 16.8758 17.7504 16.7862C17.7117 16.6966 17.6555 16.6157 17.5852 16.5481L13.2066 12.1696C14.2426 10.9047 14.8667 9.29072 14.8667 7.53328C14.8667 3.49188 11.5747 0.199951 7.53333 0.199951ZM7.53333 1.66662C10.7821 1.66662 13.4 4.28453 13.4 7.53328C13.4 10.782 10.7821 13.4 7.53333 13.4C4.28457 13.4 1.66666 10.782 1.66666 7.53328C1.66666 4.28453 4.28457 1.66662 7.53333 1.66662Z"
+                  fill="#fff"
+                />
+              </svg>
+              <div class="bxi-user-icon bxi-bg-primary">
+                <svg
+                  class=""
+                  width="16"
+                  height="16"
+                  view-box="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    class="fill-target"
+                    d="M7.49536 7C5.54635 7 4 5.45196 4 3.50005C4 1.54813 5.6104 0 7.49536 0C9.38033 0 11 1.54813 11 3.50005C11 5.45196 9.45353 7 7.49536 7ZM7.49536 1.34619C6.35158 1.34619 5.34507 2.28851 5.34507 3.50005C5.34507 4.71158 6.28753 5.65381 7.49536 5.65381C8.71235 5.65381 9.65482 4.71158 9.65482 3.50005C9.65482 2.28851 8.71235 1.34619 7.49536 1.34619Z"
+                    fill="#fff"
+                  />
+                  <path
+                    class="fill-target"
+                    d="M8 16C4.75959 16 1.37914 15.2736 0.349015 14.349C0.0589788 14.0849 -0.090957 13.6887 0.0590618 13.2925C0.429108 12.3019 2.03925 9 8 9C13.9607 9 15.5709 12.3019 15.9409 13.2925C16.091 13.6887 15.941 14.0849 15.651 14.349C14.6209 15.2736 11.3104 16 8 16ZM1.59917 13.4906C2.33927 13.9529 4.83955 14.6793 8.06995 14.6793C11.3104 14.6793 13.8108 13.9529 14.5509 13.4906C14.1808 12.5661 12.7105 10.2547 8.06995 10.2547C3.36937 10.2547 1.96922 12.5661 1.59917 13.4906Z"
+                    fill="#fff"
+                  />
+                </svg>
+              </div>
+              <div
+                class="bxi-auth-buttons bxi-auth-buttons--primary-link bxi-bg-secondary bxi-bg-lg-transparent ps-3 p-2 p-lg-0"
+              >
+                <button id="bxi-log-in" class="bxi-button">Log In</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <section class="bxi-banner bxi-bg-image">
+        <div class="bxi-banner__image">
+          <div class="d-flex align-items-center h-100 mb-5">
+            <div class="container w-100">
+              <div class="my-5">
+                <h4 class="mb-4 bxi-banner__text">Our Mission</h4>
+                <h1 class="bxi-main-header bxi-banner__text mb-3 mb-lg-4">
+                  We are the complete solution for your company
+                </h1>
+                <p class="fs-5 lh-base mb-4 bxi-banner__text">
+                  We invest a tremendous amount of resources to ensure that our
+                  clients are becoming the greatest companies
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="video-tiles d-flex justify-content-between pb-5">
+              <div class="video-tile__thumbnail me-3 w-100 position-relative">
+                <div
+                  class="thumbnail-overlay position-absolute top-0 start-0 w-100 h-100"
+                ></div>
+                <img src="./images/video-tile-1.png" alt="Video tile 0" />
+                <button
+                  class="bxi-button bxi-button--white thumbnail-button position-absolute top-50 start-50 translate-middle rounded-circle"
+                ></button>
+              </div>
+              <div class="video-tile__thumbnail me-3 w-100 position-relative">
+                <div
+                  class="thumbnail-overlay position-absolute top-0 start-0 w-100 h-100"
+                ></div>
+                <img src="./images/video-tile-2.png" alt="Video tile 1" />
+                <button
+                  class="bxi-button bxi-button--white thumbnail-button position-absolute top-50 start-50 translate-middle rounded-circle"
+                ></button>
+              </div>
+              <div class="video-tile__thumbnail me-3 w-100 position-relative">
+                <div
+                  class="thumbnail-overlay position-absolute top-0 start-0 w-100 h-100"
+                ></div>
+                <img src="./images/video-tile-3.png" alt="Video tile 2" />
+                <button
+                  class="bxi-button bxi-button--white thumbnail-button position-absolute top-50 start-50 translate-middle rounded-circle"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="container">
+        <div class="row mb-5">
+          <div class="col-md-6 gy-5">
+            <h1 class="mb-4 display-5 fw-bold company-main-content-title">
+              Work Process
+            </h1>
+            <p class="fs-5 mb-5 lh-lg company-main-content-description">
+              The first conversation you ever have with a strategic business
+              partner should not be about technology. It should be about your
+              business, vision, workflow and the opportunities that exist to
+              help you grow.
+            </p>
+          </div>
+          <div
+            class="col-md-6 d-flex align-items-center justify-content-center"
+          >
+            <img
+              class="company-main-content-image w-100 mb-4"
+              src="./images/laptop.png"
+              alt="Content"
+            />
+          </div>
+        </div>
+        <div class="row mb-5 d-flex justify-content-center">
+          <div class="col-md-4 mb-5 d-flex flex-column align-items-center">
+            <div class="mb-3 bxi-company-step-icon">
+              <svg
+                width="110"
+                height="103"
+                viewBox="0 0 110 103"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M90 0L65 25V80L90 57.5V0ZM100 20V87.5C94.5 85.75 88.5 85 82.5 85C74 85 61.75 88.25 55 92.5V25C47.75 19.5 37.25 17.5 27.5 17.5C17.75 17.5 7.25 19.5 0 25V98.25C0 99.5 1.25 100.75 2.5 100.75C3 100.75 3.25 100.5 3.75 100.5C10.5 97.25 20.25 95 27.5 95C37.25 95 47.75 97 55 102.5C61.75 98.25 74 95 82.5 95C90.75 95 99.25 96.5 106.25 100.25C106.75 100.5 107 100.5 107.5 100.5C108.75 100.5 110 99.25 110 98V25C107 22.75 103.75 21.25 100 20ZM45 87.05C38.75 85.45 32.5 85 27.5 85C22.2 85 15.9 85.95 10 87.5V30.65C14.55 28.65 20.7 27.5 27.5 27.5C34.3 27.5 40.45 28.65 45 30.65V87.05Z"
+                  fill="url(#paint0_linear_118_196)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_118_196"
+                    x1="-3.5"
+                    y1="6.5"
+                    x2="144.5"
+                    y2="125.5"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop class="first-stop" />
+                    <stop class="second-stop" offset="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="fs-5 w-100 fw-boldish">
+              1. Let&#x27;s learn about each other. We want to learn about your
+              vision, needs and workflow
+            </div>
+          </div>
+          <div class="col-md-4 mb-5 d-flex flex-column align-items-center">
+            <div class="mb-3 bxi-company-step-icon">
+              <svg
+                width="100"
+                height="90"
+                viewBox="0 0 100 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M50 0C77.5 0 100 17.9 100 40C100 62.1 77.5 80 50 80C43.8 80 37.85 79.1 32.35 77.5C17.75 90 0 90 0 90C11.65 78.35 13.5 70.5 13.75 67.5C5.25 60.35 0 50.65 0 40C0 17.9 22.5 0 50 0ZM75 45V35H65V45H75ZM55 45V35H45V45H55ZM35 45V35H25V45H35Z"
+                  fill="url(#paint0_linear_119_245)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_119_245"
+                    x1="-3.18182"
+                    y1="5.70732"
+                    x2="127.667"
+                    y2="114.636"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop class="first-stop" />
+                    <stop class="second-stop" offset="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="fs-5 w-100 fw-boldish">
+              2. We focus on outcome and nothing more. It&#x27;s time to have a
+              real discussion about lifeline&#x27;s process
+            </div>
+          </div>
+          <div class="col-md-4 mb-5 d-flex flex-column align-items-center">
+            <div class="mb-3 bxi-company-step-icon">
+              <svg
+                width="81"
+                height="90"
+                viewBox="0 0 81 90"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M46.0001 0C27.1501 0 11.9501 14.75 11.0001 33.3L1.40005 45.95C0.200051 47.5 1.40005 50 3.50005 50H11.0001V65C11.0001 70.55 15.4501 75 21.0001 75H26.0001V90H61.0001V66.55C72.8501 60.95 81.0001 49 81.0001 35C81.0001 15.7 65.4001 0 46.0001 0ZM66.3 32.85L56.5001 35.45L63.7001 42.7C65.4501 44.4 65.4501 47.3 63.7001 49.05C61.9501 50.8 59.0501 50.8 57.3501 49.05L50.0501 41.85L47.5001 51.65C46.9001 54.1 44.4001 55.5 42.0501 54.85C39.6001 54.2 38.2001 51.75 38.85 49.35L41.5001 39.5L31.6501 42.15C29.2501 42.8 26.75 41.4 26.15 38.95C25.5 36.6 26.9001 34.1 29.3501 33.5L39.1501 30.95L31.95 23.65C30.2 21.95 30.2 19.1 31.95 17.3C33.7001 15.55 36.6001 15.55 38.3001 17.3L45.5501 24.5L48.1501 14.7C48.7501 12.3 51.2001 10.9 53.5001 11.5C56.0001 12.15 57.4001 14.6 56.8001 17.05L54.1501 26.85L63.9501 24.2C66.4001 23.6 68.8501 25 69.5001 27.5C70.1001 29.8 68.7001 32.25 66.3 32.85Z"
+                  fill="url(#paint0_linear_119_253)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_119_253"
+                    x1="-1.62456"
+                    y1="5.70732"
+                    x2="121.191"
+                    y2="87.5792"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop class="first-stop" />
+                    <stop class="second-stop" offset="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="fs-5 w-100 fw-boldish">
+              3. We need to understand the main profit drivers of your business
+            </div>
+          </div>
+          <div class="col-md-4 mb-5 d-flex flex-column align-items-center">
+            <div class="mb-3 bxi-company-step-icon">
+              <svg
+                width="98"
+                height="83"
+                viewBox="0 0 98 83"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M90.5 42.5L97.5 49.55L64.85 82.5L47.5 65L54.5 57.95L64.85 68.35L90.5 42.5ZM35 65L50 80H0V70C0 58.95 17.9 50 40 50L49.45 50.55L35 65ZM40 0C45.3043 0 50.3914 2.10714 54.1421 5.85786C57.8929 9.60859 60 14.6957 60 20C60 25.3043 57.8929 30.3914 54.1421 34.1421C50.3914 37.8929 45.3043 40 40 40C34.6957 40 29.6086 37.8929 25.8579 34.1421C22.1071 30.3914 20 25.3043 20 20C20 14.6957 22.1071 9.60859 25.8579 5.85786C29.6086 2.10714 34.6957 0 40 0Z"
+                  fill="url(#paint0_linear_119_259)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_119_259"
+                    x1="-3.10227"
+                    y1="5.23171"
+                    x2="117.967"
+                    y2="112.433"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop class="first-stop" />
+                    <stop class="second-stop" offset="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="fs-5 w-100 fw-boldish">
+              4. This is the part of the process where we stop simply talking
+              about all the things we do
+            </div>
+          </div>
+          <div class="col-md-4 mb-5 d-flex flex-column align-items-center">
+            <div class="mb-3 bxi-company-step-icon">
+              <svg
+                width="100"
+                height="91"
+                viewBox="0 0 100 91"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 91V81C0 81 25 71 50 71C75 71 100 81 100 81V91H0ZM46.5 26.5C40.5 7.00001 10 11.5 10 11.5C10 11.5 11 50.5 39.5 44.5C37.5 30 30 26 30 26C44 26 45 43 45 43V66C46.5 66 48.5 66 50 66C51.5 66 53.5 66 55 66V45C55 45 55 25.5 70 20.5C70 20.5 60 35.5 60 45.5C95 49 95 1.00001 95 1.00001C95 1.00001 50.5 -3.99999 46.5 26.5Z"
+                  fill="url(#paint0_linear_119_265)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_119_265"
+                    x1="-3.18182"
+                    y1="6.42182"
+                    x2="128.029"
+                    y2="115.283"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop class="first-stop" />
+                    <stop class="second-stop" offset="1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="fs-5 w-100 fw-boldish">
+              5. Result: Now you&#x27;re free to grow with us
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="bxi-footer py-4">
+        <div class="container">
+          <div
+            class="d-block d-lg-flex align-items-center justify-content-between mb-sm-3 mb-4"
+          >
+            <ul class="d-none d-md-flex mb-4 mb-md-3 mb-lg-0 p-0 ls-none">
+              <li class="fs-6 me-4">
+                <a class="bxi-link bxi-link-light--primary fs-6">About</a>
+              </li>
+              <li class="fs-6 me-4">
+                <a class="bxi-link bxi-link-light--primary fs-6">Investor</a>
+              </li>
+              <li class="fs-6 me-4">
+                <a class="bxi-link bxi-link-light--primary fs-6">Personal</a>
+              </li>
+              <li class="fs-6 me-4">
+                <a class="bxi-link bxi-link-light--primary fs-6">FAQs</a>
+              </li>
+              <li class="fs-6 me-4">
+                <a class="bxi-link bxi-link-light--primary fs-6">Contact</a>
+              </li>
+            </ul>
+            <div
+              class="footer-contacts d-flex flex-column-reverse flex-md-row justify-content-start align-items-center align-items-md-start justify-content-md-between justify-content-lg-end"
+            >
+              <div class="footer-support">
+                <div class="text-center text-md-start mb-3 footer-phone-number">
+                  800 568 9678
+                </div>
+                <button class="bxi-button bxi-button--outline bxi-button--lg">
+                  Online support
+                </button>
+              </div>
+              <div class="ms-0 ms-md-3">
+                <div class="ms-0 mb-3 text-center text-md-start">
+                  Follow us:
+                </div>
+                <ul class="d-flex align-items-center ls-none ps-0">
+                  <li>
+                    <button
+                      class="bxi-button bxi-button--outline bxi-button--icon bxi-button--lg me-md-3 me-5"
+                    >
+                      <svg
+                        class=""
+                        width="18"
+                        height="18"
+                        view-box="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="fill-target"
+                          d="M15.3633 0H2.63672C1.18295 0 0 1.18295 0 2.63672V15.3633C0 16.817 1.18295 18 2.63672 18H7.94531V11.6367H5.83594V8.47266H7.94531V6.32812C7.94531 4.58336 9.36461 3.16406 11.1094 3.16406H14.3086V6.32812H11.1094V8.47266H14.3086L13.7812 11.6367H11.1094V18H15.3633C16.817 18 18 16.817 18 15.3633V2.63672C18 1.18295 16.817 0 15.3633 0Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="bxi-button bxi-button--outline bxi-button--icon bxi-button--lg me-md-3 me-5"
+                    >
+                      <svg
+                        class=""
+                        width="18"
+                        height="18"
+                        view-box="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="fill-target"
+                          d="M18 4.04181C17.3306 4.31096 16.6174 4.48937 15.8737 4.57599C16.6388 4.15731 17.2226 3.49937 17.4971 2.70634C16.7839 3.09615 15.9964 3.37149 15.1571 3.52515C14.4799 2.86412 13.5146 2.45471 12.4616 2.45471C10.4186 2.45471 8.77387 3.97477 8.77387 5.83824C8.77387 6.10637 8.79862 6.36418 8.85938 6.60962C5.7915 6.47246 3.07687 5.12462 1.25325 3.0714C0.934875 3.57774 0.748125 4.15731 0.748125 4.78121C0.748125 5.95271 1.40625 6.99118 2.38725 7.5924C1.79437 7.58209 1.21275 7.4243 0.72 7.17577C0.72 7.18609 0.72 7.19949 0.72 7.2129C0.72 8.85671 1.99912 10.2221 3.6765 10.5366C3.37612 10.6119 3.04875 10.648 2.709 10.648C2.47275 10.648 2.23425 10.6356 2.01038 10.5902C2.4885 11.9298 3.84525 12.9147 5.4585 12.9466C4.203 13.8469 2.60888 14.3894 0.883125 14.3894C0.5805 14.3894 0.29025 14.377 0 14.343C1.63462 15.3092 3.57188 15.861 5.661 15.861C12.4515 15.861 16.164 10.7047 16.164 6.23527C16.164 6.08574 16.1584 5.94137 16.1505 5.79802C16.8829 5.32159 17.4982 4.72656 18 4.04181Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="bxi-button bxi-button--outline bxi-button--icon bxi-button--lg"
+                    >
+                      <svg
+                        class=""
+                        width="18"
+                        height="18"
+                        view-box="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          class="fill-target"
+                          d="M9.00289 4.37811C6.45069 4.37811 4.38448 6.44658 4.38448 8.99653C4.38448 11.5487 6.45294 13.615 9.00289 13.615C11.5551 13.615 13.6213 11.5465 13.6213 8.99653C13.6213 6.44433 11.5528 4.37811 9.00289 4.37811ZM9.00289 11.9942C7.34617 11.9942 6.0052 10.6525 6.0052 8.99653C6.0052 7.34056 7.34692 5.99883 9.00289 5.99883C10.6589 5.99883 12.0006 7.34056 12.0006 8.99653C12.0013 10.6525 10.6596 11.9942 9.00289 11.9942Z"
+                          fill="#fff"
+                        />
+                        <path
+                          class="fill-target"
+                          d="M12.7109 0.056539C11.055 -0.0207096 6.9533 -0.0169597 5.29583 0.056539C3.83935 0.124788 2.55463 0.476532 1.51889 1.51226C-0.212076 3.24323 0.00917029 5.57569 0.00917029 8.99638C0.00917029 12.4973 -0.185826 14.7758 1.51889 16.4805C3.25661 18.2175 5.62282 17.9902 9.00301 17.9902C12.471 17.9902 13.6679 17.9925 14.8942 17.5177C16.5614 16.8705 17.8199 15.3803 17.9429 12.7036C18.0209 11.0468 18.0164 6.94592 17.9429 5.28845C17.7944 2.12875 16.0986 0.212536 12.7109 0.056539ZM15.3322 15.3353C14.1974 16.47 12.6232 16.3688 8.98126 16.3688C5.23133 16.3688 3.7276 16.4243 2.63037 15.324C1.36665 14.0663 1.59539 12.0466 1.59539 8.98438C1.59539 4.8407 1.17015 1.85651 5.32883 1.64351C6.28431 1.60976 6.56555 1.59851 8.97076 1.59851L9.00451 1.62101C13.0012 1.62101 16.1369 1.20252 16.3251 5.36045C16.3679 6.30918 16.3776 6.59417 16.3776 8.99563C16.3769 12.7021 16.4474 14.2148 15.3322 15.3353Z"
+                          fill="#fff"
+                        />
+                        <path
+                          class="fill-target"
+                          d="M13.8043 5.27441C14.4004 5.27441 14.8836 4.79123 14.8836 4.19518C14.8836 3.59914 14.4004 3.11595 13.8043 3.11595C13.2083 3.11595 12.7251 3.59914 12.7251 4.19518C12.7251 4.79123 13.2083 5.27441 13.8043 5.27441Z"
+                          fill="#fff"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="container">
+          <p class="mb-3 mb-md-0 fs-8 bxi-copyright-color">
+            © BXCompany, 2024. All rights reserved.
+          </p>
+        </section>
+      </footer>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/@pingidentity-developers-experience/ping-oidc-client-sdk@^2/lib/ping-oidc.js"
+    ></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", async () => {
+        const dashboardUri = "/dashboard.html"; // Log in protected page.
+        const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
+        const pingOneEnvId = window._env_.pingOneEnvId; // PingOne Environment ID
+        const clientId = window._env_.clientId; // PingOne Application Client ID
+        const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
+
+        const clientOptions = {
+          client_id: clientId,
+          redirect_uri: redirectUri,
+          scope: "openid profile email revoke", // revoke is a custom PingOne resource scope
+        };
+
+        // Create oidc client from authorization server's well-known endpoint
+        const client = await pingOidc.OidcClient.initializeFromOpenIdConfig(
+          `https://auth.pingone.${pingOneDomain}/${pingOneEnvId}/as`,
+          clientOptions
+        );
+
+        // User has an access token. Redirect to log in protected page.
+        if (await client.hasToken()) {
+          window.location.assign(redirectUri);
+        }
+
+        // Log in button event listener.
+        document
+          .getElementById("bxi-log-in")
+          ?.addEventListener("click", async () => {
+            await client.authorize();
+          });
+      });
+    </script>
+  </body>
+</html>
