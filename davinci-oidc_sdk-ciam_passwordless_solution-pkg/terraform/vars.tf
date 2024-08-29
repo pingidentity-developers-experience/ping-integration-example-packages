@@ -2,9 +2,14 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
+
+  validation {
+    condition     = contains(["EU", "NA", "CA", "AP", "AU"], var.region_code)
+    error_message = "Allowed values for region_code are \"EU\", \"NA\", \"CA\", \"AP\", \"AU\"."
+  }
 }
 
 variable "license_id" {
@@ -40,6 +45,11 @@ variable "env_name" {
   default     = "DaVinci OIDC Passwordless Sample"
 }
 
+variable "dv_admin_region" {
+  type        = string
+  description = "Region your P1 Org is in"
+}
+
 variable "dv_admin_username" {
   type        = string
   description = "Username to use for the DaVinci provider"
@@ -52,7 +62,7 @@ variable "dv_admin_password" {
 
 variable "davinci_admin_group" {
   type        = string
-  description = "Name of the group that has DaVincvi Admin rights"
+  description = "Name of the group that has DaVinci Admin rights"
   default     = "DaVinci Terraform Administrators"
 }
 
@@ -72,10 +82,10 @@ locals {
   # The URL of the demo app
   redirect_uris = ["${var.app_url}/dashboard.html"]
   # Translate the Region to a Domain suffix
-  north_america  = var.region == "NorthAmerica" ? "com" : ""
-  europe         = var.region == "Europe" ? "eu" : ""
-  canada         = var.region == "Canada" ? "ca" : ""
-  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
+  north_america  = var.dv_admin_region == "NorthAmerica" ? "com" : ""
+  europe         = var.dv_admin_region == "Europe" ? "eu" : ""
+  canada         = var.dv_admin_region == "Canada" ? "ca" : ""
+  asia_pacific   = var.dv_admin_region == "AsiaPacific" ? "asia" : ""
   pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)

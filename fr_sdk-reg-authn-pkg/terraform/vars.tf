@@ -2,9 +2,14 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
+
+  validation {
+    condition     = contains(["EU", "NA", "CA", "AP", "AU"], var.region_code)
+    error_message = "Allowed values for region_code are \"EU\", \"NA\", \"CA\", \"AP\", \"AU\"."
+  }
 }
 
 variable "license_id" {

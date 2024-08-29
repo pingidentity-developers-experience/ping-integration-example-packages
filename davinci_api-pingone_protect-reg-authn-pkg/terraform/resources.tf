@@ -44,10 +44,10 @@ resource "pingone_application" "worker_app" {
   name           = "Worker App"
   enabled        = true
 
-  oidc_options {
+  oidc_options = {
     type                        = "WORKER"
     grant_types                 = ["CLIENT_CREDENTIALS"]
-    token_endpoint_authn_method = "CLIENT_SECRET_BASIC"
+    token_endpoint_auth_method = "CLIENT_SECRET_BASIC"
   }
 }
 
