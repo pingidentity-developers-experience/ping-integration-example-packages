@@ -7,7 +7,7 @@ terraform {
     }
     davinci = {
       source  = "pingidentity/davinci"
-      version = "0.3.3"
+      version = "0.4.4"
     }
     time = {
       source = "hashicorp/time"
