@@ -28,9 +28,12 @@ resource "davinci_flow" "registration_flow" {
     data.davinci_connections.read_all
   ]
 
-  flow_json = file("davinci-widget-reg-authn-flow.json")
-
   environment_id = pingone_environment.my_environment.id
+
+  name        = "PingOne DaVinci Registration Example"
+  description = "Imported on Tue May 16 2023 19:35:07 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-widget-reg-authn-flow.json")
 
   connection_link {
     id   = data.davinci_connection.http_connector.id

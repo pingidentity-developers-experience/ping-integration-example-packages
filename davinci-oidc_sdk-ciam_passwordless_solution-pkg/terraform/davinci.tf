@@ -23,830 +23,961 @@ data "davinci_connections" "read_all" {
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
-resource "davinci_flow" "passwordless_main_flow" {
-  depends_on     = [data.davinci_connections.read_all]
-  flow_json      = file("davinci-flows/davinci-oidc-passwordless-flow.json")
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_account_recovery_subflow" {
+  depends_on = [
+    davinci_variable.ciam_errorconnector,
+    davinci_variable.ciam_protectdevicestatus,
+    davinci_variable.ciam_protectpredictor,
+    davinci_variable.ciam_protectriskid,
+    davinci_variable.ciam_protectrisklevel,
+    davinci_variable.ciam_protectriskpolicyid,
+    davinci_variable.ciam_recoverylimit,
+    davinci_variable.ciam_recoveryvalidationattempts,
+  ]
+
   environment_id = pingone_environment.my_environment.id
 
+  name        = "CIAM-Passwordless-Protect-Account-Recovery-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:55 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/account-recovery-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: flowConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.authentication_connector.id
-    name = data.davinci_connection.authentication_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
-    name = data.davinci_connection.pingone_mfa.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_notifications.id
-    name = data.davinci_connection.pingone_notifications.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.protect_connector.id
-    name = data.davinci_connection.protect_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.device_authentication_subflow.id
-    name = resource.davinci_flow.device_authentication_subflow.name
-
-    replace_import_subflow_id       = "6fc11379c939d1f89efb42105dcd4295"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.account_recovery_subflow.id
-    name = resource.davinci_flow.account_recovery_subflow.name
-
-    replace_import_subflow_id       = "364df5f173b46e296fdd0a128de61ee8"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.agreement_subflow.id
-    name = resource.davinci_flow.agreement_subflow.name
-
-    replace_import_subflow_id       = "02ef9161e97275f09faf2925b4173d77"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.account_registration_subflow.id
-    name = resource.davinci_flow.account_registration_subflow.name
-
-    replace_import_subflow_id       = "ed7202d8251c0980d41119b324980c91"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.verify_email_subflow.id
-    name = resource.davinci_flow.verify_email_subflow.name
-
-    replace_import_subflow_id       = "0ca2d9bf2d20379a006aff1ef4f17e0f"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.change_password_subflow.id
-    name = resource.davinci_flow.change_password_subflow.name
-
-    replace_import_subflow_id       = "f33a958f628aa8368027ca75240103c6"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.threat_detection_subflow.id
-    name = resource.davinci_flow.threat_detection_subflow.name
-
-    replace_import_subflow_id       = "d76548b32520975dfb808ab5a2bf4d25"
-  }
-  
-}
-
-resource "davinci_flow" "account_recovery_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/account-recovery-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_notifications.id
-    name = data.davinci_connection.pingone_notifications.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.protect_connector.id
-    name = data.davinci_connection.protect_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.threat_detection_subflow.id
-    name = resource.davinci_flow.threat_detection_subflow.name
-
-    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
-  }
-
-}
-
-resource "davinci_flow" "account_registration_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/account-reg-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-
+    id                           = data.davinci_connection.flow_connector.id
+    name                         = data.davinci_connection.flow_connector.name
     replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.protect_connector.id
-    name = data.davinci_connection.protect_connector.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: notificationsConnector
   connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.pingone_notifications.id
+    name                         = data.davinci_connection.pingone_notifications.name
+    replace_import_connection_id = "cacf3d2861657174d93cbf445d55797a"
   }
 
+  // Connector link: pingOneRiskConnector
+  connection_link {
+    id                           = data.davinci_connection.protect_connector.id
+    name                         = data.davinci_connection.protect_connector.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
+
+
+  // Subflow link: CIAM-Passwordless-Protect-Threat-Detection-Subflow
   subflow_link {
-    id   = resource.davinci_flow.device_registration_subflow.id
-    name = resource.davinci_flow.device_registration_subflow.name
-
-    replace_import_subflow_id       = "647c3646a11f5fbba68d405eecf52a65"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.agreement_subflow.id
-    name = resource.davinci_flow.agreement_subflow.name
-
-    replace_import_subflow_id       = "4c2ca3a441a1d24d84e75a6e35470b87"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.verify_email_subflow.id
-    name = resource.davinci_flow.verify_email_subflow.name
-
-    replace_import_subflow_id       = "475be3d3d0ed42ace01503e8e95d6e8f"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.threat_detection_subflow.id
-    name = resource.davinci_flow.threat_detection_subflow.name
-
-    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
-  }
-
-}
-
-resource "davinci_flow" "agreement_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/agreement-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                        = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.name
+    replace_import_subflow_id = "fa75459607692f70b795bacd0a37b878"
   }
 }
 
-resource "davinci_flow" "change_password_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
+// Flow Name: CIAM-Passwordless-Protect-Account-Registration-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_account_registration_subflow" {
+  depends_on = [
+    davinci_variable.ciam_errorconnector,
+    davinci_variable.ciam_protectdevicestatus,
+    davinci_variable.ciam_protectpredictor,
+    davinci_variable.ciam_protectriskid,
+    davinci_variable.ciam_protectrisklevel,
+    davinci_variable.ciam_protectriskpolicyid,
+  ]
+
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/change-password-subflow.json")
 
+  name        = "CIAM-Passwordless-Protect-Account-Registration-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:55 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/account-reg-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: flowConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-}
-
-resource "davinci_flow" "device_authentication_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/device-authn-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
-    name = data.davinci_connection.pingone_mfa.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_notifications.id
-    name = data.davinci_connection.pingone_notifications.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.protect_connector.id
-    name = data.davinci_connection.protect_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.magic_link_subflow.id
-    name = resource.davinci_flow.magic_link_subflow.name
-
-    replace_import_subflow_id       = "c990174d6bb04ddf2f712b74eb80fb8b"
-  }
-
-  subflow_link {
-    id   = resource.davinci_flow.threat_detection_subflow.id
-    name = resource.davinci_flow.threat_detection_subflow.name
-
-    replace_import_subflow_id       = "fa75459607692f70b795bacd0a37b878"
-  }
-}
-
-resource "davinci_flow" "magic_link_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/magiclink-authn-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-
+    id                           = data.davinci_connection.flow_connector.id
+    name                         = data.davinci_connection.flow_connector.name
     replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.authentication_connector.id
-    name = data.davinci_connection.authentication_connector.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: pingOneRiskConnector
   connection_link {
-    id   = data.davinci_connection.pingone_notifications.id
-    name = data.davinci_connection.pingone_notifications.name
+    id                           = data.davinci_connection.protect_connector.id
+    name                         = data.davinci_connection.protect_connector.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
   }
 
+  // Connector link: pingOneSSOConnector
   connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
   }
 
+  // Connector link: variablesConnector
   connection_link {
-    id   = davinci_connection.challenge.id
-    name = davinci_connection.challenge.name
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
   }
 
-}
 
-resource "davinci_flow" "device_registration_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/device-registration-subflow.json")
-
-  connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+  // Subflow link: CIAM-Passwordless-Protect-Agreement(ToS)-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_agreement_tos_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_agreement_tos_subflow.name
+    replace_import_subflow_id = "4c2ca3a441a1d24d84e75a6e35470b87"
   }
 
-  connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
+  // Subflow link: CIAM-Passwordless-Protect-Device-Registration-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_device_registration_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_device_registration_subflow.name
+    replace_import_subflow_id = "647c3646a11f5fbba68d405eecf52a65"
   }
 
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+  // Subflow link: CIAM-Passwordless-Protect-Threat-Detection-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.name
+    replace_import_subflow_id = "fa75459607692f70b795bacd0a37b878"
   }
 
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
-    name = data.davinci_connection.pingone_mfa.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-
-  connection_link {
-    id   = davinci_connection.strings.id
-    name = davinci_connection.strings.name
+  // Subflow link: CIAM-Passwordless-Protect-Verify-Email-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_verify_email_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_verify_email_subflow.name
+    replace_import_subflow_id = "475be3d3d0ed42ace01503e8e95d6e8f"
   }
 }
 
-resource "davinci_flow" "threat_detection_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
+// Flow Name: CIAM-Passwordless-Protect-Agreement(ToS)-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow" {
+
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/threat-detection-subflow.json")
 
+  name        = "CIAM-Passwordless-Protect-Agreement(ToS)-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:54 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/agreement-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.protect_connector.id
-    name = data.davinci_connection.protect_connector.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
-}
-
-resource "davinci_flow" "verify_email_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/verify-email-subflow.json")
-
+  // Connector link: pingOneSSOConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
-  }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
   }
 }
 
-resource "davinci_flow" "device_management_flow" {
-  depends_on     = [data.davinci_connections.read_all]
+// Flow Name: CIAM-Passwordless-Protect-Change-Password-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_change_password_subflow" {
+  depends_on = [
+    davinci_variable.ciam_errorconnector,
+  ]
+
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/device-management-flow/device-management-mainflow.json")
 
+  name        = "CIAM-Passwordless-Protect-Change-Password-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:54 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/change-password-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
+  }
 
+  // Connector link: httpConnector
+  connection_link {
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
+  }
+
+  // Connector link: nodeConnector
+  connection_link {
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Device-Authentication-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_device_authentication_subflow" {
+  depends_on = [
+    davinci_variable.ciam_protectdevicestatus,
+    davinci_variable.ciam_protectpredictor,
+    davinci_variable.ciam_protectriskid,
+    davinci_variable.ciam_protectrisklevel,
+    davinci_variable.ciam_protectriskpolicyid,
+  ]
+
+  environment_id = pingone_environment.my_environment.id
+
+  name        = "CIAM-Passwordless-Protect-Device-Authentication-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:55 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/device-authn-subflow.json")
+
+
+  // Connector link: annotationConnector
+  connection_link {
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
+  }
+
+  // Connector link: errorConnector
+  connection_link {
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
+  }
+
+  // Connector link: flowConnector
+  connection_link {
+    id                           = data.davinci_connection.flow_connector.id
+    name                         = data.davinci_connection.flow_connector.name
     replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
-    name = data.davinci_connection.pingone_mfa.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: notificationsConnector
   connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.pingone_notifications.id
+    name                         = data.davinci_connection.pingone_notifications.name
+    replace_import_connection_id = "cacf3d2861657174d93cbf445d55797a"
   }
 
+  // Connector link: pingOneMfaConnector
+  connection_link {
+    id                           = data.davinci_connection.pingone_mfa.id
+    name                         = data.davinci_connection.pingone_mfa.name
+    replace_import_connection_id = "b72bd44e6be8180bd5988ac74cd9c949"
+  }
+
+  // Connector link: pingOneRiskConnector
+  connection_link {
+    id                           = data.davinci_connection.protect_connector.id
+    name                         = data.davinci_connection.protect_connector.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
+
+
+  // Subflow link: CIAM-Passwordless-Protect-Magic-Link-Authentication-Subflow
   subflow_link {
-    id   = resource.davinci_flow.device_management_subflow.id
-    name = resource.davinci_flow.device_management_subflow.name
-
-    replace_import_subflow_id       = "67222b80a2c0c6fb387f7b66c35c3dd9"
+    id                        = davinci_flow.ciam_passwordless_protect_magic_link_authentication_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_magic_link_authentication_subflow.name
+    replace_import_subflow_id = "c990174d6bb04ddf2f712b74eb80fb8b"
   }
 
+  // Subflow link: CIAM-Passwordless-Protect-Threat-Detection-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.name
+    replace_import_subflow_id = "fa75459607692f70b795bacd0a37b878"
+  }
 }
 
-resource "davinci_flow" "device_management_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  flow_json      = file("davinci-flows/device-management-flow/device-management-subflow.json")
+// Flow Name: CIAM-Passwordless-Protect-Device-Registration-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_device_registration_subflow" {
+  depends_on = [
+    davinci_variable.ciam_deviceid,
+  ]
+
   environment_id = pingone_environment.my_environment.id
 
+  name        = "CIAM-Passwordless-Protect-Device-Registration-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:54 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/device-registration-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: pingOneMfaConnector
   connection_link {
-    id   = data.davinci_connection.pingone_mfa.id
-    name = data.davinci_connection.pingone_mfa.name
+    id                           = data.davinci_connection.pingone_mfa.id
+    name                         = data.davinci_connection.pingone_mfa.name
+    replace_import_connection_id = "b72bd44e6be8180bd5988ac74cd9c949"
   }
 
-   connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
+  // Connector link: stringsConnector
+  connection_link {
+    id                           = davinci_connection.stringsconnector__d49474a1b556eb233d3376c918eb3497.id
+    name                         = davinci_connection.stringsconnector__d49474a1b556eb233d3376c918eb3497.name
+    replace_import_connection_id = "d49474a1b556eb233d3376c918eb3497"
   }
 
+  // Connector link: variablesConnector
   connection_link {
-    id   = davinci_connection.strings.id
-    name = davinci_connection.strings.name
-  } 
-
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
 }
 
-resource "davinci_flow" "password_reset_flow" {
-  depends_on     = [data.davinci_connections.read_all]
+// Flow Name: CIAM-Passwordless-Protect-Magic-Link-Authentication-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_magic_link_authentication_subflow" {
+  depends_on = [
+    davinci_variable.ciam_companyname,
+    davinci_variable.ciam_logostyle,
+    davinci_variable.ciam_logourl,
+  ]
+
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/password-reset-flow/password-reset-mainflow.json")
 
+  name        = "CIAM-Passwordless-Protect-Magic-Link-Authentication-Subflow"
+  description = "Imported on Tue May 14 2024 20:50:46 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/magiclink-authn-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: challengeConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = davinci_connection.challengeconnector__94cb18cc8ee6ddaf28e881b16637aec6.id
+    name                         = davinci_connection.challengeconnector__94cb18cc8ee6ddaf28e881b16637aec6.name
+    replace_import_connection_id = "94cb18cc8ee6ddaf28e881b16637aec6"
   }
 
+  // Connector link: flowConnector
   connection_link {
-    id   = data.davinci_connection.flow_connector.id
-    name = data.davinci_connection.flow_connector.name
-
+    id                           = data.davinci_connection.flow_connector.id
+    name                         = data.davinci_connection.flow_connector.name
     replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: notificationsConnector
+  connection_link {
+    id                           = data.davinci_connection.pingone_notifications.id
+    name                         = data.davinci_connection.pingone_notifications.name
+    replace_import_connection_id = "cacf3d2861657174d93cbf445d55797a"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_flow" "ciam_passwordless_protect_registration_authentication_account_recovery_main_flow" {
+  depends_on = [
+    davinci_variable.agreementid,
+    davinci_variable.ciam_accountrecoveryenabled,
+    davinci_variable.ciam_agreementenabled,
+    davinci_variable.ciam_appleenabled,
+    davinci_variable.ciam_authmethod,
+    davinci_variable.ciam_companyname,
+    davinci_variable.ciam_emailotpenabled,
+    davinci_variable.ciam_facebookenabled,
+    davinci_variable.ciam_fidopasskeyenabled,
+    davinci_variable.ciam_googleenabled,
+    davinci_variable.ciam_logostyle,
+    davinci_variable.ciam_logourl,
+    davinci_variable.ciam_magiclinkenabled,
+    davinci_variable.ciam_passwordlessrequired,
+    davinci_variable.ciam_protectdevicestatus,
+    davinci_variable.ciam_protectpredictor,
+    davinci_variable.ciam_protectriskid,
+    davinci_variable.ciam_protectrisklevel,
+    davinci_variable.ciam_protectriskpolicyid,
+    davinci_variable.ciam_sessionlengthinminute,
+    davinci_variable.ciam_smsotpenabled,
+  ]
+
+  environment_id = pingone_environment.my_environment.id
+
+  name        = "CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow"
+  description = "Imported on Wed May 15 2024 17:02:07 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/davinci-oidc-passwordless-flow.json")
+
+
+  // Connector link: annotationConnector
+  connection_link {
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
+  }
+
+  // Connector link: errorConnector
+  connection_link {
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
+  }
+
+  // Connector link: flowConnector
+  connection_link {
+    id                           = data.davinci_connection.flow_connector.id
+    name                         = data.davinci_connection.flow_connector.name
+    replace_import_connection_id = "2581eb287bb1d9bd29ae9886d675f89f"
+  }
+
+  // Connector link: functionsConnector
+  connection_link {
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
+  }
+
+  // Connector link: httpConnector
+  connection_link {
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
+  }
+
+  // Connector link: nodeConnector
+  connection_link {
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
+  }
+
+  // Connector link: notificationsConnector
+  connection_link {
+    id                           = data.davinci_connection.pingone_notifications.id
+    name                         = data.davinci_connection.pingone_notifications.name
+    replace_import_connection_id = "cacf3d2861657174d93cbf445d55797a"
+  }
+
+  // Connector link: pingOneAuthenticationConnector
+  connection_link {
+    id                           = data.davinci_connection.authentication_connector.id
+    name                         = data.davinci_connection.authentication_connector.name
+    replace_import_connection_id = "c3e6a164bde107954e93f5c09f0c8bce"
+  }
+
+  // Connector link: pingOneMfaConnector
+  connection_link {
+    id                           = data.davinci_connection.pingone_mfa.id
+    name                         = data.davinci_connection.pingone_mfa.name
+    replace_import_connection_id = "b72bd44e6be8180bd5988ac74cd9c949"
+  }
+
+  // Connector link: pingOneRiskConnector
+  connection_link {
+    id                           = data.davinci_connection.protect_connector.id
+    name                         = data.davinci_connection.protect_connector.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
+
+
+  // Subflow link: CIAM-Passwordless-Protect-Account-Recovery-Subflow
   subflow_link {
-    id   = resource.davinci_flow.password_reset_subflow.id
-    name = resource.davinci_flow.password_reset_subflow.name
-
-    replace_import_subflow_id       = "d3a8aa9c2469529fc3c7d0a4e9916ed8"
+    id                        = davinci_flow.ciam_passwordless_protect_account_recovery_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_account_recovery_subflow.name
+    replace_import_subflow_id = "364df5f173b46e296fdd0a128de61ee8"
   }
 
+  // Subflow link: CIAM-Passwordless-Protect-Account-Registration-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_account_registration_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_account_registration_subflow.name
+    replace_import_subflow_id = "ed7202d8251c0980d41119b324980c91"
+  }
+
+  // Subflow link: CIAM-Passwordless-Protect-Agreement(ToS)-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_agreement_tos_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_agreement_tos_subflow.name
+    replace_import_subflow_id = "02ef9161e97275f09faf2925b4173d77"
+  }
+
+  // Subflow link: CIAM-Passwordless-Protect-Change-Password-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_change_password_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_change_password_subflow.name
+    replace_import_subflow_id = "f33a958f628aa8368027ca75240103c6"
+  }
+
+  // Subflow link: CIAM-Passwordless-Protect-Device-Authentication-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_device_authentication_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_device_authentication_subflow.name
+    replace_import_subflow_id = "6fc11379c939d1f89efb42105dcd4295"
+  }
+
+  // Subflow link: CIAM-Passwordless-Protect-Threat-Detection-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_threat_detection_subflow.name
+    replace_import_subflow_id = "d76548b32520975dfb808ab5a2bf4d25"
+  }
+
+  // Subflow link: CIAM-Passwordless-Protect-Verify-Email-Subflow
+  subflow_link {
+    id                        = davinci_flow.ciam_passwordless_protect_verify_email_subflow.id
+    name                      = davinci_flow.ciam_passwordless_protect_verify_email_subflow.name
+    replace_import_subflow_id = "0ca2d9bf2d20379a006aff1ef4f17e0f"
+  }
 }
 
-resource "davinci_flow" "password_reset_subflow" {
-  depends_on     = [data.davinci_connections.read_all]
-  flow_json      = file("davinci-flows/password-reset-flow/password-reset-subflow.json")
+// Flow Name: CIAM-Passwordless-Protect-Threat-Detection-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_threat_detection_subflow" {
+  depends_on = [
+    # davinci_variable.companyname,
+  ]
+
   environment_id = pingone_environment.my_environment.id
 
+  name        = "CIAM-Passwordless-Protect-Threat-Detection-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:53 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/threat-detection-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: pingOneRiskConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.protect_connector.id
+    name                         = data.davinci_connection.protect_connector.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
   }
-
-  connection_link {
-    id   = data.davinci_connection.node_connector.id
-    name = data.davinci_connection.node_connector.name
-  }
-
 }
 
-resource "davinci_flow" "profile_management_flow" {
-  depends_on     = [data.davinci_connections.read_all]
+// Flow Name: CIAM-Passwordless-Protect-Verify-Email-Subflow
+resource "davinci_flow" "ciam_passwordless_protect_verify_email_subflow" {
+  depends_on = [
+    davinci_variable.ciam_verificationlimit,
+    davinci_variable.ciam_verificationvalidationattempts,
+  ]
+
   environment_id = pingone_environment.my_environment.id
-  flow_json      = file("davinci-flows/profile-management-flow.json")
 
+  name        = "CIAM-Passwordless-Protect-Verify-Email-Subflow"
+  description = "Imported on Tue May 14 2024 18:46:53 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/verify-email-subflow.json")
+
+
+  // Connector link: annotationConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = data.davinci_connection.http_connector.name
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
   }
 
+  // Connector link: errorConnector
   connection_link {
-    id   = data.davinci_connection.variables.id
-    name = data.davinci_connection.variables.name
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
   }
 
+  // Connector link: functionsConnector
   connection_link {
-    id   = data.davinci_connection.annotation.id
-    name = data.davinci_connection.annotation.name
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
   }
 
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.error_message.id
-    name = data.davinci_connection.error_message.name
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: nodeConnector
   connection_link {
-    id   = data.davinci_connection.functions.id
-    name = data.davinci_connection.functions.name
+    id                           = data.davinci_connection.node_connector.id
+    name                         = data.davinci_connection.node_connector.name
+    replace_import_connection_id = "e7eae662d2ca276e4c6f097fc36a3bb1"
   }
 
+  // Connector link: pingOneSSOConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = data.davinci_connection.ping_sso.name
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
   }
 
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
 }
+
+// Flow Name: OOTB - Basic Profile Management
+resource "davinci_flow" "ootb_basic_profile_management" {
+  depends_on = [
+    davinci_variable.username,
+  ]
+
+  environment_id = pingone_environment.my_environment.id
+
+  name        = "OOTB - Basic Profile Management"
+  description = "Imported on Wed Sep 13 2023 17:10:34 GMT+0000 (Coordinated Universal Time)"
+
+  flow_json = file("./davinci-flows/profile-management-flow.json")
+
+
+  // Connector link: annotationConnector
+  connection_link {
+    id                           = data.davinci_connection.annotation.id
+    name                         = data.davinci_connection.annotation.name
+    replace_import_connection_id = "921bfae85c38ed45045e07be703d86b8"
+  }
+
+  // Connector link: errorConnector
+  connection_link {
+    id                           = data.davinci_connection.error_message.id
+    name                         = data.davinci_connection.error_message.name
+    replace_import_connection_id = "53ab83a4a4ab919d9f2cb02d9e111ac8"
+  }
+
+  // Connector link: functionsConnector
+  connection_link {
+    id                           = data.davinci_connection.functions.id
+    name                         = data.davinci_connection.functions.name
+    replace_import_connection_id = "de650ca45593b82c49064ead10b9fe17"
+  }
+
+  // Connector link: httpConnector
+  connection_link {
+    id                           = data.davinci_connection.http_connector.id
+    name                         = data.davinci_connection.http_connector.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
+  }
+
+  // Connector link: pingOneSSOConnector
+  connection_link {
+    id                           = data.davinci_connection.ping_sso.id
+    name                         = data.davinci_connection.ping_sso.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
+  }
+
+  // Connector link: variablesConnector
+  connection_link {
+    id                           = data.davinci_connection.variables.id
+    name                         = data.davinci_connection.variables.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
+  }
+}
+
+
 
 #########################################################################
 # PingOne DaVinci - Create connection
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/0.1.9/docs/resources/connection}
 
-resource "davinci_connection" "challenge" {
-  connector_id   = "challengeConnector"
+// Flow Name: CIAM-Passwordless-Protect-Magic-Link-Authentication-Subflow
+resource "davinci_connection" "challengeconnector__94cb18cc8ee6ddaf28e881b16637aec6" {
   environment_id = pingone_environment.my_environment.id
-  name           = "Challenge"
 
-  depends_on = [data.davinci_connections.read_all]
+  connector_id = "challengeConnector"
+  name         = "Challenge"
+
+  // properties based on the connector type
+  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
+  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
 }
 
-resource "davinci_connection" "strings" {
-  connector_id   = "stringsConnector"
+// Flow Name: CIAM-Passwordless-Protect-Device-Registration-Subflow
+resource "davinci_connection" "stringsconnector__d49474a1b556eb233d3376c918eb3497" {
   environment_id = pingone_environment.my_environment.id
-  name           = "String Manipulation"
 
-  depends_on = [data.davinci_connections.read_all]
+  connector_id = "stringsConnector"
+  name         = "String Manipulation"
+
+  // properties based on the connector type
+  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
+  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
 }
 
 #########################################################################
@@ -877,7 +1008,7 @@ resource "davinci_application_flow_policy" "registration_flow_policy"  {
   name   = "DaVinci OIDC Passwordless Sample Policy"
   status = "enabled"
   policy_flow {
-    flow_id    = resource.davinci_flow.passwordless_main_flow.id
+    flow_id    = resource.davinci_flow.ciam_passwordless_protect_registration_authentication_account_recovery_main_flow.id
     version_id = -1
     weight     = 100
   }
@@ -888,238 +1019,712 @@ resource "davinci_application_flow_policy" "registration_flow_policy"  {
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/variable}
 
-resource "davinci_variable" "ciam_passwordlessRequired" {
+
+# resource "davinci_variable" "ciam_errorMessage" {
+#   depends_on     = [data.davinci_connections.read_all]
+#   name           = "ciam_errorMessage"
+#   environment_id = pingone_environment.my_environment.id
+#   description    = "Error message"
+#   context        = "flowInstance"
+#   type           = "string"
+# }
+
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "agreementid" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_passwordlessRequired"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Passwordless required"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "flowInstance"
+
+  name        = "agreementId"
+  type        = "string"
+  description = "Agreement id"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = pingone_agreement.agreement.id
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_authMethod" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_accountrecoveryenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_authMethod"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Authentication method"
-  context        = "flowInstance"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_accountRecoveryEnabled"
+  type        = "boolean"
+  description = "Account recovery enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_agreementEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_agreementenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_agreementEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Agreement enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_agreementEnabled"
+  type        = "boolean"
+  description = "Agreement enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_appleEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_appleenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_appleEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Apple enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_appleEnabled"
+  type        = "boolean"
+  description = "Apple enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_emailOtpEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_authmethod" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_emailOtpEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Email OTP enabled"
-  context        = "company"
-  value          = "true"
-  type           = "boolean"
+
+  context = "flowInstance"
+
+  name        = "ciam_authMethod"
+  type        = "string"
+  description = "Authentication method"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_fidoPasskeyEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_companyname" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_fidoPasskeyEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "FIDO passkey enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_companyName"
+  type        = "string"
+  description = "Company name"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "Ping Identity"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_googleEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Device-Registration-Subflow
+resource "davinci_variable" "ciam_deviceid" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_googleEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Google enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "flowInstance"
+
+  name        = "ciam_deviceId"
+  type        = "string"
+  description = "Device id"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_sessionLengthInMinute" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_emailotpenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_sessionLengthInMinute"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Session length in minutes"
-  context        = "company"
-  value          = "5"
-  type           = "number"
+
+  context = "company"
+
+  name        = "ciam_emailOtpEnabled"
+  type        = "boolean"
+  description = "Email OTP enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "true"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_accountRecoveryEnabled" {
-  depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_accountRecoveryEnabled"
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_errorconnector" {
   environment_id = pingone_environment.my_environment.id
-  description    = "Account recovery enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "flowInstance"
+
+  name        = "ciam_errorConnector"
+  type        = "string"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_facebookEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_facebookenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_facebookEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Facebook enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_facebookEnabled"
+  type        = "boolean"
+  description = "Facebook enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_smsOtpEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_fidopasskeyenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_smsOtpEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "SMS OTP enabled"
-  context        = "company"
-  value          = "true"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_fidoPasskeyEnabled"
+  type        = "boolean"
+  description = "FIDO passkey enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_magicLinkEnabled" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_googleenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_magicLinkEnabled"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Magic link enabled"
-  context        = "company"
-  value          = "false"
-  type           = "boolean"
+
+  context = "company"
+
+  name        = "ciam_googleEnabled"
+  type        = "boolean"
+  description = "Google enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_verificationLimit" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_logostyle" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_verificationLimit"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Verification limit"
-  context        = "company"
-  value          = "5"
-  type           = "number"
+
+  context = "company"
+
+  name        = "ciam_logoStyle"
+  type        = "string"
+  description = "CSS Style for company logo"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "width: 65px; height: 65px;"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_logoStyle" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_logourl" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_logoStyle"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "CSS Style for company logo"
-  context        = "company"
-  value          = "width: 65px; height: 65px;"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_logoUrl"
+  type        = "string"
+  description = "URL of company logo"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_logoUrl" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_magiclinkenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_logoUrl"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "URL of company logo"
-  context        = "company"
-  value          = "https://assets.pingone.com/ux/ui-library/5.0.2/images/logo-pingidentity.png"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_magicLinkEnabled"
+  type        = "boolean"
+  description = "Magic link enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_companyName" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_passwordlessrequired" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_companyName"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Company name"
-  context        = "company"
-  value          = "Ping Identity"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_passwordlessRequired"
+  type        = "boolean"
+  description = "Passwordless required"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "false"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_recoveryLimit" {
-  depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_recoveryLimit"
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectdevicestatus" {
   environment_id = pingone_environment.my_environment.id
-  description    = "Recovery limit"
-  context        = "company"
-  value          = "5"
-  type           = "number"
+
+  context = "flowInstance"
+
+  name        = "ciam_protectDeviceStatus"
+  type        = "string"
+  description = "Used by CIAM Passwordless and PingOne protect flow"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_protectriskPolicyId" {
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectpredictor" {
+  environment_id = pingone_environment.my_environment.id
+
+  context = "flowInstance"
+
+  name        = "ciam_protectPredictor"
+  type        = "string"
+  description = "Used by CIAM Passwordless and PingOne Protect flows."
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectriskid" {
+  environment_id = pingone_environment.my_environment.id
+
+  context = "flowInstance"
+
+  name        = "ciam_protectRiskID"
+  type        = "string"
+  description = "This variable is used by CIAM Passwordless with pingone protect flows."
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectrisklevel" {
+  environment_id = pingone_environment.my_environment.id
+
+  context = "flowInstance"
+
+  name        = "ciam_protectRiskLevel"
+  type        = "string"
+  description = "Used by CIAM Passwordless and PingOne protect flows"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectriskpolicyid" {
   depends_on     = [data.http.get_risk_policy_id,data.davinci_connections.read_all]
-  name           = "ciam_protectriskPolicyId"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Default Risk Policy ID"
-  context        = "company"
-  value          = "${local.policy_id}"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_protectriskPolicyId"
+  type        = "string"
+  description = "This PingOne Protect Risk Policy ID will be passed by default."
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "${local.policy_id}"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_protectriskPolicyId_flow" {
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_protectriskpolicyid_flow" {
   depends_on     = [data.http.get_risk_policy_id,data.davinci_connections.read_all]
-  name           = "ciam_protectriskPolicyId"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Default Risk Policy ID"
-  context        = "flowInstance"
-  value          = "${local.policy_id}"
-  type           = "string"
+
+  context = "flowInstance"
+
+  name        = "ciam_protectriskPolicyId"
+  type        = "string"
+  description = "This PingOne Protect Risk Policy ID will be passed by default."
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "${local.policy_id}"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-
-resource "davinci_variable" "ciam_errorMessage" {
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_recoverylimit" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_errorMessage"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Error message"
-  context        = "flowInstance"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_recoveryLimit"
+  type        = "number"
+  description = "Recovery limit"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "5"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_verificationValidationAttempts" {
+// Flow Name: CIAM-Passwordless-Protect-Account-Recovery-Subflow
+resource "davinci_variable" "ciam_recoveryvalidationattempts" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_verificationValidationAttempts"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Verification validation attempts"
-  context        = "flowInstance"
-  type           = "number"
+
+  context = "flowInstance"
+
+  name        = "ciam_recoveryValidationAttempts"
+  type        = "number"
+  description = "Recovery validation attempts"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_deviceId" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_sessionlengthinminute" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_deviceId"
+  
   environment_id = pingone_environment.my_environment.id
-  description    = "Device id"
-  context        = "flowInstance"
-  type           = "string"
+
+  context = "company"
+
+  name        = "ciam_sessionLengthInMinute"
+  type        = "number"
+  description = "Session length in minutes"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "5"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "ciam_recoveryValidationAttempts" {
+// Flow Name: CIAM-Passwordless-Protect-Registration-Authentication-Account-Recovery-Main Flow
+resource "davinci_variable" "ciam_smsotpenabled" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "ciam_recoveryValidationAttempts"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Recovery validation attempts"
-  context        = "flowInstance"
-  type           = "number"
+
+  context = "company"
+
+  name        = "ciam_smsOtpEnabled"
+  type        = "boolean"
+  description = "SMS OTP enabled"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "true"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
 
-resource "davinci_variable" "agreementId" {
+// Flow Name: CIAM-Passwordless-Protect-Verify-Email-Subflow
+resource "davinci_variable" "ciam_verificationlimit" {
   depends_on     = [data.davinci_connections.read_all]
-  name           = "agreementId"
+
   environment_id = pingone_environment.my_environment.id
-  description    = "Agreement id"
-  context        = "flowInstance"
-  type           = "string"
-  value          = pingone_agreement.agreement.id
+
+  context = "company"
+
+  name        = "ciam_verificationLimit"
+  type        = "number"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  value = "5"
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Verify-Email-Subflow
+resource "davinci_variable" "ciam_verificationvalidationattempts" {
+  depends_on     = [data.davinci_connections.read_all]
+
+  environment_id = pingone_environment.my_environment.id
+
+  context = "flowInstance"
+
+  name        = "ciam_verificationValidationAttempts"
+  type        = "number"
+  description = "Verification validation attempts"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
+}
+
+// Flow Name: CIAM-Passwordless-Protect-Threat-Detection-Subflow
+# resource "davinci_variable" "companyname" {
+#   environment_id = pingone_environment.my_environment.id
+
+#   context = "flowInstance"
+
+#   name        = "companyName"
+#   type        = "string"
+
+#   // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+#   // value = ""
+  
+#   // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+#   // empty_value = true
+
+#   min = 0
+#   max = 2000
+
+#   mutable = true
+# }
+
+// Flow Name: OOTB - Basic Profile Management
+resource "davinci_variable" "username" {
+  environment_id = pingone_environment.my_environment.id
+
+  context = "flowInstance"
+
+  name        = "username"
+  type        = "string"
+
+  // Defines a static value.  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // value = ""
+  
+  // Defines a static blank string value ("").  Comment out or remove both `value` and `empty_value` if the variable value should not be tracked in Terraform state.
+  // empty_value = true
+
+  min = 0
+  max = 2000
+
+  mutable = true
 }
