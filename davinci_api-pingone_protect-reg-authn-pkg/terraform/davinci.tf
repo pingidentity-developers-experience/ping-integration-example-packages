@@ -1,32 +1,11 @@
-##########################################################################
-# davinci.tf - Declarations to create DaVinci assets
-# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest}
-##########################################################################
-
-#########################################################################
-# PingOne DaVinci - Read all connections
-#########################################################################
-# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
-
-resource "time_sleep" "davinci" {
-  create_duration = "90s"
-  depends_on      = [ pingone_environment.my_environment, pingone_group_role_assignment.single_environment_admin_to_group ]
-}
-
-data "davinci_connections" "read_all" {
-  environment_id = pingone_environment.my_environment.id
-  depends_on     = [ time_sleep.davinci ]
-}
 
 #########################################################################
 # PingOne DaVinci - Create and deploy a flow
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/flow}
 
-resource "davinci_flow" "registration_flow" {
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
+// Flow Name: PingOne DaVinci API Protect Example
+resource "davinci_flow" "pingone_davinci_api_protect_example" {
 
   environment_id = pingone_environment.my_environment.id
 
@@ -35,24 +14,33 @@ resource "davinci_flow" "registration_flow" {
 
   flow_json = file("./davinci-api-protect-reg-authn-flow.json")
 
+
+  // Connector link: httpConnector
   connection_link {
-    id   = data.davinci_connection.http_connector.id
-    name = "Http"
+    id                           = davinci_connection.httpconnector__867ed4363b2bc21c860085ad2baa817d.id
+    name                         = davinci_connection.httpconnector__867ed4363b2bc21c860085ad2baa817d.name
+    replace_import_connection_id = "867ed4363b2bc21c860085ad2baa817d"
   }
 
+  // Connector link: pingOneRiskConnector
   connection_link {
-    id   = data.davinci_connection.ping_sso.id
-    name = "PingOne"
+    id                           = davinci_connection.pingoneriskconnector__292873d5ceea806d81373ed0341b5c88.id
+    name                         = davinci_connection.pingoneriskconnector__292873d5ceea806d81373ed0341b5c88.name
+    replace_import_connection_id = "292873d5ceea806d81373ed0341b5c88"
   }
 
+  // Connector link: pingOneSSOConnector
   connection_link {
-    id   = data.davinci_connection.pingone_protect.id
-    name = "PingOne Protect"
+    id                           = davinci_connection.pingonessoconnector__94141bf2f1b9b59a5f5365ff135e02bb.id
+    name                         = davinci_connection.pingonessoconnector__94141bf2f1b9b59a5f5365ff135e02bb.name
+    replace_import_connection_id = "94141bf2f1b9b59a5f5365ff135e02bb"
   }
 
+  // Connector link: variablesConnector
   connection_link {
-    id   = data.davinci_connection.variables.id
-    name = "Variables"
+    id                           = davinci_connection.variablesconnector__06922a684039827499bdbdd97f49827b.id
+    name                         = davinci_connection.variablesconnector__06922a684039827499bdbdd97f49827b.name
+    replace_import_connection_id = "06922a684039827499bdbdd97f49827b"
   }
 }
 
@@ -64,7 +52,7 @@ resource "davinci_flow" "registration_flow" {
 resource "davinci_application" "registration_flow_app" {
   name           = "DaVinci API Protect Sample Application"
   environment_id = pingone_environment.my_environment.id
-  depends_on     = [data.davinci_connections.read_all]
+  
   oauth {
     enabled = true
     values {
@@ -83,8 +71,96 @@ resource "davinci_application_flow_policy" "registration_flow_app_policy" {
   name           = "DaVinci API Protect Sample Policy"
   status         = "enabled"
   policy_flow {
-    flow_id    = davinci_flow.registration_flow.id
+    flow_id    = davinci_flow.pingone_davinci_api_protect_example.id
     version_id = -1
     weight     = 100
   }
+}
+
+// Flow Name: PingOne DaVinci API Protect Example
+resource "davinci_connection" "httpconnector__867ed4363b2bc21c860085ad2baa817d" {
+  environment_id = pingone_environment.my_environment.id
+
+  connector_id = "httpConnector"
+  name         = "Http"
+
+  // properties based on the connector type
+  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
+  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
+}
+
+// Flow Name: PingOne DaVinci API Protect Example
+resource "davinci_connection" "pingoneriskconnector__292873d5ceea806d81373ed0341b5c88" {
+  environment_id = pingone_environment.my_environment.id
+
+  connector_id = "pingOneRiskConnector"
+  name         = "PingOne Protect"
+
+  // properties based on the connector type
+  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
+  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
+
+  property {
+    name  = "clientId"
+    type  = "string"
+    value = pingone_application.worker_app.oidc_options.client_id
+  }
+
+  property {
+    name  = "clientSecret"
+    type  = "string"
+    value = pingone_application_secret.worker_app_secret.secret
+  }
+
+  property {
+    name  = "envId"
+    type  = "string"
+    value = pingone_environment.my_environment.id
+  }
+  
+  property {
+    name  = "region"
+    type  = "string"
+    value = var.region_code
+  }
+}
+
+// Flow Name: PingOne DaVinci API Protect Example
+resource "davinci_connection" "pingonessoconnector__94141bf2f1b9b59a5f5365ff135e02bb" {
+  environment_id = pingone_environment.my_environment.id
+
+  connector_id = "pingOneSSOConnector"
+  name         = "PingOne"
+
+  property {
+    name  = "clientId"
+    type  = "string"
+    value = pingone_application.worker_app.oidc_options.client_id
+  }
+
+  property {
+    name  = "clientSecret"
+    type  = "string"
+    value = pingone_application_secret.worker_app_secret.secret
+  }
+
+  property {
+    name  = "envId"
+    type  = "string"
+    value = pingone_environment.my_environment.id
+  }
+
+  property {
+    name  = "region"
+    type  = "string"
+    value = var.region_code
+  }
+}
+
+// Flow Name: PingOne DaVinci API Protect Example
+resource "davinci_connection" "variablesconnector__06922a684039827499bdbdd97f49827b" {
+  environment_id = pingone_environment.my_environment.id
+
+  connector_id = "variablesConnector"
+  name         = "Variables"
 }
