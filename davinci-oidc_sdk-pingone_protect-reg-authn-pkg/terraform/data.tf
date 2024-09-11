@@ -70,42 +70,6 @@ data "pingone_user" "dv_admin_user" {
   username = var.dv_admin_username
 }
 
-data "davinci_connection" "ping_sso" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "pingone_protect" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne Protect"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "variables" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "Variables"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "error_message" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "Error Message"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "http_connector" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  name           = "Http"
-}
-
-data "davinci_connection" "pingone_authentication" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne Authentication"
-}
-
 # Terraform HTTP provider
 # {@link https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http}
 

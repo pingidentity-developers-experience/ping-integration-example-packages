@@ -1,3 +1,7 @@
+##########################################################################
+# davinci.tf - Declarations to create DaVinci assets
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest}
+##########################################################################
 
 #########################################################################
 # PingOne DaVinci - Create and deploy a flow
@@ -83,10 +87,6 @@ resource "davinci_connection" "httpconnector__867ed4363b2bc21c860085ad2baa817d" 
 
   connector_id = "httpConnector"
   name         = "Http"
-
-  // properties based on the connector type
-  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
-  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
 }
 
 // Flow Name: PingOne DaVinci API Protect Example
@@ -95,10 +95,6 @@ resource "davinci_connection" "pingoneriskconnector__292873d5ceea806d81373ed0341
 
   connector_id = "pingOneRiskConnector"
   name         = "PingOne Protect"
-
-  // properties based on the connector type
-  // Visit the DaVinci Connector Parameter Reference for details of the required properties:
-  // https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/guides/connector-reference
 
   property {
     name  = "clientId"

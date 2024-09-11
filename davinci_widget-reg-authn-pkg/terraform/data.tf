@@ -37,15 +37,3 @@ data "pingone_user" "dv_admin_user" {
 
   username = var.dv_admin_username
 }
-
-data "davinci_connection" "ping_sso" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "http_connector" {
-  depends_on     = [data.davinci_connections.read_all]
-  environment_id = pingone_environment.my_environment.id
-  name           = "Http"
-}

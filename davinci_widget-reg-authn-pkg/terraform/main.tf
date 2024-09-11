@@ -26,7 +26,8 @@ resource "pingone_environment" "my_environment" {
       type = "MFA"
     },
     {
-      type = "DaVinci"
+      type = "DaVinci",
+      tags = ["DAVINCI_MINIMAL"]
     }
   ]
 }
