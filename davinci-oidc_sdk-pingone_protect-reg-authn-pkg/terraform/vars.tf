@@ -2,9 +2,14 @@
 # vars.tf - Contains declarations of variables and locals.
 # {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
-variable "region" {
+variable "region_code" {
   type        = string
-  description = "Region your P1 Org is in"
+  description = "Region code that your P1 Org is in"
+
+  validation {
+    condition     = contains(["EU", "NA", "CA", "AP", "AU"], var.region_code)
+    error_message = "Allowed values for region_code are \"EU\", \"NA\", \"CA\", \"AP\", \"AU\"."
+  }
 }
 
 variable "license_id" {
@@ -40,20 +45,42 @@ variable "env_name" {
   default     = "DaVinci SSO Protect Sample"
 }
 
-variable "admin_username" {
+variable "dv_admin_region" {
+  type        = string
+  description = "Region your P1 Org is in"
+}
+
+variable "dv_admin_username" {
   type        = string
   description = "Username to use for the DaVinci provider"
 }
 
-variable "admin_password" {
+variable "dv_admin_password" {
   type        = string
   description = "Password to use for the DaVinci provider"
 }
 
+variable "davinci_admin_group" {
+  type        = string
+  description = "Name of the group that has DaVinci Admin rights"
+  default     = "DaVinci Terraform Administrators"
+}
+
+variable "assign_dv_admin_role" {
+  type        = bool
+  description = "Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false."
+  default     = true
+}
+
+variable "app_url" {
+  type        = string
+  description = "Application URL"
+  default     = "https://127.0.0.1:8080"
+}
+
 locals {
   # The URL of the demo app
-  app_url       = "https://127.0.0.1:8080"
-  redirect_uris = ["${local.app_url}/dashboard.html"]
+  redirect_uris = ["${var.app_url}/dashboard.html"]
   # Worker app token variables
   raw_data     = jsondecode(data.http.get_token.response_body)
   access_token = local.raw_data.access_token

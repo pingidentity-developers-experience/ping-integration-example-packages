@@ -18,12 +18,21 @@ resource "pingone_environment" "my_environment" {
   type        = "SANDBOX" // The default.
   license_id  = var.license_id
 
-  service {
-    type = "MFA"
-  }
-  service {
-    type = "DaVinci"
-  }
+  services = [
+    {
+      type = "SSO"
+    },
+    {
+      type = "MFA"
+    },
+    {
+      type = "DaVinci",
+      tags = ["DAVINCI_MINIMAL"]
+    },
+    {
+      type = "Risk"
+    }
+  ]
 }
 
 # PingOne Environment (Data Source)
@@ -36,10 +45,10 @@ data "pingone_environment" "administrators" {
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
   source  = "pingidentity/utils/pingone"
-  version = "0.0.8"
+  version = "0.1.0"
 
   environment_id = pingone_environment.my_environment.id
-  region         = var.region
+  region_code    = var.region_code
 }
 
 ##############################################
@@ -51,8 +60,7 @@ provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
   environment_id               = var.pingone_environment_id
-  region                       = var.region
-  force_delete_production_type = false
+  region_code                  = var.region_code
 }
 
 ##############################################
@@ -61,8 +69,8 @@ provider "pingone" {
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
 
 provider "davinci" {
-  username       = var.admin_username
-  password       = var.admin_password
-  region         = var.region
+  username       = var.dv_admin_username
+  password       = var.dv_admin_password
+  region         = var.dv_admin_region
   environment_id = var.pingone_environment_id
 }

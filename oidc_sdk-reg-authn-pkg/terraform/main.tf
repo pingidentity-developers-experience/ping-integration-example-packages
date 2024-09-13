@@ -17,6 +17,12 @@ resource "pingone_environment" "my_environment" {
   description = "OIDC SDK Sample App integration environment provisioned with Terraform. By PingIdentity, Technical Enablement."
   type        = "SANDBOX"
   license_id  = var.license_id
+
+  services = [
+    {
+      type = "SSO"
+    }
+  ]
 }
 
 # PingOne Environment (Data Source)
@@ -29,10 +35,10 @@ data "pingone_environment" "administrators" {
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
   source  = "pingidentity/utils/pingone"
-  version = "0.0.8"
+  version = "0.1.0"
 
   environment_id = pingone_environment.my_environment.id
-  region         = var.region
+  region_code    = var.region_code
 }
 
 ##############################################
@@ -45,8 +51,7 @@ provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
   environment_id               = var.pingone_environment_id
-  region                       = var.region
-  force_delete_production_type = false
+  region_code                       = var.region_code
 }
 
 provider "http" {

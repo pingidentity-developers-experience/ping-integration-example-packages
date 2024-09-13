@@ -19,19 +19,19 @@ data "pingone_resource" "openid" {
 
 data "pingone_resource_scope" "openid_profile" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type  = "OPENID_CONNECT"
   name           = "profile"
 }
 
 data "pingone_resource_scope" "openid_phone" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type  = "OPENID_CONNECT"
   name           = "phone"
 }
 
 data "pingone_resource_scope" "openid_email" {
   environment_id = pingone_environment.my_environment.id
-  resource_id    = data.pingone_resource.openid.id
+  resource_type  = "OPENID_CONNECT"
   name           = "email"
 }
 
@@ -48,39 +48,27 @@ data "pingone_role" "environment_admin" {
   name = "Environment Admin"
 }
 
+data "pingone_role" "davinci_admin" {
+  name = "DaVinci Admin"
+}
+
+# PingOne Groups
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/group}
+
+data "pingone_group" "davinci_admin" {
+  environment_id = var.pingone_environment_id
+
+  name = var.davinci_admin_group
+}
+
 ##############################################
 # DaVinci Data
 ##############################################
 data "pingone_user" "dv_admin_user" {
   environment_id = var.pingone_environment_id
 
-  username = var.admin_username
+  username = var.dv_admin_username
 }
-
-data "davinci_connection" "ping_sso" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "pingone_protect" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "PingOne Protect"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "variables" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "Variables"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-data "davinci_connection" "error_message" {
-  environment_id = pingone_environment.my_environment.id
-  name           = "Error Message"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
 
 # Terraform HTTP provider
 # {@link https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http}
@@ -99,7 +87,7 @@ data "http" "get_token" {
   # Optional request headers
   request_headers = {
     Content-Type  = "application/x-www-form-urlencoded",
-    Authorization = "Basic ${base64encode("${pingone_application.worker_app.oidc_options[0].client_id}:${pingone_application.worker_app.oidc_options[0].client_secret}")}"
+    Authorization = "Basic ${base64encode("${pingone_application.worker_app.oidc_options.client_id}:${pingone_application_secret.worker_app.secret}")}"
   }
 
   # Optional request body
@@ -121,5 +109,5 @@ data "http" "create_demo_user" {
   }
 
   # Optional request body"
-  request_body = "{\"email\":\"demouser1@mailinator.com\",\"name\":{\"given\": \"Demo\",\"family\":\"User\"},\"username\":\"demouser1\",\"population\":{\"id\":\"${pingone_population.oidc_sdk_pop.id}\"},\"lifecycle\":{\"status\":\"ACCOUNT_OK\"},\"password\":{\"value\":\"2FederateM0re!\",\"forceChange\": false}}"
+  request_body = "{\"email\":\"demouser1@mailinator.com\",\"name\":{\"given\": \"Demo\",\"family\":\"User\"},\"username\":\"demouser1\",\"population\":{\"id\":\"${pingone_population_default.oidc_sdk_pop.id}\"},\"lifecycle\":{\"status\":\"ACCOUNT_OK\"},\"password\":{\"value\":\"2FederateM0re!\",\"forceChange\": false}}"
 }

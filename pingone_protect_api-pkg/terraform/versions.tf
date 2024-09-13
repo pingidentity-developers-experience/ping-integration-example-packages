@@ -3,7 +3,7 @@ terraform {
   required_providers {
     pingone = {
       source  = "pingidentity/pingone"
-      version = ">= 0.21.0, < 1.0.0"
+      version = ">= 1.1, < 1.2"
     }
     http = {
       source  = "hashicorp/http"
