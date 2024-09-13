@@ -32,6 +32,15 @@ resource "pingone_group_role_assignment" "single_environment_admin_to_group" {
   scope_environment_id = pingone_environment.my_environment.id
 }
 
+##########################################################################
+# PingOne Default Population
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population_default}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
+##########################################################################
+resource "pingone_population_default" "default_population" {
+  environment_id = pingone_environment.my_environment.id
+  name           = "Default Population"
+}
 
 ##########################################################################
 # PingOne Connection (application)
@@ -49,6 +58,17 @@ resource "pingone_application" "worker_app" {
     grant_types                 = ["CLIENT_CREDENTIALS"]
     token_endpoint_auth_method = "CLIENT_SECRET_BASIC"
   }
+}
+
+##########################################################################
+# PingOne Worker Application Secret
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_secret}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker}
+##########################################################################
+
+resource "pingone_application_secret" "worker_app_secret" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
 }
 
 ##########################################################################
