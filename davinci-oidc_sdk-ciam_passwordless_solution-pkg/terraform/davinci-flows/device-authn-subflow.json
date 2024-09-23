@@ -61,10 +61,7 @@
         }
       },
       "additionalProperties": false,
-      "required": [
-        "pingOneUserId",
-        "email"
-      ]
+      "required": ["pingOneUserId", "email"]
     }
   },
   "isInputSchemaSaved": true,
@@ -125,14 +122,7 @@
                 "value": "Get User's Existing Devices"
               },
               "deviceTypes": {
-                "value": [
-                  "EMAIL",
-                  "SMS",
-                  "VOICE",
-                  "TOTP",
-                  "FIDO2",
-                  "MOBILE"
-                ]
+                "value": ["EMAIL", "SMS", "VOICE", "TOTP", "FIDO2", "MOBILE"]
               }
             },
             "idUnique": "ts28uajyp2"
@@ -6003,6 +5993,28 @@
               "email": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"email\",\n        \"data\": \"{{local.3y03qc0kxe.payload.output.matchedUser.email}}\",\n        \"tooltip\": \"{{local.3y03qc0kxe.payload.output.matchedUser.email}}\",\n        \"children\": [\n          {\n            \"text\": \"email\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
               },
+              "templateVariant": {
+                "value": "Unknown Device"
+              },
+              "templateVariables": {
+                "value": [
+                  {
+                    "name": "logoUrl",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_logoUrl\",\n        \"data\": \"{{global.company.variables.ciam_logoUrl}}\",\n        \"tooltip\": \"{{global.company.variables.ciam_logoUrl}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_logoUrl\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "logoStyle",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_logoStyle\",\n        \"data\": \"{{global.company.variables.ciam_logoStyle}}\",\n        \"tooltip\": \"{{global.company.variables.ciam_logoStyle}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_logoStyle\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "companyName",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_companyName\",\n        \"data\": \"{{global.company.variables.ciam_companyName}}\",\n        \"tooltip\": \"{{global.company.variables.ciam_companyName}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_companyName\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
               "nodeTitle": {
                 "value": "PingOne Notifications"
               },
@@ -6313,9 +6325,7 @@
             "type": "action",
             "properties": {
               "matchAttributes": {
-                "value": [
-                  "id"
-                ]
+                "value": ["id"]
               },
               "userIdentifierForFindUser": {
                 "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"pingOneUserId\",\n        \"data\": \"{{global.parameters.pingOneUserId}}\",\n        \"tooltip\": \"{{global.parameters.pingOneUserId}}\",\n        \"children\": [\n          {\n            \"text\": \"pingOneUserId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -10620,7 +10630,7 @@
     "userZoomingEnabled": true,
     "zoom": 1,
     "minZoom": 1e-50,
-    "maxZoom": 1e+50,
+    "maxZoom": 1e50,
     "panningEnabled": true,
     "userPanningEnabled": true,
     "pan": {
