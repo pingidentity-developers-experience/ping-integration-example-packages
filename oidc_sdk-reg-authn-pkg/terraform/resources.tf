@@ -67,7 +67,8 @@ resource "pingone_application_role_assignment" "population_identity_data_admin_t
   application_id = pingone_application.worker_app.id
   role_id        = data.pingone_role.identity_data_admin.id
 
-  scope_population_id = pingone_population.oidc_sdk_pop.id
+  scope_population_id = pingone_population_default.oidc_sdk_pop.id
+  
 }
 
 ##############################################
@@ -90,7 +91,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
   environment_id    = pingone_environment.my_environment.id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
 
-  registration_local_population_id = pingone_population.oidc_sdk_pop.id
+  registration_local_population_id = pingone_population_default.oidc_sdk_pop.id
 
   priority = 1
 
