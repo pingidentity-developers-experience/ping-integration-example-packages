@@ -129,7 +129,7 @@ assign_dv_admin_role = true | false
 In the command line, navigate to the `/terraform` folder and run:
 
 ```code
-export PINGONE_REGION="{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
+export PINGONE_REGION_CODE="{{ NA | CA | AP | AU | EU }}"
 terraform init
 terraform plan
 ```

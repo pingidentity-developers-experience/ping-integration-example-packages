@@ -84,7 +84,7 @@ worker_secret   = "{{workerSecret}}"
 In the command line, navigate to the `/terraform` directory and run:
 
 ```code
-export PINGONE_REGION="{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
+export PINGONE_REGION_CODE="{{ NA | CA | AP | AU | EU }}"
 terraform init
 terraform plan
 ```

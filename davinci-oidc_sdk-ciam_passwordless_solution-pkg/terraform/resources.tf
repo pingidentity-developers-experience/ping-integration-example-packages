@@ -99,7 +99,7 @@ resource "pingone_application_flow_policy_assignment" "login_flow" {
   flow_policy_id = davinci_application_flow_policy.registration_flow_policy.id
 
   priority = 1
-  depends_on = [data.davinci_connections.read_all, davinci_application_flow_policy.registration_flow_policy]
+  depends_on = [davinci_application_flow_policy.registration_flow_policy]
 }
 
 ##############################################
