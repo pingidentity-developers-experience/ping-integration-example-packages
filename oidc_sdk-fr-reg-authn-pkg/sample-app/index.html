@@ -5,7 +5,7 @@
       <link id="favicon" rel="icon" href="images/favicon.ico" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="An example integration between ForgeRock Identity Cloud and a custom app.">
+      <meta name="description" content="An example integration between PingOne Advanced Identity Cloud and a custom app.">
       <title>Ping Identity Integration Example Application</title>
       <link rel="stylesheet" href="css/styles.css" />
       <script src="global.js"></script>
@@ -30,7 +30,7 @@
         const redirectUri = window.location.origin + dashboardUri; // Page where oAuth response is sent for processing
 
         const clientOptions = {
-          client_id: window._env_.clientId, //  ForgeRock Identity Cloud oAuth client id
+          client_id: window._env_.clientId, //  PingOne Advanced Identity Cloud oAuth client id
           redirect_uri: redirectUri,
           scope: 'openid profile email'
         };
