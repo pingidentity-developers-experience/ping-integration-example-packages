@@ -1,20 +1,20 @@
-# OIDC SDK + Identity Cloud Sample App Package
+# OIDC SDK + PingOne Advanced Identity Cloud Sample App Package
 
 ## Use Case
 
 ![Use Case Diagram](./diagram.jpeg)
 
-This integration package combines Identity Cloud and the OIDC SDK to demonstrate user registration and authentication.
+This integration package combines PingOne Advanced Identity Cloud and the OIDC SDK to demonstrate user registration and authentication.
 
-When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint in your Identity Cloud tenant. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
+When authentication is initiated from the sample app, the OIDC SDK is used to redirect the user to the authorization endpoint in your PingOne Advanced Identity Cloud tenant. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
 
 ### Prerequisites
 
-##### Identity Cloud Tenant
-You must have an Identity Cloud tenant. If you do not have access to an Identity Cloud tenant and would like more information about ForgeRock Identity Solutions fill out our [Contact Us](https://www.forgerock.com/contact-us-2) form to get started.
+##### PingOne Advanced Identity Cloud Tenant
+You must have a PingOne Advanced Identity Cloud tenant. If you do not have access to a PingOne Advanced Identity Cloud tenant and would like more information about PingIdentity Solutions fill out our [Contact Us](https://www.pingidentity.com/en/company/contact-sales.html) form to get started.
 
 ##### OAuth2 Client
-Add a custom application to your Identity Cloud tenant. See [Register a custom application](https://backstage.forgerock.com/docs/idcloud/latest/app-management/register-a-custom-application.html) for more information.
+Add a custom application to your PingOne Advanced Identity Cloud tenant. See [Register a custom application](https://backstage.forgerock.com/docs/idcloud/latest/app-management/register-a-custom-application.html) for more information.
 1. Sign-in Method: OIDC - OpenID Connect
 2. Application Type: Native SPA
 
@@ -35,7 +35,7 @@ You must add a CORS configuration and add the `authorization` header. Refer to t
 ### Deploy OIDC Sample Application
 
 #### global.js
-Update the global.js file in the sample-app folder with your Identity Cloud tenant specific values.
+Update the global.js file in the sample-app folder with your PingOne Advanced Identity Cloud tenant specific values.
 
 | Key      | Value |
 | -------- | ----- |
@@ -63,7 +63,7 @@ Update the global.js file in the sample-app folder with your Identity Cloud tena
 | ------ | -------- |
 | index.html | Sample application home page |
 | dashboard.html | Log-in protected page |
-| global.js | Identity Cloud environment variables. To be populated with your tenant specific values.|
+| global.js | PingOne Advanced Identity Cloud environment variables. To be populated with your tenant specific values.|
 
 | Folder | Contents |
 | ------ | -------- |
