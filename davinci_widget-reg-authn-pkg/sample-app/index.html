@@ -33,7 +33,12 @@
       const policyId = window._env_.policyId;
       const pingOneDomain = window._env_.pingOneDomain; // PingOne Domain based on region
 
-      //*** Build the get SK Token URL. ***/
+      /*** 
+      * Build the get SK Token URL. 
+      * Important: In a production environment the /sdktoken call must be executed on the server side, not in client-side code, to
+      * protect the application’s API key from exposure on a public web page.
+      * https://docs.pingidentity.com/davinci/integrating_flows_into_applications/davinci_launching_a_flow_with_the_widget.html
+      ***/
       const skGetTokenUrl =
         'https://orchestrate-api.pingone.' + pingOneDomain + '/v1/company/' +
         companyId + '/sdktoken';
