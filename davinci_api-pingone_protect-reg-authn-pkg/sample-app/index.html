@@ -35,7 +35,7 @@
   <script src="global.js"></script>
   <script src="https://assets.pingone.com/davinci/latest/davinci.js"></script>
   <!-- PingOne Protect Signals SDK -->
-  <script type="text/javascript" src="https://assets.pingone.com/signals/web-sdk/5.0.1/signals-sdk.js" defer></script>
+  <script type="text/javascript" src="https://assets.pingone.com/signals/web-sdk/5.5.2/signals-sdk.js" defer></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
       const companyId = window._env_.companyId;
@@ -53,8 +53,9 @@
         }
 
         onPingOneSignalsReady(function () {
-          _pingOneSignals.initSilent({
-              envId : pingOneEnvId
+          _pingOneSignals.init({
+            // Set to `true` if using the Behavior Predictors (Bot Detect)
+            behavioralDataCollection: true
           }).then(function () {
               console.log("PingOne Signals initialized successfully");
           }).catch(function (e) {
