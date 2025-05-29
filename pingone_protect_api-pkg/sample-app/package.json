@@ -11,6 +11,6 @@
     "@fastify/static": "^7.0.4",
     "btoa": "^1.2.1",
     "dotenv": "^16.4.5",
-    "fastify": "^4.26.2"
+    "fastify": "^4.29.1"
   }
 }
