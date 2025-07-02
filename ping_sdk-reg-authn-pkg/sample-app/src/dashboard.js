@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const state = params.get("state");
 
   /**
-   * If the URL has state and authCode as query parameters, then the user
-   * returned back here after successfully logging, so call authorize with
-   * the values
+   * If the URL parameters contain state and authCode 
+   * then get the tokens and user info otherwise
+   * redirect to the index page
    */
   if (state && authCode) {
       await authorize(authCode, state);
