@@ -1,14 +1,14 @@
-# ForgeRock SDK + Terraform + PingOne Sample App Package
+# Ping SDK + Terraform + PingOne Sample App Package
 
 ## Use Case
 
 ![Use Case Diagram](./diagram.jpeg)
 
-This integration package combines Terraform, PingOne, and the ForgeRock SDK to demonstrate user registration and authentication.
+This integration package combines Terraform, PingOne, and the Ping SDK to demonstrate user registration and authentication.
 
 Terraform allows for easy and quick deployment of all platform configurations necessary to run this sample application.
 
-During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the ForgeRock SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
+During the deployment process, Terraform will create a new PingOne environment with the PingOne SSO service enabled. When authentication is initiated from the sample app, the Ping SDK is used to redirect the user to the authorization endpoint for the newly created OIDC application in PingOne. The user returns to the sample app after successful authentication, and the SDK stores their tokens in storage and displays them to the user.
 
 ### Registration
 
@@ -38,9 +38,9 @@ During the deployment process, Terraform will create a new PingOne environment w
 | Folder  | Contents                                               |
 | ------- | ------------------------------------------------------ |
 | /certs  | Self-signed certificate and private key                |
-| /css    | CSS files                                              |
-| /images | UI assets                                              |
-| /js     | JavaScript files needed to support tabs user interface |
+| /public/css    | CSS files                                              |
+| /public/images | UI assets                                              |
+| /public/js     | JavaScript files needed to support tabs user interface |
 
 ### /terraform
 
@@ -106,7 +106,7 @@ If the plan succeeds:
 terraform apply --auto-approve
 ```
 
-Your new PingOne environment is called: `Ping ForgeRock SDK Example`
+Your new PingOne environment is called: `Ping SDK Example`
 
 If any errors are encountered, please ensure you are using the latest version of the provider by running `terraform init -upgrade`
 
@@ -115,7 +115,9 @@ If any errors are encountered, please ensure you are using the latest version of
 In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
-npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
+npm install
+npm run build
+node server.js
 ```
 
 Access the sample application at:
@@ -144,7 +146,9 @@ Note: The Administrators environment cannot be used for this.
 In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
-npx http-server -S -C certs/cert.pem -K certs/key.pem -a localhost
+npm install
+npm run build
+node server.js
 ```
 
 Access the sample application at:

@@ -42,7 +42,7 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "Ping ForgeRock SDK Example"
+  default     = "Ping SDK Example"
 }
 
 variable "app_url" {

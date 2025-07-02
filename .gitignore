@@ -54,3 +54,6 @@ pids
 .env
 node_modules
 global.js
+
+**/public/js/index.js
+**/public/js/dashboard.js
