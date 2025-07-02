@@ -1,6 +1,9 @@
-import { Config, UserManager, FRUser, TokenManager } from '@forgerock/javascript-sdk';
-
-
+import { 
+  Config, 
+  UserManager,
+  FRUser, 
+  TokenManager
+} from '@forgerock/javascript-sdk';
 
 document.addEventListener('DOMContentLoaded', async () => {
   /**
@@ -29,8 +32,8 @@ const authorize = async (code, state) => {
         redirectUri: "https://localhost:8080/dashboard.html",
         scope: "openid profile email revoke",
         serverConfig: {
-            wellknown: `https://auth.pingone.${window._env_.pingOneDomain}/${window._env_.pingOneEnvId}/as/.well-known/openid-configuration`,
-        timeout: Number(4000),
+          wellknown: `https://auth.pingone.${window._env_.pingOneDomain}/${window._env_.pingOneEnvId}/as/.well-known/openid-configuration`,
+          timeout: Number(4000),
         },
     });
 

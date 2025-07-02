@@ -116,8 +116,7 @@ In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npm install
-npm run build
-node server.js
+npm start
 ```
 
 Access the sample application at:
@@ -147,8 +146,7 @@ In the command line, navigate to the `/sample-app` directory and run:
 
 ```code
 npm install
-npm run build
-node server.js
+npm start
 ```
 
 Access the sample application at:
