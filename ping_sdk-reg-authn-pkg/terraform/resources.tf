@@ -38,6 +38,7 @@ resource "pingone_application" "oidc_sdk_sample_app" {
     token_endpoint_auth_method = "NONE"
     redirect_uris               = local.redirect_uris
     post_logout_redirect_uris   = ["${var.app_url}"]
+    idp_signoff                 = true
     
     cors_settings = {
       behavior = "ALLOW_SPECIFIC_ORIGINS"
@@ -193,5 +194,5 @@ resource "pingone_resource_scope" "revoke" {
 
 resource "local_file" "env_config" {
   content  = "window._env_ = { pingOneDomain: \"${module.pingone_utils.pingone_domain_suffix}\", pingOneEnvId: \"${pingone_environment.my_environment.id}\", clientId: \"${pingone_application.oidc_sdk_sample_app.id}\"}"
-  filename = "../sample-app/global.js"
+  filename = "../sample-app/public/global.js"
 }
