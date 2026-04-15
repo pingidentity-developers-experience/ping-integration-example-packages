@@ -12,9 +12,11 @@ output "pingone_domain" {
 }
 
 output "dv_api_key" {
-  value = davinci_application.registration_flow_app.api_keys.prod
+  value = pingone_davinci_application.registration_flow_app.api_key.value
+
+  sensitive = true
 }
 
 output "dv_policy_id" {
-  value = davinci_application_flow_policy.registration_flow_app_policy.id
+  value = pingone_davinci_application_flow_policy.registration_flow_app_policy.id
 }
