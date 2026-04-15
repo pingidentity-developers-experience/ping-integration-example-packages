@@ -54,7 +54,7 @@ resource "pingone_davinci_flow" "pingone_davinci_api_protect_example" {
           data = {
             id              = "0mqv2pv49t"
             node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingcli__Variables.id
+            connection_id   = pingone_davinci_connector_instance.variables.id
             connector_id    = "variablesConnector"
             name            = "Variables"
             label           = "Variables"
@@ -93,7 +93,7 @@ resource "pingone_davinci_flow" "pingone_davinci_api_protect_example" {
           data = {
             id              = "1jf93tyrvi"
             node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingcli__Variables.id
+            connection_id   = pingone_davinci_connector_instance.variables.id
             connector_id    = "variablesConnector"
             name            = "Variables"
             label           = "Variables"
