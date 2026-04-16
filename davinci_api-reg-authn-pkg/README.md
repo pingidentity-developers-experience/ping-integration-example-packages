@@ -4,8 +4,6 @@
 
 - Terraform CLI installed on your computer, see [instructions](https://developer.hashicorp.com/terraform/downloads)
 - License with PingOne DaVinci product enabled
-- Configure a DaVinci Administrator environment in PingOne, see [Getting Started - PingOne DaVinci](https://terraform.pingidentity.com/getting-started/davinci/)
-- After you have created a DaVinci Administrator environment you will need create a Worker App in the environment (Connections > Applications)
 
 ## Use Case
 
@@ -60,7 +58,7 @@ During the deployment process, Terraform will create a new PingOne environment w
 | outputs.tf          | HCL declaring [output values](https://developer.hashicorp.com/terraform/language/values/outputs) that are the result of dynamic data. In this case, the deployed apps URL.                                                                                                                                                                                                                                                                                     |
 | resources.tf        | HCL that declares all the [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually.                                                                                                                                                                                                                 |
 | terraform.tfstate   | The [Terraform state](https://developer.hashicorp.com/terraform/language/state) file. This is where Terraform manages the "state" of your infrastructure and compares that against your deployed infrastructure. Never touch this. It's managed by Terraform.                                                                                                                                                                                                  |
-| terraform.tfvars    | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README.                                                                                                          |
+| terraform.tfvarsVariable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README.                                                                                                          |
 | vars.tf             | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure.                                                                                                                                                                                                                                                                                            |
 | versions.tf         | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use.                                                                                                                                                                                                                                                                                                           |
 
@@ -78,12 +76,6 @@ admin_user_id = "{{adminUserId}}"
 license_id    = "{{licenseId}}"
 worker_id     = "{{workerId}}"
 worker_secret = "{{workerSecret}}"
-
-dv_admin_region      = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
-dv_admin_username    = "{{adminUsername}}"
-dv_admin_password    = "{{adminPassword}}"
-davinci_admin_group  = "{{dvAdminGroup}}"
-assign_dv_admin_role = true | false
 ```
 
 | Variable               | Description                                                                                                                                                                                                                    |
@@ -94,11 +86,6 @@ assign_dv_admin_role = true | false
 | license_id             | License Id to be used for PingOne Environment                                                                                                                                                                                  |
 | worker_id              | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret          | Client Secret for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret                |
-| dv_admin_region        | Region for PingOne DaVinci Environment                                                                                                                                                                                         |
-| dv_admin_username      | Username for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| dv_admin_password      | Password for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| davinci_admin_group    | Name of the group that has DaVinci Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                         |
-| assign_dv_admin_role   | Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false. The default is true                                                                                     |
 
 ### Deployment
 
