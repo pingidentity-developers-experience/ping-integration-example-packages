@@ -100,12 +100,6 @@ admin_user_id = "{{adminUserId}}"
 license_id    = "{{licenseId}}"
 worker_id     = "{{workerId}}"
 worker_secret = "{{workerSecret}}"
-
-dv_admin_region      = "{{ NorthAmerica | Canada | AsiaPacific | Europe }}"
-dv_admin_username    = "{{adminUsername}}"
-dv_admin_password    = "{{adminPassword}}"
-davinci_admin_group  = "{{dvAdminGroup}}"
-assign_dv_admin_role = true | false
 ```
 
 | Variable               | Description                                                                                                                                                                                                                    |
@@ -116,11 +110,6 @@ assign_dv_admin_role = true | false
 | license_id             | License Id to be used for PingOne Environment                                                                                                                                                                                  |
 | worker_id              | Client Id for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret          | Client Secret for Worker App in the DaVinci Administrators Environment (see prerequisites) - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret                |
-| dv_admin_region        | Region for PingOne DaVinci Environment                                                                                                                                                                                         |
-| dv_admin_username      | Username for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| dv_admin_password      | Password for DaVinci admin user (see prerequisites)                                                                                                                                                                            |
-| davinci_admin_group    | Name of the group that has DaVinci Admin rights. The default is "DaVinci Terraform Administrators" (see prerequisites)                                                                                                         |
-| assign_dv_admin_role   | Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false. The default is true                                                                                     |
 
 ### Deployment
 
