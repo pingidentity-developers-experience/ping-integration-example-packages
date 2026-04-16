@@ -5,7 +5,6 @@
 # {@link https://docs.pingidentity.com/davinci/connectors/davinci_connections.html}
 ##########################################################################
 
-
 resource "pingone_davinci_connector_instance" "http" {
   environment_id = pingone_environment.my_environment.id
   name           = "Http"
