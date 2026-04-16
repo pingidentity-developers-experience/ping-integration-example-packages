@@ -71,7 +71,7 @@ resource "pingone_davinci_connector_instance" "pingone_protect" {
 }
 
 
-resource "pingone_davinci_connector_instance" "variables" {
+resource "pingone_davinci_connector_instance" "pingcli__Variables" {
   environment_id = pingone_environment.my_environment.id
   name           = "Variables"
 

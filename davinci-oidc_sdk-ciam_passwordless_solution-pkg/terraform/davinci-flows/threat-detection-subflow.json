@@ -1,0 +1,1522 @@
+{
+  "companyId": "17dcd7db-1838-4141-9bcc-03d01ed67806",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "annotationConnector",
+    "pingOneRiskConnector",
+    "functionsConnector",
+    "httpConnector",
+    "errorConnector"
+  ],
+  "createdDate": 1715712416340,
+  "currentVersion": 1,
+  "customerId": "8a7b174a66fd3de545b0ba2aac993d32",
+  "deployedDate": 1715712416401,
+  "description": "Imported on Tue May 14 2024 18:46:53 GMT+0000 (Coordinated Universal Time)",
+  "flowStatus": "enabled",
+  "inputSchemaCompiled": {
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "skriskcomponent": {
+          "description": "PingOne Protect skrisk component",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "skriskcomponent"
+        },
+        "userName": {
+          "description": "UserName to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "userName"
+        },
+        "riskPolicyID": {
+          "description": "Risk Policy ID to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "riskPolicyID"
+        },
+        "flowType": {
+          "description": "Flow Type to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "flowType"
+        },
+        "ipAddress": {
+          "description": "user IP Address to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "ipAddress"
+        },
+        "userID": {
+          "description": "The User ID to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "userID"
+        },
+        "applicationId": {
+          "description": "ApplicationId to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "applicationId"
+        },
+        "SessionId": {
+          "description": "Session Id to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "SessionId"
+        },
+        "customAttributes": {
+          "description": "Custom Attributes in PingOne Environment to be passed to PingOne Protect",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "customAttributes"
+        },
+        "userAgent": {
+          "description": "PingOne Protect User Agent to trigger flow.",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "userAgent"
+        },
+        "usercookie": {
+          "description": "PingOne Protect User Cookie to trigger flow.",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "usercookie"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "skriskcomponent",
+        "userName",
+        "riskPolicyID",
+        "flowType",
+        "ipAddress"
+      ]
+    }
+  },
+  "isInputSchemaSaved": true,
+  "isOutputSchemaSaved": false,
+  "name": "CIAM-Passwordless-Protect-Threat-Detection-Subflow",
+  "publishedVersion": 1,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 3
+  },
+  "updatedDate": 1715712416444,
+  "flowId": "fa75459607692f70b795bacd0a37b878",
+  "versionId": 1,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "2btocnrvnp",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#5D00D6ff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "Detect Threat using PingOne"
+              },
+              "width": {
+                "value": 1500
+              },
+              "fontStyle": {
+                "value": "bold"
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 20
+              }
+            },
+            "status": "configured",
+            "idUnique": "bu418fc0bo"
+          },
+          "position": {
+            "x": 268.4608916217797,
+            "y": 581.8139615679154
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "y6rdbg2ky5",
+            "nodeType": "CONNECTION",
+            "connectionId": "292873d5ceea806d81373ed0341b5c88",
+            "connectorId": "pingOneRiskConnector",
+            "name": "PingOne Protect",
+            "label": "PingOne Risk",
+            "status": "configured",
+            "capabilityName": "createRiskEvaluation",
+            "type": "action",
+            "properties": {
+              "flowType": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"flowType\",\n        \"data\": \"{{global.parameters.flowType}}\",\n        \"tooltip\": \"{{global.parameters.flowType}}\",\n        \"children\": [\n          {\n            \"text\": \"flowType\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "ipAddress": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ipAddress\",\n        \"data\": \"{{global.parameters.ipAddress}}\",\n        \"tooltip\": \"{{global.parameters.ipAddress}}\",\n        \"children\": [\n          {\n            \"text\": \"ipAddress\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "skRiskFP": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"skriskcomponent\",\n        \"data\": \"{{global.parameters.skriskcomponent}}\",\n        \"tooltip\": \"{{global.parameters.skriskcomponent}}\",\n        \"children\": [\n          {\n            \"text\": \"skriskcomponent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "userType": {
+                "value": "PING_ONE"
+              },
+              "userName": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userName\",\n        \"data\": \"{{global.parameters.userName}}\",\n        \"tooltip\": \"{{global.parameters.userName}}\",\n        \"children\": [\n          {\n            \"text\": \"userName\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "riskPolicySetId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskPolicyID\",\n        \"data\": \"{{global.parameters.riskPolicyID}}\",\n        \"tooltip\": \"{{global.parameters.riskPolicyID}}\",\n        \"children\": [\n          {\n            \"text\": \"riskPolicyID\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "sessionId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"SessionId\",\n        \"data\": \"{{global.parameters.SessionId}}\",\n        \"tooltip\": \"{{global.parameters.SessionId}}\",\n        \"children\": [\n          {\n            \"text\": \"SessionId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "customAttributes": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"customAttributes\",\n        \"data\": \"{{global.parameters.customAttributes}}\",\n        \"tooltip\": \"{{global.parameters.customAttributes}}\",\n        \"children\": [\n          {\n            \"text\": \"customAttributes\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "userAgent": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userAgent\",\n        \"data\": \"{{global.parameters.userAgent}}\",\n        \"tooltip\": \"{{global.parameters.userAgent}}\",\n        \"children\": [\n          {\n            \"text\": \"userAgent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "cookie": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"usercookie\",\n        \"data\": \"{{global.parameters.usercookie}}\",\n        \"tooltip\": \"{{global.parameters.usercookie}}\",\n        \"children\": [\n          {\n            \"text\": \"usercookie\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "targetResourceId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"applicationId\",\n        \"data\": \"{{global.parameters.applicationId}}\",\n        \"tooltip\": \"{{global.parameters.applicationId}}\",\n        \"children\": [\n          {\n            \"text\": \"applicationId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Create PingOne Protect Risk with user and Environment details"
+              },
+              "nodeDescription": {
+                "value": "Should have required variables to start the risk evaluation."
+              },
+              "userId": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userID\",\n        \"data\": \"{{global.parameters.userID}}\",\n        \"tooltip\": \"{{global.parameters.userID}}\",\n        \"children\": [\n          {\n            \"text\": \"userID\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              }
+            },
+            "idUnique": "rd0qqpawik"
+          },
+          "position": {
+            "x": 770.9365857031611,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "c2ulwnph9p",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "arrayOfAIncludesB",
+            "type": "trigger",
+            "properties": {
+              "leftValueA": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"[\\\"BOT_MITIGATION\\\",\\\"AITM_MITIGATION\\\",\\\"TEMP_EMAIL_MITIGATION\\\"]\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Detect Threat"
+              },
+              "rightValueB": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"recommendedAction\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"children\": [\n          {\n            \"text\": \"recommendedAction\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "rightValueMultiple": {
+                "value": [
+                  {
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"BOT_MITIGATION\"\n      }\n    ]\n  }\n]",
+                    "id": "l1txs9vj17"
+                  },
+                  {
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"AITM_MITIGATION\"\n      }\n    ]\n  }\n]",
+                    "id": "x1e6bj39fa"
+                  },
+                  {
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"TEMP_EMAIL_MITIGATION\"\n      }\n    ]\n  }\n]",
+                    "id": "oahavljwwp"
+                  }
+                ]
+              },
+              "nodeDescription": {
+                "value": "Check if PingOne protect has detected a BOT or AITM attack"
+              }
+            },
+            "idUnique": "ldxi1m896z"
+          },
+          "position": {
+            "x": 1204,
+            "y": 750
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "vknqtnu7y2",
+            "nodeType": "EVAL",
+            "properties": {
+              "f994y44c9q": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 929.613120676229,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "6b03psy0ol",
+            "nodeType": "EVAL",
+            "properties": {
+              "y6rdbg2ky5": {
+                "value": "allTriggersTrue"
+              },
+              "uwczr5rsm3": {
+                "value": "anyTriggersTrue"
+              },
+              "ue7utb27ym": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 585.8139615679154,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "uizc04ybxq",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {
+              "v3lzt5w5ix": {
+                "value": "allTriggersTrue"
+              },
+              "eagfn3lpbp": {
+                "value": "allTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1458.5349039197883,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "eagfn3lpbp",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createSuccessResponse",
+            "type": "action",
+            "properties": {
+              "additionalFieldsName": {
+                "value": "pingoneProtectEvaluation"
+              },
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "name": "protectRiskID",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.1991979341047725,
+                    "label": "protectRiskID (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "id"
+                  },
+                  {
+                    "name": "protectRiskLevel",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"level\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.level}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.level}}\",\n        \"children\": [\n          {\n            \"text\": \"level\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.16274724942051932,
+                    "label": "protectRiskLevel (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "level"
+                  },
+                  {
+                    "name": "ciam_protectPredictor",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"recommendedAction\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"children\": [\n          {\n            \"text\": \"recommendedAction\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.5560383997706326,
+                    "label": "ciam_protectPredictor (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "recommendedAction"
+                  },
+                  {
+                    "name": "ciam_protectDeviceStatus",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.details.newDevice.status}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.details.newDevice.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.35881193325047533,
+                    "type": "string",
+                    "label": "ciam_protectDeviceStatus (string - flowInstance)",
+                    "nameDefault": "status"
+                  }
+                ]
+              },
+              "backgroundColor": {
+                "value": "#9dc967ff"
+              },
+              "oeInteractionCacheExpire": {
+                "value": true
+              },
+              "oeNodeCacheExpire": {
+                "value": true
+              },
+              "nodeTitle": {
+                "value": "Return Success Response"
+              }
+            }
+          },
+          "position": {
+            "x": 1696.54970637939,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "k6hynhaety",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createErrorResponse",
+            "type": "action",
+            "properties": {
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "name": "protectRiskID",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"id\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.id}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.id}}\",\n        \"children\": [\n          {\n            \"text\": \"id\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.6102824021676239,
+                    "label": "protectRiskID (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "id"
+                  },
+                  {
+                    "name": "protectRiskLevel",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"level\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.level}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.level}}\",\n        \"children\": [\n          {\n            \"text\": \"level\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.09426934061509806,
+                    "label": "protectRiskLevel (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "level"
+                  },
+                  {
+                    "name": "ciam_protectPredictor",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"recommendedAction\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.result.recommendedAction}}\",\n        \"children\": [\n          {\n            \"text\": \"recommendedAction\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.3847454019277876,
+                    "label": "ciam_protectPredictor (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "recommendedAction"
+                  },
+                  {
+                    "name": "ciam_protectDeviceStatus",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.details.newDevice.status}}\",\n        \"tooltip\": \"{{local.y6rdbg2ky5.payload.output.rawResponse.details.newDevice.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.6518285894215345,
+                    "label": "ciam_protectDeviceStatus (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "status"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Threat detected response."
+              },
+              "nodeDescription": {
+                "value": "Response back when a threat is detected."
+              },
+              "backgroundColor": {
+                "value": "#ffc8c1ff"
+              },
+              "oeInteractionCacheExpire": {
+                "value": true
+              },
+              "oeNodeCacheExpire": {
+                "value": true
+              }
+            }
+          },
+          "position": {
+            "x": 1714,
+            "y": 960
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "md3luzzdte",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "More details: https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-risk-evaluation"
+              },
+              "width": {
+                "value": 960
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 1135,
+            "y": 428
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "cilec71mva",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#fffaa0ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Input Schema:  required are: skriskcomponent, userName, flowType, ipAddress and optional are: userID, applicationId, SessionId, riskPolicyID, customAttributes"
+              },
+              "width": {
+                "value": 1200
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": false
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured",
+            "idUnique": "d2mbrib33f"
+          },
+          "position": {
+            "x": 214,
+            "y": 360
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7i8834bmpf",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Take action based on threat detected. Visit PingOne Protect documentation for more information on this."
+              },
+              "width": {
+                "value": 480
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 1054,
+            "y": 630
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "onzp625tsa",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Sends back: PingOne Risk Level, PignOne Risk ID, PingOne Recommended Action values."
+              },
+              "width": {
+                "value": 960
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 850.8107424375646,
+            "y": 1129.0809899167527
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "y5vtbd5ej5",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Create Protect Risk Evaluation after getting required inputs."
+              },
+              "width": {
+                "value": 240
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 638.7061398922713,
+            "y": 634.7061398922713
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "5vw8zhr390",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#4462edff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "CIAM-Passwordless-Protect-Threat-Detection-Subflow"
+              },
+              "width": {
+                "value": 1800
+              },
+              "fontStyle": {
+                "value": "bold"
+              },
+              "fontSize": {
+                "value": 16
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 218,
+            "y": 214
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "f994y44c9q",
+            "nodeType": "CONNECTION",
+            "connectionId": "53ab83a4a4ab919d9f2cb02d9e111ac8",
+            "connectorId": "errorConnector",
+            "name": "Error Message",
+            "label": "Error Message",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error in creating PingOne Risk Evaluation \"\n      }\n    ]\n  }\n]"
+              },
+              "errorDescription": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error in creating PingOne Risk Evaluation\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Error While creating a risk evaluation"
+              },
+              "nodeDescription": {
+                "value": "Error While creating PingOne Protect Risk Evaluation"
+              }
+            }
+          },
+          "position": {
+            "x": 1204,
+            "y": 960
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qbf0qv8qi0",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "customFunction",
+            "type": "trigger",
+            "properties": {
+              "nodeTitle": {
+                "value": "Flow Configuration Check"
+              },
+              "variableInputList": {
+                "value": [
+                  {
+                    "name": "Username",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"userName\",\n        \"data\": \"{{global.parameters.userName}}\",\n        \"tooltip\": \"{{global.parameters.userName}}\",\n        \"children\": [\n          {\n            \"text\": \"userName\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "SK Component",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"skriskcomponent\",\n        \"data\": \"{{global.parameters.skriskcomponent}}\",\n        \"tooltip\": \"{{global.parameters.skriskcomponent}}\",\n        \"children\": [\n          {\n            \"text\": \"skriskcomponent\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "Flow Type",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"flowType\",\n        \"data\": \"{{global.parameters.flowType}}\",\n        \"tooltip\": \"{{global.parameters.flowType}}\",\n        \"children\": [\n          {\n            \"text\": \"flowType\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  },
+                  {
+                    "name": "riskPolicyID",
+                    "preferredDataType": "string",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"riskPolicyID\",\n        \"data\": \"{{global.parameters.riskPolicyID}}\",\n        \"tooltip\": \"{{global.parameters.riskPolicyID}}\",\n        \"children\": [\n          {\n            \"text\": \"riskPolicyID\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+                  }
+                ]
+              },
+              "code": {
+                "value": "// Iterate over params object, return false if any\n// passed in parameters are null/empty\nmodule.exports = a = async ({ params }) => {\n\n\tfor (var key in params) {\n\t\tif (!params[key]) {\n\t\t\treturn false; \n\t\t}\n\t}\n\n\treturn \n}"
+              },
+              "outputSchema": {
+                "value": "{\n\t\"output\": {\n\t\t\"type\": \"object\",\n\t\t\"properties\": {\n\t\t\t\n\t\t}\n\t}\n}"
+              },
+              "nodeDescription": {
+                "value": "Add input variables to check for null/empty"
+              }
+            }
+          },
+          "position": {
+            "x": 374.2452482704916,
+            "y": 740.4904965409831
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ue7utb27ym",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        <img class=\"companyLogo align-self-center mb-5\" alt=\"{{global.variables.companyName}}\" />\n        <h1 class=\"text-center mb-4\">Flow Configuration Error</h1>\n        <p class=\"text-muted text-center\">{{errorConnector}}</p>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "propertyName": "buttonValue"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Error Message"
+              },
+              "nodeDescription": {
+                "value": "Configuration value not set error"
+              },
+              "backgroundColor": {
+                "value": "#ffc8c1ff"
+              },
+              "sktemplate": {
+                "uiId": "4283c0de636208a4273efe1c9fda225f",
+                "createdDate": 1678116166705,
+                "customerId": "f3e47d945ae971a4b4142ec75012d155",
+                "description": "",
+                "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"errorConnector\": {\n\t\t\t\"type\": \"string\",\n\t\t\t\"displayName\": \"Error Message\",\n\t\t\t\"preferredControlType\": \"textField\",\n\t\t\t\"enableParameters\": true,\n\t\t\t\"propertyName\": \"errorConnector\"\n\t\t}\n\t}\n}",
+                "name": "Error Template",
+                "outputSchema": {},
+                "script": "",
+                "style": "",
+                "template": "",
+                "updatedDate": 1678116321755,
+                "validationRules": [],
+                "version": "1.0",
+                "visibility": "private",
+                "companyId": "ee43f700-c751-494d-9dbf-70946a85b328",
+                "value": "4283c0de636208a4273efe1c9fda225f"
+              },
+              "inputSchema": {
+                "value": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"errorConnector\": {\n\t\t\t\"type\": \"string\",\n\t\t\t\"displayName\": \"Error Message\",\n\t\t\t\"preferredControlType\": \"textField\",\n\t\t\t\"enableParameters\": true,\n\t\t\t\"propertyName\": \"errorConnector\"\n\t\t}\n\t}\n}"
+              },
+              "outputSchema": {
+                "value": {}
+              },
+              "customCSS": {
+                "value": ""
+              },
+              "customScript": {
+                "value": ""
+              },
+              "validationRules": {
+                "value": []
+              },
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Unable to execute the flow due to missing parameter values.\"\n      }\n    ]\n  }\n]"
+              }
+            },
+            "idUnique": "3nm07rhtek"
+          },
+          "position": {
+            "x": 770.9365857031611,
+            "y": 952.0592098384069
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ahgaglnbf3",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Error while Creating Protect Risk Evaluation."
+              },
+              "width": {
+                "value": 240
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured",
+            "idUnique": "466nczsmna"
+          },
+          "position": {
+            "x": 1114,
+            "y": 870
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "h48xdltldb",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#f2f3f4ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "If existing user then disable them in main flow."
+              },
+              "width": {
+                "value": 240
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": true
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 1594,
+            "y": 870
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ggprsb233e",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#fffaa0ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Input Schema: Configure the Environment ID, ClientID, Client Secret and Region in PingOne Protect Connector."
+              },
+              "width": {
+                "value": 800
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": false
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured",
+            "idUnique": "d2mbrib33f"
+          },
+          "position": {
+            "x": 214,
+            "y": 420
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "dns1zu64va",
+            "source": "6b03psy0ol",
+            "target": "ue7utb27ym"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "u9rl4uzzqq",
+            "source": "uizc04ybxq",
+            "target": "k6hynhaety"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "3xl6gj0mie",
+            "source": "uizc04ybxq",
+            "target": "eagfn3lpbp"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "r2znk9hwv4",
+            "source": "y6rdbg2ky5",
+            "target": "vknqtnu7y2"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "24p5t3c624",
+            "source": "c2ulwnph9p",
+            "target": "uizc04ybxq"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "2vefvw4kgt",
+            "source": "vknqtnu7y2",
+            "target": "f994y44c9q"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "gcwf1ft829",
+            "source": "vknqtnu7y2",
+            "target": "c2ulwnph9p"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "cb77bxuddw",
+            "source": "6b03psy0ol",
+            "target": "y6rdbg2ky5"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "r7g4v4d9us",
+            "source": "qbf0qv8qi0",
+            "target": "6b03psy0ol"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "inputSchema": [
+    {
+      "propertyName": "skriskcomponent",
+      "description": "PingOne Protect skrisk component",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "userName",
+      "description": "UserName to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "riskPolicyID",
+      "description": "Risk Policy ID to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "flowType",
+      "description": "Flow Type to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "ipAddress",
+      "description": "user IP Address to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "userID",
+      "description": "The User ID to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    },
+    {
+      "propertyName": "applicationId",
+      "description": "ApplicationId to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    },
+    {
+      "propertyName": "SessionId",
+      "description": "Session Id to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    },
+    {
+      "propertyName": "customAttributes",
+      "description": "Custom Attributes in PingOne Environment to be passed to PingOne Protect",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    },
+    {
+      "propertyName": "userAgent",
+      "description": "PingOne Protect User Agent to trigger flow.",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    },
+    {
+      "propertyName": "usercookie",
+      "description": "PingOne Protect User Cookie to trigger flow.",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    }
+  ],
+  "flowColor": "#ff661c",
+  "savedDate": 1715712416255,
+  "variables": [
+    {
+      "context": "flowInstance",
+      "createdDate": 1715707206591,
+      "fields": {
+        "type": "string",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "88c746f5-bf94-4bb7-bdc8-6b70caa6d15d",
+      "type": "property",
+      "visibility": "private",
+      "name": "companyName##SK##flowInstance",
+      "companyId": "17dcd7db-1838-4141-9bcc-03d01ed67806"
+    }
+  ],
+  "connections": []
+}

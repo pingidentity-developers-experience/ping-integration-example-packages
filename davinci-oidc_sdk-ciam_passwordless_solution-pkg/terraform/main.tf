@@ -62,3 +62,15 @@ provider "pingone" {
   environment_id               = var.pingone_environment_id
   region_code                  = var.region_code
 }
+
+##############################################
+# PingOne DaVinci Provider
+##############################################
+# {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs}
+
+provider "davinci" {
+  username       = var.dv_admin_username
+  password       = var.dv_admin_password
+  region         = var.dv_admin_region
+  environment_id = var.pingone_environment_id
+}

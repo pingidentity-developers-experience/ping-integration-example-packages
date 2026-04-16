@@ -1,0 +1,1623 @@
+{
+  "companyId": "17dcd7db-1838-4141-9bcc-03d01ed67806",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "httpConnector",
+    "pingOneSSOConnector",
+    "functionsConnector",
+    "nodeConnector",
+    "errorConnector",
+    "variablesConnector",
+    "annotationConnector"
+  ],
+  "createdDate": 1715712416607,
+  "currentVersion": 1,
+  "customerId": "8a7b174a66fd3de545b0ba2aac993d32",
+  "deployedDate": 1715712416670,
+  "description": "Imported on Tue May 14 2024 18:46:53 GMT+0000 (Coordinated Universal Time)",
+  "flowStatus": "enabled",
+  "inputSchemaCompiled": {
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "pingOneUserId": {
+          "description": "",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "pingOneUserId"
+        },
+        "ciam_companyLogo": {
+          "description": "",
+          "preferredDataType": "string",
+          "isExpanded": true,
+          "type": "string",
+          "name": "ciam_companyLogo"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "pingOneUserId"
+      ]
+    }
+  },
+  "isInputSchemaSaved": true,
+  "isOutputSchemaSaved": false,
+  "name": "CIAM-Passwordless-Protect-Verify-Email-Subflow",
+  "publishedVersion": 1,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 3,
+    "useBetaAlgorithm": true
+  },
+  "updatedDate": 1715712416701,
+  "flowId": "475be3d3d0ed42ace01503e8e95d6e8f",
+  "versionId": 1,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "r8sc175hhf",
+            "nodeType": "EVAL",
+            "properties": {
+              "undefined": {
+                "value": "anyTriggersFalse"
+              },
+              "8gqiq4sagn": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 2566.0581530686577,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "s5yykzv8zd",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "httpConnector",
+            "status": "configured",
+            "capabilityName": "customHTMLTemplate",
+            "type": "trigger",
+            "properties": {
+              "customHTML": {
+                "value": "<div\n  class=\"bg-light d-flex flex-column justify-content-center align-items-center position-absolute top-0 start-0 bottom-0 end-0 overflow-auto\">\n  <div style=\"max-width: 400px; min-width: 400px; width: 100%\">\n    <div class=\"card shadow mb-5\">\n      <div class=\"card-body p-5 d-flex flex-column\">\n        {{global.parameters.ciam_companyLogo}}\n        <h1 id=\"header\" class=\"text-center mb-4\">Verification Code</h1>\n        <p class=\"text-muted text-center\">\n          We’ve sent a verification code to your email address. Verify your email to finish creating your account.\n        </p>\n        <p id=\"feedback\" data-id=\"feedback\" class=\"text-danger mdi mdi-alert-circle\" data-skcomponent=\"skerror\"></p>\n        <p id=\"verificationCodeFeedback\" data-id=\"verificationCodeFeedback\" class=\"text-danger mdi mdi-alert-circle\"\n          data-skerrorid=\"verificationCode\" data-skcomponent=\"skerrormessage\"></p>\n        <form id=\"otpForm\" data-id=\"otpForm\">\n          <div class=\"mb-4 form-floating\">\n            <input id=\"verificationCode\" data-id=\"verificationCode\" class=\"form-control\" type=\"text\" name=\"verificationCode\"\n              placeholder=\"Verification Code\" autocomplete=\"off\" />\n            <label id=\"verificationCodeLabel\" data-id=\"verificationCodeLabel\" class=\"form-label\" for=\"verificationCode\">\n              Verification Code\n            </label>\n          </div>\n          <div class=\"d-flex flex-column\">\n            <button id=\"verifyBtn\" data-id=\"verifyBtn\" class=\"btn btn-primary mb-3\" type=\"submit\"\n              data-skcomponent=\"skbutton\" data-skbuttontype=\"form-submit\" data-skform=\"otpForm\" data-skbuttonvalue=\"VERIFY\">\n              Verify\n            </button>\n            <button type=\"submit\" class=\"btn btn-link\" data-skcomponent=\"skbutton\" data-skbuttontype=\"next-event\" \n              data-skform=\"otpForm\" data-skbuttonvalue=\"RESEND\">\n                  Resend verification code\n              </button>   \n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>"
+              },
+              "formFieldsList": {
+                "value": [
+                  {
+                    "propertyName": "verificationCode",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": false,
+                    "displayName": "Verification Code"
+                  },
+                  {
+                    "propertyName": "buttonValue",
+                    "preferredControlType": "textField",
+                    "preferredDataType": "string",
+                    "value": "",
+                    "hashedVisibility": false
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Prompt For Verification Code"
+              },
+              "oeInteractionCacheExpire": {
+                "value": false
+              },
+              "validationRules": {
+                "value": [
+                  {
+                    "propertyName": "verificationCode",
+                    "rules": [
+                      {
+                        "ruleName": "presence",
+                        "message": "Enter the verification code."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "customScript": {
+                "value": "const focusOnFirstInputElement = () => {\r\n  document.getElementById(\"verificationCode\").focus();\r\n};\r\n\r\n/**\r\n * If page isn't loaded yet, wait for the page to load, then focus on first\r\n * input element.\r\n */\r\nif (document.readyState === \"loading\") {\r\n  // Loading hasn't finished yet\r\n  document.onreadystatechange = () => {\r\n    if (document.readyState === \"complete\") {\r\n      focusOnFirstInputElement();\r\n    }\r\n  };\r\n} else {\r\n  // `DOMContentLoaded` has already fired\r\n  focusOnFirstInputElement();\r\n}\r\n"
+              },
+              "customCSS": {},
+              "nodeDescription": {
+                "value": "Displays a form for the user to enter the verification code"
+              }
+            }
+          },
+          "position": {
+            "x": 730.9358578172875,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "1vyzcyazgf",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne - Template",
+            "status": "configured",
+            "capabilityName": "verifyEmail",
+            "type": "action",
+            "properties": {
+              "identifier": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"pingOneUserId\",\n        \"data\": \"{{global.parameters.pingOneUserId}}\",\n        \"tooltip\": \"{{global.parameters.pingOneUserId}}\",\n        \"children\": [\n          {\n            \"text\": \"pingOneUserId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "verificationCode": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"verificationCode\",\n        \"data\": \"{{local.s5yykzv8zd.payload.output.verificationCode}}\",\n        \"tooltip\": \"{{local.s5yykzv8zd.payload.output.verificationCode}}\",\n        \"children\": [\n          {\n            \"text\": \"verificationCode\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Validate verification code"
+              },
+              "nodeDescription": {
+                "value": "Sends the verification code to PingOne to validate"
+              }
+            }
+          },
+          "position": {
+            "x": 2385.130602832607,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "rjau0njx5i",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "AEqualsMultipleB",
+            "type": "trigger",
+            "properties": {
+              "leftValueA": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.s5yykzv8zd.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.s5yykzv8zd.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "rightValueB": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUBMIT\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Form Button Check"
+              },
+              "rightValueMultiple": {
+                "value": [
+                  {
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"VERIFY\"\n      }\n    ]\n  }\n]",
+                    "id": "xplfpj1df8"
+                  },
+                  {
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"RESEND\"\n      }\n    ]\n  }\n]",
+                    "id": "8982ybbt5z"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 1144.4845440711172,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "t92nqcnwux",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1351.2588871980322,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "9lrqw38492",
+            "nodeType": "CONNECTION",
+            "connectionId": "94141bf2f1b9b59a5f5365ff135e02bb",
+            "connectorId": "pingOneSSOConnector",
+            "name": "PingOne",
+            "label": "PingOne",
+            "status": "configured",
+            "capabilityName": "sendVerificationCode",
+            "type": "action",
+            "properties": {
+              "identifier": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"pingOneUserId\",\n        \"data\": \"{{global.parameters.pingOneUserId}}\",\n        \"tooltip\": \"{{global.parameters.pingOneUserId}}\",\n        \"children\": [\n          {\n            \"text\": \"pingOneUserId\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Resend Verification Code"
+              }
+            }
+          },
+          "position": {
+            "x": 1558.0332303249472,
+            "y": 777.3954791446944
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8l8a54vefk",
+            "nodeType": "EVAL",
+            "label": "Evaluator",
+            "properties": {
+              "undefined": {
+                "value": "anyTriggersFalse"
+              },
+              "ab91zkjrgx": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1764.8075734518623,
+            "y": 777.3954791446944
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ab91zkjrgx",
+            "nodeType": "CONNECTION",
+            "connectionId": "e7eae662d2ca276e4c6f097fc36a3bb1",
+            "connectorId": "nodeConnector",
+            "name": "Node",
+            "label": "Teleport",
+            "status": "configured",
+            "capabilityName": "goToNode",
+            "type": "action",
+            "properties": {
+              "nodeInstanceId": {
+                "value": "xbvfnq8o31"
+              },
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Something went wrong. Try again later.\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 1971.581916578777,
+            "y": 880.7826507081518
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8gqiq4sagn",
+            "nodeType": "CONNECTION",
+            "connectionId": "53ab83a4a4ab919d9f2cb02d9e111ac8",
+            "connectorId": "errorConnector",
+            "name": "Error Message",
+            "label": "errorConnector",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "nodeTitle": {
+                "value": "Could not validate the verification code"
+              },
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Failed to validate the verification code.\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "backgroundColor": {
+                "value": "#ffc8c1ff"
+              },
+              "errorCode": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"httpResponseCode\",\n        \"data\": \"{{local.1vyzcyazgf.payload.error.httpResponseCode}}\",\n        \"tooltip\": \"{{local.1vyzcyazgf.payload.error.httpResponseCode}}\",\n        \"children\": [\n          {\n            \"text\": \"httpResponseCode\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "errorReason": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"details\",\n        \"data\": \"{{local.1vyzcyazgf.payload.error.details}}\",\n        \"tooltip\": \"{{local.1vyzcyazgf.payload.error.details}}\",\n        \"children\": [\n          {\n            \"text\": \"details\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeDescription": {}
+            },
+            "idUnique": "l11iieutxe"
+          },
+          "position": {
+            "x": 2824.5260819773016,
+            "y": 570.6211360177793
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "xsb00g2t92",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "saveValue",
+            "type": "trigger",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "ciam_verificationValidationAttempts",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"0\"\n      }\n    ]\n  }\n]",
+                    "key": 0.7327141390927852,
+                    "label": "ciam_verificationValidationAttempts (number - flowInstance)",
+                    "type": "number"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Set Validation Attempt To Zero"
+              }
+            }
+          },
+          "position": {
+            "x": 317.3871715634575,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "sju60xf677",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 911.863408053338,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "wfe8dz7k7v",
+            "nodeType": "CONNECTION",
+            "connectionId": "06922a684039827499bdbdd97f49827b",
+            "connectorId": "variablesConnector",
+            "name": "Variables",
+            "label": "Variables",
+            "status": "configured",
+            "capabilityName": "incrementByN",
+            "type": "action",
+            "properties": {
+              "saveVariables": {
+                "value": [
+                  {
+                    "name": "ciam_verificationValidationAttempts",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"0\"\n      }\n    ]\n  }\n]",
+                    "key": 0.7327141390927852,
+                    "label": "ciam_verificationValidationAttempts (number - flowInstance)",
+                    "type": "number"
+                  },
+                  {
+                    "name": "ciam_verificationResendLimit",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"0\"\n      }\n    ]\n  }\n]",
+                    "key": 0.25173650612994614,
+                    "label": "ciam_verificationResendLimit (number - flowInstance)",
+                    "type": "number"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Increment Validation Attempt"
+              },
+              "incrementCounter": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"1\"\n      }\n    ]\n  }\n]"
+              },
+              "variable": {
+                "value": "ciam_verificationValidationAttempts"
+              }
+            },
+            "idUnique": "yx7oyrcd8s"
+          },
+          "position": {
+            "x": 1558.0332303249472,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "5d5o5ia81u",
+            "nodeType": "CONNECTION",
+            "connectionId": "de650ca45593b82c49064ead10b9fe17",
+            "connectorId": "functionsConnector",
+            "name": "Functions",
+            "label": "Functions",
+            "status": "configured",
+            "capabilityName": "ALessThanB",
+            "type": "trigger",
+            "properties": {
+              "leftValueA": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_verificationValidationAttempts\",\n        \"data\": \"{{global.variables.ciam_verificationValidationAttempts}}\",\n        \"tooltip\": \"{{global.variables.ciam_verificationValidationAttempts}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_verificationValidationAttempts\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "rightValueB": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_verificationLimit\",\n        \"data\": \"{{global.company.variables.ciam_verificationLimit}}\",\n        \"tooltip\": \"{{global.company.variables.ciam_verificationLimit}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_verificationLimit\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
+              },
+              "type": {
+                "value": "number"
+              },
+              "nodeTitle": {
+                "value": "Is Validation Limit Reached?"
+              }
+            }
+          },
+          "position": {
+            "x": 1971.581916578777,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "hpve55zazv",
+            "nodeType": "EVAL",
+            "properties": {
+              "undefined": {
+                "value": "anyTriggersFalse"
+              },
+              "gf3bwis6oi": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 2152.509466814828,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qskpbqg2yf",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 498.3147217995081,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "n5icn97kyh",
+            "nodeType": "EVAL",
+            "properties": {
+              "undefined": {
+                "value": "anyTriggersFalse"
+              }
+            }
+          },
+          "position": {
+            "x": 1351.2588871980322,
+            "y": 777.3954791446944
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "gf3bwis6oi",
+            "nodeType": "CONNECTION",
+            "connectionId": "e7eae662d2ca276e4c6f097fc36a3bb1",
+            "connectorId": "nodeConnector",
+            "name": "Node",
+            "label": "Teleport",
+            "status": "configured",
+            "capabilityName": "goToNode",
+            "type": "action",
+            "properties": {
+              "nodeInstanceId": {
+                "value": "xbvfnq8o31"
+              },
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Something went wrong\"\n      },\n      {\n        \"text\": \". Try again later.\"\n      }\n    ]\n  }\n]"
+              }
+            },
+            "idUnique": "5tp4r9o7i2"
+          },
+          "position": {
+            "x": 2385.130602832607,
+            "y": 570.6211360177793
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "527m4tr2s2",
+            "nodeType": "CONNECTION",
+            "connectionId": "53ab83a4a4ab919d9f2cb02d9e111ac8",
+            "connectorId": "errorConnector",
+            "name": "Error Message",
+            "label": "Error Message",
+            "status": "configured",
+            "capabilityName": "customErrorMessage",
+            "type": "action",
+            "properties": {
+              "errorConnector": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Verification code is resent.\"\n      }\n    ]\n  }\n]"
+              },
+              "nodeTitle": {
+                "value": "Verification Code Resent"
+              }
+            },
+            "idUnique": "ymff79tlhz"
+          },
+          "position": {
+            "x": 1971.581916578777,
+            "y": 777.3954791446944
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ru45xolut1",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 1764.8075734518623,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "xbvfnq8o31",
+            "nodeType": "CONNECTION",
+            "connectionId": "e7eae662d2ca276e4c6f097fc36a3bb1",
+            "connectorId": "nodeConnector",
+            "name": "Node",
+            "label": "Teleport",
+            "status": "configured",
+            "capabilityName": "startNode",
+            "type": "trigger",
+            "properties": {
+              "inputSchema": {
+                "value": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"errorConnector\": {\n\t\t\t\"type\": \"string\",\n\t\t\t\"displayName\": \"errorConnector\",\n\t\t\t\"preferredControlType\": \"textField\",\n\t\t\t\"enableParameters\": true,\n\t\t\t\"propertyName\": \"errorConnector\"\n\t\t}\n\t}\n}"
+              },
+              "nodeTitle": {
+                "value": "Error"
+              }
+            }
+          },
+          "position": {
+            "x": 330,
+            "y": 1054
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "rfo66ayuok",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createErrorResponse",
+            "type": "action",
+            "properties": {
+              "claimsNameValuePairs": {
+                "value": [
+                  {
+                    "name": "ciam_errorConnector",
+                    "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"errorConnector\",\n        \"data\": \"{{local.xbvfnq8o31.payload.output.errorConnector}}\",\n        \"tooltip\": \"{{local.xbvfnq8o31.payload.output.errorConnector}}\",\n        \"children\": [\n          {\n            \"text\": \"errorConnector\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]",
+                    "key": 0.5442857757306498,
+                    "label": "ciam_errorConnector (string - flowInstance)",
+                    "type": "string",
+                    "nameDefault": "errorConnector"
+                  }
+                ]
+              },
+              "nodeTitle": {
+                "value": "Return Error Response"
+              },
+              "backgroundColor": {
+                "value": "#ffc8c1ff"
+              }
+            },
+            "idUnique": "8fjvtuxz2x"
+          },
+          "position": {
+            "x": 720,
+            "y": 1054
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "90g8cf6l2u",
+            "nodeType": "EVAL"
+          },
+          "position": {
+            "x": 510,
+            "y": 1054
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "wweoq86mfw",
+            "nodeType": "CONNECTION",
+            "connectionId": "867ed4363b2bc21c860085ad2baa817d",
+            "connectorId": "httpConnector",
+            "name": "Http",
+            "label": "Http",
+            "status": "configured",
+            "capabilityName": "createSuccessResponse",
+            "type": "action",
+            "properties": {
+              "nodeTitle": {
+                "value": "Return Success Response"
+              },
+              "backgroundColor": {
+                "value": "#9dc967ff"
+              }
+            }
+          },
+          "position": {
+            "x": 2824.5260819773016,
+            "y": 441.3871715634575
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "y2ry3nape9",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#5d00d6ff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "Resend verification code"
+              },
+              "width": {
+                "value": 600
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "cornerRadius": {
+                "value": 20
+              },
+              "fontStyle": {
+                "value": "bold"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 1454.6460587614897,
+            "y": 674.0083075812369
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "2zs6bq3sxd",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#5d00d6ff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "Verify verification code"
+              },
+              "width": {
+                "value": 1500
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "cornerRadius": {
+                "value": 20
+              },
+              "fontStyle": {
+                "value": "bold"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 1435.4856454967364,
+            "y": 291.5830217415246
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "qmzu2jdn7v",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#5d00d6ff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "Ask for email verification code"
+              },
+              "width": {
+                "value": 1000
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "cornerRadius": {
+                "value": 20
+              },
+              "fontStyle": {
+                "value": "bold"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 224.29463210886507,
+            "y": 291.5830217415246
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "lxzd28ucwq",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#5d00d6ff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "Return error"
+              },
+              "width": {
+                "value": 550
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "cornerRadius": {
+                "value": 20
+              },
+              "fontStyle": {
+                "value": "bold"
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 270,
+            "y": 964
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "xmqyiubcod",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#fffaa0ff"
+              },
+              "annotationTextColor": {
+                "value": "#000000"
+              },
+              "annotation": {
+                "value": "Input Schema: UserId"
+              },
+              "width": {
+                "value": 300
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              },
+              "strokeEnabled": {
+                "value": false
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeColor": {
+                "value": "#181818ff"
+              }
+            },
+            "status": "configured",
+            "idUnique": "d2mbrib33f"
+          },
+          "position": {
+            "x": 336.4419481632976,
+            "y": 336.4419481632976
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "8w4uz2atae",
+            "nodeType": "ANNOTATION",
+            "name": "Annotation",
+            "connectionId": "921bfae85c38ed45045e07be703d86b8",
+            "connectorId": "annotationConnector",
+            "capabilityName": "updateAnnotationProperties",
+            "type": "action",
+            "properties": {
+              "backgroundColor": {
+                "value": "#4462edff"
+              },
+              "annotationTextColor": {
+                "value": "#ffffffff"
+              },
+              "annotation": {
+                "value": "CIAM-Passwordless-Protect-Verify-Email-Subflow"
+              },
+              "width": {
+                "value": 2000
+              },
+              "fontStyle": {
+                "value": "bold"
+              },
+              "fontSize": {
+                "value": 16
+              },
+              "fontFamily": {
+                "value": "sans-serif"
+              },
+              "cornerRadius": {
+                "value": 8
+              }
+            },
+            "status": "configured"
+          },
+          "position": {
+            "x": 583.1660434830492,
+            "y": 179.43570568709205
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ],
+      "edges": [
+        {
+          "data": {
+            "id": "gt2iguyaor",
+            "source": "r8sc175hhf",
+            "target": "wweoq86mfw"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "bruxip9qoy",
+            "source": "hpve55zazv",
+            "target": "gf3bwis6oi"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ngzbu8xyia",
+            "source": "ru45xolut1",
+            "target": "5d5o5ia81u"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "tdowm7moa8",
+            "source": "rjau0njx5i",
+            "target": "t92nqcnwux",
+            "multiValueSourceId": "xplfpj1df8"
+          },
+          "position": {
+            "x": 64,
+            "y": 52
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "33ysz5sa00",
+            "source": "rjau0njx5i",
+            "target": "n5icn97kyh",
+            "multiValueSourceId": "8982ybbt5z"
+          },
+          "position": {
+            "x": 64,
+            "y": 92
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "7ntqjll2el",
+            "source": "8l8a54vefk",
+            "target": "ab91zkjrgx"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "1vrofmsuy6",
+            "source": "hpve55zazv",
+            "target": "1vyzcyazgf"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "3t5j8xvj51",
+            "source": "sju60xf677",
+            "target": "rjau0njx5i"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "4esqq6komg",
+            "source": "8l8a54vefk",
+            "target": "527m4tr2s2"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "tgl623ed90",
+            "source": "n5icn97kyh",
+            "target": "9lrqw38492"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "t4gtdi518j",
+            "source": "xsb00g2t92",
+            "target": "qskpbqg2yf"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "owrirgw2rv",
+            "source": "qskpbqg2yf",
+            "target": "s5yykzv8zd"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "j350ltfcqx",
+            "source": "5d5o5ia81u",
+            "target": "hpve55zazv"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "yddbunllw9",
+            "source": "r8sc175hhf",
+            "target": "8gqiq4sagn"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ankkx67fft",
+            "source": "t92nqcnwux",
+            "target": "wfe8dz7k7v"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "uy0xoiwxpb",
+            "source": "1vyzcyazgf",
+            "target": "r8sc175hhf"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "f3zdr3dpnf",
+            "source": "wfe8dz7k7v",
+            "target": "ru45xolut1"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "u5qv53yuln",
+            "source": "9lrqw38492",
+            "target": "8l8a54vefk"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "ftez3b8z4t",
+            "source": "s5yykzv8zd",
+            "target": "sju60xf677"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "4f9zxy5z89",
+            "source": "xbvfnq8o31",
+            "target": "90g8cf6l2u"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        },
+        {
+          "data": {
+            "id": "he8p82bzt6",
+            "source": "90g8cf6l2u",
+            "target": "rfo66ayuok"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "group": "edges",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": true,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "inputSchema": [
+    {
+      "propertyName": "pingOneUserId",
+      "description": "",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true,
+      "required": true
+    },
+    {
+      "propertyName": "ciam_companyLogo",
+      "description": "",
+      "preferredDataType": "string",
+      "preferredControlType": "textField",
+      "isExpanded": true
+    }
+  ],
+  "flowColor": "#E3F0FF",
+  "savedDate": 1715712416511,
+  "variables": [
+    {
+      "context": "company",
+      "createdDate": 1715712413932,
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "value": "5",
+        "min": 0,
+        "max": 2000
+      },
+      "id": "e767084d-27c9-4aec-8b62-6174334da504",
+      "type": "property",
+      "visibility": "private",
+      "name": "ciam_verificationLimit##SK##company",
+      "companyId": "17dcd7db-1838-4141-9bcc-03d01ed67806"
+    },
+    {
+      "context": "flowInstance",
+      "createdDate": 1715712413931,
+      "fields": {
+        "type": "number",
+        "displayName": "",
+        "mutable": true,
+        "min": 0,
+        "max": 2000
+      },
+      "id": "be2864f0-1428-4c16-a2da-027721dbe370",
+      "type": "property",
+      "visibility": "private",
+      "name": "ciam_verificationValidationAttempts##SK##flowInstance",
+      "companyId": "17dcd7db-1838-4141-9bcc-03d01ed67806"
+    }
+  ],
+  "connections": []
+}
