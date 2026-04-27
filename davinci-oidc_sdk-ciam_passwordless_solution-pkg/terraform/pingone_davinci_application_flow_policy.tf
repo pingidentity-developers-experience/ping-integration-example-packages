@@ -1,3 +1,9 @@
+##########################################################################
+# pingone_davinci_application_flow_policy.tf
+# Declarations for PingOne DaVinci Application Flow Policy resources.
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/davinci_application_flow_policy}
+# {@link https://docs.pingidentity.com/davinci/applications/davinci_flow_policies.html}
+##########################################################################
 
 resource "pingone_davinci_application_flow_policy" "registration_flow_policy" {
   environment_id         = pingone_environment.my_environment.id

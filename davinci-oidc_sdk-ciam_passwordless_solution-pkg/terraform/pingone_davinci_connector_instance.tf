@@ -1,3 +1,9 @@
+##########################################################################
+# pingone_davinci_connector_instance.tf
+# Declarations for PingOne DaVinci Connector Instance.
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/davinci_connector_instance}
+# {@link https://docs.pingidentity.com/davinci/connectors/davinci_connections.html}
+##########################################################################
 
 resource "pingone_davinci_connector_instance" "annotation" {
   environment_id = pingone_environment.my_environment.id

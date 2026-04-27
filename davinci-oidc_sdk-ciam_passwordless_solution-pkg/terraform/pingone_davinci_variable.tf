@@ -1,3 +1,9 @@
+##########################################################################
+# pingone_davinci_variable.tf
+# Declarations for PingOne DaVinci Variables.
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/davinci_variable}
+# {@link https://docs.pingidentity.com/davinci/variables/davinci_variables.html}
+##########################################################################
 
 resource "pingone_davinci_variable" "agreementid" {
   environment_id = pingone_environment.my_environment.id

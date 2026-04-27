@@ -1,3 +1,9 @@
+##########################################################################
+# pingone_davinci_flow_deploy.tf
+# Declarations for PingOne DaVinci Flow Deployment.
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/davinci_flow_deploy}
+# {@link https://docs.pingidentity.com/davinci/flows/davinci_flows.html}
+##########################################################################
 
 resource "pingone_davinci_flow_deploy" "ciam_passwordless_protect_account_recovery_subflow" {
   environment_id = pingone_environment.my_environment.id
