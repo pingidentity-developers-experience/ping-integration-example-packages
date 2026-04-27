@@ -197,15 +197,12 @@ resource "pingone_agreement_localization" "agreement_en" {
   display_name = "Terms and Conditions"
 }
 
-resource "time_static" "now" {}
-
 resource "pingone_agreement_localization_revision" "agreement_en_now" {
   environment_id            = pingone_environment.my_environment.id
   agreement_id              = pingone_agreement.agreement.id
   agreement_localization_id = pingone_agreement_localization.agreement_en.id
 
   content_type      = "text/html"
-  effective_at      = time_static.now.id
   require_reconsent = true
   text              = <<EOT
 <p>Terms of Service Agreement</p>

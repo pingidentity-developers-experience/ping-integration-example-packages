@@ -1,5 +1,5 @@
 
-resource "pingone_davinci_connector_instance" "annontation" {
+resource "pingone_davinci_connector_instance" "annotation" {
   environment_id = pingone_environment.my_environment.id
   name           = "Annotation"
 

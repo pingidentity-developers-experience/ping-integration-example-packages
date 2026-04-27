@@ -86,7 +86,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "0ldti6gtpg"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -170,15 +170,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "16hlhgpr5h" = {
           data = {
-            id              = "16hlhgpr5h"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "16hlhgpr5h"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Test to ensure passwords match\nmodule.exports = a = async ({ params }) =\u003e {\n\tconst newPassword = params.newPassword;\n\tconst verifyNewPassword = params.verifyNewPassword;\n\n\tif (!newPassword || !verifyNewPassword || (newPassword !== verifyNewPassword)) {\n\t\treturn false;\n\t}\n\n\treturn { \"success\": true};\n}"
@@ -248,7 +249,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "2nlcjypoi6"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -333,15 +334,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "3pbs4ekm6u" = {
           data = {
-            id              = "3pbs4ekm6u"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ALessThanB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "3pbs4ekm6u"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ALessThanB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_recoveryValidationAttempts\",\n        \"data\": \"{{global.variables.ciam_recoveryValidationAttempts}}\",\n        \"tooltip\": \"{{global.variables.ciam_recoveryValidationAttempts}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_recoveryValidationAttempts\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -418,15 +420,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "5mvyk1j6oz" = {
           data = {
-            id              = "5mvyk1j6oz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "5mvyk1j6oz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis"
@@ -487,15 +490,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "5pgnxcibnw" = {
           data = {
-            id              = "5pgnxcibnw"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "5pgnxcibnw"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -551,16 +555,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "5vhs0j1lcd" = {
           data = {
-            id              = "5vhs0j1lcd"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "nvi9enw4ff"
+            id               = "5vhs0j1lcd"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "nvi9enw4ff"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet result = \"\";\n\t// Parse the password policy requirements in the detailed error message and pass it back to the form to map the proper errors.\n\tif (params.errorDetails \u0026\u0026\n  \t\tparams.errorDetails.details \u0026\u0026\n  \t\tparams.errorDetails.details[0] \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details[0].innerError) {\n\t\tconst details = params.errorDetails.details[0].rawResponse.details[0].innerError;\n\t\tresult = \"passwordPolicies:\";\n\t\tfor (let key in details) {\n\t\t\tif (details.hasOwnProperty(key) \u0026\u0026 key !== \"unsatisfiedRequirements\") {\n\t\t\t\tswitch (key) {\n\t\t\t\t\tcase \"minCharacters\":\n\t\t\t\t\t\tconst reason = details[key];\n\n\t\t\t\t\t\tif (reason.includes(\"ZYXWVUTSRQPONMLKJIHGFEDCBA\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersUppercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"~!@#$%^\u0026*()-_=+[]{}|;:,.\u003c\u003e/?\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersSpecialChar\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"0123456789\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersNumeric\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"abcdefghijklmnopqrstuvwxyz\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersLowercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"minUniqueCharacters\":\n\t\t\t\t\t\tresult += \" minUniqueCharacters\";\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"excludesCommonlyUsed\":\n\t\t\t\t\t\tresult += \" excludesCommonlyUsed\"\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"length\":\n\t\t\t\t\t// Parse the length requirement\n\t\t\t\t\t\tconst value = details[key];\n\t\t\t\t\t\tconst index = value.indexOf(\"of\");\n\t\t\t\t\t\tif (index !== -1 \u0026\u0026 index \u003c value.length - 1) {\n\t\t\t\t\t\t\tlet lengthRestriction = value[index + 3];\n\t\t\t\t\t\t\tif (value[index + 4] !== \" \") {\n\t\t\t\t\t\t\t\tlengthRestriction = lengthRestriction + value[index + 4];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tresult += \" length\" + lengthRestriction;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"maxRepeatedCharacters\":\n\t\t\t\t\t\tresult += \" maxRepeatedCharacters\";\t\n\t\t\t\t\t\tbreak;\t\n\t\t\t\t\tdefault:\n\t\t\t\t\t\tresult += details[key];\t\t\t\t\t\n\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t} else {\n\t\tlet errorConnector = params.errorDetails.details[0].rawResponse.details[0].innerError.history;\n\t\tlet index = errorConnector.indexOf(':');\n\t\tif (index !== -1) result = errorConnector.substring(index + 2);\n\t\telse result = errorConnector;\n\t}\n\n\treturn {'updatedErrorMessage': result.replace('username', 'email address')}\n}"
@@ -598,15 +603,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "7050iwhzic" = {
           data = {
-            id              = "7050iwhzic"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "7050iwhzic"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -634,15 +640,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "7dwvsl8sa8" = {
           data = {
-            id              = "7dwvsl8sa8"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "7dwvsl8sa8"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"FAILED\"\n      }\n    ]\n  }\n]"
@@ -760,7 +767,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "9ey04i9zs1"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -833,15 +840,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "akl8h5d22x" = {
           data = {
-            id              = "akl8h5d22x"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "akl8h5d22x"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis."
@@ -1017,7 +1025,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "c3lspnaskh"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1110,7 +1118,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "c6b0hkxcmj"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1202,7 +1210,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "cbibltgmpq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1250,15 +1258,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "ccqivhr3uh" = {
           data = {
-            id              = "ccqivhr3uh"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "ccqivhr3uh"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set error message"
@@ -1294,7 +1303,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "cluj62drki"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1349,15 +1358,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "dvr3wi8hib" = {
           data = {
-            id              = "dvr3wi8hib"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "dvr3wi8hib"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.klrsk927mu.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.klrsk927mu.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -1421,7 +1431,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "ecnva4yzrd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1541,7 +1551,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "fqioowykrw"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -1671,15 +1681,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "gm535zgls3" = {
           data = {
-            id              = "gm535zgls3"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "gm535zgls3"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -1822,15 +1833,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "hhileu4ydz" = {
           data = {
-            id              = "hhileu4ydz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "hhileu4ydz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
@@ -1897,16 +1909,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "ixpij6bdtq" = {
           data = {
-            id              = "ixpij6bdtq"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "ul7k9ildl3"
+            id               = "ixpij6bdtq"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "ul7k9ildl3"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \" Invalid username and/or password\"\n      }\n    ]\n  }\n]"
@@ -1981,7 +1994,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "j688bm13wo"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -2095,7 +2108,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "jq6tb99elr"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -2144,16 +2157,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "jx18l5yjj0" = {
           data = {
-            id              = "jx18l5yjj0"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "26waerzp56"
+            id               = "jx18l5yjj0"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "26waerzp56"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Invalid\"\n      }\n    ]\n  }\n]"
@@ -2367,7 +2381,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "levripcbrt"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -2618,15 +2632,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "mxiurb5xux" = {
           data = {
-            id              = "mxiurb5xux"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "mxiurb5xux"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -2783,15 +2798,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "o4xxassgqz" = {
           data = {
-            id              = "o4xxassgqz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "o4xxassgqz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "caseSensitive" : {
                 "value" : false
@@ -2980,7 +2996,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "pklbwceder"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -3031,7 +3047,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "po11uu9rq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -3087,7 +3103,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "pq238wtn37"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -3240,16 +3256,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "rtv1hwltfy" = {
           data = {
-            id              = "rtv1hwltfy"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "j0002duy8j"
+            id               = "rtv1hwltfy"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "j0002duy8j"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.h4u1as8yg4.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.h4u1as8yg4.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -3298,7 +3315,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "savlv3olxb"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -3416,16 +3433,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "tfdqp94azq" = {
           data = {
-            id              = "tfdqp94azq"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "22yjhmyyfk"
+            id               = "tfdqp94azq"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "22yjhmyyfk"
             properties = jsonencode({
               "backgroundColor" : {
                 "value" : "#afd5ffff"
@@ -3493,7 +3511,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "u8083hrxny"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -3607,15 +3625,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "ux2xzdhk0a" = {
           data = {
-            id              = "ux2xzdhk0a"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ANotEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "ux2xzdhk0a"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ANotEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"passwordStatus\",\n        \"data\": \"{{local.0jvt7xvej2.payload.output.passwordStatus}}\",\n        \"tooltip\": \"{{local.0jvt7xvej2.payload.output.passwordStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"passwordStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -3669,16 +3688,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "v4rlsooi5t" = {
           data = {
-            id              = "v4rlsooi5t"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "incrementByN"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "yx7oyrcd8s"
+            id               = "v4rlsooi5t"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "incrementByN"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "yx7oyrcd8s"
             properties = jsonencode({
               "incrementCounter" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"1\"\n      }\n    ]\n  }\n]"
@@ -3896,15 +3916,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "xj97e6huu4" = {
           data = {
-            id              = "xj97e6huu4"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "xj97e6huu4"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_protectDeviceStatus\",\n        \"data\": \"{{local.m71wjatj9v.payload.output.ciam_protectDeviceStatus}}\",\n        \"tooltip\": \"{{local.m71wjatj9v.payload.output.ciam_protectDeviceStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectDeviceStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -4058,16 +4079,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "z1uxnr4psu" = {
           data = {
-            id              = "z1uxnr4psu"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "4e5kmiz1ku"
+            id               = "z1uxnr4psu"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "4e5kmiz1ku"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set Validation Attempt To Zero"
@@ -4101,15 +4123,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "zmdygh0diw" = {
           data = {
-            id              = "zmdygh0diw"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "zmdygh0diw"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -4139,7 +4162,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
           data = {
             id              = "zmgks0hrrb"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -4293,9 +4316,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "1eppu81ln4" = {
           data = {
-            id     = "1eppu81ln4"
-            source = "o4xxassgqz"
-            target = "4tfnhsx2bw"
+            id                    = "1eppu81ln4"
+            source                = "o4xxassgqz"
+            target                = "4tfnhsx2bw"
+            multi_value_source_id = "0p1qnce4cf"
           }
           position = {
             x = 64
@@ -4312,9 +4336,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "2ah2h0zixe" = {
           data = {
-            id     = "2ah2h0zixe"
-            source = "dvr3wi8hib"
-            target = "v28wjjz61p"
+            id                    = "2ah2h0zixe"
+            source                = "dvr3wi8hib"
+            target                = "v28wjjz61p"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -4825,9 +4850,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "c1f5ra9e4u" = {
           data = {
-            id     = "c1f5ra9e4u"
-            source = "rtv1hwltfy"
-            target = "bl9wn96q7z"
+            id                    = "c1f5ra9e4u"
+            source                = "rtv1hwltfy"
+            target                = "bl9wn96q7z"
+            multi_value_source_id = "3a7tpbhtep"
           }
           position = {
             x = 64
@@ -4958,9 +4984,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "et88vvrhi2" = {
           data = {
-            id     = "et88vvrhi2"
-            source = "o4xxassgqz"
-            target = "f4he7cr9jf"
+            id                    = "et88vvrhi2"
+            source                = "o4xxassgqz"
+            target                = "f4he7cr9jf"
+            multi_value_source_id = "0arupdzpn0"
           }
           position = {
             x = 64
@@ -5034,9 +5061,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "gewy89c7gw" = {
           data = {
-            id     = "gewy89c7gw"
-            source = "rtv1hwltfy"
-            target = "fecpsdg3u3"
+            id                    = "gewy89c7gw"
+            source                = "rtv1hwltfy"
+            target                = "fecpsdg3u3"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -5205,9 +5233,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "kc593qf03n" = {
           data = {
-            id     = "kc593qf03n"
-            source = "rtv1hwltfy"
-            target = "t6hyz30ejn"
+            id                    = "kc593qf03n"
+            source                = "rtv1hwltfy"
+            target                = "t6hyz30ejn"
+            multi_value_source_id = "jzup3fnvgo"
           }
           position = {
             x = 64
@@ -5490,9 +5519,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "qkybefwyw5" = {
           data = {
-            id     = "qkybefwyw5"
-            source = "o4xxassgqz"
-            target = "tr6ask2nn2"
+            id                    = "qkybefwyw5"
+            source                = "o4xxassgqz"
+            target                = "tr6ask2nn2"
+            multi_value_source_id = "lqmnn9ogsx"
           }
           position = {
             x = 64
@@ -5604,9 +5634,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_recovery_subf
         }
         "ss3pvhm754" = {
           data = {
-            id     = "ss3pvhm754"
-            source = "dvr3wi8hib"
-            target = "e6u7p021mj"
+            id                    = "ss3pvhm754"
+            source                = "dvr3wi8hib"
+            target                = "e6u7p021mj"
+            multi_value_source_id = "3a7tpbhtep"
           }
           position = {
             x = 64
@@ -6009,16 +6040,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "1bei1x0975" = {
           data = {
-            id              = "1bei1x0975"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "sp76pgda4a"
+            id               = "1bei1x0975"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "sp76pgda4a"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Passwords do not match.\"\n      }\n    ]\n  }\n]"
@@ -6383,16 +6415,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "3ns5occh3t" = {
           data = {
-            id              = "3ns5occh3t"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "u3thsvbasg"
+            id               = "3ns5occh3t"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "u3thsvbasg"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set error message"
@@ -6545,7 +6578,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "4ua7g2dlbd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -6694,7 +6727,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "6q3et7ool3"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -6742,15 +6775,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "6tbnogu9pe" = {
           data = {
-            id              = "6tbnogu9pe"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "6tbnogu9pe"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis."
@@ -7057,7 +7091,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "9nmlv1ji8e"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -7212,16 +7246,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "awcyj6ng8l" = {
           data = {
-            id              = "awcyj6ng8l"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "nvi9enw4ff"
+            id               = "awcyj6ng8l"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "nvi9enw4ff"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet result = \"\";\n\t// Parse the password policy requirements in the detailed error message and pass it back to the form to map the proper errors.\n\tif (params.errorDetails \u0026\u0026\n  \t\tparams.errorDetails.details \u0026\u0026\n  \t\tparams.errorDetails.details[0] \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details[0].innerError) {\n\t\tconst details = params.errorDetails.details[0].rawResponse.details[0].innerError;\n\t\tresult = \"passwordPolicies:\";\n\t\tfor (let key in details) {\n\t\t\tif (details.hasOwnProperty(key) \u0026\u0026 key !== \"unsatisfiedRequirements\") {\n\t\t\t\tswitch (key) {\n\t\t\t\t\tcase \"minCharacters\":\n\t\t\t\t\t\tconst reason = details[key];\n\n\t\t\t\t\t\tif (reason.includes(\"ZYXWVUTSRQPONMLKJIHGFEDCBA\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersUppercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"~!@#$%^\u0026*()-_=+[]{}|;:,.\u003c\u003e/?\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersSpecialChar\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"0123456789\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersNumeric\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"abcdefghijklmnopqrstuvwxyz\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersLowercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"minUniqueCharacters\":\n\t\t\t\t\t\tresult += \" minUniqueCharacters\";\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"excludesCommonlyUsed\":\n\t\t\t\t\t\tresult += \" excludesCommonlyUsed\"\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"length\":\n\t\t\t\t\t// Parse the length requirement\n\t\t\t\t\t\tconst value = details[key];\n\t\t\t\t\t\tconst index = value.indexOf(\"of\");\n\t\t\t\t\t\tif (index !== -1 \u0026\u0026 index \u003c value.length - 1) {\n\t\t\t\t\t\t\tlet lengthRestriction = value[index + 3];\n\t\t\t\t\t\t\tif (value[index + 4] !== \" \") {\n\t\t\t\t\t\t\t\tlengthRestriction = lengthRestriction + value[index + 4];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tresult += \" length\" + lengthRestriction;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"maxRepeatedCharacters\":\n\t\t\t\t\t\tresult += \" maxRepeatedCharacters\";\t\n\t\t\t\t\t\tbreak;\t\n\t\t\t\t\tdefault:\n\t\t\t\t\t\tresult += details[key];\t\t\t\t\t\n\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t} else {\n\t\tlet errorConnector = params.errorDetails.message;\n\t\tlet index = errorConnector.indexOf(':');\n\t\tif (index !== -1) result = errorConnector.substring(index + 2);\n\t\telse result = errorConnector;\n\t}\n\n\treturn {'updatedErrorMessage': result.replace('username', 'email address')}\n}"
@@ -7277,15 +7312,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "c6trci9e40" = {
           data = {
-            id              = "c6trci9e40"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "c6trci9e40"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis"
@@ -7433,16 +7469,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "cm74w90uay" = {
           data = {
-            id              = "cm74w90uay"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "5s2t7w2y7d"
+            id               = "cm74w90uay"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "5s2t7w2y7d"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -7578,15 +7615,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "dpyuspmzna" = {
           data = {
-            id              = "dpyuspmzna"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "dpyuspmzna"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_protectRiskLevel\",\n        \"data\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"tooltip\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectRiskLevel\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -7630,16 +7668,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "e3hk5pdx14" = {
           data = {
-            id              = "e3hk5pdx14"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "1p4cfomf2g"
+            id               = "e3hk5pdx14"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "1p4cfomf2g"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.1ftyww4qrg.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.1ftyww4qrg.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -7703,7 +7742,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "ev6cglh1ng"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -7816,7 +7855,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "f8grwx3pmh"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -7866,7 +7905,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "fm8bbibjyv"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -7973,15 +8012,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "fyiexmemqv" = {
           data = {
-            id              = "fyiexmemqv"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "fyiexmemqv"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
@@ -8042,15 +8082,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "g7ya3dd76m" = {
           data = {
-            id              = "g7ya3dd76m"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "g7ya3dd76m"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"FAILED\"\n      }\n    ]\n  }\n]"
@@ -8141,7 +8182,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "gqic30lg29"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -8189,16 +8230,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "gwcgcvqdnk" = {
           data = {
-            id              = "gwcgcvqdnk"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "pqtq7a873e"
+            id               = "gwcgcvqdnk"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "pqtq7a873e"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Passwords do not match.\"\n      }\n    ]\n  }\n]"
@@ -8223,16 +8265,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "h0fakyqawb" = {
           data = {
-            id              = "h0fakyqawb"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "ltysjcqeyk"
+            id               = "h0fakyqawb"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "ltysjcqeyk"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.gnh7rkcsg6.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.gnh7rkcsg6.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -8382,7 +8425,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "hynm9ilfla"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -8463,16 +8506,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "i8me302hqi" = {
           data = {
-            id              = "i8me302hqi"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "1yd8fmn37p"
+            id               = "i8me302hqi"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "1yd8fmn37p"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ciam_passwordlessRequired\",\n        \"data\": \"{{global.parameters.ciam_passwordlessRequired}}\",\n        \"tooltip\": \"{{global.parameters.ciam_passwordlessRequired}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_passwordlessRequired\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -8503,15 +8547,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "itzday4ij6" = {
           data = {
-            id              = "itzday4ij6"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "itzday4ij6"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set error message"
@@ -8585,7 +8630,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "jhdnf7az60"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -8640,16 +8685,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "jnsqnfzu9s" = {
           data = {
-            id              = "jnsqnfzu9s"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "jx6y23xnt5"
+            id               = "jnsqnfzu9s"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "jx6y23xnt5"
             properties = jsonencode({
               "code" : {
                 "value" : "// Test to ensure passwords match\nmodule.exports = a = async ({ params }) =\u003e {\n\tconst password = params.password;\n\tconst verifyPassword = params.verifyPassword;\n\n\tif (!password || !verifyPassword || (password !== verifyPassword)) {\n\t\treturn false;\n\t}\n\n\treturn { \"success\": true};\n}"
@@ -8694,15 +8740,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "jx2e1mgzth" = {
           data = {
-            id              = "jx2e1mgzth"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "jx2e1mgzth"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet authMethod = params.authMethod\n\n\tif (!authMethod.includes(\"email\")) {\n\t\tauthMethod = authMethod.concat(\" email\")\n\t}\n\n\treturn {'adjustedAuthMethod': authMethod}\n}"
@@ -8780,16 +8827,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "kg5xab6nfq" = {
           data = {
-            id              = "kg5xab6nfq"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "3pmxg0j6hu"
+            id               = "kg5xab6nfq"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "3pmxg0j6hu"
             properties = jsonencode({
               "code" : {
                 "value" : "// Test to ensure passwords match\nmodule.exports = a = async ({ params }) =\u003e {\n\tconst password = params.password;\n\tconst verifyPassword = params.verifyPassword;\n\n\tif (!password || !verifyPassword || (password !== verifyPassword)) {\n\t\treturn false;\n\t}\n\n\treturn { \"success\": true};\n}"
@@ -8860,7 +8908,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "klup4giais"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -8950,7 +8998,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "lsfo4z2dig"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -9130,16 +9178,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "o5pe6jfpi5" = {
           data = {
-            id              = "o5pe6jfpi5"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "26waerzp56"
+            id               = "o5pe6jfpi5"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "26waerzp56"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Invalid\"\n      }\n    ]\n  }\n]"
@@ -9230,16 +9279,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "ohp2wj0s2n" = {
           data = {
-            id              = "ohp2wj0s2n"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "y2f757vjj3"
+            id               = "ohp2wj0s2n"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "y2f757vjj3"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.z876lbl7xg.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.z876lbl7xg.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -9330,15 +9380,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "ounerl6t9" = {
           data = {
-            id              = "ounerl6t9"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "ounerl6t9"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.hbtxkrrfyo.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.hbtxkrrfyo.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -9538,7 +9589,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "qn27aswoes"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -9682,15 +9733,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "rgghrjdny1" = {
           data = {
-            id              = "rgghrjdny1"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "rgghrjdny1"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -9757,7 +9809,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "ruvagcgo2v"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -9872,7 +9924,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "skrz1mk3vm"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -10138,7 +10190,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
           data = {
             id              = "vozxqrbygt"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -10373,15 +10425,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "xldkllymko" = {
           data = {
-            id              = "xldkllymko"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "xldkllymko"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -10465,15 +10518,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "yesd4wr10s" = {
           data = {
-            id              = "yesd4wr10s"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "yesd4wr10s"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -10501,16 +10555,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "yktqs7gian" = {
           data = {
-            id              = "yktqs7gian"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "xc3cf2s834"
+            id               = "yktqs7gian"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "xc3cf2s834"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.lx6499vpt4.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.lx6499vpt4.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -10916,9 +10971,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "2l9drsnwpm" = {
           data = {
-            id     = "2l9drsnwpm"
-            source = "dpyuspmzna"
-            target = "d4x3gb8izo"
+            id                    = "2l9drsnwpm"
+            source                = "dpyuspmzna"
+            target                = "d4x3gb8izo"
+            multi_value_source_id = "0p1qnce4cf"
           }
           position = {
             x = 64
@@ -11201,9 +11257,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "7muc3upwyn" = {
           data = {
-            id     = "7muc3upwyn"
-            source = "ounerl6t9"
-            target = "j5sho28srg"
+            id                    = "7muc3upwyn"
+            source                = "ounerl6t9"
+            target                = "j5sho28srg"
+            multi_value_source_id = "dgnzdl3n06"
           }
           position = {
             x = 64
@@ -11315,9 +11372,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "989dfq8b9g" = {
           data = {
-            id     = "989dfq8b9g"
-            source = "e3hk5pdx14"
-            target = "fw7x3rsvg1"
+            id                    = "989dfq8b9g"
+            source                = "e3hk5pdx14"
+            target                = "fw7x3rsvg1"
+            multi_value_source_id = "uwk92hj0y3"
           }
           position = {
             x = 64
@@ -11429,9 +11487,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "bjz4mul90n" = {
           data = {
-            id     = "bjz4mul90n"
-            source = "yktqs7gian"
-            target = "x3sr98yxnv"
+            id                    = "bjz4mul90n"
+            source                = "yktqs7gian"
+            target                = "x3sr98yxnv"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -11676,9 +11735,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "epi9npyc62" = {
           data = {
-            id     = "epi9npyc62"
-            source = "ohp2wj0s2n"
-            target = "3v5v4xjvbl"
+            id                    = "epi9npyc62"
+            source                = "ohp2wj0s2n"
+            target                = "3v5v4xjvbl"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -11752,9 +11812,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "gty727zclx" = {
           data = {
-            id     = "gty727zclx"
-            source = "h0fakyqawb"
-            target = "kerq5fyp8w"
+            id                    = "gty727zclx"
+            source                = "h0fakyqawb"
+            target                = "kerq5fyp8w"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -11866,9 +11927,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "heoo0ev17m" = {
           data = {
-            id     = "heoo0ev17m"
-            source = "ohp2wj0s2n"
-            target = "j5g7kyj3v5"
+            id                    = "heoo0ev17m"
+            source                = "ohp2wj0s2n"
+            target                = "j5g7kyj3v5"
+            multi_value_source_id = "w7olk1lnel"
           }
           position = {
             x = 64
@@ -12113,9 +12175,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "nz0n3s9yee" = {
           data = {
-            id     = "nz0n3s9yee"
-            source = "dpyuspmzna"
-            target = "v7rng0sn5c"
+            id                    = "nz0n3s9yee"
+            source                = "dpyuspmzna"
+            target                = "v7rng0sn5c"
+            multi_value_source_id = "lqmnn9ogsx"
           }
           position = {
             x = 64
@@ -12246,9 +12309,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "qe9e0c83gh" = {
           data = {
-            id     = "qe9e0c83gh"
-            source = "h0fakyqawb"
-            target = "46fi95z8qq"
+            id                    = "qe9e0c83gh"
+            source                = "h0fakyqawb"
+            target                = "46fi95z8qq"
+            multi_value_source_id = "w7olk1lnel"
           }
           position = {
             x = 64
@@ -12360,9 +12424,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "s87t71cvws" = {
           data = {
-            id     = "s87t71cvws"
-            source = "yktqs7gian"
-            target = "7z7q9efrmf"
+            id                    = "s87t71cvws"
+            source                = "yktqs7gian"
+            target                = "7z7q9efrmf"
+            multi_value_source_id = "c2ae6jvcec"
           }
           position = {
             x = 64
@@ -12379,9 +12444,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "seh0jnt4rq" = {
           data = {
-            id     = "seh0jnt4rq"
-            source = "ounerl6t9"
-            target = "e6v7ewqrvc"
+            id                    = "seh0jnt4rq"
+            source                = "ounerl6t9"
+            target                = "e6v7ewqrvc"
+            multi_value_source_id = "joif3l174h"
           }
           position = {
             x = 64
@@ -12436,9 +12502,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "u165f9qr7p" = {
           data = {
-            id     = "u165f9qr7p"
-            source = "e3hk5pdx14"
-            target = "za37tpd5ja"
+            id                    = "u165f9qr7p"
+            source                = "e3hk5pdx14"
+            target                = "za37tpd5ja"
+            multi_value_source_id = "w7olk1lnel"
           }
           position = {
             x = 64
@@ -12531,9 +12598,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "vl3yghiw9r" = {
           data = {
-            id     = "vl3yghiw9r"
-            source = "dpyuspmzna"
-            target = "obdb16fbj2"
+            id                    = "vl3yghiw9r"
+            source                = "dpyuspmzna"
+            target                = "obdb16fbj2"
+            multi_value_source_id = "0arupdzpn0"
           }
           position = {
             x = 64
@@ -12607,9 +12675,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "wb5lmpk2d4" = {
           data = {
-            id     = "wb5lmpk2d4"
-            source = "e3hk5pdx14"
-            target = "daxhwjbxh3"
+            id                    = "wb5lmpk2d4"
+            source                = "e3hk5pdx14"
+            target                = "daxhwjbxh3"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -12721,9 +12790,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_account_registration_
         }
         "ysoql0ns0j" = {
           data = {
-            id     = "ysoql0ns0j"
-            source = "ounerl6t9"
-            target = "oi73z7ak2s"
+            id                    = "ysoql0ns0j"
+            source                = "ounerl6t9"
+            target                = "oi73z7ak2s"
+            multi_value_source_id = "nvvspv2htd"
           }
           position = {
             x = 64
@@ -12984,15 +13054,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "1rvj1fvgpu" = {
           data = {
-            id              = "1rvj1fvgpu"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "1rvj1fvgpu"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.8jemlov0oc.payload.output.userAgreement.status}}\",\n        \"tooltip\": \"{{local.8jemlov0oc.payload.output.userAgreement.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -13040,7 +13111,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "2wjsd5pwds"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -13120,7 +13191,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "4cijn9bmjx"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -13298,15 +13369,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "6x74clj9zm" = {
           data = {
-            id              = "6x74clj9zm"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "6x74clj9zm"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"checkRequired\",\n        \"data\": \"{{global.parameters.checkRequired}}\",\n        \"tooltip\": \"{{global.parameters.checkRequired}}\",\n        \"children\": [\n          {\n            \"text\": \"checkRequired\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -13402,16 +13474,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "8x2gjjcvxj" = {
           data = {
-            id              = "8x2gjjcvxj"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "6zppeaa8vb"
+            id               = "8x2gjjcvxj"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "6zppeaa8vb"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.0h8so1sxqq.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.0h8so1sxqq.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -13567,7 +13640,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "gmy48vvv3f"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -13729,7 +13802,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "khh1sp7gzc"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -13851,16 +13924,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "ph62v3m7kl" = {
           data = {
-            id              = "ph62v3m7kl"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "errorConnector"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "hj2yt1zvp7"
+            id               = "ph62v3m7kl"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "errorConnector"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "hj2yt1zvp7"
             properties = jsonencode({
               "backgroundColor" : {
                 "value" : "#ffc8c1ff"
@@ -13986,7 +14060,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "sx6hfk6dig"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -14034,15 +14108,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "v68793bc1v" = {
           data = {
-            id              = "v68793bc1v"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "v68793bc1v"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ciam_agreementEnabled\",\n        \"data\": \"{{global.parameters.ciam_agreementEnabled}}\",\n        \"tooltip\": \"{{global.parameters.ciam_agreementEnabled}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_agreementEnabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -14093,7 +14168,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "wp1x2soyg3"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -14143,7 +14218,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
           data = {
             id              = "ybxmywd5i6"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -14484,9 +14559,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "59f1xay7h3" = {
           data = {
-            id     = "59f1xay7h3"
-            source = "8x2gjjcvxj"
-            target = "jcpocm4del"
+            id                    = "59f1xay7h3"
+            source                = "8x2gjjcvxj"
+            target                = "jcpocm4del"
+            multi_value_source_id = "9ozfxizjc8"
           }
           position = {
             x = 64
@@ -14731,9 +14807,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_agreement_tos_subflow
         }
         "l5q2q90d14" = {
           data = {
-            id     = "l5q2q90d14"
-            source = "8x2gjjcvxj"
-            target = "ldx8d6ahwt"
+            id                    = "l5q2q90d14"
+            source                = "8x2gjjcvxj"
+            target                = "ldx8d6ahwt"
+            multi_value_source_id = "izycvylmik"
           }
           position = {
             x = 64
@@ -15018,15 +15095,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "2m4whqb1dr" = {
           data = {
-            id              = "2m4whqb1dr"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "2m4whqb1dr"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Passwords do not match\"\n      }\n    ]\n  }\n]"
@@ -15287,16 +15365,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "75iq81515r" = {
           data = {
-            id              = "75iq81515r"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "4vgs8vk8om"
+            id               = "75iq81515r"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "4vgs8vk8om"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.5vfn623mx7.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.5vfn623mx7.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -15454,7 +15533,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "909gcxuamo"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -15561,16 +15640,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "abmzqz1u6f" = {
           data = {
-            id              = "abmzqz1u6f"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "26waerzp56"
+            id               = "abmzqz1u6f"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "26waerzp56"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Invalid\"\n      }\n    ]\n  }\n]"
@@ -15749,7 +15829,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "eo3jbik9pd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -15799,7 +15879,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "fkjvk1b7bk"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -15847,15 +15927,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "h330sqhk7o" = {
           data = {
-            id              = "h330sqhk7o"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "h330sqhk7o"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"showSuccessMessage\",\n        \"data\": \"{{global.parameters.showSuccessMessage}}\",\n        \"tooltip\": \"{{global.parameters.showSuccessMessage}}\",\n        \"children\": [\n          {\n            \"text\": \"showSuccessMessage\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -15980,15 +16061,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "jn53bcmsnv" = {
           data = {
-            id              = "jn53bcmsnv"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "jn53bcmsnv"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"showSuccessMessage\",\n        \"data\": \"{{global.parameters.showSuccessMessage}}\",\n        \"tooltip\": \"{{global.parameters.showSuccessMessage}}\",\n        \"children\": [\n          {\n            \"text\": \"showSuccessMessage\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -16097,16 +16179,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "okw0g6i84d" = {
           data = {
-            id              = "okw0g6i84d"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "nvi9enw4ff"
+            id               = "okw0g6i84d"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "nvi9enw4ff"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet result = \"\";\n\t// Parse the password policy requirements in the detailed error message and pass it back to the form to map the proper errors.\n\tif (params.errorDetails \u0026\u0026\n  \t\tparams.errorDetails.details \u0026\u0026\n  \t\tparams.errorDetails.details[0] \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details \u0026\u0026\n  \t\tparams.errorDetails.details[0].rawResponse.details[0].innerError) {\n\t\tconst details = params.errorDetails.details[0].rawResponse.details[0].innerError;\n\t\tresult = \"passwordPolicies:\";\n\t\tfor (let key in details) {\n\t\t\tif (details.hasOwnProperty(key) \u0026\u0026 key !== \"unsatisfiedRequirements\") {\n\t\t\t\tswitch (key) {\n\t\t\t\t\tcase \"minCharacters\":\n\t\t\t\t\t\tconst reason = details[key];\n\n\t\t\t\t\t\tif (reason.includes(\"ZYXWVUTSRQPONMLKJIHGFEDCBA\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersUppercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"~!@#$%^\u0026*()-_=+[]{}|;:,.\u003c\u003e/?\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersSpecialChar\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"0123456789\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersNumeric\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tif (reason.includes(\"abcdefghijklmnopqrstuvwxyz\")) {\n\t\t\t\t\t\t\tresult += \" minCharactersLowercase\";\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"minUniqueCharacters\":\n\t\t\t\t\t\tresult += \" minUniqueCharacters\";\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"excludesCommonlyUsed\":\n\t\t\t\t\t\tresult += \" excludesCommonlyUsed\"\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"length\":\n\t\t\t\t\t// Parse the length requirement\n\t\t\t\t\t\tconst value = details[key];\n\t\t\t\t\t\tconst index = value.indexOf(\"of\");\n\t\t\t\t\t\tif (index !== -1 \u0026\u0026 index \u003c value.length - 1) {\n\t\t\t\t\t\t\tlet lengthRestriction = value[index + 3];\n\t\t\t\t\t\t\tif (value[index + 4] !== \" \") {\n\t\t\t\t\t\t\t\tlengthRestriction = lengthRestriction + value[index + 4];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tresult += \" length\" + lengthRestriction;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbreak;\n\t\t\t\t\tcase \"maxRepeatedCharacters\":\n\t\t\t\t\t\tresult += \" maxRepeatedCharacters\";\t\n\t\t\t\t\t\tbreak;\t\n\t\t\t\t\tdefault:\n\t\t\t\t\t\tresult += details[key];\t\t\t\t\t\n\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t} else {\n\t\tlet errorConnector = params.errorDetails.message;\n\t\tlet index = errorConnector.indexOf(':');\n\t\tif (index !== -1) result = errorConnector.substring(index + 2);\n\t\telse result = errorConnector;\n\t}\n\n\treturn {'updatedErrorMessage': result.replace('username', 'email address')}\n}"
@@ -16146,7 +16229,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "p674a26vil"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -16194,15 +16277,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "rysh2x3iz2" = {
           data = {
-            id              = "rysh2x3iz2"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "rysh2x3iz2"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set error message"
@@ -16238,7 +16322,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "si6drlaz76"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -16421,15 +16505,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "w0jz1dtx27" = {
           data = {
-            id              = "w0jz1dtx27"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "w0jz1dtx27"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Test to ensure passwords match\nmodule.exports = a = async ({ params }) =\u003e {\n\tconst newPassword = params.newPassword;\n\tconst verifyNewPassword = params.verifyNewPassword;\n\n\tif (!newPassword || !verifyNewPassword || (newPassword !== verifyNewPassword)) {\n\t\treturn false;\n\t}\n\n\treturn { \"success\": true};\n}"
@@ -16532,7 +16617,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
           data = {
             id              = "yfyux987w8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -16671,9 +16756,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "1ushxrheiw" = {
           data = {
-            id     = "1ushxrheiw"
-            source = "75iq81515r"
-            target = "2inl0soj3i"
+            id                    = "1ushxrheiw"
+            source                = "75iq81515r"
+            target                = "2inl0soj3i"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -16956,9 +17042,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "fwvhyl1rgu" = {
           data = {
-            id     = "fwvhyl1rgu"
-            source = "75iq81515r"
-            target = "wv79oxt1fo"
+            id                    = "fwvhyl1rgu"
+            source                = "75iq81515r"
+            target                = "wv79oxt1fo"
+            multi_value_source_id = "w7olk1lnel"
           }
           position = {
             x = 64
@@ -17032,9 +17119,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_change_password_subfl
         }
         "iua0do1wh0" = {
           data = {
-            id     = "iua0do1wh0"
-            source = "75iq81515r"
-            target = "o5jvuf0bwl"
+            id                    = "iua0do1wh0"
+            source                = "75iq81515r"
+            target                = "o5jvuf0bwl"
+            multi_value_source_id = "ljnsevp905"
           }
           position = {
             x = 64
@@ -17429,7 +17517,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "0tz8rrzz50"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -17546,16 +17634,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "10uwd1ccc4" = {
           data = {
-            id              = "10uwd1ccc4"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "1wu5l9n1n4"
+            id               = "10uwd1ccc4"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "1wu5l9n1n4"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n  var usableDevices = JSON.parse(params.devices);\n\n  usableDevices = usableDevices.map(device =\u003e {\n      if (device.type === \"FIDO2\" \u0026\u0026 device?.attributes?.previousDeviceType) {\n          return { ...device, type: device.attributes.previousDeviceType }\n      }\n      return device;\n  });\n\n  const allowedDeviceTypes = params.allowedDeviceTypes ? params.allowedDeviceTypes.split(\",\") : [];\n\n  usableDevices = usableDevices.filter(device =\u003e {\n      return allowedDeviceTypes.includes(device.type);\n  });\n\n  if (params.webAuthenSupport === \"NONE\") {\n      usableDevices = usableDevices.filter(device =\u003e {\n          return device.type !== \"FIDO2\";\n      });\n  }\n\n  usableDevices = usableDevices.filter(device =\u003e {\n      return device.coolDownExpiresAt == undefined;\n  });\n  \n  let emailDevices = [];\n  let smsDevices = [];\n  let fido2Devices = [];\n  \n  for (let i = 0; i \u003c usableDevices.length; i++) {\n    if (usableDevices[i].type === \"EMAIL\") {\n      emailDevices.push(usableDevices[i]);\n    } else if (usableDevices[i].type === \"SMS\") {\n      smsDevices.push(usableDevices[i]);\n    } else if (usableDevices[i].type === \"FIDO2\") {\n      fido2Devices.push(usableDevices[i]);\n    }\n  }\n  \n  usableDevices = fido2Devices.concat(smsDevices, emailDevices);\n\n  return { usableDevices: usableDevices, count: usableDevices.length, canChangeDevice: usableDevices.length \u003e 1 || params.magicLinkEnabled}\n}"
@@ -17645,16 +17734,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "1lam7h7jbc" = {
           data = {
-            id              = "1lam7h7jbc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "b6t1a1t536"
+            id               = "1lam7h7jbc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "b6t1a1t536"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.te0bcdks99.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.te0bcdks99.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -17755,16 +17845,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "2n3az4vori" = {
           data = {
-            id              = "2n3az4vori"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AGreaterThanB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "k9dulrslv7"
+            id               = "2n3az4vori"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AGreaterThanB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "k9dulrslv7"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"count\",\n        \"data\": \"{{local.10uwd1ccc4.payload.output.count}}\",\n        \"tooltip\": \"{{local.10uwd1ccc4.payload.output.count}}\",\n        \"children\": [\n          {\n            \"text\": \"count\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -17852,16 +17943,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "33kryo3flh" = {
           data = {
-            id              = "33kryo3flh"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "gthlan5czu"
+            id               = "33kryo3flh"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "gthlan5czu"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error\"\n      }\n    ]\n  }\n]"
@@ -17894,7 +17986,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "367mxosvvd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -17986,15 +18078,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "3s5kidc2wc" = {
           data = {
-            id              = "3s5kidc2wc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "3s5kidc2wc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis"
@@ -18057,7 +18150,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "3u95w0kwal"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -18239,16 +18332,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "4psx471uwp" = {
           data = {
-            id              = "4psx471uwp"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "oyxcr1z24q"
+            id               = "4psx471uwp"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "oyxcr1z24q"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.zbhvblc83s.payload.output.status}}\",\n        \"tooltip\": \"{{local.zbhvblc83s.payload.output.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -18404,7 +18498,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "58z2yaklyc"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -18495,16 +18589,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "5pixttpidw" = {
           data = {
-            id              = "5pixttpidw"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "z0hgib8ouz"
+            id               = "5pixttpidw"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "z0hgib8ouz"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"The passcode you entered isn't valid. Verify the passcode and try again.\"\n      }\n    ]\n  }\n]"
@@ -18853,15 +18948,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "78i0a08xfl" = {
           data = {
-            id              = "78i0a08xfl"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "78i0a08xfl"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -18919,7 +19015,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "7bysth891o"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -19259,7 +19355,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "8olkc90i8k"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -19521,15 +19617,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "9w2fwmdjtp" = {
           data = {
-            id              = "9w2fwmdjtp"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "9w2fwmdjtp"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error\"\n      }\n    ]\n  }\n]"
@@ -19560,16 +19657,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "9zctbmveoc" = {
           data = {
-            id              = "9zctbmveoc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "11r56ghtad"
+            id               = "9zctbmveoc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "11r56ghtad"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n\tvar selected = JSON.parse(params.devices).filter(device =\u003e {\n\t\treturn device.id == params.id;\n\t});\n\n\tif (selected \u0026\u0026 selected.length \u003e 0 \u0026\u0026 selected[0].hasOwnProperty(\"nickname\")) {\n  \t\tvar deviceName = selected[0].nickname;\n\t}\n\n\tif (selected[0].model) {\n\t\tdeviceName = selected[0].model.marketingName;\n\t}\n\n\tif (selected[0].displayName) {\n\t\tdeviceName = selected[0].displayName;\n\t}\n\n\treturn {\n\t\tselectedDeviceType: selected[0].type,\n\t\tselectedDeviceEmail: selected[0].email,\n\t\tselectedDevicePhone: selected[0].phone,\n\t\tselectedDeviceName: deviceName,\n\t\tselectedDeviceOtpEnabled: selected[0].otpEnabled\n\t}\n}"
@@ -19663,15 +19761,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ahjplbui3q" = {
           data = {
-            id              = "ahjplbui3q"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "ahjplbui3q"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -19729,7 +19828,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "ao8bhoc4wu"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -19786,7 +19885,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "ax5dr97ue0"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -20052,7 +20151,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "blfrvtf9c1"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -20154,16 +20253,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "czzrbt1dsb" = {
           data = {
-            id              = "czzrbt1dsb"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "2frgni4tik"
+            id               = "czzrbt1dsb"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "2frgni4tik"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ciam_magicLinkEnabled\",\n        \"data\": \"{{global.parameters.ciam_magicLinkEnabled}}\",\n        \"tooltip\": \"{{global.parameters.ciam_magicLinkEnabled}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_magicLinkEnabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -20259,7 +20359,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "dm6bs22m88"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -20308,16 +20408,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "dp43hy7h76" = {
           data = {
-            id              = "dp43hy7h76"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "3zlz4fmf9y"
+            id               = "dp43hy7h76"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "3zlz4fmf9y"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n\tlet authMethod = \"\";\n\n\tfor (let i = 0; i \u003c params.authenticators.length; i++) {\n  \t\tif (params.authenticators[i] != \"mfa\"){\n\t\t\tif(!authMethod){\n\t\t\t\tauthMethod = params.authenticators[i];\n\t\t\t} else {\n\t\t\t\tauthMethod = authMethod + \" \" + params.authenticators[i];\n\t\t\t}\n\t\t}\n\t}\n\n\treturn { \"authMethod\": authMethod }\n}"
@@ -20399,15 +20500,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "dxowhkk5n5" = {
           data = {
-            id              = "dxowhkk5n5"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "dxowhkk5n5"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -20528,16 +20630,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "en7y953x31" = {
           data = {
-            id              = "en7y953x31"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "q5bxov3nd"
+            id               = "en7y953x31"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "q5bxov3nd"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n\tlet authMethod = \"\";\n\n\tfor (let i = 0; i \u003c params.authenticators.length; i++) {\n  \t\tif (params.authenticators[i] != \"mfa\"){\n\t\t\tif(!authMethod){\n\t\t\t\tauthMethod = params.authenticators[i];\n\t\t\t} else {\n\t\t\t\tauthMethod = authMethod + \" \" + params.authenticators[i];\n\t\t\t}\n\t\t}\n\t}\n\n\treturn { \"authMethod\": authMethod }\n}"
@@ -20576,7 +20679,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "exoq5doxx8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -20782,16 +20885,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "fq7l0s8w2s" = {
           data = {
-            id              = "fq7l0s8w2s"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "cm6840x6nn"
+            id               = "fq7l0s8w2s"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "cm6840x6nn"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet email = params.email\n\tlet phone = params.phone\n\n\tif (email) {\n\t\tconst [username, domain] = email.split(\"@\");\n  \t\tconst maskedUsername =\n    \tusername.charAt(0) + \"*\".repeat(username.length - 2) + username.slice(-1);\n\t\temail = maskedUsername + \"@\" + domain;\n\t}\n\n\tif (phone) {\n\t\t// Strip all non-numeric characters from the phone number\n  \t\tconst numericPhoneNumber = phone.replace(/\\D/g, '');\n\t\t// Mask the first six digits of the phone number\n  \t\tconst maskedPhoneNumber = '***-***-' + numericPhoneNumber.slice(-4);\n\t\tphone = maskedPhoneNumber;\n\t}\n\treturn {'maskedEmail': email, 'maskedPhone': phone}\n}"
@@ -20833,16 +20937,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "frh74jp1jg" = {
           data = {
-            id              = "frh74jp1jg"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "atv0t9t413"
+            id               = "frh74jp1jg"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "atv0t9t413"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"count\",\n        \"data\": \"{{local.10uwd1ccc4.payload.output.count}}\",\n        \"tooltip\": \"{{local.10uwd1ccc4.payload.output.count}}\",\n        \"children\": [\n          {\n            \"text\": \"count\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -20979,15 +21084,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "gsmghrxxoy" = {
           data = {
-            id              = "gsmghrxxoy"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "gsmghrxxoy"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_protectDeviceStatus\",\n        \"data\": \"{{local.u9ab712lfx.payload.output.ciam_protectDeviceStatus}}\",\n        \"tooltip\": \"{{local.u9ab712lfx.payload.output.ciam_protectDeviceStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectDeviceStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -21036,7 +21142,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "h4xq5e3fs8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -21103,16 +21209,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "hdc8oa72ci" = {
           data = {
-            id              = "hdc8oa72ci"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "9wk38r73ko"
+            id               = "hdc8oa72ci"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "9wk38r73ko"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"code\",\n        \"data\": \"{{local.fgc8woctfo.payload.error.code}}\",\n        \"tooltip\": \"{{local.fgc8woctfo.payload.error.code}}\",\n        \"children\": [\n          {\n            \"text\": \"code\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -21182,16 +21289,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "icy7kw57ll" = {
           data = {
-            id              = "icy7kw57ll"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "aod0k3fhnl"
+            id               = "icy7kw57ll"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "aod0k3fhnl"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.10oaokas61.payload.output.rawResponse.status}}\",\n        \"tooltip\": \"{{local.10oaokas61.payload.output.rawResponse.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -21272,16 +21380,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ilu6o9n2x7" = {
           data = {
-            id              = "ilu6o9n2x7"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "8t8v9do1nv"
+            id               = "ilu6o9n2x7"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "8t8v9do1nv"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
@@ -21329,7 +21438,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "iol98dgq2g"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -21462,15 +21571,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "j6salon8z4" = {
           data = {
-            id              = "j6salon8z4"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "j6salon8z4"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis."
@@ -21531,15 +21641,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "j8lmuiytzs" = {
           data = {
-            id              = "j8lmuiytzs"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "j8lmuiytzs"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"mfaEnabled\",\n        \"data\": \"{{local.ms19ql02hi.payload.output.mfaEnabled}}\",\n        \"tooltip\": \"{{local.ms19ql02hi.payload.output.mfaEnabled}}\",\n        \"children\": [\n          {\n            \"text\": \"mfaEnabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -21873,15 +21984,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "li0d8slgjx" = {
           data = {
-            id              = "li0d8slgjx"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "li0d8slgjx"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -22155,15 +22267,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ndm5er34sv" = {
           data = {
-            id              = "ndm5er34sv"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "ndm5er34sv"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_protectRiskLevel\",\n        \"data\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"tooltip\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectRiskLevel\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -22207,15 +22320,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "nf4hv96sui" = {
           data = {
-            id              = "nf4hv96sui"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "nf4hv96sui"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"size\",\n        \"data\": \"{{local.9m5a2f4emp.payload.output.rawResponse.size}}\",\n        \"tooltip\": \"{{local.9m5a2f4emp.payload.output.rawResponse.size}}\",\n        \"children\": [\n          {\n            \"text\": \"size\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -22447,16 +22561,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "p3914imkz7" = {
           data = {
-            id              = "p3914imkz7"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "l9mjl3805g"
+            id               = "p3914imkz7"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "l9mjl3805g"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"FAILED\"\n      }\n    ]\n  }\n]"
@@ -22486,7 +22601,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "pmti6ujkhs"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -22576,16 +22691,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "qurffyxc2d" = {
           data = {
-            id              = "qurffyxc2d"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "7cn1hjd8xx"
+            id               = "qurffyxc2d"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "7cn1hjd8xx"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.r0hto2xun7.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.r0hto2xun7.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -22665,7 +22781,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "qy7s75yr53"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -22850,16 +22966,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "r6lnkuy0yh" = {
           data = {
-            id              = "r6lnkuy0yh"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "re2v73q0dh"
+            id               = "r6lnkuy0yh"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "re2v73q0dh"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n\tconst passcode = params.selectedDeviceType === \"YUBIKEY\" ? params.passcode.toLowerCase() : params.passcode;\n\n\treturn { \"passcode\": passcode }\n}"
@@ -22903,7 +23020,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "re4ioqdown"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -22954,7 +23071,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "rpzoddi1xa"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -23011,7 +23128,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "s4g5xdwyc0"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -23507,16 +23624,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ulsqznx6ut" = {
           data = {
-            id              = "ulsqznx6ut"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "9wk38r73ko"
+            id               = "ulsqznx6ut"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "9wk38r73ko"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"code\",\n        \"data\": \"{{local.fj8w62y4z3.payload.error.code}}\",\n        \"tooltip\": \"{{local.fj8w62y4z3.payload.error.code}}\",\n        \"children\": [\n          {\n            \"text\": \"code\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -23617,16 +23735,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "uz6hhdt9gv" = {
           data = {
-            id              = "uz6hhdt9gv"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "22yjhmyyfk"
+            id               = "uz6hhdt9gv"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "22yjhmyyfk"
             properties = jsonencode({
               "backgroundColor" : {
                 "value" : "#afd5ffff"
@@ -23717,7 +23836,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "viydivqb9g"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -23826,15 +23945,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "wa07p8s7qm" = {
           data = {
-            id              = "wa07p8s7qm"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "wa07p8s7qm"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.1qtib8s0uu.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.1qtib8s0uu.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -23874,16 +23994,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "wf0h6fo6h8" = {
           data = {
-            id              = "wf0h6fo6h8"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "78rowewdmo"
+            id               = "wf0h6fo6h8"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "78rowewdmo"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.zfsjjfa5h6.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.zfsjjfa5h6.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -23916,15 +24037,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "wi6hu0ai62" = {
           data = {
-            id              = "wi6hu0ai62"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "wi6hu0ai62"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -24070,7 +24192,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "wt08b95kxj"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -24119,16 +24241,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "wzzac3ucto" = {
           data = {
-            id              = "wzzac3ucto"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "c265box6u3"
+            id               = "wzzac3ucto"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "c265box6u3"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n  String.prototype.maskEmail = function() {\n    const [username, domain] = this.split(\"@\");\n    const maskedUsername =\n      username.charAt(0) + \"*\".repeat(username.length - 2) + username.slice(-1);\n    return maskedUsername + \"@\" + domain;\n  };\n\n  String.prototype.maskPhoneNumber = function() {\n    // Strip all non-numeric characters from the phone number\n    const numericPhoneNumber = this.replace(/\\D/g, '');\n\n    // Mask the first six digits of the phone number\n    const maskedPhoneNumber = '***-***-' + numericPhoneNumber.slice(-4);\n\n    return maskedPhoneNumber;\n  };\n\n  var usableDevices = JSON.parse(params.devices);\n  const magicLinkEmail = params.magicLinkEmail;\n\n  for (let i = 0; i \u003c usableDevices.length; i++) {\n    if (usableDevices[i].type === \"EMAIL\") {\n      usableDevices[i].email = usableDevices[i].email.maskEmail();\n    } else if (usableDevices[i].type === \"SMS\") {\n      usableDevices[i].phone = usableDevices[i].phone.maskPhoneNumber();\n    }\n  }\n\n  return { \n    maskedUsableDevices: usableDevices,\n    maskedMagicLinkEmail: magicLinkEmail.maskEmail()\n  }\n}"
@@ -24274,16 +24397,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "xsm25p5qf7" = {
           data = {
-            id              = "xsm25p5qf7"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "jercsmb9sj"
+            id               = "xsm25p5qf7"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "jercsmb9sj"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ciam_magicLinkEnabled\",\n        \"data\": \"{{global.parameters.ciam_magicLinkEnabled}}\",\n        \"tooltip\": \"{{global.parameters.ciam_magicLinkEnabled}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_magicLinkEnabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -24348,16 +24472,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "y8pxpynfle" = {
           data = {
-            id              = "y8pxpynfle"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "z0hgib8ouz"
+            id               = "y8pxpynfle"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "z0hgib8ouz"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"message\",\n        \"data\": \"{{local.fj8w62y4z3.payload.error.message}}\",\n        \"tooltip\": \"{{local.fj8w62y4z3.payload.error.message}}\",\n        \"children\": [\n          {\n            \"text\": \"message\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -24433,7 +24558,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "zbckjar2e2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -24652,7 +24777,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
           data = {
             id              = "zlphn8iyc9"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -24813,9 +24938,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "0r7bedm6uw" = {
           data = {
-            id     = "0r7bedm6uw"
-            source = "wf0h6fo6h8"
-            target = "ay2mm4z4xe"
+            id                    = "0r7bedm6uw"
+            source                = "wf0h6fo6h8"
+            target                = "ay2mm4z4xe"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -25003,9 +25129,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "3t046eoshh" = {
           data = {
-            id     = "3t046eoshh"
-            source = "qurffyxc2d"
-            target = "gsw5wwtm7t"
+            id                    = "3t046eoshh"
+            source                = "qurffyxc2d"
+            target                = "gsw5wwtm7t"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -25060,9 +25187,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "45ll0aujgc" = {
           data = {
-            id     = "45ll0aujgc"
-            source = "ndm5er34sv"
-            target = "sk3dza5671"
+            id                    = "45ll0aujgc"
+            source                = "ndm5er34sv"
+            target                = "sk3dza5671"
+            multi_value_source_id = "0p1qnce4cf"
           }
           position = {
             x = 64
@@ -25079,9 +25207,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "49rwwjy7nz" = {
           data = {
-            id     = "49rwwjy7nz"
-            source = "wf0h6fo6h8"
-            target = "3nn0mw8jkt"
+            id                    = "49rwwjy7nz"
+            source                = "wf0h6fo6h8"
+            target                = "3nn0mw8jkt"
+            multi_value_source_id = "aw94m7u2lh"
           }
           position = {
             x = 64
@@ -25725,9 +25854,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "c9aoywozqh" = {
           data = {
-            id     = "c9aoywozqh"
-            source = "wa07p8s7qm"
-            target = "vul5k2q2dw"
+            id                    = "c9aoywozqh"
+            source                = "wa07p8s7qm"
+            target                = "vul5k2q2dw"
+            multi_value_source_id = "s9529zdooj"
           }
           position = {
             x = 64
@@ -25763,9 +25893,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ctneppt9pl" = {
           data = {
-            id     = "ctneppt9pl"
-            source = "1lam7h7jbc"
-            target = "9fzm9oj8fd"
+            id                    = "ctneppt9pl"
+            source                = "1lam7h7jbc"
+            target                = "9fzm9oj8fd"
+            multi_value_source_id = "6wec7sf7zk"
           }
           position = {
             x = 64
@@ -25801,9 +25932,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "dmimnpyda3" = {
           data = {
-            id     = "dmimnpyda3"
-            source = "hdc8oa72ci"
-            target = "8h5tjkrug9"
+            id                    = "dmimnpyda3"
+            source                = "hdc8oa72ci"
+            target                = "8h5tjkrug9"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -25820,9 +25952,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "dq1ndrovam" = {
           data = {
-            id     = "dq1ndrovam"
-            source = "ndm5er34sv"
-            target = "n69ynlsgag"
+            id                    = "dq1ndrovam"
+            source                = "ndm5er34sv"
+            target                = "n69ynlsgag"
+            multi_value_source_id = "lqmnn9ogsx"
           }
           position = {
             x = 64
@@ -25991,9 +26124,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "fkr4z8afdu" = {
           data = {
-            id     = "fkr4z8afdu"
-            source = "ndm5er34sv"
-            target = "4n12f0orqv"
+            id                    = "fkr4z8afdu"
+            source                = "ndm5er34sv"
+            target                = "4n12f0orqv"
+            multi_value_source_id = "0arupdzpn0"
           }
           position = {
             x = 64
@@ -26048,9 +26182,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "fnc9o5kbhq" = {
           data = {
-            id     = "fnc9o5kbhq"
-            source = "icy7kw57ll"
-            target = "v0t14r4lv2"
+            id                    = "fnc9o5kbhq"
+            source                = "icy7kw57ll"
+            target                = "v0t14r4lv2"
+            multi_value_source_id = "50k36d0i08"
           }
           position = {
             x = 64
@@ -26086,9 +26221,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "gz49ej514h" = {
           data = {
-            id     = "gz49ej514h"
-            source = "qurffyxc2d"
-            target = "00j11fkhbx"
+            id                    = "gz49ej514h"
+            source                = "qurffyxc2d"
+            target                = "00j11fkhbx"
+            multi_value_source_id = "aw94m7u2lh"
           }
           position = {
             x = 64
@@ -26428,9 +26564,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "jz6kfef3be" = {
           data = {
-            id     = "jz6kfef3be"
-            source = "qurffyxc2d"
-            target = "ig2ndq8bf2"
+            id                    = "jz6kfef3be"
+            source                = "qurffyxc2d"
+            target                = "ig2ndq8bf2"
+            multi_value_source_id = "1uplmn0ljy"
           }
           position = {
             x = 64
@@ -26637,9 +26774,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "mrn1mguwho" = {
           data = {
-            id     = "mrn1mguwho"
-            source = "wa07p8s7qm"
-            target = "imhudhsy1w"
+            id                    = "mrn1mguwho"
+            source                = "wa07p8s7qm"
+            target                = "imhudhsy1w"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -26713,9 +26851,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ne0lum3631" = {
           data = {
-            id     = "ne0lum3631"
-            source = "icy7kw57ll"
-            target = "vw8zbuzgod"
+            id                    = "ne0lum3631"
+            source                = "icy7kw57ll"
+            target                = "vw8zbuzgod"
+            multi_value_source_id = "fmf2dvwm72"
           }
           position = {
             x = 64
@@ -26998,9 +27137,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "psnj15lkif" = {
           data = {
-            id     = "psnj15lkif"
-            source = "4psx471uwp"
-            target = "1gtc5d0awz"
+            id                    = "psnj15lkif"
+            source                = "4psx471uwp"
+            target                = "1gtc5d0awz"
+            multi_value_source_id = "0cp41op2cj"
           }
           position = {
             x = 64
@@ -27264,9 +27404,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "t7npdz4gbh" = {
           data = {
-            id     = "t7npdz4gbh"
-            source = "hdc8oa72ci"
-            target = "v97rmwpban"
+            id                    = "t7npdz4gbh"
+            source                = "hdc8oa72ci"
+            target                = "v97rmwpban"
+            multi_value_source_id = "ge82gnhx0l"
           }
           position = {
             x = 64
@@ -27302,9 +27443,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "t8t63sscty" = {
           data = {
-            id     = "t8t63sscty"
-            source = "icy7kw57ll"
-            target = "wj5284rjb8"
+            id                    = "t8t63sscty"
+            source                = "icy7kw57ll"
+            target                = "wj5284rjb8"
+            multi_value_source_id = "0cp41op2cj"
           }
           position = {
             x = 64
@@ -27397,9 +27539,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "u45nr85lep" = {
           data = {
-            id     = "u45nr85lep"
-            source = "4psx471uwp"
-            target = "h8dtvwld36"
+            id                    = "u45nr85lep"
+            source                = "4psx471uwp"
+            target                = "h8dtvwld36"
+            multi_value_source_id = "fmf2dvwm72"
           }
           position = {
             x = 64
@@ -27625,9 +27768,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "wnfcbs5iu0" = {
           data = {
-            id     = "wnfcbs5iu0"
-            source = "ulsqznx6ut"
-            target = "3a77bpgwom"
+            id                    = "wnfcbs5iu0"
+            source                = "ulsqznx6ut"
+            target                = "3a77bpgwom"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -27815,9 +27959,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "ypzt9fvewt" = {
           data = {
-            id     = "ypzt9fvewt"
-            source = "wa07p8s7qm"
-            target = "vr1msssq3l"
+            id                    = "ypzt9fvewt"
+            source                = "wa07p8s7qm"
+            target                = "vr1msssq3l"
+            multi_value_source_id = "2orm6clcla"
           }
           position = {
             x = 64
@@ -27834,9 +27979,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "yxj8cqe0yo" = {
           data = {
-            id     = "yxj8cqe0yo"
-            source = "ulsqznx6ut"
-            target = "fu06ckn12l"
+            id                    = "yxj8cqe0yo"
+            source                = "ulsqznx6ut"
+            target                = "fu06ckn12l"
+            multi_value_source_id = "ge82gnhx0l"
           }
           position = {
             x = 64
@@ -27853,9 +27999,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_authentication
         }
         "z0uo7mfod1" = {
           data = {
-            id     = "z0uo7mfod1"
-            source = "1lam7h7jbc"
-            target = "lylme68jbw"
+            id                    = "z0uo7mfod1"
+            source                = "1lam7h7jbc"
+            target                = "lylme68jbw"
+            multi_value_source_id = "abtr1gtact"
           }
           position = {
             x = 64
@@ -28040,7 +28187,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "0mnenav9by"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -28157,7 +28304,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "2glrp3yq6j"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -28261,16 +28408,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "2tv7r1hqp9" = {
           data = {
-            id              = "2tv7r1hqp9"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ALessThanB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "rn1pim6e9s"
+            id               = "2tv7r1hqp9"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ALessThanB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "rn1pim6e9s"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"size\",\n        \"data\": \"{{local.te6t0zwohr.payload.output.rawResponse.size}}\",\n        \"tooltip\": \"{{local.te6t0zwohr.payload.output.rawResponse.size}}\",\n        \"children\": [\n          {\n            \"text\": \"size\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -28301,16 +28449,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "2whff30xov" = {
           data = {
-            id              = "2whff30xov"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "jcpzuc1dmc"
+            id               = "2whff30xov"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "jcpzuc1dmc"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet email = params.email\n\n\tif (email) {\n\t\tconst [username, domain] = email.split(\"@\");\n  \t\tconst maskedUsername =\n    \tusername.charAt(0) + \"*\".repeat(username.length - 2) + username.slice(-1);\n\t\temail = maskedUsername + \"@\" + domain;\n\t}\n\n\treturn {'maskedEmail': email}\n}"
@@ -28434,15 +28583,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "3zzt3vrb0k" = {
           data = {
-            id              = "3zzt3vrb0k"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "3zzt3vrb0k"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"code\",\n        \"data\": \"{{local.uoppd09l5f.payload.error.code}}\",\n        \"tooltip\": \"{{local.uoppd09l5f.payload.error.code}}\",\n        \"children\": [\n          {\n            \"text\": \"code\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -28695,7 +28845,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "57gtx3hjxk"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -28829,15 +28979,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "6de8yoq3eb" = {
           data = {
-            id              = "6de8yoq3eb"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "6de8yoq3eb"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"The relying party ID is not the current domain or a registrable domain suffix of the current domain.\"\n      }\n    ]\n  }\n]"
@@ -28971,7 +29122,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "74gf8z86uw"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -29021,7 +29172,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "75dabb2t7b"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -29070,15 +29221,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "7mu81oaiqx" = {
           data = {
-            id              = "7mu81oaiqx"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "7mu81oaiqx"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -29298,15 +29450,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "8oqliw5zps" = {
           data = {
-            id              = "8oqliw5zps"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "8oqliw5zps"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set Device ID"
@@ -29418,15 +29571,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "92ojigwmkh" = {
           data = {
-            id              = "92ojigwmkh"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "92ojigwmkh"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Device already paired.\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -29471,7 +29625,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "9niomoeu0e"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -29765,16 +29919,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "cxjw4q2ocj" = {
           data = {
-            id              = "cxjw4q2ocj"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "pptjxpczig"
+            id               = "cxjw4q2ocj"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "pptjxpczig"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.decvvhflks.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.decvvhflks.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -30181,15 +30336,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "f93pbyvrj2" = {
           data = {
-            id              = "f93pbyvrj2"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "f93pbyvrj2"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet errorConnector = params.errorConnector;\n\n\tif (errorConnector === \"phone: must be a well-formed phone number with a valid country code followed by a phone number\") {\n\t\terrorConnector = \"Enter a valid phone number, including the country code.\";\n\t}\n\n\treturn {'updatedErrorMessage': errorConnector};\n}"
@@ -30316,7 +30472,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "fej3sjbngi"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -30448,15 +30604,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "gnmbshsowi" = {
           data = {
-            id              = "gnmbshsowi"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "gnmbshsowi"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"code\",\n        \"data\": \"{{local.pjzv5pikab.payload.error.code}}\",\n        \"tooltip\": \"{{local.pjzv5pikab.payload.error.code}}\",\n        \"children\": [\n          {\n            \"text\": \"code\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -30548,16 +30705,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "hili7n1bzj" = {
           data = {
-            id              = "hili7n1bzj"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.string_manipulation.id
-            connector_id    = "stringsConnector"
-            name            = "String Manipulation"
-            label           = "String Manipulation"
-            capability_name = "toLowerCase"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "en5tffx09s"
+            id               = "hili7n1bzj"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.string_manipulation.id
+            connector_id     = "stringsConnector"
+            capability_class = "backend"
+            name             = "String Manipulation"
+            label            = "String Manipulation"
+            capability_name  = "toLowerCase"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "en5tffx09s"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Get Auth Method"
@@ -30672,7 +30830,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "ibotgp2jn2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -30885,7 +31043,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "jikxwfc68i"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -30986,7 +31144,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "k1n6kg45vx"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -31116,16 +31274,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "kfqbhjjaqb" = {
           data = {
-            id              = "kfqbhjjaqb"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "xhc3n6zqjk"
+            id               = "kfqbhjjaqb"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "xhc3n6zqjk"
             properties = jsonencode({
               "code" : {
                 "value" : "module.exports = a = async ({ params }) =\u003e {\n    console.log('params: ', params)\n\n    var usableDevices = JSON.parse(params.usableDevices);\n\n    const allowedDeviceTypes = params.allowedDeviceTypes.split(\",\");\n    const allowSMS = allowedDeviceTypes.some(device =\u003e device === \"SMS\");\n    const allowEmail = allowedDeviceTypes.some(device =\u003e device === \"EMAIL\");\n    const allowFIDO2 = allowedDeviceTypes.some(device =\u003e device === \"FIDO2\");\n    \n    if (params.webAuthenSupport === \"NONE\") {\n        usableDevices = usableDevices.filter(device =\u003e {\n            return device !== \"SECURITY_KEY\" \u0026\u0026 device !== \"PLATFORM\" \u0026\u0026 device !== \"FIDO2\";\n        });\n    }\n\n    usableDevices = usableDevices.filter(device =\u003e {\n        return (device === \"SMS\" \u0026\u0026 allowSMS) \n            || (device === \"EMAIL\" \u0026\u0026 allowEmail) \n            || (device === \"FIDO2\" \u0026\u0026 allowFIDO2);\n    })\n\n    if (params.webAuthenSupport == \"SECURITY_KEY_ONLY\") {\n        usableDevices = usableDevices.filter(device =\u003e {\n            return device !== \"PLATFORM\";\n        });\n    }\n\n    if (usableDevices.includes(\"SMS\")) {\n        const index = usableDevices.indexOf(\"SMS\");\n        if (index !== -1) {\n            usableDevices.splice(index, 1);\n            usableDevices.unshift(\"SMS\");\n        }\n    }\n\n    if (usableDevices.includes(\"FIDO2\")) {\n        const index = usableDevices.indexOf(\"FIDO2\");\n        if (index !== -1) {\n            usableDevices.splice(index, 1);\n            usableDevices.unshift(\"FIDO2\");\n        }\n    }\n\n    return { usableDevices: usableDevices, count: usableDevices.length }\n}"
@@ -31174,7 +31333,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "kmciqzq5l1"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -31299,7 +31458,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "l9xjrjligx"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -31479,15 +31638,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "o3p0lu1ww2" = {
           data = {
-            id              = "o3p0lu1ww2"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "o3p0lu1ww2"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tlet email = params.email\n\tlet phone = params.phone\n\n\tif (email) {\n\t\tconst [username, domain] = email.split(\"@\");\n  \t\tconst maskedUsername =\n    \tusername.charAt(0) + \"*\".repeat(username.length - 2) + username.slice(-1);\n\t\temail = maskedUsername + \"@\" + domain;\n\t}\n\n\tif (phone) {\n\t\t// Strip all non-numeric characters from the phone number\n  \t\tconst numericPhoneNumber = phone.replace(/\\D/g, '');\n\t\t// Mask the first six digits of the phone number\n  \t\tconst maskedPhoneNumber = '***-***-' + numericPhoneNumber.slice(-4);\n\t\tphone = maskedPhoneNumber;\n\t}\n\treturn {'maskedEmail': email, 'maskedPhone': phone}\n}"
@@ -31547,15 +31707,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "orf96wndkv" = {
           data = {
-            id              = "orf96wndkv"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ALessThanB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "orf96wndkv"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ALessThanB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"0\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  },\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -31952,15 +32113,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "qz2aml0p13" = {
           data = {
-            id              = "qz2aml0p13"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "qz2aml0p13"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"updatedErrorMessage\",\n        \"data\": \"{{local.f93pbyvrj2.payload.output.updatedErrorMessage}}\",\n        \"tooltip\": \"{{local.f93pbyvrj2.payload.output.updatedErrorMessage}}\",\n        \"children\": [\n          {\n            \"text\": \"updatedErrorMessage\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -32095,15 +32257,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "rblpwgsav2" = {
           data = {
-            id              = "rblpwgsav2"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "rblpwgsav2"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"One-time passcode resent.\"\n      }\n    ]\n  }\n]"
@@ -32130,7 +32293,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "rgvtyn8116"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -32184,7 +32347,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "rhbe2mkmk2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -32259,7 +32422,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "rqw3x0w2p1"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -32425,7 +32588,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "s900lnmvn5"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -32473,15 +32636,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "sdvxpx62lw" = {
           data = {
-            id              = "sdvxpx62lw"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "sdvxpx62lw"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"ciam_autoEnrollEmail\",\n        \"data\": \"{{global.parameters.ciam_autoEnrollEmail}}\",\n        \"tooltip\": \"{{global.parameters.ciam_autoEnrollEmail}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_autoEnrollEmail\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -32606,16 +32770,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "t9jyjrzivl" = {
           data = {
-            id              = "t9jyjrzivl"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "6oh3xc5sw6"
+            id               = "t9jyjrzivl"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "6oh3xc5sw6"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.bvogh6r954.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.bvogh6r954.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -32764,7 +32929,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "u5kub3qvkq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -32841,16 +33006,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "uh95uv8tkc" = {
           data = {
-            id              = "uh95uv8tkc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "6oh3xc5sw6"
+            id               = "uh95uv8tkc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "6oh3xc5sw6"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.r0z9swupt6.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.r0z9swupt6.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -33089,7 +33255,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "vilx80kut0"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -33159,15 +33325,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "w4i8a0zmx4" = {
           data = {
-            id              = "w4i8a0zmx4"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "w4i8a0zmx4"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"The passcode you entered isn't valid. Verify the passcode and try again.\"\n      }\n    ]\n  }\n]"
@@ -33290,15 +33457,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "wms6o050jb" = {
           data = {
-            id              = "wms6o050jb"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "wms6o050jb"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.6jkz2hx974.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.6jkz2hx974.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -33382,15 +33550,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "wurft65sg6" = {
           data = {
-            id              = "wurft65sg6"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "wurft65sg6"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Update Device ID"
@@ -33467,7 +33636,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "xidlsgr1u8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -33517,7 +33686,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "xlmzidbgc9"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -33712,15 +33881,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "zqb2rroahz" = {
           data = {
-            id              = "zqb2rroahz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "zqb2rroahz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.qdsmqnczwr.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.qdsmqnczwr.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -33798,7 +33968,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
           data = {
             id              = "zzia2art5i"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -33867,9 +34037,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "0k52aluf1s" = {
           data = {
-            id     = "0k52aluf1s"
-            source = "zqb2rroahz"
-            target = "h00gom93pv"
+            id                    = "0k52aluf1s"
+            source                = "zqb2rroahz"
+            target                = "h00gom93pv"
+            multi_value_source_id = "1uplmn0ljy"
           }
           position = {
             x = 64
@@ -33886,9 +34057,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "0l4hxgx8d8" = {
           data = {
-            id     = "0l4hxgx8d8"
-            source = "uh95uv8tkc"
-            target = "3mjp355lsy"
+            id                    = "0l4hxgx8d8"
+            source                = "uh95uv8tkc"
+            target                = "3mjp355lsy"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -33962,9 +34134,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "1m1v6p9vdv" = {
           data = {
-            id     = "1m1v6p9vdv"
-            source = "cxjw4q2ocj"
-            target = "ocsgnkoz0e"
+            id                    = "1m1v6p9vdv"
+            source                = "cxjw4q2ocj"
+            target                = "ocsgnkoz0e"
+            multi_value_source_id = "dagi6ktntv"
           }
           position = {
             x = 64
@@ -34019,9 +34192,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "2bh3m8rani" = {
           data = {
-            id     = "2bh3m8rani"
-            source = "3zzt3vrb0k"
-            target = "ux1izu65m4"
+            id                    = "2bh3m8rani"
+            source                = "3zzt3vrb0k"
+            target                = "ux1izu65m4"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -34057,9 +34231,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "34ixbrrw0z" = {
           data = {
-            id     = "34ixbrrw0z"
-            source = "wms6o050jb"
-            target = "nxc2amxsdh"
+            id                    = "34ixbrrw0z"
+            source                = "wms6o050jb"
+            target                = "nxc2amxsdh"
+            multi_value_source_id = "cn8bjfqdm1"
           }
           position = {
             x = 64
@@ -34076,9 +34251,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "3943z8fth6" = {
           data = {
-            id     = "3943z8fth6"
-            source = "t9jyjrzivl"
-            target = "qwx56pgrc8"
+            id                    = "3943z8fth6"
+            source                = "t9jyjrzivl"
+            target                = "qwx56pgrc8"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -34247,9 +34423,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "5qs7bx032f" = {
           data = {
-            id     = "5qs7bx032f"
-            source = "wms6o050jb"
-            target = "wpljz4km80"
+            id                    = "5qs7bx032f"
+            source                = "wms6o050jb"
+            target                = "wpljz4km80"
+            multi_value_source_id = "rcdv40p339"
           }
           position = {
             x = 64
@@ -34304,9 +34481,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "6l1r9fy00v" = {
           data = {
-            id     = "6l1r9fy00v"
-            source = "cxjw4q2ocj"
-            target = "j0zgu89bdj"
+            id                    = "6l1r9fy00v"
+            source                = "cxjw4q2ocj"
+            target                = "j0zgu89bdj"
+            multi_value_source_id = "7j5ae87a0v"
           }
           position = {
             x = 64
@@ -34551,9 +34729,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "boc52rdqlo" = {
           data = {
-            id     = "boc52rdqlo"
-            source = "zqb2rroahz"
-            target = "eqr4ril6n5"
+            id                    = "boc52rdqlo"
+            source                = "zqb2rroahz"
+            target                = "eqr4ril6n5"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -34570,9 +34749,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "bocl88fbu5" = {
           data = {
-            id     = "bocl88fbu5"
-            source = "cxjw4q2ocj"
-            target = "k90u9roz6q"
+            id                    = "bocl88fbu5"
+            source                = "cxjw4q2ocj"
+            target                = "k90u9roz6q"
+            multi_value_source_id = "gsohfg2kar"
           }
           position = {
             x = 64
@@ -35026,9 +35206,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "h3hlnkicxw" = {
           data = {
-            id     = "h3hlnkicxw"
-            source = "cxjw4q2ocj"
-            target = "531xfigfe0"
+            id                    = "h3hlnkicxw"
+            source                = "cxjw4q2ocj"
+            target                = "531xfigfe0"
+            multi_value_source_id = "k4ardgdyy9"
           }
           position = {
             x = 64
@@ -35064,9 +35245,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "hg20okjvi3" = {
           data = {
-            id     = "hg20okjvi3"
-            source = "zqb2rroahz"
-            target = "car7f7wytu"
+            id                    = "hg20okjvi3"
+            source                = "zqb2rroahz"
+            target                = "car7f7wytu"
+            multi_value_source_id = "dxhc9sru4p"
           }
           position = {
             x = 64
@@ -35121,9 +35303,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "hlokiwfp9v" = {
           data = {
-            id     = "hlokiwfp9v"
-            source = "uh95uv8tkc"
-            target = "uyltkub1v7"
+            id                    = "hlokiwfp9v"
+            source                = "uh95uv8tkc"
+            target                = "uyltkub1v7"
+            multi_value_source_id = "dxhc9sru4p"
           }
           position = {
             x = 64
@@ -35368,9 +35551,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "m0cyq0k4ch" = {
           data = {
-            id     = "m0cyq0k4ch"
-            source = "wms6o050jb"
-            target = "7z5i8o5gts"
+            id                    = "m0cyq0k4ch"
+            source                = "wms6o050jb"
+            target                = "7z5i8o5gts"
+            multi_value_source_id = "sai4tizng9"
           }
           position = {
             x = 64
@@ -35501,9 +35685,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "p706pjthnb" = {
           data = {
-            id     = "p706pjthnb"
-            source = "wms6o050jb"
-            target = "s1axmvsfoq"
+            id                    = "p706pjthnb"
+            source                = "wms6o050jb"
+            target                = "s1axmvsfoq"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -35596,9 +35781,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "qlys0ydwu" = {
           data = {
-            id     = "qlys0ydwu"
-            source = "cxjw4q2ocj"
-            target = "eczw2t8dc"
+            id                    = "qlys0ydwu"
+            source                = "cxjw4q2ocj"
+            target                = "eczw2t8dc"
+            multi_value_source_id = "s7618p926f"
           }
           position = {
             x = 64
@@ -35767,9 +35953,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "squjzg4bxc" = {
           data = {
-            id     = "squjzg4bxc"
-            source = "3zzt3vrb0k"
-            target = "vqogwo2qjm"
+            id                    = "squjzg4bxc"
+            source                = "3zzt3vrb0k"
+            target                = "vqogwo2qjm"
+            multi_value_source_id = "06n6y4w6fp"
           }
           position = {
             x = 64
@@ -35824,9 +36011,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "tvdah9wgtd" = {
           data = {
-            id     = "tvdah9wgtd"
-            source = "t9jyjrzivl"
-            target = "jm2mglfpb1"
+            id                    = "tvdah9wgtd"
+            source                = "t9jyjrzivl"
+            target                = "jm2mglfpb1"
+            multi_value_source_id = "dxhc9sru4p"
           }
           position = {
             x = 64
@@ -36185,9 +36373,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_device_registration_s
         }
         "xajaw8n1c3" = {
           data = {
-            id     = "xajaw8n1c3"
-            source = "wms6o050jb"
-            target = "p0xbtjpw30"
+            id                    = "xajaw8n1c3"
+            source                = "wms6o050jb"
+            target                = "p0xbtjpw30"
+            multi_value_source_id = "tvctu8a9q2"
           }
           position = {
             x = 64
@@ -36425,7 +36614,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "0n0ut437o3"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -36476,7 +36665,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "0qcssfrh10"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -36765,7 +36954,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "7e08goj0iq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -36815,7 +37004,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "8djc46t1wd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -36907,7 +37096,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "br0d2k4br2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -37059,16 +37248,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "ebtd5fr0tn" = {
           data = {
-            id              = "ebtd5fr0tn"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.challenge.id
-            connector_id    = "challengeConnector"
-            name            = "Challenge"
-            label           = "Challenge"
-            capability_name = "updateChallenge"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "h3up2ysshz"
+            id               = "ebtd5fr0tn"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.challenge.id
+            connector_id     = "challengeConnector"
+            capability_class = "backend"
+            name             = "Challenge"
+            label            = "Challenge"
+            capability_name  = "updateChallenge"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "h3up2ysshz"
             properties = jsonencode({
               "challenge" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"challenge\",\n        \"data\": \"{{local.hhwhmetaid.payload.output.challenge}}\",\n        \"tooltip\": \"{{local.hhwhmetaid.payload.output.challenge}}\",\n        \"children\": [\n          {\n            \"text\": \"challenge\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -37110,16 +37300,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "exmvyabfps" = {
           data = {
-            id              = "exmvyabfps"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.challenge.id
-            connector_id    = "challengeConnector"
-            name            = "Challenge"
-            label           = "Challenge [2023-02-06]"
-            capability_name = "getChallenge"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "zvgsr1ecqm"
+            id               = "exmvyabfps"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.challenge.id
+            connector_id     = "challengeConnector"
+            capability_class = "backend"
+            name             = "Challenge"
+            label            = "Challenge [2023-02-06]"
+            capability_name  = "getChallenge"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "zvgsr1ecqm"
             properties = jsonencode({
               "challenge" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"challenge\",\n        \"data\": \"{{local.hhwhmetaid.payload.output.challenge}}\",\n        \"tooltip\": \"{{local.hhwhmetaid.payload.output.challenge}}\",\n        \"children\": [\n          {\n            \"text\": \"challenge\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -37144,16 +37335,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "fetjewgnk5" = {
           data = {
-            id              = "fetjewgnk5"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "ewbxtdk9m2"
+            id               = "fetjewgnk5"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "ewbxtdk9m2"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -37329,7 +37521,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "g1rhudk93t"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -37537,16 +37729,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "jdrbqfg1mz" = {
           data = {
-            id              = "jdrbqfg1mz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "5qun0ddcmr"
+            id               = "jdrbqfg1mz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "5qun0ddcmr"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"challenge.svg\",\n        \"url\": \"challengeStatus\",\n        \"data\": \"{{local.exmvyabfps.payload.output.challengeStatus}}\",\n        \"tooltip\": \"{{local.exmvyabfps.payload.output.challengeStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"challengeStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -37588,7 +37781,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "l7rgmj087d"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -37764,7 +37957,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "pvg1cpn6kh"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -37839,15 +38032,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "qvn5tw6kbc" = {
           data = {
-            id              = "qvn5tw6kbc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "qvn5tw6kbc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"challenge.svg\",\n        \"url\": \"challengeStatus\",\n        \"data\": \"{{local.z80t8d8glj.payload.output.challengeStatus}}\",\n        \"tooltip\": \"{{local.z80t8d8glj.payload.output.challengeStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"challengeStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -37926,7 +38120,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "rv5btaqk8t"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -37974,16 +38168,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "si1p71skgq" = {
           data = {
-            id              = "si1p71skgq"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.challenge.id
-            connector_id    = "challengeConnector"
-            name            = "Challenge"
-            label           = "Challenge"
-            capability_name = "updateChallenge"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "ibtwx34cbw"
+            id               = "si1p71skgq"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.challenge.id
+            connector_id     = "challengeConnector"
+            capability_class = "backend"
+            name             = "Challenge"
+            label            = "Challenge"
+            capability_name  = "updateChallenge"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "ibtwx34cbw"
             properties = jsonencode({
               "challenge" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"challenge\",\n        \"data\": \"{{local.zsk0ny89ud.payload.output.challenge}}\",\n        \"tooltip\": \"{{local.zsk0ny89ud.payload.output.challenge}}\",\n        \"children\": [\n          {\n            \"text\": \"challenge\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -38217,7 +38412,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
           data = {
             id              = "x4bzauvkig"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -38272,15 +38467,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "z80t8d8glj" = {
           data = {
-            id              = "z80t8d8glj"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.challenge.id
-            connector_id    = "challengeConnector"
-            name            = "Challenge"
-            label           = "Challenge [2023-02-06]"
-            capability_name = "getChallenge"
-            type            = "action"
-            status          = "configured"
+            id               = "z80t8d8glj"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.challenge.id
+            connector_id     = "challengeConnector"
+            capability_class = "backend"
+            name             = "Challenge"
+            label            = "Challenge [2023-02-06]"
+            capability_name  = "getChallenge"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "challenge" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"challenge\",\n        \"data\": \"{{local.zsk0ny89ud.payload.output.challenge}}\",\n        \"tooltip\": \"{{local.zsk0ny89ud.payload.output.challenge}}\",\n        \"children\": [\n          {\n            \"text\": \"challenge\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -38305,16 +38501,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "z86jockb1t" = {
           data = {
-            id              = "z86jockb1t"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "vwpj79ktg0"
+            id               = "z86jockb1t"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "vwpj79ktg0"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.w9wzxxn1e0.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.w9wzxxn1e0.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -38519,9 +38716,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "88934pdedi" = {
           data = {
-            id     = "88934pdedi"
-            source = "z86jockb1t"
-            target = "4ry973ap9g"
+            id                    = "88934pdedi"
+            source                = "z86jockb1t"
+            target                = "4ry973ap9g"
+            multi_value_source_id = "aw94m7u2lh"
           }
           position = {
             x = 64
@@ -38747,9 +38945,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "fc143zf5nt" = {
           data = {
-            id     = "fc143zf5nt"
-            source = "qvn5tw6kbc"
-            target = "3ma220y2v8"
+            id                    = "fc143zf5nt"
+            source                = "qvn5tw6kbc"
+            target                = "3ma220y2v8"
+            multi_value_source_id = "x16aio9wmw"
           }
           position = {
             x = 64
@@ -38861,9 +39060,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_magic_link_authentica
         }
         "kdt7qenq1a" = {
           data = {
-            id     = "kdt7qenq1a"
-            source = "z86jockb1t"
-            target = "zv9k30dslp"
+            id                    = "kdt7qenq1a"
+            source                = "z86jockb1t"
+            target                = "zv9k30dslp"
+            multi_value_source_id = "1uplmn0ljy"
           }
           position = {
             x = 64
@@ -39249,15 +39449,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "0cdm5xwnl3" = {
           data = {
-            id              = "0cdm5xwnl3"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "0cdm5xwnl3"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -39447,15 +39648,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1fdy8se6nx" = {
           data = {
-            id              = "1fdy8se6nx"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "1fdy8se6nx"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"FAILED\"\n      }\n    ]\n  }\n]"
@@ -39521,7 +39723,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "1qo6sxe9l4"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -39570,15 +39772,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1qqopmsxn1" = {
           data = {
-            id              = "1qqopmsxn1"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "1qqopmsxn1"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.g1w1cltra3.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.g1w1cltra3.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -39738,7 +39941,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "2gbsriqrhi"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -39948,15 +40151,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "3kgzmkm8gy" = {
           data = {
-            id              = "3kgzmkm8gy"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "3kgzmkm8gy"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"enabled\",\n        \"data\": \"{{local.8a3rp16jhq.payload.output.matchedUser.enabled}}\",\n        \"tooltip\": \"{{local.8a3rp16jhq.payload.output.matchedUser.enabled}}\",\n        \"children\": [\n          {\n            \"text\": \"enabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40115,15 +40319,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "4ncwrpsqgn" = {
           data = {
-            id              = "4ncwrpsqgn"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "4ncwrpsqgn"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.account.status}}\",\n        \"tooltip\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.account.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40154,15 +40359,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "4rjs3llu20" = {
           data = {
-            id              = "4rjs3llu20"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "4rjs3llu20"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tconst { \n\t\tciam_logoUrl, \n\t\tciam_companyName, \n\t\tciam_logoStyle,\n\t\tflowMethod\n\t} = params;\n\n\tconst flowCompanyLogo = (flowMethod === 'WIDGET') \n\t\t? `\u003cdiv class=\"dialog-content-header dialog-content__header\" style=\"height: 85px\"\u003e\u003cdiv class=\"dialog-content-header__logo\"\u003e\u003c/div\u003e\u003c/div\u003e`\n\t\t: `\u003cimg class=\"align-self-center mb-5\" src=\"$${ciam_logoUrl}\" alt=\"$${ciam_companyName}\" style=\"$${ciam_logoStyle}\"\u003e\u003c/img\u003e`;\n\n\tconst flowCompanyGreeting = (flowMethod === 'WIDGET' )\n\t\t? '\u003cp class=\"text-muted text-center mb-5\"\u003e\u003c/p\u003e'\n\t\t: `\u003cp class=\"text-muted text-center\"\u003eWelcome to $${ciam_companyName}\u003c/p\u003e`;\n\n\treturn { flowCompanyLogo, flowCompanyGreeting }\n}"
@@ -40216,7 +40422,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "56g2vg8cg1"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -40271,15 +40477,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "5770fvct63" = {
           data = {
-            id              = "5770fvct63"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "5770fvct63"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"flowMethod\",\n        \"data\": \"{{local.x8uq3h1ccd.payload.output.flowMethod}}\",\n        \"tooltip\": \"{{local.x8uq3h1ccd.payload.output.flowMethod}}\",\n        \"children\": [\n          {\n            \"text\": \"flowMethod\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40444,15 +40651,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "5g1u9k5fi3" = {
           data = {
-            id              = "5g1u9k5fi3"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "5g1u9k5fi3"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"rememberMe\",\n        \"data\": \"{{local.1r9qfce4ko.payload.output.rememberMe}}\",\n        \"tooltip\": \"{{local.1r9qfce4ko.payload.output.rememberMe}}\",\n        \"children\": [\n          {\n            \"text\": \"rememberMe\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40509,7 +40717,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "5h82fmytrx"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -40548,15 +40756,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "5tz0a2yt0y" = {
           data = {
-            id              = "5tz0a2yt0y"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "5tz0a2yt0y"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"size\",\n        \"data\": \"{{local.bcrh9zpo2j.payload.output.rawResponse.size}}\",\n        \"tooltip\": \"{{local.bcrh9zpo2j.payload.output.rawResponse.size}}\",\n        \"children\": [\n          {\n            \"text\": \"size\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40664,7 +40873,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "686tfodyyp"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -40718,15 +40927,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "6961q0o277" = {
           data = {
-            id              = "6961q0o277"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "6961q0o277"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.7y41qu33vz.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.7y41qu33vz.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40832,16 +41042,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "6x0m1t11oh" = {
           data = {
-            id              = "6x0m1t11oh"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "jlchlerhty"
+            id               = "6x0m1t11oh"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "jlchlerhty"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.rmx6s73ihv.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.rmx6s73ihv.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -40965,7 +41176,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "727bjhcdsj"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -41146,15 +41357,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "79qzr2aabs" = {
           data = {
-            id              = "79qzr2aabs"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "79qzr2aabs"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -41190,7 +41402,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "7lz5nivh5z"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -41265,7 +41477,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "7y2cmqgp9w"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -41465,16 +41677,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "8b6kcm9yz6" = {
           data = {
-            id              = "8b6kcm9yz6"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "30gdqzg51v"
+            id               = "8b6kcm9yz6"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "30gdqzg51v"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \" Invalid username and/or password\"\n      }\n    ]\n  }\n]"
@@ -41585,16 +41798,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "8fovn3syu3" = {
           data = {
-            id              = "8fovn3syu3"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "q0ob5bbrc2"
+            id               = "8fovn3syu3"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "q0ob5bbrc2"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"flowPasswordlessRequired\",\n        \"data\": \"{{local.el9cmscetd.payload.output.flowPasswordlessRequired}}\",\n        \"tooltip\": \"{{local.el9cmscetd.payload.output.flowPasswordlessRequired}}\",\n        \"children\": [\n          {\n            \"text\": \"flowPasswordlessRequired\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -41711,7 +41925,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "91ln80xyjl"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -41768,7 +41982,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "9lnhqgyu40"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -41998,15 +42212,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "asnrb9403q" = {
           data = {
-            id              = "asnrb9403q"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "asnrb9403q"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Keep authMethods As Is"
@@ -42061,7 +42276,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "b243yoy7am"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -42116,15 +42331,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "b275pagysx" = {
           data = {
-            id              = "b275pagysx"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "b275pagysx"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"code\",\n        \"data\": \"{{local.us1sbucx0m.payload.error.code}}\",\n        \"tooltip\": \"{{local.us1sbucx0m.payload.error.code}}\",\n        \"children\": [\n          {\n            \"text\": \"code\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -42211,7 +42427,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "bjk9egzdap"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -42286,7 +42502,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "bou5d6d7iy"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -42335,15 +42551,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "bt6lzhdb0v" = {
           data = {
-            id              = "bt6lzhdb0v"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "bt6lzhdb0v"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -42432,15 +42649,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "byomx9u9ci" = {
           data = {
-            id              = "byomx9u9ci"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "byomx9u9ci"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tconst results = { flowMethod: \"REDIRECT\" };\n\n\tconst selectValue = (parameterValue, companyValue) =\u003e {\n\t\tif (params.flowParameters === undefined || parameterValue === undefined) {\n\t\t\treturn companyValue;\n\t\t}\n\n\t\t// Assume WIDGET if any flowParameters is found\n\t\tresults.flowMethod = \"WIDGET\";\n\n\t\treturn parameterValue === \"true\";\n\t};\n\n\t// flow path variables\n\tresults[\"flowAccountRecoveryEnabled\"] = selectValue(params.flowParameters.isAccountRecoveryEnabled, params.ciam_accountRecoveryEnabled);\n\tresults[\"flowMagicLinkEnabled\"] = selectValue(params.flowParameters.isEmailMagicLinkEnabled, params.ciam_magicLinkEnabled);\n\tresults[\"flowAgreementEnabled\"] = selectValue(params.flowParameters.isTermsOfServiceEnabled, params.ciam_agreementEnabled);\n\tresults[\"flowPasswordlessRequired\"] = selectValue(params.flowParameters.isPasswordlessRequired, params.ciam_passwordlessRequired);\n\n\t// allowed device types\n\tconst isEmailOTPEnabled = selectValue(params.flowParameters.isEmailOTPEnabled, params.ciam_emailOtpEnabled);\n\tconst isFidoPasskeyEnabled = selectValue(params.flowParameters.isFidoPasskeyEnabled, params.ciam_fidoPasskeyEnabled);\n\tconst isSmsOTPEnabled = selectValue(params.flowParameters.isSmsOTPEnabled, params.ciam_smsOtpEnabled);\t\n\n\tconst devices = [];\n\tif (isEmailOTPEnabled) {\n\t\tdevices.push(\"EMAIL\");\n\t};\n\tif (isFidoPasskeyEnabled) {\n\t\tdevices.push(\"FIDO2\");\n\t};\n\tif (isSmsOTPEnabled) {\n\t\tdevices.push(\"SMS\");\n\t};\n\n\tresults[\"flowAllowedDeviceTypes\"] = devices.join(\",\");\n\n\t// social logins\n\tresults[\"flowAppleEnabled\"] = selectValue(params.flowParameters.isAppleEnabled, params.ciam_appleEnabled);\n\tresults[\"flowFacebookEnabled\"] = selectValue(params.flowParameters.isFacebookEnabled, params.ciam_facebookEnabled);\n\tresults[\"flowGoogleEnabled\"] = selectValue(params.flowParameters.isGoogleEnabled, params.ciam_googleEnabled);\n\n\tresults[\"flowSocialRegistrationEnabled\"] = results[\"flowAppleEnabled\"] || results[\"flowFacebookEnabled\"] || results[\"flowGoogleEnabled\"];\n\n\treturn { ...results };\n}"
@@ -42735,15 +42953,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "cppsibbyhy" = {
           data = {
-            id              = "cppsibbyhy"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "cppsibbyhy"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.dv7x4k323t.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.dv7x4k323t.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -42791,16 +43010,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "cqktdyqncg" = {
           data = {
-            id              = "cqktdyqncg"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "ofx1v0cjhu"
+            id               = "cqktdyqncg"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "ofx1v0cjhu"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.5b7wgayb4e.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.5b7wgayb4e.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -42837,15 +43057,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "cstwt93s8m" = {
           data = {
-            id              = "cstwt93s8m"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "cstwt93s8m"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"status\",\n        \"data\": \"{{local.us1sbucx0m.payload.output.rawResponse.status}}\",\n        \"tooltip\": \"{{local.us1sbucx0m.payload.output.rawResponse.status}}\",\n        \"children\": [\n          {\n            \"text\": \"status\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -42889,15 +43110,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "d2ltnk9gkn" = {
           data = {
-            id              = "d2ltnk9gkn"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "d2ltnk9gkn"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -42973,7 +43195,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "d6xrc2dgd9"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -43046,15 +43268,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "dr1asu53u6" = {
           data = {
-            id              = "dr1asu53u6"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "dr1asu53u6"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis."
@@ -43341,16 +43564,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "e01o5o4i77" = {
           data = {
-            id              = "e01o5o4i77"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "f8mn68g86g"
+            id               = "e01o5o4i77"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "f8mn68g86g"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.eht5fkf5yz.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.eht5fkf5yz.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -43714,15 +43938,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "fdo3dhvrb8" = {
           data = {
-            id              = "fdo3dhvrb8"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "fdo3dhvrb8"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -43858,15 +44083,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "fqw47ezfd4" = {
           data = {
-            id              = "fqw47ezfd4"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Protect"
-            capability_name = "updateRiskEvaluation"
-            type            = "action"
-            status          = "configured"
+            id               = "fqw47ezfd4"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Protect"
+            capability_name  = "updateRiskEvaluation"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "completionStatus" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"SUCCESS\"\n      }\n    ]\n  }\n]"
@@ -44071,15 +44297,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "gahfykd5pd" = {
           data = {
-            id              = "gahfykd5pd"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "gahfykd5pd"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeDescription" : {
                 "value" : "Get Values from PingOne Protect analysis"
@@ -44242,15 +44469,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "gm6xl62pf3" = {
           data = {
-            id              = "gm6xl62pf3"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "gm6xl62pf3"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"flowMethod\",\n        \"data\": \"{{local.cl9ugbu07r.payload.output.flowMethod}}\",\n        \"tooltip\": \"{{local.cl9ugbu07r.payload.output.flowMethod}}\",\n        \"children\": [\n          {\n            \"text\": \"flowMethod\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -44285,7 +44513,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "gnywmg1hh8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -44632,15 +44860,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "hun8tkpynt" = {
           data = {
-            id              = "hun8tkpynt"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "hun8tkpynt"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -44802,15 +45031,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "j23r4buol6" = {
           data = {
-            id              = "j23r4buol6"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "j23r4buol6"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -44844,15 +45074,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "j7vnuet5bk" = {
           data = {
-            id              = "j7vnuet5bk"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "j7vnuet5bk"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set Flow Constants"
@@ -45014,7 +45245,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "klysbixfhg"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -45063,15 +45294,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "kpq6uykwvz" = {
           data = {
-            id              = "kpq6uykwvz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "kpq6uykwvz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Add rememberMe To authMethods"
@@ -45107,7 +45339,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "l1ps2d2tel"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -45386,15 +45618,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "mg0lkb9ayl" = {
           data = {
-            id              = "mg0lkb9ayl"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_notifications.id
-            connector_id    = "notificationsConnector"
-            name            = "PingOne Notifications"
-            label           = "PingOne Notifications"
-            capability_name = "sendEmail"
-            type            = "action"
-            status          = "configured"
+            id               = "mg0lkb9ayl"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_notifications.id
+            connector_id     = "notificationsConnector"
+            capability_class = "backend"
+            name             = "PingOne Notifications"
+            label            = "PingOne Notifications"
+            capability_name  = "sendEmail"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "customTemplateVariant" : {
                 "value" : "{}"
@@ -45500,15 +45733,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "mmqiyn4q46" = {
           data = {
-            id              = "mmqiyn4q46"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ANotEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "mmqiyn4q46"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ANotEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"teleport.svg\",\n        \"url\": \"lifeCycleStatus\",\n        \"data\": \"{{local.1r9qfce4ko.payload.output.lifeCycleStatus}}\",\n        \"tooltip\": \"{{local.1r9qfce4ko.payload.output.lifeCycleStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"lifeCycleStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -45650,16 +45884,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "n55ilztdeo" = {
           data = {
-            id              = "n55ilztdeo"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "j0480o0c9u"
+            id               = "n55ilztdeo"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "j0480o0c9u"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -45751,7 +45986,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "nbfsa9xtpk"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -45831,7 +46066,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "nfwaqb4cmm"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -46147,16 +46382,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "oiauhhhv4k" = {
           data = {
-            id              = "oiauhhhv4k"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "ofx1v0cjhu"
+            id               = "oiauhhhv4k"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "ofx1v0cjhu"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.z34hsrcd98.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.z34hsrcd98.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -46240,15 +46476,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "ou1gi7wq5d" = {
           data = {
-            id              = "ou1gi7wq5d"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "ou1gi7wq5d"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -46284,7 +46521,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "ow7yuubbgh"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -46502,7 +46739,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "pp7f7e0i4t"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -46551,15 +46788,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "ptslfr1den" = {
           data = {
-            id              = "ptslfr1den"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "ptslfr1den"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"canAuthenticate\",\n        \"data\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.account.canAuthenticate}}\",\n        \"tooltip\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.account.canAuthenticate}}\",\n        \"children\": [\n          {\n            \"text\": \"canAuthenticate\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -46728,7 +46966,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "ql9j13swkm"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -46783,15 +47021,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "qmpie4zfny" = {
           data = {
-            id              = "qmpie4zfny"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "qmpie4zfny"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_protectDeviceStatus\",\n        \"data\": \"{{local.mt49dyk6zx.payload.output.ciam_protectDeviceStatus}}\",\n        \"tooltip\": \"{{local.mt49dyk6zx.payload.output.ciam_protectDeviceStatus}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectDeviceStatus\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -46953,7 +47192,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "r1hzmpuaai"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47046,15 +47285,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "r7ddjgug4y" = {
           data = {
-            id              = "r7ddjgug4y"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "r7ddjgug4y"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"enabled\",\n        \"data\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.enabled}}\",\n        \"tooltip\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.enabled}}\",\n        \"children\": [\n          {\n            \"text\": \"enabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -47151,7 +47391,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "rmblwildni"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47363,15 +47603,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "rs2jbqnsry" = {
           data = {
-            id              = "rs2jbqnsry"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "rs2jbqnsry"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -47480,7 +47721,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "s1w3p5ncs2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47531,7 +47772,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "s3nh9jw7l5"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47581,7 +47822,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "sa9g55slp2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47828,7 +48069,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "syb01edyc3"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -47986,7 +48227,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "ud12y286rw"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -48041,15 +48282,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "uekzlj66vx" = {
           data = {
-            id              = "uekzlj66vx"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "uekzlj66vx"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_protectRiskLevel\",\n        \"data\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"tooltip\": \"{{global.variables.ciam_protectRiskLevel}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_protectRiskLevel\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -48119,7 +48361,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "ukdda8barq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -48221,7 +48463,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "uqeyzhxb2k"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -48353,15 +48595,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "v64gvzmcyy" = {
           data = {
-            id              = "v64gvzmcyy"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "v64gvzmcyy"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"pingIdentity.svg\",\n        \"url\": \"mfaEnabled\",\n        \"data\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.mfaEnabled}}\",\n        \"tooltip\": \"{{local.eq6oq9q1ag.payload.output.matchedUser.mfaEnabled}}\",\n        \"children\": [\n          {\n            \"text\": \"mfaEnabled\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -48397,7 +48640,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "v8837qth33"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -48519,15 +48762,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "vztjuyevpz" = {
           data = {
-            id              = "vztjuyevpz"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AIsEmpty"
-            type            = "trigger"
-            status          = "configured"
+            id               = "vztjuyevpz"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AIsEmpty"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "checkNullORUndefined" : {
                 "value" : true
@@ -48620,7 +48864,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "w7dcufm5fj"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -48978,15 +49222,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "x15qahvbpw" = {
           data = {
-            id              = "x15qahvbpw"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "x15qahvbpw"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -49191,7 +49436,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "xmi1y1dot2"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -49245,15 +49490,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "y1g5lzp3md" = {
           data = {
-            id              = "y1g5lzp3md"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "y1g5lzp3md"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"flow-connector.svg\",\n        \"url\": \"ciam_subflowResult\",\n        \"data\": \"{{local.sbudfzsp5m.payload.output.ciam_subflowResult}}\",\n        \"tooltip\": \"{{local.sbudfzsp5m.payload.output.ciam_subflowResult}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_subflowResult\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -49354,15 +49600,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "yfv4l5oqrn" = {
           data = {
-            id              = "yfv4l5oqrn"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "yfv4l5oqrn"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "400"
@@ -49675,7 +49922,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
           data = {
             id              = "zk34nppic4"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -49793,16 +50040,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "zoqe5yn0jc" = {
           data = {
-            id              = "zoqe5yn0jc"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "khnm0qmm2u"
+            id               = "zoqe5yn0jc"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "khnm0qmm2u"
             properties = jsonencode({
               "errorCode" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \" Invalid username and/or password\"\n      }\n    ]\n  }\n]"
@@ -49955,9 +50203,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1dtbrj9we6" = {
           data = {
-            id     = "1dtbrj9we6"
-            source = "1qqopmsxn1"
-            target = "so58xwowjn"
+            id                    = "1dtbrj9we6"
+            source                = "1qqopmsxn1"
+            target                = "so58xwowjn"
+            multi_value_source_id = "abtr1gtact"
           }
           position = {
             x = 64
@@ -49993,9 +50242,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1h7jsb551f" = {
           data = {
-            id     = "1h7jsb551f"
-            source = "cppsibbyhy"
-            target = "ncdawmfdmo"
+            id                    = "1h7jsb551f"
+            source                = "cppsibbyhy"
+            target                = "ncdawmfdmo"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -50012,9 +50262,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1hlx0pcksc" = {
           data = {
-            id     = "1hlx0pcksc"
-            source = "gm6xl62pf3"
-            target = "qdea3v0byw"
+            id                    = "1hlx0pcksc"
+            source                = "gm6xl62pf3"
+            target                = "qdea3v0byw"
+            multi_value_source_id = "txdtwa7brz"
           }
           position = {
             x = 64
@@ -50031,9 +50282,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1kp11ue6rc" = {
           data = {
-            id     = "1kp11ue6rc"
-            source = "1qqopmsxn1"
-            target = "tcx0nm2t9o"
+            id                    = "1kp11ue6rc"
+            source                = "1qqopmsxn1"
+            target                = "tcx0nm2t9o"
+            multi_value_source_id = "6wec7sf7zk"
           }
           position = {
             x = 64
@@ -50069,9 +50321,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "1r4ff4mdir" = {
           data = {
-            id     = "1r4ff4mdir"
-            source = "cqktdyqncg"
-            target = "pmzg2ixr1g"
+            id                    = "1r4ff4mdir"
+            source                = "cqktdyqncg"
+            target                = "pmzg2ixr1g"
+            multi_value_source_id = "abtr1gtact"
           }
           position = {
             x = 64
@@ -50240,9 +50493,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "2w4lyyj13l" = {
           data = {
-            id     = "2w4lyyj13l"
-            source = "cstwt93s8m"
-            target = "rqsigpn591"
+            id                    = "2w4lyyj13l"
+            source                = "cstwt93s8m"
+            target                = "rqsigpn591"
+            multi_value_source_id = "s6l99t4t39"
           }
           position = {
             x = 64
@@ -50373,9 +50627,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "4c7boiv9xy" = {
           data = {
-            id     = "4c7boiv9xy"
-            source = "oiauhhhv4k"
-            target = "o5vjpzh7bq"
+            id                    = "4c7boiv9xy"
+            source                = "oiauhhhv4k"
+            target                = "o5vjpzh7bq"
+            multi_value_source_id = "6wec7sf7zk"
           }
           position = {
             x = 64
@@ -50392,9 +50647,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "4cp1oppnw4" = {
           data = {
-            id     = "4cp1oppnw4"
-            source = "cppsibbyhy"
-            target = "d5jso3qit5"
+            id                    = "4cp1oppnw4"
+            source                = "cppsibbyhy"
+            target                = "d5jso3qit5"
+            multi_value_source_id = "qtli5t2v0s"
           }
           position = {
             x = 64
@@ -50430,9 +50686,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "4xpi1agf8h" = {
           data = {
-            id     = "4xpi1agf8h"
-            source = "uekzlj66vx"
-            target = "0cmw42tqse"
+            id                    = "4xpi1agf8h"
+            source                = "uekzlj66vx"
+            target                = "0cmw42tqse"
+            multi_value_source_id = "lqmnn9ogsx"
           }
           position = {
             x = 64
@@ -50449,9 +50706,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "51b1njou2w" = {
           data = {
-            id     = "51b1njou2w"
-            source = "cppsibbyhy"
-            target = "rc315a9uh1"
+            id                    = "51b1njou2w"
+            source                = "cppsibbyhy"
+            target                = "rc315a9uh1"
+            multi_value_source_id = "js0k5824y5"
           }
           position = {
             x = 64
@@ -50506,9 +50764,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "5iu8weo6b1" = {
           data = {
-            id     = "5iu8weo6b1"
-            source = "5770fvct63"
-            target = "jv8lvv5w4x"
+            id                    = "5iu8weo6b1"
+            source                = "5770fvct63"
+            target                = "jv8lvv5w4x"
+            multi_value_source_id = "vrujm9ivj5"
           }
           position = {
             x = 64
@@ -50734,9 +50993,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "7kcxt8y39r" = {
           data = {
-            id     = "7kcxt8y39r"
-            source = "cstwt93s8m"
-            target = "imnmdfh12z"
+            id                    = "7kcxt8y39r"
+            source                = "cstwt93s8m"
+            target                = "imnmdfh12z"
+            multi_value_source_id = "ulnvuk7d7b"
           }
           position = {
             x = 64
@@ -51380,9 +51640,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "ca4109sehr" = {
           data = {
-            id     = "ca4109sehr"
-            source = "cqktdyqncg"
-            target = "flmowbcu44"
+            id                    = "ca4109sehr"
+            source                = "cqktdyqncg"
+            target                = "flmowbcu44"
+            multi_value_source_id = "6wec7sf7zk"
           }
           position = {
             x = 64
@@ -51494,9 +51755,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "dc8wgdxa2e" = {
           data = {
-            id     = "dc8wgdxa2e"
-            source = "uekzlj66vx"
-            target = "80hktgiwnm"
+            id                    = "dc8wgdxa2e"
+            source                = "uekzlj66vx"
+            target                = "80hktgiwnm"
+            multi_value_source_id = "0p1qnce4cf"
           }
           position = {
             x = 64
@@ -51855,9 +52117,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "g5iwaqpuwn" = {
           data = {
-            id     = "g5iwaqpuwn"
-            source = "6x0m1t11oh"
-            target = "907z7uvt6v"
+            id                    = "g5iwaqpuwn"
+            source                = "6x0m1t11oh"
+            target                = "907z7uvt6v"
+            multi_value_source_id = "vgii63uk2p"
           }
           position = {
             x = 64
@@ -52102,9 +52365,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "hinqimf2p3" = {
           data = {
-            id     = "hinqimf2p3"
-            source = "6x0m1t11oh"
-            target = "wcask7tfhv"
+            id                    = "hinqimf2p3"
+            source                = "6x0m1t11oh"
+            target                = "wcask7tfhv"
+            multi_value_source_id = "js0k5824y5"
           }
           position = {
             x = 64
@@ -52121,9 +52385,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "hioz7ygtrk" = {
           data = {
-            id     = "hioz7ygtrk"
-            source = "oiauhhhv4k"
-            target = "aw3ce1sq70"
+            id                    = "hioz7ygtrk"
+            source                = "oiauhhhv4k"
+            target                = "aw3ce1sq70"
+            multi_value_source_id = "abtr1gtact"
           }
           position = {
             x = 64
@@ -52235,9 +52500,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "igwye5ugkr" = {
           data = {
-            id     = "igwye5ugkr"
-            source = "gm6xl62pf3"
-            target = "yjz1weh9xh"
+            id                    = "igwye5ugkr"
+            source                = "gm6xl62pf3"
+            target                = "yjz1weh9xh"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -52330,9 +52596,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "io3l3kyafo" = {
           data = {
-            id     = "io3l3kyafo"
-            source = "6961q0o277"
-            target = "aeek6nl8wj"
+            id                    = "io3l3kyafo"
+            source                = "6961q0o277"
+            target                = "aeek6nl8wj"
+            multi_value_source_id = "abtr1gtact"
           }
           position = {
             x = 64
@@ -52558,9 +52825,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "m22lo96d17" = {
           data = {
-            id     = "m22lo96d17"
-            source = "6x0m1t11oh"
-            target = "gqbh7qw6qa"
+            id                    = "m22lo96d17"
+            source                = "6x0m1t11oh"
+            target                = "gqbh7qw6qa"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -52710,9 +52978,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "np9u5veqaj" = {
           data = {
-            id     = "np9u5veqaj"
-            source = "6x0m1t11oh"
-            target = "qbf8b4sda4"
+            id                    = "np9u5veqaj"
+            source                = "6x0m1t11oh"
+            target                = "qbf8b4sda4"
+            multi_value_source_id = "qtli5t2v0s"
           }
           position = {
             x = 64
@@ -52748,9 +53017,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "nx9l8o7if1" = {
           data = {
-            id     = "nx9l8o7if1"
-            source = "cppsibbyhy"
-            target = "8epxzybfo"
+            id                    = "nx9l8o7if1"
+            source                = "cppsibbyhy"
+            target                = "8epxzybfo"
+            multi_value_source_id = "2awid8unpo"
           }
           position = {
             x = 64
@@ -52938,9 +53208,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "owzuqs55mo" = {
           data = {
-            id     = "owzuqs55mo"
-            source = "uekzlj66vx"
-            target = "oc2cqsl41l"
+            id                    = "owzuqs55mo"
+            source                = "uekzlj66vx"
+            target                = "oc2cqsl41l"
+            multi_value_source_id = "0arupdzpn0"
           }
           position = {
             x = 64
@@ -53622,9 +53893,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "tmxx5ek3lf" = {
           data = {
-            id     = "tmxx5ek3lf"
-            source = "6x0m1t11oh"
-            target = "ri35kah4nr"
+            id                    = "tmxx5ek3lf"
+            source                = "6x0m1t11oh"
+            target                = "ri35kah4nr"
+            multi_value_source_id = "2awid8unpo"
           }
           position = {
             x = 64
@@ -53774,9 +54046,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "vcnbjs6el8" = {
           data = {
-            id     = "vcnbjs6el8"
-            source = "cppsibbyhy"
-            target = "n5vpbff54"
+            id                    = "vcnbjs6el8"
+            source                = "cppsibbyhy"
+            target                = "n5vpbff54"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -53869,9 +54142,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "w7najllx16" = {
           data = {
-            id     = "w7najllx16"
-            source = "5770fvct63"
-            target = "eum65le218"
+            id                    = "w7najllx16"
+            source                = "5770fvct63"
+            target                = "eum65le218"
+            multi_value_source_id = "-1"
           }
           position = {
             x = 64
@@ -54078,9 +54352,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "y7jd06hnvy" = {
           data = {
-            id     = "y7jd06hnvy"
-            source = "cstwt93s8m"
-            target = "nbcsfwxqvp"
+            id                    = "y7jd06hnvy"
+            source                = "cstwt93s8m"
+            target                = "nbcsfwxqvp"
+            multi_value_source_id = "m3ii6p23fm"
           }
           position = {
             x = 64
@@ -54249,9 +54524,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_registration_authenti
         }
         "zy5s5uzwdh" = {
           data = {
-            id     = "zy5s5uzwdh"
-            source = "6961q0o277"
-            target = "vwq8svkesj"
+            id                    = "zy5s5uzwdh"
+            source                = "6961q0o277"
+            target                = "vwq8svkesj"
+            multi_value_source_id = "6wec7sf7zk"
           }
           position = {
             x = 64
@@ -54335,7 +54611,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "2btocnrvnp"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54386,7 +54662,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "5vw8zhr390"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54465,7 +54741,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "7i8834bmpf"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54521,7 +54797,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "ahgaglnbf3"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54576,16 +54852,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
         }
         "c2ulwnph9p" = {
           data = {
-            id              = "c2ulwnph9p"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "arrayOfAIncludesB"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "ldxi1m896z"
+            id               = "c2ulwnph9p"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "arrayOfAIncludesB"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "ldxi1m896z"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"[\\\"BOT_MITIGATION\\\",\\\"AITM_MITIGATION\\\",\\\"TEMP_EMAIL_MITIGATION\\\"]\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -54634,7 +54911,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "cilec71mva"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54767,15 +55044,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
         }
         "f994y44c9q" = {
           data = {
-            id              = "f994y44c9q"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
+            id               = "f994y44c9q"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Error in creating PingOne Risk Evaluation \"\n      }\n    ]\n  }\n]"
@@ -54808,7 +55086,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "ggprsb233e"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54865,7 +55143,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "h48xdltldb"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -54999,7 +55277,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "md3luzzdte"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -55055,7 +55333,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "onzp625tsa"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -55109,15 +55387,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
         }
         "qbf0qv8qi0" = {
           data = {
-            id              = "qbf0qv8qi0"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "qbf0qv8qi0"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Iterate over params object, return false if any\n// passed in parameters are null/empty\nmodule.exports = a = async ({ params }) =\u003e {\n\n\tfor (var key in params) {\n\t\tif (!params[key]) {\n\t\t\treturn false; \n\t\t}\n\t}\n\n\treturn \n}"
@@ -55309,7 +55588,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
           data = {
             id              = "y5vtbd5ej5"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -55363,16 +55642,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_threat_detection_subf
         }
         "y6rdbg2ky5" = {
           data = {
-            id              = "y6rdbg2ky5"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.pingone_protect.id
-            connector_id    = "pingOneRiskConnector"
-            name            = "PingOne Protect"
-            label           = "PingOne Risk"
-            capability_name = "createRiskEvaluation"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "rd0qqpawik"
+            id               = "y6rdbg2ky5"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.pingone_protect.id
+            connector_id     = "pingOneRiskConnector"
+            capability_class = "backend"
+            name             = "PingOne Protect"
+            label            = "PingOne Risk"
+            capability_name  = "createRiskEvaluation"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "rd0qqpawik"
             properties = jsonencode({
               "cookie" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"auth.svg\",\n        \"url\": \"usercookie\",\n        \"data\": \"{{global.parameters.usercookie}}\",\n        \"tooltip\": \"{{global.parameters.usercookie}}\",\n        \"children\": [\n          {\n            \"text\": \"usercookie\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -55773,7 +56053,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "2zs6bq3sxd"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -55821,16 +56101,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "527m4tr2s2" = {
           data = {
-            id              = "527m4tr2s2"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "ymff79tlhz"
+            id               = "527m4tr2s2"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "ymff79tlhz"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Verification code is resent.\"\n      }\n    ]\n  }\n]"
@@ -55855,15 +56136,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "5d5o5ia81u" = {
           data = {
-            id              = "5d5o5ia81u"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "ALessThanB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "5d5o5ia81u"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "ALessThanB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"variable.svg\",\n        \"url\": \"ciam_verificationValidationAttempts\",\n        \"data\": \"{{global.variables.ciam_verificationValidationAttempts}}\",\n        \"tooltip\": \"{{global.variables.ciam_verificationValidationAttempts}}\",\n        \"children\": [\n          {\n            \"text\": \"ciam_verificationValidationAttempts\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -55894,16 +56176,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "8gqiq4sagn" = {
           data = {
-            id              = "8gqiq4sagn"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "errorConnector"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "l11iieutxe"
+            id               = "8gqiq4sagn"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "errorConnector"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "l11iieutxe"
             properties = jsonencode({
               "backgroundColor" : {
                 "value" : "#ffc8c1ff"
@@ -55967,7 +56250,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "8w4uz2atae"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -56161,7 +56444,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "lxzd28ucwq"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -56234,7 +56517,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "qmzu2jdn7v"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -56372,15 +56655,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "rjau0njx5i" = {
           data = {
-            id              = "rjau0njx5i"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "AEqualsMultipleB"
-            type            = "trigger"
-            status          = "configured"
+            id               = "rjau0njx5i"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "AEqualsMultipleB"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "leftValueA" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"http.svg\",\n        \"url\": \"buttonValue\",\n        \"data\": \"{{local.s5yykzv8zd.payload.output.buttonValue}}\",\n        \"tooltip\": \"{{local.s5yykzv8zd.payload.output.buttonValue}}\",\n        \"children\": [\n          {\n            \"text\": \"buttonValue\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
@@ -56549,16 +56833,17 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "wfe8dz7k7v" = {
           data = {
-            id              = "wfe8dz7k7v"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "incrementByN"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "yx7oyrcd8s"
+            id               = "wfe8dz7k7v"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "incrementByN"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "yx7oyrcd8s"
             properties = jsonencode({
               "incrementCounter" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"1\"\n      }\n    ]\n  }\n]"
@@ -56674,7 +56959,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "xmqyiubcod"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -56729,15 +57014,16 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "xsb00g2t92" = {
           data = {
-            id              = "xsb00g2t92"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "xsb00g2t92"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set Validation Attempt To Zero"
@@ -56773,7 +57059,7 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
           data = {
             id              = "y2ry3nape9"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -56842,9 +57128,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "33ysz5sa00" = {
           data = {
-            id     = "33ysz5sa00"
-            source = "rjau0njx5i"
-            target = "n5icn97kyh"
+            id                    = "33ysz5sa00"
+            source                = "rjau0njx5i"
+            target                = "n5icn97kyh"
+            multi_value_source_id = "8982ybbt5z"
           }
           position = {
             x = 64
@@ -57127,9 +57414,10 @@ resource "pingone_davinci_flow" "ciam_passwordless_protect_verify_email_subflow"
         }
         "tdowm7moa8" = {
           data = {
-            id     = "tdowm7moa8"
-            source = "rjau0njx5i"
-            target = "t92nqcnwux"
+            id                    = "tdowm7moa8"
+            source                = "rjau0njx5i"
+            target                = "t92nqcnwux"
+            multi_value_source_id = "xplfpj1df8"
           }
           position = {
             x = 64
@@ -57279,15 +57567,16 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
       nodes = {
         "0rgxvbc224" = {
           data = {
-            id              = "0rgxvbc224"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.variables.id
-            connector_id    = "variablesConnector"
-            name            = "Variables"
-            label           = "Variables"
-            capability_name = "saveValue"
-            type            = "trigger"
-            status          = "configured"
+            id               = "0rgxvbc224"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.variables.id
+            connector_id     = "variablesConnector"
+            capability_class = "backend"
+            name             = "Variables"
+            label            = "Variables"
+            capability_name  = "saveValue"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "nodeTitle" : {
                 "value" : "Set Flow Parameters"
@@ -57348,7 +57637,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "1u0vwi4oze"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -57381,16 +57670,17 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
         }
         "4j666388n9" = {
           data = {
-            id              = "4j666388n9"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "m3qhojjvoi"
+            id               = "4j666388n9"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "m3qhojjvoi"
             properties = jsonencode({
               "code" : {
                 "value" : "/**\n * To add a new error, implement the error interface: \n * {\n *  test: (error) =\u003e boolean\n *  message: string\n * }\n * then add your implementation to the knownErrors array.\n */\n\n// Thrown when the street address contains invalid characters.\nconst invalidStreetAddressError = {\n\ttest: (error) =\u003e error?.message?.includes(\"address.streetAddress: must match\"),\n\tmessage: 'Street Address must contain only Unicode letters, marks, numbers, spaces, or punctuation (except $, +, \u003c, =, \u003e, ^, `, |, ~)'\n};\n\n// Thrown when the first name contains invalid characters.\nconst invalidFirstNameError = {\n\ttest: (error) =\u003e error?.message?.includes(\"name.given: must contain only\"),\n\tmessage: 'First Name must contain only Unicode letters, marks, spaces, dots, apostrophes, or hyphens'\n};\n\n// Thrown when the last name contains invalid characters.\nconst invalidLastNameError = {\n\ttest: (error) =\u003e error?.message?.includes(\"name.family: must contain only\"),\n\tmessage: 'Last Name must contain only Unicode letters, marks, spaces, dots, apostrophes, or hyphens'\n};\n\n// Thrown when the zip code contains invalid characters.\nconst invalidZipCodeError = {\n\ttest: (error) =\u003e error?.message?.includes(\"address.postalCode: must contain only \"),\n\tmessage: 'Zip Code must contain only Unicode letters, marks, spaces, dots, apostrophes, or hyphens'\n};\n\n// Array of any errors we may want to catch and replace the error message for.\nconst knownErrors = [\n\tinvalidStreetAddressError,\n\tinvalidFirstNameError,\n\tinvalidLastNameError,\n\tinvalidZipCodeError\n];\n\n// Given an error return an error message.\nconst getErrorMessage = async ({params}) =\u003e {\n\tconst error = params.error;\n\tconst knownError = knownErrors.find((knownError) =\u003e knownError.test(error));\n\tconst errorConnector = knownError ? knownError.message : error.message;\n\treturn { updatedErrorMessage: errorConnector };\n}\n\nmodule.exports = getErrorMessage;"
@@ -57430,7 +57720,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "4z197u73t8"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -57735,7 +58025,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "dq7qpghe4g"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -57807,7 +58097,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "guj1pyh616"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -57842,7 +58132,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "jh7fbt0cqw"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -57876,16 +58166,17 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
         }
         "jjweor94k9" = {
           data = {
-            id              = "jjweor94k9"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
-            id_unique       = "zs30499f5u"
+            id               = "jjweor94k9"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
+            id_unique        = "zs30499f5u"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tconsole.log('params: ', params)\n\n\treturn {'username': params.flowParameters.username}\n}"
@@ -57961,15 +58252,16 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
         }
         "psu8mrv4k9" = {
           data = {
-            id              = "psu8mrv4k9"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.functions.id
-            connector_id    = "functionsConnector"
-            name            = "Functions"
-            label           = "Functions"
-            capability_name = "customFunction"
-            type            = "trigger"
-            status          = "configured"
+            id               = "psu8mrv4k9"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.functions.id
+            connector_id     = "functionsConnector"
+            capability_class = "backend"
+            name             = "Functions"
+            label            = "Functions"
+            capability_name  = "customFunction"
+            type             = "trigger"
+            status           = "configured"
             properties = jsonencode({
               "code" : {
                 "value" : "// Write your code here\n// Supported language: Javascript \nmodule.exports = a = async ({params}) =\u003e {\n\tconsole.log('params: ', params)\n\n\tvar returnAddress = {\"streetAddress\" : params.inputAddress, \"postalCode\": params.inputZipcode};\n\n    var returnPhoto = {\"href\": params.inputPhoto}\n\n\treturn {'returnAddress': returnAddress, 'photo' : returnPhoto}\n}"
@@ -58029,7 +58321,7 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
           data = {
             id              = "vtw40m5str"
             node_type       = "ANNOTATION"
-            connection_id   = pingone_davinci_connector_instance.annontation.id
+            connection_id   = pingone_davinci_connector_instance.annotation.id
             connector_id    = "annotationConnector"
             name            = "Annotation"
             capability_name = "updateAnnotationProperties"
@@ -58088,16 +58380,17 @@ resource "pingone_davinci_flow" "ootb_basic_profile_management" {
         }
         "zpk0eome97" = {
           data = {
-            id              = "zpk0eome97"
-            node_type       = "CONNECTION"
-            connection_id   = pingone_davinci_connector_instance.error_message.id
-            connector_id    = "errorConnector"
-            name            = "Error Message"
-            label           = "Error Message"
-            capability_name = "customErrorMessage"
-            type            = "action"
-            status          = "configured"
-            id_unique       = "qyuyvvoyxn"
+            id               = "zpk0eome97"
+            node_type        = "CONNECTION"
+            connection_id    = pingone_davinci_connector_instance.error_message.id
+            connector_id     = "errorConnector"
+            capability_class = "backend"
+            name             = "Error Message"
+            label            = "Error Message"
+            capability_name  = "customErrorMessage"
+            type             = "action"
+            status           = "configured"
+            id_unique        = "qyuyvvoyxn"
             properties = jsonencode({
               "errorConnector" : {
                 "value" : "[\n  {\n    \"children\": [\n      {\n        \"text\": \"\"\n      },\n      {\n        \"text\": \"\"\n      },\n      {\n        \"type\": \"link\",\n        \"src\": \"functions.svg\",\n        \"url\": \"updatedErrorMessage\",\n        \"data\": \"{{local.4j666388n9.payload.output.updatedErrorMessage}}\",\n        \"tooltip\": \"{{local.4j666388n9.payload.output.updatedErrorMessage}}\",\n        \"children\": [\n          {\n            \"text\": \"updatedErrorMessage\"\n          }\n        ]\n      },\n      {\n        \"text\": \"\"\n      }\n    ]\n  }\n]"
