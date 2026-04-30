@@ -44,30 +44,3 @@ variable "env_name" {
   description = "Name used for the PingOne Environment"
   default     = "DaVinci Registration Sample"
 }
-
-variable "dv_admin_region" {
-  type        = string
-  description = "Region your P1 Org is in"
-}
-
-variable "dv_admin_username" {
-  type        = string
-  description = "Username to use for the DaVinci provider"
-}
-
-variable "dv_admin_password" {
-  type        = string
-  description = "Password to use for the DaVinci provider"
-}
-
-variable "davinci_admin_group" {
-  type        = string
-  description = "Name of the group that has DaVinci Admin rights"
-  default     = "DaVinci Terraform Administrators"
-}
-
-variable "assign_dv_admin_role" {
-  type        = bool
-  description = "Assign DaVinci Admin role to new environment. If your DaVinci Admin group is scoped to organization set this to false."
-  default     = true
-}

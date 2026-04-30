@@ -22,16 +22,6 @@ resource "pingone_application_role_assignment" "population_environment_admin_to_
   scope_environment_id = pingone_environment.my_environment.id
 }
 
-// Add new environment to DaVinci Admin group
-resource "pingone_group_role_assignment" "single_environment_admin_to_group" {
-  count          = var.assign_dv_admin_role ? 1 : 0
-  environment_id = var.pingone_environment_id
-  group_id       = data.pingone_group.davinci_admin.id
-  role_id        = data.pingone_role.davinci_admin.id
-
-  scope_environment_id = pingone_environment.my_environment.id
-}
-
 ##############################################
 # PingOne Populations
 ##############################################
@@ -96,10 +86,10 @@ resource "pingone_application_secret" "worker_app" {
 resource "pingone_application_flow_policy_assignment" "login_flow" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.oidc_sdk_sample_app.id
-  flow_policy_id = davinci_application_flow_policy.registration_flow_policy.id
+  flow_policy_id = pingone_davinci_application_flow_policy.registration_flow_policy.id
 
   priority = 1
-  depends_on = [davinci_application_flow_policy.registration_flow_policy]
+  depends_on = [pingone_davinci_application_flow_policy.registration_flow_policy]
 }
 
 ##############################################
@@ -176,7 +166,7 @@ resource "pingone_resource_scope" "revoke" {
 ##########################################################################
 
 resource "local_file" "env_config" {
-  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${davinci_application.passwordless_main_flow_app.environment_id}\",\n  apiKey: \"${davinci_application.passwordless_main_flow_app.api_keys.prod}\",\n  policyId: \"${davinci_application_flow_policy.registration_flow_policy.id}\"\n};"
+  content  = "window._env_ = {\n  pingOneDomain: \"${local.pingone_domain}\",\n  pingOneEnvId: \"${pingone_environment.my_environment.id}\",\n  clientId: \"${pingone_application.oidc_sdk_sample_app.id}\", \n  companyId: \"${pingone_davinci_application.passwordless_main_flow_app.environment_id}\",\n  apiKey: \"${pingone_davinci_application.passwordless_main_flow_app.api_key.value}\",\n  policyId: \"${pingone_davinci_application_flow_policy.registration_flow_policy.id}\"\n};"
   filename = "../sample-app/global.js"
 }
 
